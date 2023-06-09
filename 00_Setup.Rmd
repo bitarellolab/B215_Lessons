@@ -1,0 +1,50 @@
+---
+title: "00_Setup"
+output: html_document
+date: "2023-06-09"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Packages
+
+
+```{r}
+#install.packages("rmarkdown")
+#install.packages("knitr")
+#install.packages("tidyverse")
+#install.packages("data.table")
+#install.packages("remotes")
+#remotes::install_github("rstudio/learnr")
+library(learnr)
+library(rmarkdown)
+library(knitr)
+library(data.table)
+library(data.table)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create directories
+
+```{r}
+if(!(dir.exists("tutorials"))){dir.create("tutorials")}
+if(!(dir.exists("quizzes"))){dir.create("quizzes")}
+```
+
+
+```{r}
+setwd("tutorials")
+if(!(dir.exists("01_R_and_Rstudio"))){dir.create("01_R_and_Rstudio")}
+setwd("tutorials/01_R_and_Rstudio/")
+if(!(dir.exists("images"))){dir.create("images")}
+
+```
+
