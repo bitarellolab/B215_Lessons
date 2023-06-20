@@ -422,7 +422,7 @@ y2 <- as.numeric(y) #what happens here?
 
 class(x2)
 
-class(x3)
+class(y2)
 ```
 
 Sandbox: Use the area below for any R practice
