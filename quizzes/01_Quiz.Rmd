@@ -164,7 +164,7 @@ c) Log of 14 (use the natural log):
 
 ```{r ex3-check}
 grade_result(
-  pass_if(~identical(.result,  2.639057))
+  pass_if(~identical(.result,  log(14)))
 )  
 ```  
 
