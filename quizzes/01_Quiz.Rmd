@@ -34,7 +34,6 @@ gradethis::gradethis_setup(
                # assign 9 to a
 ```
 
-
 ```{r sim1-solution}
 a <- 9                
 #Note: I am not sure how to allow multiple correct answers, say
