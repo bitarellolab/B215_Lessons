@@ -3,7 +3,7 @@ title: "R Quiz 1"
 output: 
   learnr::tutorial:
     progressive: true
-    allow_skip: true
+    allow_skip: false
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 ---
@@ -22,7 +22,7 @@ gradethis::gradethis_setup(
   fail.hint = TRUE
 )
 
-```
+```             
 
 
 
@@ -202,5 +202,4 @@ Prove your reached the end and you're not a robot my creating a variable called 
 Last but not least, take a screenshot of this last task and email it to me with subject line: "R quiz 1"!
 
 The end!
-
 
