@@ -27,7 +27,7 @@ gradethis::gradethis_setup(
 
 ## Vectors
 
-
+### Exercise 1
 1. Below, assign the number 9 to the variable `a`, and a vector with numbers, 2, 9, and 8, in that order, to the variable  `b`. Then, ask if `a` is equal to `b` and then multiply `a` and `b`.
 
 
@@ -48,6 +48,7 @@ grade_this_code()
 
 ```
 
+### exercise 2
 ```{r sim2, exercise = TRUE, allow_skip = FALSE}
 b <- c()            # assign a vector with 2, 9 and 8, in that order, to b
 ```
@@ -64,6 +65,8 @@ grade_this_code()
 
 ## Vector functions
 
+
+### ex3 
 ```{r ex2setup}
 a <- 9
 b <- c(2,9,8)
@@ -81,6 +84,8 @@ a == b               # ask if a equals b
 grade_this_code()
 ```
 
+
+### exercise 4
 ```{r sim4, exercise = TRUE, exercise.setup = "ex2setup"}
                     # multiply a and b
 ```
