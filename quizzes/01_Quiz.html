@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="date" content="2023-06-28" />
+<meta name="date" content="2023-06-29" />
 
 <meta name="progressive" content="true" />
 <meta name="allow-skip" content="false" />
@@ -385,10 +385,13 @@ learnr:::store_exercise_cache(structure(list(label = "sim3", global_setup = stru
 "library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = NULL, chunks = list(list(label = "sim3", 
-    code = "                    # ask if a equals b ", opts = list(
-        label = "\"sim3\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
+    include = FALSE)), setup = "a <- 9\nb <- c(2,9,8)", chunks = list(
+    list(label = "ex2setup", code = "a <- 9\nb <- c(2,9,8)", 
+        opts = list(label = "\"ex2setup\""), engine = "r"), list(
+        label = "sim3", code = "                    # ask if a equals b ", 
+        opts = list(label = "\"sim3\"", exercise = "TRUE", exercise.setup = "\"ex2setup\""), 
+        engine = "r")), code_check = NULL, error_check = NULL, 
+    check = structure("grade_this_code()", chunk_opts = list(
         label = "sim3-check")), solution = structure("a == b               # ask if a equals b ", chunk_opts = list(
         label = "sim3-solution")), tests = NULL, options = list(
         eval = TRUE, echo = TRUE, results = "markup", tidy = FALSE, 
@@ -409,8 +412,9 @@ learnr:::store_exercise_cache(structure(list(label = "sim3", global_setup = stru
         max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
         exercise.error.check.code = "gradethis_error_checker()", 
         exercise.eval = TRUE, exercise.reveal_solution = FALSE, 
-        label = "sim3", exercise = TRUE, code = "                    # ask if a equals b ", 
-        out.width.px = 624, out.height.px = 384, params.src = "sim3, exercise = TRUE", 
+        label = "sim3", exercise = TRUE, exercise.setup = "ex2setup", 
+        code = "                    # ask if a equals b ", out.width.px = 624, 
+        out.height.px = 384, params.src = "sim3, exercise = TRUE, exercise.setup = \"ex2setup\"", 
         fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -430,10 +434,13 @@ learnr:::store_exercise_cache(structure(list(label = "sim4", global_setup = stru
 "library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = NULL, chunks = list(list(label = "sim4", 
-    code = "                    # multiply a and b", opts = list(
-        label = "\"sim4\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
+    include = FALSE)), setup = "a <- 9\nb <- c(2,9,8)", chunks = list(
+    list(label = "ex2setup", code = "a <- 9\nb <- c(2,9,8)", 
+        opts = list(label = "\"ex2setup\""), engine = "r"), list(
+        label = "sim4", code = "                    # multiply a and b", 
+        opts = list(label = "\"sim4\"", exercise = "TRUE", exercise.setup = "\"ex2setup\""), 
+        engine = "r")), code_check = NULL, error_check = NULL, 
+    check = structure("grade_this_code()", chunk_opts = list(
         label = "sim4-check")), solution = structure("a * b             # multiply a and b ", chunk_opts = list(
         label = "sim4-solution")), tests = NULL, options = list(
         eval = TRUE, echo = TRUE, results = "markup", tidy = FALSE, 
@@ -454,8 +461,9 @@ learnr:::store_exercise_cache(structure(list(label = "sim4", global_setup = stru
         max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
         exercise.error.check.code = "gradethis_error_checker()", 
         exercise.eval = TRUE, exercise.reveal_solution = FALSE, 
-        label = "sim4", exercise = TRUE, code = "                    # multiply a and b", 
-        out.width.px = 624, out.height.px = 384, params.src = "sim4, exercise = TRUE", 
+        label = "sim4", exercise = TRUE, exercise.setup = "ex2setup", 
+        code = "                    # multiply a and b", out.width.px = 624, 
+        out.height.px = 384, params.src = "sim4, exercise = TRUE, exercise.setup = \"ex2setup\"", 
         fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -463,28 +471,28 @@ learnr:::store_exercise_cache(structure(list(label = "sim4", global_setup = stru
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "pRactice-1", question = structure("In the example above, what would R tell you when you ask it if a equals b?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_6ab25fc", 
+"character")), answers = list(structure(list(id = "lnr_ans_15acf26", 
     option = "It doesn't return anything", value = "It doesn't return anything", 
     label = structure("It doesn’t return anything", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b9cb0a0", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3c2bfb", 
     option = "`FALSE`", value = "`FALSE`", label = structure("<code>FALSE<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4624b4c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5970c99", 
     option = "An error", value = "An error", label = structure("An error", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a77d278", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8e2a619", 
     option = "The vector, `FALSE TRUE FALSE`", value = "The vector, `FALSE TRUE FALSE`", 
     label = structure("The vector, <code>FALSE TRUE FALSE<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("You should be proud.", html = TRUE, class = c("html", 
-"character")), try_again = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
-"character")), incorrect = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Success!", html = TRUE, class = c("html", 
+"character")), try_again = structure("But no need to fret, try it again.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("But no need to fret, try it again.", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "pRactice-1-answer", question = "pRactice-1"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = TRUE, seed = 1490866449.80576, 
+    random_answer_order = TRUE, allow_retry = TRUE, seed = 313148978.354179, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -492,44 +500,44 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "pRactice-2", question = structure("In the example above, what does multiplying a and b return?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_981e39c", 
+"character")), answers = list(structure(list(id = "lnr_ans_4643860", 
     option = "The vector, `2 9 8`", value = "The vector, `2 9 8`", 
     label = structure("The vector, <code>2 9 8<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d49a5dd", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ce664b0", 
     option = "The vector, `18 81 72`", value = "The vector, `18 81 72`", 
     label = structure("The vector, <code>18 81 72<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6e855e4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ac05b4a", 
     option = "The vector, `18 9 8`", value = "The vector, `18 9 8`", 
     label = structure("The vector, <code>18 9 8<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f7a5d7d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_435462d", 
     option = "The vector, `4 81 64`", value = "The vector, `4 81 64`", 
     label = structure("The vector, <code>4 81 64<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c989cac", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_51c4367", 
     option = "An error", value = "An error", label = structure("An error", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Splendid!", html = TRUE, class = c("html", 
-"character")), try_again = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
-"character")), incorrect = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Very good!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Please try again.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Please try again.", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "pRactice-2-answer", question = "pRactice-2"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = TRUE, seed = 166012355.922694, 
+    random_answer_order = TRUE, allow_retry = TRUE, seed = 1799055121.16225, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2-1", question = structure("Is R free to download and use?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_7ea30ef", 
+"character")), answers = list(structure(list(id = "lnr_ans_a3452f3", 
     option = "Yes!", value = "Yes!", label = structure("Yes!", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = structure("R is free <em>and<\u002fem> open source, which means that anyone can read, use, and copy the source code of the R language.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_781cf28", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7a91134", 
     option = "No.", value = "No.", label = structure("No.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -539,7 +547,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "quiz2-1-answer", question = "quiz2-1"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 844561425.10672, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1251370094.91729, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -547,23 +555,23 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2-2", question = structure("What is the RStudio IDE?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_c99dd79", 
+"character")), answers = list(structure(list(id = "lnr_ans_4f7911", 
     option = "An application that makes it easier to use R.", 
     value = "An application that makes it easier to use R.", 
     label = structure("An application that makes it easier to use R.", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = structure("RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and will rely on the RStudio IDE in several tutorials.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_df3dafa", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_cd0e02c", 
     option = "An application that let's you use R without writing any code", 
     value = "An application that let's you use R without writing any code", 
     label = structure("An application that let’s you use R without writing any code", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("And thank goodness! Code provides a reproducible record of your work, which is essential for data science.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_455f6d0", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d0ec51c", 
     option = "A spreadsheet program like Microsoft Excel.", value = "A spreadsheet program like Microsoft Excel.", 
     label = structure("A spreadsheet program like Microsoft Excel.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5570899", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5bc7bff", 
     option = "Another name for R", value = "Another name for R", 
     label = structure("Another name for R", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English.", html = TRUE, class = c("html", 
@@ -575,18 +583,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "quiz2-2-answer", question = "quiz2-2"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 638673443.702595, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 140497644.934576, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2-3", question = structure("Is the RStudio IDE free to download and use?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_20697e4", 
+"character")), answers = list(structure(list(id = "lnr_ans_a8ef456", 
     option = "Yes!", value = "Yes!", label = structure("Yes!", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = structure("Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_68a70da", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7cfac74", 
     option = "No.", value = "No.", label = structure("No.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -597,7 +605,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "quiz2-3-answer", question = "quiz2-3"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 128173381.440315, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1412261471.34236, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -883,7 +891,7 @@ learnr:::store_exercise_cache(structure(list(label = "sandbox1", global_setup = 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
 <h1 class="title toc-ignore" style="display:none;">R Quiz 1</h1>
-<h4 class="date"><em>2023-06-28</em></h4>
+<h4 class="date"><em>2023-06-29</em></h4>
 </div>
 <!-- end doc-metadata -->
 

@@ -64,9 +64,12 @@ grade_this_code()
 
 ## Vector functions
 
+```{r ex2setup}
+a <- 9
+b <- c(2,9,8)
+```
 
-
-```{r sim3, exercise = TRUE}
+```{r sim3, exercise = TRUE, exercise.setup = "ex2setup"}
                     # ask if a equals b 
 ```
 
@@ -78,7 +81,7 @@ a == b               # ask if a equals b
 grade_this_code()
 ```
 
-```{r sim4, exercise = TRUE}
+```{r sim4, exercise = TRUE, exercise.setup = "ex2setup"}
                     # multiply a and b
 ```
 
