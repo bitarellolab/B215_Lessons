@@ -9,10 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="date" content="2023-06-27" />
+<meta name="date" content="2023-06-28" />
 
 <meta name="progressive" content="true" />
-<meta name="allow-skip" content="true" />
+<meta name="allow-skip" content="false" />
 <meta name="learnr-version-prerender" content="0.11.4" />
 
 <title>R Quiz 1</title>
@@ -110,6 +110,8 @@ if (window.hljs) {
 
 <article class="topics" id="learnr-tutorial-content">
 
+<div id="section-vectors" class="section level2">
+<h2>Vectors</h2>
 <ol style="list-style-type: decimal">
 <li>Below, assign the number 9 to the variable <code>a</code>, and a
 vector with numbers, 2, 9, and 8, in that order, to the variable
@@ -126,6 +128,9 @@ data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>b &lt;- c()            # assign a vector with 2, 9 and 8, in that order, to b</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
+</div>
+<div id="section-vector-functions" class="section level2">
+<h2>Vector functions</h2>
 <div class="tutorial-exercise" data-label="sim3" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>                    # ask if a equals b </code></pre>
@@ -136,6 +141,9 @@ data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>                    # multiply a and b</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
+</div>
+<div id="section-quiz" class="section level2">
+<h2>Quiz</h2>
 <div class="panel-heading tutorial-quiz-title"><span data-i18n="text.quiz">Quiz</span></div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="pRactice-1" class="tutorial-question panel-body">
@@ -151,6 +159,7 @@ data-diagnostics="1" data-startover="1" data-lines="0">
 <div id="pRactice-2-message_container" class="shiny-html-output"></div>
 <div id="pRactice-2-action_button_container" class="shiny-html-output"></div>
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
 </div>
 </div>
 <div id="section-rrstudio" class="section level2">
@@ -237,6 +246,7 @@ library(tidyverse)
 library(knitr)
 library(ggmosaic)
 library(praise)
+library(utils)
 tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
 gradethis::gradethis_setup(
   pass.praise = TRUE,
@@ -277,17 +287,64 @@ output$`tutorial-exercise-sim1-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sim1", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "sim1", 
     code = "               # assign 9 to a", opts = list(label = "\"sim1\"", 
-        exercise = "TRUE", exercise.eval = "TRUE"), engine = "r")), 
+        exercise = "TRUE", allow_skip = "FALSE"), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure(c("grade_this_code()", 
-    ""), chunk_opts = list(label = "sim1-check")), solution = structure(c("a <- 9                ", 
-    "#Note: I am not sure how to allow multiple correct answers, say", 
-    "# a<-9 and ", "# a = 9"), chunk_opts = list(label = "sim1-solution")), 
-    tests = NULL, options = list(eval = TRUE, echo = TRUE, results = "markup", 
+    ""), chunk_opts = list(label = "sim1-check", allow_skip = FALSE)), 
+    solution = structure(c("a <- 9                ", "#Note: I am not sure how to allow multiple correct answers, say", 
+    "# a<-9 and ", "# a = 9"), chunk_opts = list(label = "sim1-solution", 
+        allow_skip = FALSE)), tests = NULL, options = list(eval = TRUE, 
+        echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "01_Quiz_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "01_Quiz_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        exercise.eval = TRUE, exercise.reveal_solution = FALSE, 
+        label = "sim1", exercise = TRUE, allow_skip = FALSE, 
+        code = "               # assign 9 to a", out.width.px = 624, 
+        out.height.px = 384, params.src = "sim1, exercise=TRUE, allow_skip = FALSE", 
+        fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
+    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
+)))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-sim2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-sim2-code-editor`)), session)
+output$`tutorial-exercise-sim2-output` <- renderUI({
+  `tutorial-exercise-sim2-result`()
+})
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "sim2", global_setup = structure(c("library(learnr)", 
+"library(gradethis)", "library(tidyverse)", "library(knitr)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
+"  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
+    include = FALSE)), setup = NULL, chunks = list(list(label = "sim2", 
+    code = "b <- c()            # assign a vector with 2, 9 and 8, in that order, to b", 
+    opts = list(label = "\"sim2\"", exercise = "TRUE", allow_skip = "FALSE"), 
+    engine = "r")), code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
+    label = "sim2-check", allow_skip = FALSE)), solution = structure("b <- c(2,9,8)      # assign a vector with 2, 9 and 8, in that order, to b ", chunk_opts = list(
+    label = "sim2-solution", allow_skip = FALSE)), tests = NULL, 
+    options = list(eval = TRUE, echo = TRUE, results = "markup", 
         tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
         comment = NA, highlight = FALSE, size = "normalsize", 
         background = "#F7F7F7", strip.white = TRUE, cache = 0, 
@@ -306,53 +363,10 @@ learnr:::store_exercise_cache(structure(list(label = "sim1", global_setup = stru
         max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
         exercise.error.check.code = "gradethis_error_checker()", 
         exercise.eval = TRUE, exercise.reveal_solution = FALSE, 
-        label = "sim1", exercise = TRUE, code = "               # assign 9 to a", 
-        out.width.px = 624, out.height.px = 384, params.src = "sim1, exercise=TRUE, exercise.eval=TRUE", 
+        label = "sim2", exercise = TRUE, allow_skip = FALSE, 
+        code = "b <- c()            # assign a vector with 2, 9 and 8, in that order, to b", 
+        out.width.px = 624, out.height.px = 384, params.src = "sim2, exercise = TRUE, allow_skip = FALSE", 
         fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
-    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
-)))
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-sim2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-sim2-code-editor`)), session)
-output$`tutorial-exercise-sim2-output` <- renderUI({
-  `tutorial-exercise-sim2-result`()
-})
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "sim2", global_setup = structure(c("library(learnr)", 
-"library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
-"gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
-"  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = NULL, chunks = list(list(label = "sim2", 
-    code = "b <- c()            # assign a vector with 2, 9 and 8, in that order, to b", 
-    opts = list(label = "\"sim2\"", exercise = "TRUE", exercise.eval = "TRUE"), 
-    engine = "r")), code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
-    label = "sim2-check")), solution = structure("b <- c(2,9,8)      # assign a vector with 2, 9 and 8, in that order, to b ", chunk_opts = list(
-    label = "sim2-solution")), tests = NULL, options = list(eval = TRUE, 
-    echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
-    collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-    size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-    cache = 0, cache.path = "01_Quiz_cache/html/", cache.vars = NULL, 
-    cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE, 
-    fig.keep = "high", fig.show = "asis", fig.align = "default", 
-    fig.path = "01_Quiz_files/figure-html/", dev = "png", dev.args = NULL, 
-    dpi = 192, fig.ext = "png", fig.width = 6.5, fig.height = 4, 
-    fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", 
-    fig.subcap = NULL, fig.pos = "", out.width = 624, out.height = NULL, 
-    out.extra = NULL, fig.retina = 2, external = TRUE, sanitize = FALSE, 
-    interval = 1, aniopts = "controls,loop", warning = TRUE, 
-    error = FALSE, message = TRUE, render = NULL, ref.label = NULL, 
-    child = NULL, engine = "r", split = FALSE, include = TRUE, 
-    purl = TRUE, max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
-    exercise.error.check.code = "gradethis_error_checker()", 
-    exercise.eval = TRUE, exercise.reveal_solution = FALSE, label = "sim2", 
-    exercise = TRUE, code = "b <- c()            # assign a vector with 2, 9 and 8, in that order, to b", 
-    out.width.px = 624, out.height.px = 384, params.src = "sim2, exercise = TRUE, exercise.eval=TRUE", 
-    fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
@@ -368,35 +382,36 @@ output$`tutorial-exercise-sim3-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sim3", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "sim3", 
     code = "                    # ask if a equals b ", opts = list(
-        label = "\"sim3\"", exercise = "TRUE", exercise.eval = "TRUE"), 
-    engine = "r")), code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
-    label = "sim3-check")), solution = structure("a == b               # ask if a equals b ", chunk_opts = list(
-    label = "sim3-solution")), tests = NULL, options = list(eval = TRUE, 
-    echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
-    collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-    size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-    cache = 0, cache.path = "01_Quiz_cache/html/", cache.vars = NULL, 
-    cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE, 
-    fig.keep = "high", fig.show = "asis", fig.align = "default", 
-    fig.path = "01_Quiz_files/figure-html/", dev = "png", dev.args = NULL, 
-    dpi = 192, fig.ext = "png", fig.width = 6.5, fig.height = 4, 
-    fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", 
-    fig.subcap = NULL, fig.pos = "", out.width = 624, out.height = NULL, 
-    out.extra = NULL, fig.retina = 2, external = TRUE, sanitize = FALSE, 
-    interval = 1, aniopts = "controls,loop", warning = TRUE, 
-    error = FALSE, message = TRUE, render = NULL, ref.label = NULL, 
-    child = NULL, engine = "r", split = FALSE, include = TRUE, 
-    purl = TRUE, max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
-    exercise.error.check.code = "gradethis_error_checker()", 
-    exercise.eval = TRUE, exercise.reveal_solution = FALSE, label = "sim3", 
-    exercise = TRUE, code = "                    # ask if a equals b ", 
-    out.width.px = 624, out.height.px = 384, params.src = "sim3, exercise = TRUE, exercise.eval=TRUE", 
-    fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
+        label = "\"sim3\"", exercise = "TRUE"), engine = "r")), 
+    code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
+        label = "sim3-check")), solution = structure("a == b               # ask if a equals b ", chunk_opts = list(
+        label = "sim3-solution")), tests = NULL, options = list(
+        eval = TRUE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "01_Quiz_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "01_Quiz_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        exercise.eval = TRUE, exercise.reveal_solution = FALSE, 
+        label = "sim3", exercise = TRUE, code = "                    # ask if a equals b ", 
+        out.width.px = 624, out.height.px = 384, params.src = "sim3, exercise = TRUE", 
+        fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
@@ -412,7 +427,7 @@ output$`tutorial-exercise-sim4-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sim4", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "sim4", 
@@ -448,28 +463,28 @@ learnr:::store_exercise_cache(structure(list(label = "sim4", global_setup = stru
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "pRactice-1", question = structure("In the example above, what would R tell you when you ask it if a equals b?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b74c529", 
+"character")), answers = list(structure(list(id = "lnr_ans_6ab25fc", 
     option = "It doesn't return anything", value = "It doesn't return anything", 
     label = structure("It doesn’t return anything", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_13bee1", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b9cb0a0", 
     option = "`FALSE`", value = "`FALSE`", label = structure("<code>FALSE<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_59f2385", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4624b4c", 
     option = "An error", value = "An error", label = structure("An error", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6497acd", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a77d278", 
     option = "The vector, `FALSE TRUE FALSE`", value = "The vector, `FALSE TRUE FALSE`", 
     label = structure("The vector, <code>FALSE TRUE FALSE<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("That’s marvelous!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Try it again. You get better each time.", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Try it again. You get better each time.", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("You should be proud.", html = TRUE, class = c("html", 
+"character")), try_again = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "pRactice-1-answer", question = "pRactice-1"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = TRUE, seed = 1817243046.15378, 
+    random_answer_order = TRUE, allow_retry = TRUE, seed = 1490866449.80576, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -477,44 +492,44 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "pRactice-2", question = structure("In the example above, what does multiplying a and b return?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ef91c1a", 
+"character")), answers = list(structure(list(id = "lnr_ans_981e39c", 
     option = "The vector, `2 9 8`", value = "The vector, `2 9 8`", 
     label = structure("The vector, <code>2 9 8<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4e99b10", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d49a5dd", 
     option = "The vector, `18 81 72`", value = "The vector, `18 81 72`", 
     label = structure("The vector, <code>18 81 72<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_285d2a6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6e855e4", 
     option = "The vector, `18 9 8`", value = "The vector, `18 9 8`", 
     label = structure("The vector, <code>18 9 8<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d1db6c0", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f7a5d7d", 
     option = "The vector, `4 81 64`", value = "The vector, `4 81 64`", 
     label = structure("The vector, <code>4 81 64<\u002fcode>", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_66c46ca", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c989cac", 
     option = "An error", value = "An error", label = structure("An error", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("You should be proud.", html = TRUE, class = c("html", 
-"character")), try_again = structure("Please try again.", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Please try again.", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Splendid!", html = TRUE, class = c("html", 
+"character")), try_again = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("That’s okay: you learn more from mistakes than successes. Let’s do it one more time.", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "pRactice-2-answer", question = "pRactice-2"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = TRUE, seed = 862480515.598376, 
+    random_answer_order = TRUE, allow_retry = TRUE, seed = 166012355.922694, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2-1", question = structure("Is R free to download and use?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3f68762", 
+"character")), answers = list(structure(list(id = "lnr_ans_7ea30ef", 
     option = "Yes!", value = "Yes!", label = structure("Yes!", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = structure("R is free <em>and<\u002fem> open source, which means that anyone can read, use, and copy the source code of the R language.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e34a68b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_781cf28", 
     option = "No.", value = "No.", label = structure("No.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -524,7 +539,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "quiz2-1-answer", question = "quiz2-1"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 816250668.619904, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 844561425.10672, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -532,23 +547,23 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2-2", question = structure("What is the RStudio IDE?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_9f9afdb", 
+"character")), answers = list(structure(list(id = "lnr_ans_c99dd79", 
     option = "An application that makes it easier to use R.", 
     value = "An application that makes it easier to use R.", 
     label = structure("An application that makes it easier to use R.", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = structure("RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and will rely on the RStudio IDE in several tutorials.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1da079a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_df3dafa", 
     option = "An application that let's you use R without writing any code", 
     value = "An application that let's you use R without writing any code", 
     label = structure("An application that let’s you use R without writing any code", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("And thank goodness! Code provides a reproducible record of your work, which is essential for data science.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f45daf8", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_455f6d0", 
     option = "A spreadsheet program like Microsoft Excel.", value = "A spreadsheet program like Microsoft Excel.", 
     label = structure("A spreadsheet program like Microsoft Excel.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9136cf6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5570899", 
     option = "Another name for R", value = "Another name for R", 
     label = structure("Another name for R", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English.", html = TRUE, class = c("html", 
@@ -560,18 +575,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "quiz2-2-answer", question = "quiz2-2"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1069892262.00179, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 638673443.702595, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "quiz2-3", question = structure("Is the RStudio IDE free to download and use?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_31f9a6", 
+"character")), answers = list(structure(list(id = "lnr_ans_20697e4", 
     option = "Yes!", value = "Yes!", label = structure("Yes!", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = structure("Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_87763f0", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_68a70da", 
     option = "No.", value = "No.", label = structure("No.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -582,7 +597,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "quiz2-3-answer", question = "quiz2-3"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 416057234.806258, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 128173381.440315, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -598,13 +613,13 @@ output$`tutorial-exercise-ex1-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ex1", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "ex1", 
     code = "", opts = list(label = "\"ex1\"", exercise = "TRUE"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = structure(c("grade_result(", 
-"  pass_if(~identical(.result, 255))", ")"), chunk_opts = list(
+"  pass_if(~identical(.result, 255))", ")", ""), chunk_opts = list(
     label = "ex1-check")), solution = NULL, tests = NULL, options = list(
     eval = TRUE, echo = TRUE, results = "markup", tidy = FALSE, 
     tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
@@ -641,7 +656,7 @@ output$`tutorial-exercise-ex2-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ex2", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "ex2", 
@@ -684,7 +699,7 @@ output$`tutorial-exercise-ex3-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ex3", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "ex3", 
@@ -727,7 +742,7 @@ output$`tutorial-exercise-ex4-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ex4", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "ex4", 
@@ -770,13 +785,14 @@ output$`tutorial-exercise-ex5-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ex5", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "ex5", 
     code = "", opts = list(label = "\"ex5\"", exercise = "TRUE"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = structure(c("grade_result(", 
-"  pass_if(~identical(.result, 9))", ")  "), chunk_opts = list(
+"  #pass_if(~any(((9-0.5)<.result)==TRUE)&any(((9+0.5)>.result)==TRUE)", 
+"      ", "    pass_if(~identical(.result, 9))", ")  "), chunk_opts = list(
     label = "ex5-check")), solution = NULL, tests = NULL, options = list(
     eval = TRUE, echo = TRUE, results = "markup", tidy = FALSE, 
     tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
@@ -813,7 +829,7 @@ output$`tutorial-exercise-sandbox1-output` <- renderUI({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sandbox1", global_setup = structure(c("library(learnr)", 
 "library(gradethis)", "library(tidyverse)", "library(knitr)", 
-"library(ggmosaic)", "library(praise)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
+"library(ggmosaic)", "library(praise)", "library(utils)", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "sandbox1", 
@@ -867,7 +883,7 @@ learnr:::store_exercise_cache(structure(list(label = "sandbox1", global_setup = 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
 <h1 class="title toc-ignore" style="display:none;">R Quiz 1</h1>
-<h4 class="date"><em>2023-06-27</em></h4>
+<h4 class="date"><em>2023-06-28</em></h4>
 </div>
 <!-- end doc-metadata -->
 
