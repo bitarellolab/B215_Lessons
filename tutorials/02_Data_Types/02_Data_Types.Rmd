@@ -20,16 +20,13 @@ knitr::opts_chunk$set(echo = FALSE)
 Tasks: 
 
 -   Work through this document
--   Create a basic R script
--   Create an R markdown document with your personal notes and code
--   Complete assignments in Codecamp
--   Complete RQ1
+-   
 
 Learning outcomes: 
 
 1.  Learn about the different types of data
 
-2.  Familarize yourselves with common types of data structures
+2.  Familiarize yourselves with common types of data structures
 
 3.  Understand the interactions between vectors and matrices
 
@@ -75,8 +72,23 @@ Logical
 ```{r, echo=T, eval=F}
 a <- c(1,2,3) #suppose this is your data and you misenter the first number
 b <- c(2,2,3) #and you want to make sure your data matches previous result
-which_entries_match <- a==b
+which_entries_match <- a==b #paste this into the sandbox and look at the result
 ```
+
+
+```{r setup1}
+a <- c(1,2,3) 
+b <- c(2,2,3)
+
+```
+
+
+```{r ex, exercise = TRUE, exercise.setup = "setup1"}
+                    
+```
+
+
+
 ## How does the Rstudio Cloud workspace work?
 
 Join the B215 Rstudio cloud workspace. This space will be updated by the

@@ -1,0 +1,436 @@
+---
+title: "Types of Data Structures"
+output: 
+  learnr::tutorial:
+    progressive: TRUE
+    allow_skip: FALSE
+runtime: shiny_prerendered
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(tidyverse)
+library(knitr)
+library(ggmosaic)
+library(praise)
+library(utils)
+tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
+gradethis::gradethis_setup(
+  pass.praise = TRUE,
+  fail.encourage = TRUE,
+  fail.hint = TRUE
+)
+
+```
+
+## Overview
+
+Tasks: 
+
+-   Work through this document
+-   
+
+Learning outcomes: 
+
+1.  Learn about the different types of data
+
+2.  Familiarize yourselves with common types of data structures
+
+3.  Understand the interactions between vectors and matrices
+
+4.  Use cbind and rbind
+
+5.  Read about other ways of saving data (lists, dataframes, arrays)
+
+## How many ways can data come
+
+Numeric
+
+This is the default computational data type in R. If you enter a number without a decimal point, R will automatically convert it into a numeric data type. Numeric values in R can hold any real number, including both integers and fractions, and even negative numbers. For example, 5, 23.5, and -3 are all numeric values.
+```{r, echo=T, eval=F}
+pi <- 3.14
+print(pi)
+```
+Integer (for loops; we'll talk later)
+
+This data type in R is used to hold whole numbers. Unlike numeric values, integers cannot have a decimal point. You can create an integer in R by adding an 'L' suffix to a number, like this: 5L. Without the 'L', R would treat the number as numeric, not integer.
+```{r, echo=T, eval=F}
+class_number <- 215L
+```
+Logical T/F
+Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like <, >, ==, etc. to generate logical values. For example, the operation 5 > 3 will return TRUE because 5 is indeed greater than 3.
+```{r, echo=T, eval=F}
+reality <- TRUE
+```
+Character
+
+Character data type in R is used to hold strings of text. You can create a character string by enclosing text in quotes. For example, "Hello, World!" is a character string.
+```{r, echo=T, eval=F}
+types_of_data <- c("Numeric", "Interger","Logical", "Complex", "Character", "Raw") 
+```
+
+Complex <- 1 +2i
+
+This data type in R is used to store complex numbers, which have both real and imaginary parts. The imaginary part is denoted by 'i'. For example, 2+3i is a complex number where 2 is the real part and 3 is the imaginary part. (We won't use this in the course)
+```{r, echo=T, eval=F}
+Complex <- 1 +2i #we dont know when you'd use this i guess if you are mathy idk
+```
+
+Raw (for the real nerds)
+
+Raw data type in R is not commonly used for beginners. It is used to hold raw bytes, which can be anything from the contents of a file to an image. It's different from the other data types in that it doesn't represent something human-readable, but instead something that a machine might need to process. It's often used in more advanced topics like interfacing with other languages or dealing with binary data.
+```{r, echo=T, eval=F}
+hexcode1<- as.raw(0)
+hexcode2 <- as.raw(128)
+hexcode3 <- as.raw(255)
+```
+
+## Let's go through each type of data structure and why we use it
+
+### Numeric 
+Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate.
+
+```{r, echo=T, eval=F}
+growth_data <- c(1.2, 2.3, 3.4, 5.6, 8.9) # Sizes of bacterial colonies at different time points
+
+```
+
+
+```{r setupnum}
+growth_data <- c(1.2, 2.3, 3.4, 5.6, 8.9)
+avg_growth<-mean(growth_data)
+```
+Suppose you want to take the average of these values. Paste avg_growth <- mean(growth_data) then print avg_growth
+```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
+                    
+```
+
+
+
+```{r examplenum-solution}
+avg_growth <- mean(growth_data) 
+print(avg_growth)
+
+```
+
+```{r examplenum-check}
+grade_this_code()
+```
+
+### Integer
+
+You are counting the number of cells in different samples under a microscope. This is where integers come into play, as you can't have a fraction of a cell.
+
+Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate.
+
+```{r, echo=T, eval=F}
+cell_counts <- c(100, 200, 150, 175, 225) # Number of cells in different samples
+
+```
+
+
+```{r setupint}
+cell_counts <- c(100, 200, 150, 175, 225)
+total_cells <- sum(cell_counts)
+```
+Suppose you want to add up your total number of cells. You could define a variable total_cells <- sum(cell_counts). Paste the command and print the variable.
+
+```{r exampleinteger, exercise = TRUE, exercise.setup = "setupint"}
+ 
+                   
+```
+
+
+```{r xampleinteger-solution}
+total_cells <- sum(cell_counts) 
+print(total_cells)
+
+```
+
+
+```{r exampleinteger-check}
+grade_this_code()
+```
+
+
+### Character
+
+In bioinformatics, character strings are often used to represent DNA sequences.
+
+
+
+```{r, echo=T, eval=F}
+dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
+
+```
+
+
+```{r setupchr}
+dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
+
+
+```
+Suppose you want to look at the first sequence from a long list. Paste the following code to define a character variable and then print it.
+first_sequence <- dna_sequences[1] DNA sequence
+
+
+
+```{r examplechr, exercise = TRUE, exercise.setup = "setupchr"}
+                    
+```
+
+
+```{r examplechr-solution}
+first_sequence <- dna_sequences[1] # Get the first DNA sequence
+print(first_sequence)
+
+```
+
+```{r examplechr-check}
+grade_this_code()
+```
+
+
+### Logical
+```{r, echo=T, eval=F}
+a <- c(1,2,3) #suppose this is your data and you misenter the first number
+b <- c(2,2,3) #and you want to make sure your data matches previous result
+which_entries_match <- a==b #paste this into the sandbox and call print() on the vector to look at the result
+```
+
+
+```{r setupbool}
+a <- c(1,2,3) 
+b <- c(2,2,3)
+
+```
+
+
+```{r examplebool, exercise = TRUE, exercise.setup = "setupbool"}
+                    
+```
+
+
+```{r examplebool-solution}
+which_entries_match <- a==b
+print(which_entries_match)
+```
+
+```{r examplebool-check}
+grade_this_code()
+```
+
+
+## Vectors and Matrices 
+
+### Vectors
+You already learned about vectors in the last lesson. They are a  sequence of data elements of the same basic type. They can be numeric, integer, complex, character, or logical. 
+
+### Matrix
+
+A matrix in R is a two-dimensional data structure, where each element is of the same atomic type. You can think of a matrix as a collection of vectors arranged side by side (for columns) or one on top of another (for rows). Here's an example of a numeric matrix. 
+
+````{r matrix1, exercise = TRUE, allow_skip = FALSE}
+numeric_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
+print(numeric_matrix)
+```
+
+
+
+## Interaction between Vectors and Matrices:
+
+Vectors and matrices interact in various ways in R. Here are a few examples:
+
+-You can create a matrix from vectors. Each vector can become a row or a column of the matrix.
+
+-You can extract a row or a column from a matrix as a vector.
+
+-You can use a vector to index a matrix, meaning to select certain rows or columns from the matrix.
+
+-You can perform arithmetic operations between a matrix and a vector. In this case, R will often apply the operation element-wise, meaning it will operate on each corresponding pair of elements from the matrix and the vector. If the vector is shorter than the matrix, R will recycle the elements of the vector to match the length of the matrix.
+
+### Creating a matrix from vectors:
+You can use the cbind() function to combine vectors as columns of a matrix, or rbind() to combine vectors as rows.
+````{r matrix2, exercise = TRUE, allow_skip = FALSE}
+# Create two vectors
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+
+# Combine vectors as columns to create a matrix
+matrix1 <- cbind(vector1, vector2)
+
+# Combine vectors as rows to create a matrix
+matrix2 <- rbind(vector1, vector2)
+
+```
+print them both to compare
+```{r setupmat1}
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+matrix1 <- cbind(vector1, vector2)
+matrix2 <- rbind(vector1, vector2)
+
+```
+
+
+```{r examplemat1, exercise = TRUE, exercise.setup = "setupmat1"}
+                    
+```
+
+
+
+```{r examplemat1-solution}
+print(matrix1)
+print(matrix2)
+
+```
+
+```{r examplemat1-check}
+grade_this_code()
+```
+
+
+### Extracting a row or a column from a matrix as a vector:
+You can do this using indexing. In R, you use square brackets [] to index a matrix.
+
+```{r mat2, exercise = TRUE, allow_skip = FALSE}
+# Create a matrix
+matrix <- matrix(1:9, nrow = 3)
+
+# Use the vector to select the first row and column from the matrix
+
+# Extract the first row as a vector
+row1 <- matrix[1, ]
+
+# Extract the first column as a vector
+col1 <- matrix[, 1]
+```
+
+
+
+## Quiz
+
+```{r pRactice, echo=FALSE}
+quiz(
+    question("In the example above, what would R tell you when you ask it if a equals b?",
+    answer("It doesn't return anything"),
+    answer("`FALSE`"),
+    answer("An error"),
+    answer("The vector, `FALSE TRUE FALSE`", correct = TRUE),
+    allow_retry = TRUE,
+    correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+  question("In the example above, what does multiplying a and b return?",
+    answer("The vector, `2 9 8`"),
+    answer("The vector, `18 81 72`", correct = TRUE),
+    answer("The vector, `18 9 8`"),
+    answer("The vector, `4 81 64`"),
+    answer("An error"),
+    allow_retry = TRUE,
+    correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ))
+```
+
+## R/Rstudio
+
+```{r quiz2, echo=FALSE}
+quiz(caption = "Quiz - Install R",
+  question("Is R free to download and use?",
+    answer("Yes!", correct = TRUE, message = "R is free _and_ open source, which means that anyone can read, use, and copy the source code of the R language."),
+    answer("No.")
+  )
+  ,
+    question("What is the RStudio IDE?",
+    answer("An application that makes it easier to use R.", correct = TRUE, message = "RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and will rely on the RStudio IDE in several tutorials."),
+    answer("An application that let's you use R without writing any code", message = "And thank goodness! Code provides a reproducible record of your work, which is essential for data science."),
+    answer("A spreadsheet program like Microsoft Excel."),
+    answer("Another name for R", message = "R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English."),
+    allow_retry = TRUE
+  ),
+  question("Is the RStudio IDE free to download and use?",
+    answer("Yes!", correct = TRUE, message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials."),
+    answer("No.", message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.")
+  ))
+```
+
+
+## Use R to calculate:
+
+a) The product of 15 by 17
+
+```{r ex1, exercise=TRUE}
+
+```
+
+```{r ex1-check}
+grade_result(
+  pass_if(~identical(.result, 255))
+)
+
+```
+
+b) Thirteen to the power of 3:
+
+```{r ex2, exercise=TRUE}
+
+```
+```{r ex2-check}
+grade_result(
+  pass_if(~identical(.result, 2197))
+)  
+```  
+c) Log of 14 (use the natural log):
+
+```{r ex3, exercise=TRUE}
+
+```
+
+```{r ex3-check}
+grade_result(
+  pass_if(~identical(.result,  log(14)))
+)  
+```  
+
+d) Log of 100 (use base 10):
+
+```{r ex4, exercise=TRUE}
+
+```
+
+```{r ex4-check}
+grade_result(
+  pass_if(~identical(.result, 2))
+)  
+```  
+
+e) The square root of 81:
+```{r ex5, exercise=TRUE}
+
+```
+
+```{r ex5-check}
+grade_result(
+  #pass_if(~any(((9-0.5)<.result)==TRUE)&any(((9+0.5)>.result)==TRUE)
+      
+    pass_if(~identical(.result, 9))
+)  
+```  
+
+
+Prove your reached the end and you're not a robot my creating a variable called `my_name` with your last name spelled backwards followed by your first name. E.g., mine would be "olleratib_arabrab".
+ 
+
+
+```{r sandbox1, exercise=TRUE, eval = FALSE}
+```
+
+
+Last but not least, take a screenshot of this last task and email it to me with subject line: "R quiz 1"!
+
+The end!
+
+
