@@ -231,7 +231,7 @@ You already learned about vectors in the last lesson. They are a  sequence of da
 
 A matrix in R is a two-dimensional data structure, where each element is of the same atomic type. You can think of a matrix as a collection of vectors arranged side by side (for columns) or one on top of another (for rows). Here's an example of a numeric matrix. 
 
-```{r matrix1, exercise = TRUE, allow_skip = FALSE}
+```{r matrix1, exercise = F }
 numeric_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
 print(numeric_matrix)
 ```
@@ -252,7 +252,7 @@ Vectors and matrices interact in various ways in R. Here are a few examples:
 
 ### Creating a matrix from vectors:
 You can use the cbind() function to combine vectors as columns of a matrix, or rbind() to combine vectors as rows.
-```{r matrix2, exercise = TRUE, allow_skip = FALSE}
+```{r matrix2, exercise = F }
 # Create two vectors
 vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
@@ -292,144 +292,94 @@ grade_this_code()
 
 
 ### Extracting a row or a column from a matrix as a vector:
-You can do this using indexing. In R, you use square brackets [] to index a matrix.
+You can do this using indexing. In R, you use square brackets [] to index a matrix. The format is [row, column]
 
-```{r mat2, exercise = TRUE, allow_skip = FALSE}
+```{r mat2, exercise = F}
 # Create a matrix
-matrix <- matrix(1:9, nrow = 3)
-
-# Use the vector to select the first row and column from the matrix
+matrix3 <- matrix(1:9, nrow = 3)
 
 # Extract the first row as a vector
-row1 <- matrix[1, ]
+row1 <- matrix3[1, ]
 
 # Extract the first column as a vector
-col1 <- matrix[, 1]
+col1 <- matrix3[, 1]
 ```
 
 
-
-## Quiz
-
-```{r pRactice, echo=FALSE}
-quiz(
-    question("In the example above, what would R tell you when you ask it if a equals b?",
-    answer("It doesn't return anything"),
-    answer("`FALSE`"),
-    answer("An error"),
-    answer("The vector, `FALSE TRUE FALSE`", correct = TRUE),
-    allow_retry = TRUE,
-    correct = random_praise(),
-    incorrect = random_encouragement(), random_answer_order = TRUE
-  ),
-  question("In the example above, what does multiplying a and b return?",
-    answer("The vector, `2 9 8`"),
-    answer("The vector, `18 81 72`", correct = TRUE),
-    answer("The vector, `18 9 8`"),
-    answer("The vector, `4 81 64`"),
-    answer("An error"),
-    allow_retry = TRUE,
-    correct = random_praise(),
-    incorrect = random_encouragement(), random_answer_order = TRUE
-  ))
+```{r setupmat2}
+matrix3 <- matrix(1:9, nrow = 3)
+row1 <- matrix3[1, ]
+col1 <- matrix3[, 1]
 ```
 
-## R/Rstudio
+now print the matrix, row1 and col1 and examine
 
-```{r quiz2, echo=FALSE}
-quiz(caption = "Quiz - Install R",
-  question("Is R free to download and use?",
-    answer("Yes!", correct = TRUE, message = "R is free _and_ open source, which means that anyone can read, use, and copy the source code of the R language."),
-    answer("No.")
-  )
-  ,
-    question("What is the RStudio IDE?",
-    answer("An application that makes it easier to use R.", correct = TRUE, message = "RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and will rely on the RStudio IDE in several tutorials."),
-    answer("An application that let's you use R without writing any code", message = "And thank goodness! Code provides a reproducible record of your work, which is essential for data science."),
-    answer("A spreadsheet program like Microsoft Excel."),
-    answer("Another name for R", message = "R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English."),
-    allow_retry = TRUE
-  ),
-  question("Is the RStudio IDE free to download and use?",
-    answer("Yes!", correct = TRUE, message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials."),
-    answer("No.", message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.")
-  ))
-```
-
-
-## Use R to calculate:
-
-a) The product of 15 by 17
-
-```{r ex1, exercise=TRUE}
-
-```
-
-```{r ex1-check}
-grade_result(
-  pass_if(~identical(.result, 255))
-)
-
-```
-
-b) Thirteen to the power of 3:
-
-```{r ex2, exercise=TRUE}
-
-```
-```{r ex2-check}
-grade_result(
-  pass_if(~identical(.result, 2197))
-)  
-```  
-c) Log of 14 (use the natural log):
-
-```{r ex3, exercise=TRUE}
-
-```
-
-```{r ex3-check}
-grade_result(
-  pass_if(~identical(.result,  log(14)))
-)  
-```  
-
-d) Log of 100 (use base 10):
-
-```{r ex4, exercise=TRUE}
-
-```
-
-```{r ex4-check}
-grade_result(
-  pass_if(~identical(.result, 2))
-)  
-```  
-
-e) The square root of 81:
-```{r ex5, exercise=TRUE}
-
-```
-
-```{r ex5-check}
-grade_result(
-  #pass_if(~any(((9-0.5)<.result)==TRUE)&any(((9+0.5)>.result)==TRUE)
-      
-    pass_if(~identical(.result, 9))
-)  
-```  
-
-
-Prove your reached the end and you're not a robot my creating a variable called `my_name` with your last name spelled backwards followed by your first name. E.g., mine would be "olleratib_arabrab".
+```{r examplemat2, exercise = TRUE, exercise.setup = "setupmat2"}
  
 
 
-```{r sandbox1, exercise=TRUE, eval = FALSE}
 ```
 
 
-Last but not least, take a screenshot of this last task and email it to me with subject line: "R quiz 1"!
 
-The end!
+```{r examplemat2-solution}
+ print(matrix3)    
+  print(row1)
+  print(col1)
+```
+
+
+```{r examplemat2-check}
+grade_this_code()
+```
+
+
+
+### Performing arithmetic operations between a matrix and a vector:
+R will apply the operation element-wise, and will recycle elements of the vector if necessary.
+
+
+```{r mat3, exercise = F}
+# Create a matrix
+matrix4 <- matrix(1:6, nrow = 2)
+
+# Create a vector
+vector4 <- c(1, 2, 3)
+
+# Add the vector to each row of the matrix
+result4 <- matrix4 + vector4
+```
+
+
+```{r setupmat3}
+matrix4 <- matrix(1:6, nrow = 2)
+vector4 <- c(1, 2, 3)
+result4 <- matrix4 + vector4
+
+```
+
+print the result
+
+```{r examplemat3, exercise = TRUE, exercise.setup = "setupmat3"}
+                    
+```
+
+
+```{r examplemat3-solution}
+print(result4)
+```
+
+```{r examplemat3-check}
+grade_this_code()
+```
+        
+
+## Other ways you might see data
+
+
+
+
+
+
 
 
