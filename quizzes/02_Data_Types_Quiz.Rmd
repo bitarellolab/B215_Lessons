@@ -10,7 +10,6 @@ date: "`r Sys.Date()`"
 
 ```{r setup, include=FALSE}
 library(learnr)
-library(gradethis)
 library(tidyverse)
 library(knitr)
 library(ggmosaic)
@@ -232,7 +231,7 @@ You already learned about vectors in the last lesson. They are a  sequence of da
 
 A matrix in R is a two-dimensional data structure, where each element is of the same atomic type. You can think of a matrix as a collection of vectors arranged side by side (for columns) or one on top of another (for rows). Here's an example of a numeric matrix. 
 
-````{r matrix1, exercise = TRUE, allow_skip = FALSE}
+```{r matrix1, exercise = TRUE, allow_skip = FALSE}
 numeric_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
 print(numeric_matrix)
 ```
@@ -253,7 +252,7 @@ Vectors and matrices interact in various ways in R. Here are a few examples:
 
 ### Creating a matrix from vectors:
 You can use the cbind() function to combine vectors as columns of a matrix, or rbind() to combine vectors as rows.
-````{r matrix2, exercise = TRUE, allow_skip = FALSE}
+```{r matrix2, exercise = TRUE, allow_skip = FALSE}
 # Create two vectors
 vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
