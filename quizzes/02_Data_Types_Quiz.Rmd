@@ -376,10 +376,193 @@ grade_this_code()
 
 ## Other ways you might see data
 
+### Lists 
+A list in R is an object that contains elements of different types - like numbers, strings, vectors, and even other lists. Lists are very flexible and are often used when data can't be held in other types of data structures. 
+
+```{r list1, exercise = F}
+# Create a list that holds information about a species
+species_info <- list(
+  "SpeciesName" = "Panthera leo",
+  "CommonName" = "Lion",
+  "Family" = "Felidae",
+  "GenomeSize" = 2.8,  # in Giga Base Pairs
+  "Diet" = c("Meat")
+)
+
+```
+
+
+```{r setuplist1}
+# Create a list that holds information about a species
+species_info <- list(
+  "SpeciesName" = "Panthera leo",
+  "CommonName" = "Lion",
+  "Family" = "Felidae",
+  "GenomeSize" = 2.8,  # in Giga Base Pairs
+  "Diet" = c("Meat")
+)
+
+
+```
+
+print the result and use square brackets to select the third item from the list
+
+```{r list1ex, exercise = TRUE, exercise.setup = "setuplist1"}
+                    
+```
+
+
+```{r list1ex-solution}
+print(species_info)
+species_info[3]
+```
+
+```{r list1ex-check}
+grade_this_code()
+```
+        
+### Arrays
+An array in R is a data structure for storing homogeneous data (i.e., data of the same type). It is a multi-dimensional structure that can hold values of the same atomic type (numeric, logical, character, etc). It can be viewed as a multi-dimensional version of matrices. An array in R is a multi-dimensional data structure that holds values of a single type. You can think of an array as a multi-dimensional table of data, with each dimension being a different attribute.
+
+
+```{r array1, exercise = F}
+# Create an array that holds gene expression data for 3 genes across 4 samples
+gene_expression <- array(c(5,3,4,9,2,8,7,1,6,2,3,6), dim = c(3,4))
+dimnames(gene_expression) <- list(
+  "Gene" = c("Gene1", "Gene2", "Gene3"),
+  "Sample" = c("Sample1", "Sample2", "Sample3", "Sample4")
+)
+
+
+
+```
+
+
+```{r setuparray1}
+# Create an array that holds gene expression data for 3 genes across 4 samples
+gene_expression <- array(c(5,3,4,9,2,8,7,1,6,2,3,6), dim = c(3,4))
+dimnames(gene_expression) <- list(
+  "Gene" = c("Gene1", "Gene2", "Gene3"),
+  "Sample" = c("Sample1", "Sample2", "Sample3", "Sample4")
+)
+
+
+
+```
+
+print the result
+
+```{r array1ex, exercise = TRUE, exercise.setup = "setuparray1"}
+                    
+```
+
+
+```{r array1ex-solution}
+print(gene_expression)
+```
+
+```{r array1ex-check}
+grade_this_code()
+```
+   
+
+### Data Frames 
+
+A data frame in R is a table or a two-dimensional array-like structure in which each column contains values of one variable and each row contains one set of values from each column. The data stored in a data frame can be of numeric, factor, or character type. You will use these a lot, this is just a brief introduction!
+
+
+```{r df1, exercise = F}
+## Create a data frame that holds information about various species
+species_info <- data.frame(
+  "SpeciesName" = c("Panthera leo", "Gorilla gorilla", "Homo sapiens"),
+  "CommonName" = c("Lion", "Gorilla", "Human"),
+  "Family" = c("Felidae", "Hominidae", "Hominidae"),
+  "GenomeSize" = c(2.8, 3.3, 3.2),  # in Giga Base Pairs
+  "Diet" = c("Meat", "Herbivore", "Omnivore")
+)
+
+
+
+```
+
+
+```{r setupdfex1}
+# Create a data frame that holds information about various species
+species_info <- data.frame(
+  "SpeciesName" = c("Panthera leo", "Gorilla gorilla", "Homo sapiens"),
+  "CommonName" = c("Lion", "Gorilla", "Human"),
+  "Family" = c("Felidae", "Hominidae", "Hominidae"),
+  "GenomeSize" = c(2.8, 3.3, 3.2),  # in Giga Base Pairs
+  "Diet" = c("Meat", "Herbivore", "Omnivore")
+)
+
+
+
+
+```
+
+print the result and use the structure dataframe$columnname to select the column named "Family"
+
+```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
+                    
+```
+
+
+```{r dfex1-solution}
+print(species_info)
+species_info$Family
+```
+
+```{r dfex1-check}
+grade_this_code()
+```
+   
+
+
+
+
+## The quiz
+This is just graded for completion! First part is basic questions like the tutorial. Feel free to go back to previous sections. You won't lose your progress unless you click "start over".
+ 
+### 1-integer vector
+Consider the following integer vector that represents the quantity of different species observed in a field study: species_counts <- c(10, 20, 15, 30, 25). Let's say the researchers are particularly interested in species with observed counts of 20 or below.
+
+Which species are of particular interest? Use logical comparison to create a vector of TRUE/FALSE values indicating which species meet the criteria.
+
+```{r numvecex, exercise = TRUE}
+  species_counts <- c(10, 20, 15, 30, 25)
+                  
+```
+
+
+```{r numvecex-solution}
+species_counts <- c(10, 20, 15, 30, 25)
+species_counts < 20
+```
+
+```{r numvecex-check}
+grade_this_code()
+```
 
 
 
 
 
+### list
+You have a list that holds various information about a species,
+Is the species endangered? Use list indexing to retrieve the information.
 
 
+```{r listexam, exercise = TRUE}
+species_info_list <- list("SpeciesName" = "Panthera leo", "Population" = 20000, "Endangered" = TRUE)                  
+```
+
+
+```{r listexam-solution}
+species_info_list <- list("SpeciesName" = "Panthera leo", "Population" = 20000, "Endangered" = TRUE)
+species_info_list$Endangered
+```
+
+```{r listexam-check}
+grade_this_code()
+```

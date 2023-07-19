@@ -3,7 +3,7 @@ title: "02.Reading & Summarising Data"
 output:
   learnr::tutorial:
     progressive: true
-    allow_skip: true
+    allow_skip: false
 runtime: shiny_prerendered
 ---
 
@@ -98,6 +98,8 @@ That's great because we are also learning about data.frames today!
 
 So the summary on the top right tells you your `ToothGrowth` object has 60 observations of 3 variables, which leads us to `180` "things" to look at. 
 
+
+
 Let's say you want to just have a look at the beginning, the first parts of this object. You can do that with the function `head()`, which takes as argument the name of the object. First look up the function using `?`:
 
 ``{r ex3, exercise = T, eval = F}
@@ -110,6 +112,7 @@ head(ToothGrowth)
 ```
 
 How many lines do you see in the output? Why do you think that's the number of lines you see? Tip: look at `?head()` more closely.
+
 
 
 Yes, that's the default value for `head(x, n = 6L)`! What if I only wanted to see the top two lines?
@@ -222,7 +225,9 @@ summary(ToothGrowth2)
 
 Notice that now the summary of `dose` looks different because the variable is a factor (categorical) instead of numeric. Does it make mroe sense to you to look at it like this? 
 
-# R Data Types
+
+
+
 
 Today we will learn about three other data types: matrices, lists, data.frames.
 
