@@ -1,0 +1,88 @@
+---
+title: "Lab 9 Loops & Conditional Statement Exercises"
+output:
+  pdf_document: default
+  html_document: default
+date: "2022-11-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE,fig.align = 'center')
+```
+
+Tip: you can click on `visual` above this document to experience a friendlier interface.
+
+For each of the tasks below, create code using `for` and `while`, as indicated.
+
+## 1) For each day of the week, print a string that says "Today is: [day of the week]".
+
+```{r}
+#one option
+days<-c("Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+
+for(lasagna in days){
+  print(paste0("Today is: ", lasagna, "."))
+}
+```
+
+```{r}
+#Another option
+days<-c("Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+
+for(lasagna in days){
+  cat("Today is:", lasagna, ".", "\n")
+}
+```
+## 2) Same as above but if it's Saturday or Friday, use CAPSLOCK and add an "!" instead of "." at the end of the sentence.
+
+```{r}
+#one option
+days<-c("Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+
+for(lasagna in days){
+  if(lasagna == "Saturday" | lasagna == "Friday"){
+  print(toupper(paste0("Today is: ", lasagna, "!")))
+  }else{
+  print(paste0("Today is: ", lasagna,"."))
+  }
+}
+
+```
+
+## 3) Update your Celsius-Fahrenheit function from Lab 8 to print:
+
+-   accept "C", "Celsius", or "celsius" as equivalent
+
+-   accept "F", "Fahrenheit", or "fahrenheit" as equivalent
+
+-   print an error and halt if the `unit` is neither Celsius nor Fahrenheit
+
+-   the function should not have default values
+
+The function we created in Lab 8 is presented below. Edit it to fulfill the three criteria above:
+
+```{r}
+
+temp_conv<-function(t=30, unit="C"){
+  if(unit=="C"){
+    t2<-(t * 1.8) + 32 # convert to Fahrenheit
+  }else{
+    t2<-(t-32)/1.8 # Convert to Celsius
+  }
+  return(t2)
+}  
+```
+
+-   remember to always test your functions!
+
+## 4) Challenge question: after completing the previous question, change your function so that it:
+
+-   also accepts temperature in Kelvin
+
+-   has an extra argument that determines the unit you wish to convert your temperature to
+
+-   print an error and halt if the `unit` is Kelvin and `t` is a negative number (zero Kelvin is absolute zero)
+
+```{r}
+
+```

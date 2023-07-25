@@ -1,0 +1,456 @@
+---
+title: "Lab10"
+output:
+  ioslides_presentation:
+    widescreen: yes
+  beamer_presentation: default
+date: "2022-11-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE,fig.align = 'center')
+```
+
+```{r, eval=T, echo=F}
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+## Tasks/outline
+
+1. [Lab 9 Exercise 2](lab9_ex2.Rmd) - conditional statements/functions
+2. [Lab 9 Exercise 1](lab9_ex1.Rmd) - binomial
+3. Merging & joining datasets: `rbind`, `cbind`,`merge`,`reduce`,`bind_rows`, `bind_cols`
+4. [Lab 10 Counting Letters](lab10_counting_letters.Rmd)[DON'T OPEN THIS YET]
+5. [Lab 10 SARS case study](lab10_sars.Rmd) - chi-square
+7. R Quiz 10: two datacamp chapters on  Merging & joining datasets
+
+## Merging data
+
+`merge()` function is used to merge or join two tables. With appropriate values provided to specific parameters, we can create the desired join.
+
+```{r, eval=F, echo=T}
+Syntax: merge(df1, df2, by.df1, by.df2, all.df1, all.df2, sort = TRUE)
+
+Parameters:
+
+df1: one dataframe
+df2: another dataframe
+by.df1, by.df2: The names of the columns that are common to both df1 and df2.
+all, all.df1, all.df2: Logical values that actually specify the type of merging happens.
+```
+## Inner join with `merge`
+
+An *inner join* also known as natural join, merges the two dataframes in one that contains the common elements of both. For this merge`()` function is simply given the values of two dataframes in consideration and on the basis of a common column a dataframe is generated.
+
+```{r, echo=F}
+url<-"https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png"
+```
+
+```{r, eval=F, echo=T}
+
+merge(x = dataframe 1, y = data frame 2)
+```
+
+<center><img src="`r url`"></center>
+
+## Inner join with `merge`
+An *inner join* also known as natural join, merges the two dataframes in one that contains the common elements of both. For this merge`()` function is simply given the values of two dataframes in consideration and on the basis of a common column a dataframe is generated.
+
+
+```{r, eval=T, echo=T}
+df1=data.frame(id=c(7058,7059,7072,7075), 
+               name=c("bobby","pinkey","harsha","deepika"),
+               address=c("kakumanu","hyd","tenali","chebrolu"))
+# create data frame 2 with id , marks  
+df2=data.frame(id=c(7058,7059,7072,7075,7062,7063), marks=c(90,78,98,67,89,90))
+print(merge(x = df1, y = df2)) # inner join 
+```
+
+## Outer join with `merge`
+
+Outer Join merges *all* the columns of both data frames into one for all elements. For this, the dataframes in consideration along with all parameter assigned value TRUE has to be passed to `merge()` function.
+
+
+```{r, echo=F}
+url2<-"https://i.stack.imgur.com/3Ll1h.png"
+```
+
+```{r, eval=F, echo=T}
+
+merge(x = dataframe 1, y = data frame 2, all = TRUE)
+```
+
+<center><img src="`r url2`"></center>
+
+## Outer join with `merge`
+
+```{r}
+df1=data.frame(id=c(7058,7059,7072,7075), # create data frame 1 with id , name and address 
+               name=c("bobby","pinkey","harsha","deepika"),
+               address=c("kakumanu","hyd","tenali","chebrol"))
+df2=data.frame(id=c(7058,7059,7072,7075,7062,7063),  # create data frame 2 with id , marks  
+               marks=c(90,78,98,67,89,90))
+print(merge(x = df1, y = df2,all=TRUE)) # outer join 
+```
+
+## Left join with `merge`
+
+It gives the data which are matching *all the rows in the first dat*a* frame with the corresponding values on the second data frame. For this along with the dataframes in consideration, all parameter has to be passed TRUE after giving reference of the left table.
+
+```{r, echo=F}
+url3<-"https://i.stack.imgur.com/VkAT5.png"
+```
+
+```{r, eval=F, echo=T}
+merge(x = dataframe 1, y = data frame 2, all.x = TRUE)
+```
+
+<center><img src="`r url3`"></center>
+
+## Left join with `merge`
+
+```{r}
+df1=data.frame(id=c(7058,7059,7072,7075),  # create data frame 1 with id , name and address 
+               name=c("bobby","pinkey","harsha","deepika"),
+               address=c("kakumanu","hyd","tenali","chebrolu"))
+df2=data.frame(id=c(7058,7059,7072,7075,7062,7063), # create data frame 2 with id , marks  
+               marks=c(90,78,98,67,89,90))
+print(merge(x = df1, y = df2,all.x=TRUE)) # Left join 
+```
+
+## Right join with `merge`
+
+It gives the data which are matching *all the rows in the second data frame with the corresponding values on the first data frame*. For this `merge()` function should be provided with dataframes along with all parameters assigned TRUE. all parameters should have a reference to the right dataframe.
+
+
+```{r, eval=F, echo=T}
+
+merge(x = dataframe 1, y = data frame 2, all.y = TRUE)
+```
+
+## Left join with `merge`
+
+```{r}
+df1=data.frame(id=c(7058,7059,7072,7075),  # create data frame 1 with id , name and address 
+               name=c("bobby","pinkey","harsha","deepika"),
+               address=c("kakumanu","hyd","tenali","chebrolu"))
+df2=data.frame(id=c(7058,7059,7072,7075,7062,7063), # create data frame 2 with id , marks  
+               marks=c(90,78,98,67,89,90))
+print(merge(x = df1, y = df2,all.y=TRUE)) # Right
+```
+
+
+## Tidyverse
+
+```{r}
+library("tidyverse")
+df1 = data.frame(id=c(1, 2, 3), name=c("karthik", "chandu", "nandu"))
+df2 = data.frame(id=c(1, 2, 3),Sex=c("Male", "Female", "Male"))
+df3 = data.frame(id=c(1, 2, 3), address=c("Yellandu", "Yellandu", "Yellandu"))
+data = list(df1, df2, df3)
+data %>% reduce(inner_join, by="id")
+```
+
+## Bind rows from different dataframes
+`rbind`
+
+```{r, eval=F}
+rbind(dataset1, dataset2) #they must have same columns in same order
+```
+
+## Bind rows from different dataframes
+bind_rows() function in R Programming is used to combine rows of two data frames.
+
+```{r, eval=F}
+Syntax:
+bind_rows(data1, data2, id)
+
+Parameter:
+id: dataframe identifier
+data1, data2: data frame to combine
+```
+## Bind rows from different dataframes
+
+```{r}
+# Create three data frames
+data1 <- data.frame(x1 = 1:5, x2 = letters[1:5])
+data2 <- data.frame(x1 = 0, x3 = 5:9)
+data3 <- data.frame(x3 = 5:9, x4 = letters[5:9])
+bind_rows(data1, data2, id = NULL) # Apply bind_rows function
+```
+
+## Bind cols from different dataframes
+
+```{r, eval=F}
+cbind(dataframe1, dataframe2) #must have same number of rows
+```
+
+## Bind rows from different dataframes
+`bind_cols()` function is used to combine columns of two data frames..
+
+```{r, eval=F}
+Syntax:
+bind_cols(data1, data2, id)
+
+Parameter:
+id: dataframe identifier
+data1, data2: data frame to combine
+```
+## Bind rows from different dataframes
+
+```{r}
+# Create three data frames
+data1 <- data.frame(x1 = 1:5, x2 = letters[1:5])
+data2 <- data.frame(x1 = 0, x3 = 5:9)
+data3 <- data.frame(x3 = 5:9, x4 = letters[5:9])
+bind_cols(data1, data2, id = NULL) # Apply bind_rows function
+```
+
+## Practice later!
+
+R Quiz 10 will be two chapters in datacamp:
+
+* Joining Data with `dplyr`: joining tables
+* Joining Data with `dplyr`: left and right joins
+
+## Counting letters
+We’ll do an experiment on ourselves. The point of the experiment needs to remain obscure until after the data is collected, so as to not bias the data collection process.
+
+You will receive a printed page with the last paragraph of Darwin’s Origin of Species.
+
+* Please read through this paragraph, and circle every letter “t”. 
+* *Please proceed at a normal reading speed. If you ever realize that you missed a “t” in a previous word, do not retrace your steps to encircle the “t”.*
+* You are not expected to get every “t”, so don’t slow down your reading to get the “t”s.
+
+## Counting letters
+
+The point of this exercise is to collect data on whether our brains perceive words merely as a collection of letters or if sometimes our brains process words as entities. The logic of this test is that, if words are perceived as units, rather than as collections of letters, then this should be especially true for common words. Hence we will look at the errors made in scanning this paragraph, and ask whether we are more (or less) likely to miss finding a “t” when it is part of a common word.
+
+
+## Counting letters
+
+
+Compare your results to the answer key (posted on Moodle) that marks all the instances of the letter “t”. Note that the answer key marks all “t”s in red, but it also puts boxes around some words. The boxes are drawn around all instances of the letter “t” occurring in common words. “Common” is defined here as among the top-twenty words in terms of frequency of use in English; of these six contain one or more “t”s: the, to, it, that, with, and at. In this passage there are 94 “t”s, and 29 are in common words.
+
+Count how many mistakes you made finding “t”s in common words and in less common words.
+
+## Counting letters
+Use the appropriate test to ask whether the commonness of a word affects your probability of noticing the “t”s in it. Go to `lab10_counting_letters.Rmd` to complete this.
+
+
+## Lab 9 Conditional statements/functions exercise
+
+The function we created in Lab 8 is presented below. Edit it to fulfill the three criteria above:
+
+```{r}
+#option 1
+temp_conv<-function(t=NULL, unit=NULL){
+  if(unit=="C" | unit=="Celsius"| unit=="celsius"){
+    (t * 1.8) + 32 # convert to Fahrenheit
+  }else if(unit =="F"|unit =="Fahrenheit"|unit=="fahrenheit"){
+    (t-32)/1.8 # Convert to Celsius
+}else{
+  print("Not a valid unit!")
+}  
+}
+```
+
+## Lab 9 Conditional statements/functions exercise
+```{r}
+#option 2
+temp_conv<-function(t=NULL, unit=NULL){
+  if(unit %in% c("C","Celsius","celsius")){
+    (t * 1.8) + 32 # convert to Fahrenheit
+  }else if(unit %in% c("F","Fahrenheit","fahrenheit")){
+    (t-32)/1.8 # Convert to Celsius
+}else{
+  print("Not a valid unit!")
+}  
+}
+```
+
+## Problem solutions (not included in posted slides)
+
+```{r}
+sars <- read.csv("input_files/sars.csv") 
+head(sars,2) # Shows the first six rows of the data set
+```
+## Problem solutions (not included in posted slides)
+
+```{r}
+table(sars$Ribavirin) # Table of Ribavirin use
+table(sars$Survival) # Table of Survival
+```
+
+## Problem solutions (not included in posted slides)
+```{r}
+# Counts Ribavirin use and Death
+rib_survive_table <- table(sars$Ribavirin,sars$Survival)
+table(sars$Ribavirin,sars$Survival)
+```
+
+## Problem
+```{r}
+# p of survival with ribavirin
+87/(10+87)
+# p of survival without ribavirin
+115/(115+17)
+#Odds ratio of survival on ribavirin
+RR<-(87/(10+87))/(115/(115+17))
+RR
+```
+## Problem
+```{r}
+library(epitools)
+RR<-riskratio(rib_survive_table)
+RR
+```
+
+## Problem
+```{r}
+# Odds of survival on ribavirin
+87/10
+#Odds of survival without ribavirin
+115/17
+#Odds ratio of survival on ribavirin
+OR<-(87/10)/(115/17)
+OR
+
+```
+## Problem
+```{r}
+library(epitools)
+OR<-oddsratio(rib_survive_table)
+OR
+```
+
+## Problem solutions (not included in posted slides)
+```{r}
+#Odds ratio of survival on ribavirin
+fisher.test(rib_survive_table)$estimate
+#95% CI of of OR survival on ribavirin
+fisher.test(rib_survive_table)$conf.int
+```
+## Spider
+
+```{r, echo=F}
+spider <- tibble(Male_2 = c("Accepted","Rejected","Accepted","Rejected"),
+       Male_1 = c("Eaten","Eaten","Escaped","Escaped"),
+       observed = c(3, 6, 22, 1)) 
+spider.summary <- spider                                 %>%  
+  group_by(Male_1)                                       %>%
+  mutate(n.Male_1 = sum(observed))                       %>% 
+  ungroup()                                              %>%
+  group_by(Male_2)                                       %>%
+  mutate(n.Male_2   = sum(observed))                     %>%  
+  ungroup()                                              %>%
+  mutate(p.Male1 = n.Male_1 / sum(observed),
+         p.Male2 = n.Male_2 / sum(observed),
+         expected  = p.Male1 * p.Male2 * sum(observed))  %>% 
+  select(-n.Male_1, - n.Male_2) 
+spider.spread <- spread(spider,key = Male_2, value = observed )%>% 
+  select(-"Male_1")
+```
+
+```{r}
+spider.spread
+kableExtra::kable(spider.spread)
+```
+
+## Spider
+
+```{r}
+prop.test(as.matrix(spider.spread))
+```
+## Spider
+```{r}
+spider.spread
+fisher.test(spider.spread) 
+```
+
+## Spider
+
+```{r}
+chisq.test(data.frame(spider.spread))
+```
+
+
+
+## Birds
+
+```{r, echo=F}
+library(readxl)
+library(kableExtra)
+birds <- read_excel("input_files/Post-laying clutch reduction Dryad Dataset.xls")
+birds2 <- birds                                    %>% 
+  group_by(`Habitat quality`,`Last egg`)           %>% 
+  summarize(observed = n())                        %>% 
+  mutate(n.habitat = sum(observed))  %>% ungroup() %>%                   
+  group_by(`Last egg`)                             %>%
+  mutate(n.egg     = sum(observed))                %>% 
+  ungroup()
+birds.summary <- birds2  %>%   
+  mutate(p.habitat = n.habitat         / sum(observed),
+         p.egg     = n.egg             / sum(observed),
+         expected  = p.habitat * p.egg * sum(observed))                                     %>% select(-n.habitat, - n.egg)
+```
+
+
+## Birds
+
+
+```{r}
+kableExtra::kable(birds.summary)
+birds.chi<-birds.summary %>%
+  mutate(squared.dev = ((observed - expected)^2)/expected) %>%
+  summarise(chi2     = sum(squared.dev)) %>% 
+  pull()
+birds.chi
+```
+
+## Birds
+
+```{r}
+pchisq(q = birds.chi, df = 1, lower.tail = FALSE)
+```
+
+## Birds
+
+```{r}
+prop.test(matrix(birds.summary$observed, nrow=2))
+```
+
+
+## Titanic
+
+```{r, echo=F}
+titanic <- read.csv("input_files/chap09f1.1Titanic.csv", 
+  stringsAsFactors = FALSE)
+titanicTable <- table(titanic$survival, titanic$Sex, useNA = c("ifany"))
+titanicTable
+```
+## Titanic
+
+
+```{r}
+library(epitools)
+riskratio(t(titanicTable), rev = "both", method = "wald")[c(1,2)]
+riskratio(t(titanicTable), rev = "both", method = "wald")$measure[2,]
+```
+## Titanic
+
+
+```{r}
+#odds ratio
+oddsratio(t(titanicTable), method="wald")[c(1,2)]
+oddsratio(t(titanicTable), method="wald")$measure[2,]
+```
+## Normal
+
+
+```{r}
+pnorm(q=1.5, mean=0, sd=1, lower.tail=FALSE)
+pnorm(q=1.96, mean=0, sd=1, lower.tail=FALSE)
+```
+
