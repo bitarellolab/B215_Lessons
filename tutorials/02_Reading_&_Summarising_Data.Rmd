@@ -1,0 +1,487 @@
+---
+title: "02.Reading & Summarising Data"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: false
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+```
+# Tasks
+
+* Watch the video "Code like a pro"
+* Complete this Tutorial
+* Complete the DataCamp activities
+* Complete the R quiz 2 
+
+# Learning Outcomes
+
+* Explore three other data structure types: matrices, lists, data.frames
+* Learn how to read into data saved in a a tabular format (e.g. csv)
+* Learn how to have a general look at the imported data and understand its structure
+* Learn how to extract parts of the data for further analysis
+* Learn how to write a file containing the processed data
+
+# What you know already
+
+In Lab 1 you learned:
+
+* About three data types of variables : factors, strings or characters, numeric.
+* How to use R as a calculator.
+* About one of the data structures in R: vectors. 
+* How to create vectors and index certain elements in that vector.
+* How to create a basic  R script with code and comments.
+
+
+*Note*: I strongly recommend you practice what you learned. You can go over the previous week's material again through the files in the R Labs section on Moodle. You can also go to your homepage in DataCamp and click "Practice" on any recent courses/chapters you've worked on. Try it!
+
+# Outline for today
+
+* Today we will look at some real data in R and use those data to understand other data structures in R: matrices, lists, and data frames.
+* We will also learn how to read in data into R as a `data.frame`.
+* Finally, we will learn how to summarize the data using measures of position (also called measures of center) - `mean`, `median`, `mode`
+
+# The Tooth Growth Dataset
+
+Although we will later learn how to read data from a spreedsheet into R, let's start by simpling "loading" data into R. A package called `datasets` (already installed with base R) contains several datasets, including this one. 
+
+First, check what objects are already in your workspace. You can do that using the command `ls()`:
+
+```{r ex1,  exercise = T, eval= F}
+ls()
+```
+
+Since we just started, there shouldn't be anything there. If you see anything listed, you can remove it with the command `remove()` with the name of the object as argument.
+
+
+Okay! Now, to load the tooth growth data set, simply use the `load()` command and use the name of the dataset ("ToothGrowth") as argument
+
+```{r ex2, exercise = T, eval = F}
+data("ToothGrowth")
+```
+
+*Note*: this is not how you usually get data into R. This is a convenient way provided by certain packages which contain pre-organized datasets for you. The most common way is to read a text file into R, as we will see soon.
+
+It will appear that nothing happened but, in fact, something did happen. Use the `ls()` command again:
+
+```{r, eval = F }
+ls()
+```
+
+*Note*:On the top right of your Rstudio view, you should be able to see a brief description of the dataset.
+
+Voilà! You now have an object called `ToothGrowth` in your workspace.
+
+First, let's learn a bit about this dataset by using R's built-in help function. It starts with `?` followed by the name of the package or function or dataset. Try it:
+
+```{r, tooth, exercise = T, eval = F }
+?ToothGrowth
+```
+
+Notice the description of the dataset. What variables compose this dataset?
+
+Now let's look at the data.
+
+
+# Having a first look at the data
+
+Once you have your dataset saved as an object in your workspace, one useful command is to know what kind of object it is. Recall the function `class` that we used in our last lab. Try that on the object `ToothGrowth`:
+
+```{r exx2, exercise = T, eval = F} 
+class(ToothGrowth)
+```
+
+That's great because we are also learning about data.frames today!
+
+So the summary on the top right tells you your `ToothGrowth` object has 60 observations of 3 variables, which leads us to `180` "things" to look at. 
+
+
+
+Let's say you want to just have a look at the beginning, the first parts of this object. You can do that with the function `head()`, which takes as argument the name of the object. First look up the function using `?`:
+
+``{r ex3, exercise = T, eval = F}
+?head()
+```
+Now use it:
+
+```{r ex4, exercise = T, eval = F}
+head(ToothGrowth)
+```
+
+How many lines do you see in the output? Why do you think that's the number of lines you see? Tip: look at `?head()` more closely.
+
+
+
+Yes, that's the default value for `head(x, n = 6L)`! What if I only wanted to see the top two lines?
+
+```{r ex5, exercise = T, eval = F}
+head(x=ToothGrowth, n = 2)
+#or
+head(x=ToothGrowth, n = 2L)
+#both work
+head(x=ToothGrowth, 2)
+#also works!
+head(n = 2, x = ToothGrowth) #also works!
+```
+
+Now this does not work:
+```{r ex6, exercise = T, eval = F}
+#head(2, ToothGrowth) #does not work
+```
+
+*Note*: that one can omit naming the arguments x and n and the function still works. This is onyl true if the order of the arguments follows the default order, though. If you want to add arguments in a random order you have to tell the function what they are.
+
+
+
+What if you wanted to see the last lines of your object?
+
+You guessed correctly. The function is `tail` and it works in the same way! 
+
+Print the last 3 lines of the object `ToothGrowth`:
+
+```{r ex7, exercise = T, eval = F}
+tail(ToothGrowth, n = 3)
+```
+
+A function that many take for granted but which is essential when you're first exploring your data is `str()`. Let's read the help documentation for this function.
+
+```{r ex8, exercise = T, eval = F}
+?str()
+```
+
+So `str()` will give you a compact display of the contents of your R object. Let's give it a try:
+
+```{r ex9, exercise = T, eval = F}
+str(ToothGrowth)
+```
+Each line is referencing one column in your `data.frame`.
+
+Notice that:
+
+* column `len` is of class `numeric`. This is the tooth length of each animal.
+* column `supp` is of class `Factor` and it has 2 levels: "OJ", "VC"; orange juice and vitamin C, respectively
+* column `dose` is of class `numeric`; 0.5, 1, or 2
+
+
+This is very helpful indeed! It can guide the next steps in your data analysis.
+
+One final and crucial function to get a sense of your data is `summary()`. The name is pretty descriptive but have a look at the help page for `summary()` anyway. 
+
+
+```{r ex10, exercise = T, eval = F}
+?summary()
+```
+
+So `summary()` will produce summaries for each column in a `data.frame`. Let's give it a try:
+
+```{r ex11, exercise = T, eval = F}
+summary(ToothGrowth)
+```
+
+
+In summary, five functions allowed you to get a feel for this dataset:
+
+* `class`
+* `head`
+* `tail`
+* `str`
+* `summary`
+
+These are absolutely essential and you will use them all the time!
+
+For reflection: go back to `?ToothGrowth` and read about the variables. Do you think
+it makes sense to treat the variable `dose` as numeric? If something is a number should it always be treated as a numeric variable?
+
+What if we prefered thinking of `dose` in this dataset as different treatments. I.e., seeing `dose` as a categorical variable rather than a numeric one?
+
+We can convert the class type. 
+
+Extract `dose`, modify it, and put it back into your object:
+
+```{r ex12, exercise = T, eval = F}
+#first make a copy of the obj
+
+ToothGrowth2<-ToothGrowth
+#now get the column dose
+
+temp_dose<-ToothGrowth$dose
+class(temp_dose) #check its class. Notice that temp dose is simply a vector!
+#you can check by asking:
+is.vector(temp_dose)
+
+#now transform it into factor:
+temp_dose_fact<-as.factor(temp_dose)
+#now replace dose in ToothGrowth2 with temp_dose_fact
+
+ToothGrowth2$dose<-temp_dose_fact
+#run str again:
+str(ToothGrowth2)
+#run summary again:
+summary(ToothGrowth2)
+```
+
+Notice that now the summary of `dose` looks different because the variable is a factor (categorical) instead of numeric. Does it make mroe sense to you to look at it like this? 
+
+
+
+
+
+Today we will learn about three other data types: matrices, lists, data.frames.
+
+Last week we focused a lot on *vectors* - a list of elements that are items of the same type (numerical, character, or logical).
+
+## Matrix
+A *matrix* is also a collection of elements of the same type (numerical, character, or logical), but they are organized into a fixed number of rows and columns.
+
+Let's use our `ToothGrowth2` dataset to explore matrices. 
+
+Extract the column `len` from `ToothGrowth2` and assign it to an object called `temp_len`:
+
+```{r ex13, exercise = T, eval = F}
+temp_len<-ToothGrowth2$len
+```
+
+Check the class of `temp_len` and whether it is a vector:
+
+```{r, eval = F}
+class(temp_len)
+is.vector(temp_len)
+```
+
+Ok, now let's make a matrix from this numeric vector and call it `temp_len_mat`
+
+```{r, eval = F}
+temp_len_mat<-matrix(temp_len)
+temp_len_mat
+```
+It looks like this is not a vector anymore because it has rows and columns. You can cjeck this using the `dim` function (dimensions) on both `temp_len` and `temp_len_mat':
+
+```{r, eval = F}
+dim(temp_len)
+dim(temp_len_mat)
+```
+The second case returns `60 1`. From the `?dim` page you can learn what the output means but I will tell you: it is number of rows and number of columns. 
+
+Notice that in the first case the return says `NULL`. That's sbecause it was expecting tabular data. Try `length` instead, which will give you the length of the vector:
+
+```{r, eval = F}
+length(temp_len)
+```
+
+You could also make a matrix that has more columns:
+
+```{r, eval = F}
+temp_len_mat2<-matrix(temp_len, ncol = 2) #by default it will try to make a matrix with ncol=1 unless you change it.
+dim(temp_len_mat2)
+temp_len_mat2
+```
+
+So you learned two other fucntions that help you make sense of your data: `dim()` and `length()`.
+
+## Data Frame
+
+
+Recall that `ToothGrowth` is a `data.frame`. Check using `class()`:
+
+```{r, eval = F}
+class(ToothGrowth)
+```
+
+Data frames are tabular data objects. Tabular comes from the word "table". So you have rows and colums populated with data. So is it like a matrix?
+
+* In a matrix, all columns (variables) are of the same data type: `numeric`, `factor`, `logical`, `character`, etc
+* In a data frame, no such restriction exists. Each column can be of a different data type
+
+We can check this by running `str()` on `ToothGrowth` and `temp_len_mat2` (the matrix with 2 columns and 30 rows we just made):
+
+```{r, eval = F}
+str(ToothGrowth)
+str(temp_len_mat2)
+```
+
+## Lists
+
+A list is an R object which can contain many different types of elements inside it like vectors, functions and even another list inside it. The sky is the limit!
+
+Let's make a list called `my_list` where we put `ToothGrowth` (original data frame), `ToothGrowth2` (our modified data.frame), `temp_len_mat` (a matrix of one column and 60 rows), `temp_len_mat2` (a matrix of two columns and 30 rows). You simply use the function `list`:
+
+```{r, eval = F}
+my_list<-list(ToothGrowth, ToothGrowth2, temp_len_mat, temp_len_mat2)
+```
+
+Now let's have a look at it using `str()`:
+
+```{r, eval = F}
+str(my_list)
+```
+Notice that if you scroll up you can see that it correctly states it is a list of 4 elements. Then it runs the `str()` function for each one of those elements!
+
+# Reading in data into R
+
+Last but not least, how do people get data into R most of the time?
+
+The most common routh is by reading in a text file such as a .csv (columns separated by comma) or a tab-separated file (columns separated by tab). These are the most common.
+
+In your workspace you have a file called `coronavirus.csv`. Open it by clicking on it:
+This data set is mentioned in Chapter 2 example 2.3A fo your textbook.
+
+```{r, eval = F}
+my_eg0203a<-read.csv("eg02-03a.csv")
+```
+
+And now you can check things using the functions you learned above:
+
+```{r, eval = F}
+head(my_eg0203a)
+tail(my_eg0203a)
+str(my_eg0203a)
+summary(my_eg0203a)
+```
+
+# Summary statistics: Measures of center
+
+First of all, let's install the package `ggplot`. Althoug base R comes with built-in graphics functions, `ggplot` is much easier to learn. `ggplot` is part of a suite of packages developed by RStudio and called `tidiverse` which also includes the package `dplyr`, which we will use a lot in the coming weeks.
+
+Install `ggplot2`:
+
+1. User friendly way: In Rstudio, click on Tools > Install Packages > ggplot2.
+2. Command-line way: In your R prompt, type `install.packages('ggplot2')`.
+
+Click on 'packages' in the lower right panel. You will see many packages are already installed with base R, but now you also have `ggplot2`! But installing is not enough. Load the package so R knows to look for its functions when you try to use them. Use the function `library()` and use `"ggplot2` as argument (alternative: in the panel, just select the box that says ggplot2).
+
+```{r, eval = F}
+install.packages('ggplot2')
+library('ggplot2')
+```
+
+## Mean, Median, Mode
+
+The mean is one of the most common ways to summarise data. To obtain the mean, you sum the measurements of interest and divide by the total number of observations. You can do that using the functions `sum()` and `length()`. 
+
+
+Let's look at our ToothGrowth data again. Remember `temp_len` is a vector containing the lengths of the teeth of 60 guinea pigs. 
+
+
+First option: manual
+
+```{r, eval = F}
+my_sum<-sum(temp_len) #adds up all elements in a vector
+my_len<-length(temp_len) #the length of the vector, i.e, number of observations.
+
+my_mean<-my_sum/my_len
+my_mean
+```
+Second option: use the `mean()` function
+
+```{r, eval = F}
+my_mean2<-mean(temp_len)
+```
+
+Now let's compare the two:
+
+```{r, eval = F}
+my_mean==my_mean2 #remember == means 'equal to'
+```
+Hooray! You have learned to use `mean()`. 
+
+Now let's check the median. Remember, the median is a value below which you will find 50% of the data and above which you will find the other half. You can get the median by sorting the values you have and retrieving the middle value.
+
+Option 1: Use the function `sort()`
+
+```{r, eval = F}
+temp_len #not sorted
+sorted_temp_len<-sort(temp_len)
+sorted_temp_len
+my_len #remember the length of the vector
+#because my_len is an even number, we take the average of the my_len/2th and (my_len+1)/2th elements:
+
+temp1<-sorted_temp_len[my_len/2] #select the 30th element
+temp2<-sorted_temp_len[(my_len+2)/2] #select the 31st element
+my_median<-mean(c(temp1, temp2))
+my_median
+```
+
+Option2: use the `median()` function:
+
+```{r, eval = F}
+my_median2<-median(temp_len)
+```
+
+Check if they are the same:
+```{r, eval = F}
+my_median == my_median2
+```
+
+Now the mode: the mode is the most frequent value in the data.  What if you wanted to know the mode of `len`?
+
+
+```{r, eval = F}
+my_tab_len<-table(temp_len) #a table counts the occurrences of each value
+
+my_tab_len
+
+sorted_tab_len<-sort(my_tab_len, decreasing = TRUE) # we are using sort again, but we want the highest value to come first so decreasing = TRUE
+sorted_tab_len
+#now we can select the first value in this sorted object. That's the mode.
+my_mode<- sorted_tab_len[1]  # 26.4 appears four times and is the mode.
+
+my_mode <- as.numeric(names(my_mode)) #names returns the name of the element ("26.4") and as.numeric converts it from character to number.
+```
+R does not have a built-in mode function, so you can do this in many different ways, but there is no easy route!
+
+## Making a quick histogram
+
+A histogram takes your data and puts it into bins. The height of the bars indicate how common it is.
+
+Let's try using R's buil-in graphics to make a histogram of `temp_len`:
+
+```{r, eval = F}
+hist(temp_len)
+```
+
+Now recall the values you obtained earlier:
+
+* mean: 18.8
+* median: 19.125
+* mode: 26.4
+
+Notice this histogram looks roughly bell-shaped, and, as a result, mean and median are not very different. However, median is a bit higher, and that's because there's a slight left skew (a tail to the left). Those infrequent lower numbers drag the mean down, but not the median.
+
+You can't really 'see' the mode in the same way, but perhaps if we increase the number of bins? Notice your previous plot has 7 bins. Let's increas that number to 60:
+
+```{r, eval = F}
+hist(temp_len, breaks = 60)
+```
+
+There! Although not a great figure, it clearly shows you have a peak around your mode and another one around 10 or so. Although you didn't have as many observations at exactly 10, you had 2 at 9.7 and 2 at 10, which is what that peak is showing.
+
+Here is a prettier option, with `ggplot2`:
+
+```{r, eval = F}
+library(ggplot2)
+ggplot(ToothGrowth, aes(x=len)) + geom_histogram()
+```
+
+```{marginfigure}
+Next week we will learn way more about ggplot2 and other tools to explore your data!
+```
+# Now, let's practice this stuff!
+
+Go to our Data Camp page [link](https://app.datacamp.com/groups/b215-biostatistics-with-r). Complete the following activities (in this order). If you don't finish them in class, finish them before next class (and hopefully before you try the quiz!)
+
+
+*Note:* When you're done with all of this and feel ready, take the R quiz 2 (unlimited attempts). This will be posted later today in Rstudio Cloud as a separate project.
+
+
+1.Introduction to Importing Data with R: Importing Data with Flatfiles from utils
+
+2.Introduction to R: matrices
+
+3.Introduction to R: data.frames
+
+4.Introduction to R: lists
+
+
