@@ -518,9 +518,54 @@ species_info$Family
 grade_this_code()
 ```
    
+Dataframes are useful because they can combine multiple different types of data into a single column. This is a real world dataset showing the hominin (early human) species name, date of first occurrence in the fossil record, date of last occurrence, and geographic location. Dataframes are a very common way to present data and you will encounter them in your R journey. Find the mean, median, mode, and range of the first occurrence data for the genus Homo.
+
+
+```{r df1, exercise = F}
+## Create a data frame that holds information about various species
+species_info <- data.frame(
+  "Genus" = c("Panthera leo", "Gorilla gorilla", "Homo sapiens"),
+  "CommonName" = c("Lion", "Gorilla", "Human"),
+  "Family" = c("Felidae", "Hominidae", "Hominidae"),
+  "GenomeSize" = c(2.8, 3.3, 3.2),  # in Giga Base Pairs
+  "Diet" = c("Meat", "Herbivore", "Omnivore")
+)
 
 
 
+```
+
+
+```{r setupdfex1}
+# Create a data frame that holds information about various species
+species_info <- data.frame(
+  "SpeciesName" = c("Panthera leo", "Gorilla gorilla", "Homo sapiens"),
+  "CommonName" = c("Lion", "Gorilla", "Human"),
+  "Family" = c("Felidae", "Hominidae", "Hominidae"),
+  "GenomeSize" = c(2.8, 3.3, 3.2),  # in Giga Base Pairs
+  "Diet" = c("Meat", "Herbivore", "Omnivore")
+)
+
+
+
+
+```
+
+print the result and use the structure dataframe$columnname to select the column named "Family". You can also use square brackets but $ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
+
+```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
+                    
+```
+
+
+```{r dfex1-solution}
+print(species_info)
+species_info$Family
+```
+
+```{r dfex1-check}
+grade_this_code()
+```
 
 ## The quiz
 This is just graded for completion! First part is basic questions like the tutorial. Feel free to go back to previous sections. You won't lose your progress unless you click "start over".
