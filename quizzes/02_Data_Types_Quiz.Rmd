@@ -502,7 +502,7 @@ species_info <- data.frame(
 
 ```
 
-print the result and use the structure dataframe$columnname to select the column named "Family"
+print the result and use the structure dataframe$columnname to select the column named "Family". You can also use square brackets but $ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
 
 ```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
                     
