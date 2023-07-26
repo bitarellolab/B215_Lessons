@@ -615,7 +615,7 @@ grade_this_code()
 ```
 
 
-## Working with real data
+## Quiz Part 2: Working with real data
 
 
 
@@ -640,6 +640,6 @@ grade_this_code()
 ```
 
 ### Analyzing the data
-Lets see which diet worked best! Assuming we want heavier chickens that is. 
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. The 
 
 
