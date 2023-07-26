@@ -521,7 +521,7 @@ species_info <- data.frame(
 
 ```
 
-print the result and use the structure dataframe$columnname to select the column named "Family". You can also use square brackets but $ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
+Print the dataframe and on the next row practice using the structure dataframe$columnname to select the column named "Family" and save that as a vector called "family". You can also use square brackets but $ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
 
 ```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
                     
@@ -530,7 +530,7 @@ print the result and use the structure dataframe$columnname to select the column
 
 ```{r dfex1-solution}
 print(species_info)
-species_info$Family
+family <- species_info$Family
 ```
 
 ```{r dfex1-check}
@@ -557,12 +557,14 @@ species_info <- data.frame(
 species_info <- data.frame(
   "Genus" = c("Ardipithecus", "Australopithecus","Australopithecus","Australopithecus","Australopithecus","Australopithecus", "Homo","Homo","Homo","Homo","Homo","Homo","Homo","Paranthropus", "Paranthropus", "Sahelanthropus"),
   "Species" = c("ramidus", "afarensis", "africanus", "anamensis", "garhi", "sediba", "erectus", "floresiensis", "habilis", "heidelbergensis", "naledi", "rudolfensis", "sapiens","boisei", "robustus", "tchadensis"),
-  "Genome length" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01) # in Giga Base Pairs
+  "Genome_length" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01) # in Giga Base Pairs
 )
+
+australopithecus_genome_length<-filter(species_info, Genus == "Australopithecus")
 
 ```
 
-In the following box, seperate all the rows with "Australopithecus" in the "Genus" column using the function "filter" from the dplyr package. dplyr has a whole host of useful functions that make working with dataframes conveinent. Filter is just the tip of the iceberg. Follow the format: filter(dataframe_name, columnname == "Australopithecus") and save the results as australopithecus_genome_length
+In the following box, seperate all the rows with "Australopithecus" in the "Genus" column using the function "filter" from the dplyr package. dplyr has a whole host of useful functions that make working with dataframes conveinent. Filter is just the tip of the iceberg. Follow the format: filter(dataframe_name, columnname == "Australopithecus") and save the results as australopithecus_genome_length.
 
 ```{r dfex2, exercise = TRUE, exercise.setup = "setupdfex2"}
                     
@@ -576,6 +578,24 @@ australopithecus_genome_length<-filter(species_info, Genus == "Australopithecus"
 ```{r dfex2-check}
 grade_this_code()
 ```
+
+Now, using the dataframe you made (australopithecus_genome_length), use the function "summary" on the column of that dataframe which contains the genome information to calculate how variable hominin genomes are. Save that result into the object "summary_results" and print out that object.
+
+```{r dfex3, exercise = TRUE, exercise.setup = "setupdfex2"}
+                    
+```
+
+
+```{r dfex3-solution}
+summary_results <-summary(australopithecus_genome_length$Genome_length)
+print(summary_results)
+```
+
+```{r dfex3-check}
+grade_this_code()
+```
+
+The other nice thing
 
 ## The quiz
 This is just graded for completion! First part is basic questions like the tutorial. Feel free to go back to previous sections. You won't lose your progress unless you click "start over".
