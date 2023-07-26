@@ -1,0 +1,112 @@
+---
+title: "Hospital readmission rates of acute ischemic stroke in California"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+Tip: you can click on `visual` above this document to experience a friendlier interface.
+
+## Motivation
+
+According to the Nationwide Readmissions Database of the Healthcare Cost and Utilization Project between 2010 and 2015, the 30-day hospital readmission rate for acute ischemic stroke patients on a national level is 12.4% (Bambhroliya et al. 2018). A researcher wants to test whether the proportion of 30-day hospital readmissions for a California hospital with an "as expected" hospital quality rating differs from the national 30-day readmission proportion.
+
+## Data
+
+CSV Data file: [*readmin.csv*](input_files/readmin.cvs)
+
+The data file contains ischemic stroke 30-day hospital readmission incidence data for a random sample of patients in a California hospital with an "as expected" quality rating obtained from a set of hospital records for 2014-2015. The 30-day readmission data from a sample of 50 patients was recorded.
+
+Read in the dataset (it's in the input_files folder) which we'll call *readmin*. Use `head` to check what it looks like:
+
+```{r}
+# read dataset
+# use head()
+```
+
+The variable *ReadmissionStatus* is a binary variable which is equal to 1 if the patient was readmitted to the hospital within 30 days of discharge and equal to 0 if the patient was not readmitted to the hospital within 30 days of discharge.
+
+## Questions of interest
+
+Two questions of interest are:
+
+1.  Is the proportion of stroke patients readmitted within 30-days of discharge from CA hospital different from the nationwide proportion?
+
+2.  What is the 95% confidence interval for the proportion of acute ischemic stroke patients readmitted within 30 days of discharge?
+
+## Instructions
+
+-   Install the `binom()` package and load it:
+
+```{r}
+# Install
+# load
+```
+
+## Exploring the Data
+
+Let's begin by looking at the variable of interest, readmission. Use the `table()` function.
+
+```{r}
+# Table of Readmission Status
+
+```
+
+*How many peope are readmitted to the hospital within 30 days? How many are not?*
+
+## Data Analysis
+
+Determine the proportion of individuals readmitted in the sample. *Tip: check out the `prop.table()` function.*
+
+```{r}
+# Proportion table of Readmission Status
+
+```
+
+Answer: of the sample was readmitted within 30 days.
+
+#### The Binomial test
+
+Write the null and alternative hypotheses for this statistical test, comparing the proportion of readmission in our study, to the population proportion of 0.124.
+
+$H_0: \text{The proportion of readmission in the population is }______$
+
+$H_A: \text{The proportion of readmission in the population is not }_______$
+
+Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. *Tip: Some possibilities were covered in lectures. You can also just check out the `binom` package now.*
+
+```{r}
+# Binomial test of readmission status
+
+```
+
+*What is your decision based on the binomial test?*
+
+Answer:
+
+#### Agresti-Coull 95% Confidence Interval for the proportion
+
+Next, calculate the 95% CI for the proportion of stroke patients who were readmitted within 30 days of discharge using the Agresti-Coull method. *Tip: Some possibilities were covered in lectures. You can also just check out the `binom` package now.*
+
+```{r}
+# 95% CI for binomial test
+
+```
+
+*What is the Agresti-Coull 95% CI?*
+
+Answer:
+
+## Conclusions
+
+Based on these results, we find no evidence that the population proportion is significantly different from 0.124. The 95% CI interval ($0.0525 < p < 0.2417$) indicates medium level of precision, given that it covers nearly 20% of possible proportions.
+
+## References
+
+Bambhroliya AB, Donnelly JP, Thomas EJ, et al., "Estimates and Temporal Trend for US Nationwide 30-Day Hospital Readmission Among Patients With Ischemic and Hemorrhagic Stroke.", *JAMA Netw Open*, 1[2018]:e181190 <https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2696869>

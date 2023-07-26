@@ -1,0 +1,83 @@
+---
+title: "B215: List of DataCamp Assigments"
+output: pdf_document
+date: "2022-09-28"
+---
+
+*Last update: 10-04-2022*
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Core Set: R Fundamentals
+
+You must master these concepts before moving forward.
+
+## Introduction to R
+
+Entire Course, which consists of these chapters (in order):
+
+* Intro to Basics
+* Vectors
+* Matrices
+* Factors
+* Data frames
+* Lists
+
+
+## Introduction to the Tidyverse
+
+Entire Course, which consists of these chapters (in order):
+
+* Data wrangling
+* Data visualization
+* Grouping and summarising
+* Types of visualizations
+
+
+## Introduction to Importing Data with R
+
+
+* Importing Data with Flatfiles from utils
+* readr & data.table [Lab6]
+
+---------------------------------------------------------------
+
+# Exploratory Set: Data Wrangling, Visualization, and Reporting
+
+
+## Introduction to Data Visualization with ggplot2
+
+* Introduction
+* Aesthetics
+* Geometries [Lab6]
+* Themes [Lab6]
+
+## Data manipulation with dplyr
+
+* Transforming Data with dplyr
+* Aggregating Data [Lab6]
+* Selecting and Transforming Data [Lab6]
+
+## Reporting with R markdown
+
+* Getting Started with R markdown
+* Adding analyses and visualizations
+
+## Exploratory Data Analysis in R
+
+* Exploring Categorical Data [good review for exam]
+* Exploring Numerical Data [good review for exam]
+
+------------------------------------------------------------------------------
+# Analysis Set: Statistical Methods
+
+## Sampling in R
+
+* Introduction to Sampling
+
+## Introduction to Statistics in R
+
+* Summary Statistics [Lab6] [good review for exam] 
+

@@ -1,0 +1,145 @@
+---
+title: "Investigating the association between taking Ribavirin and death due to SARS in Singapore"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+```
+ 
+## Motivation
+
+Ribavirin is a drug that has been used to treat various respiratory disease caused by viruses. It has a very few adverse side effects and works on a large variety of viruses. During the SARS outbreak, Ribavirin was used in several countries, including Singapore, as a treatment. Researchers were interested in measuring the effectiveness of Ribavirin on treating SARS.
+
+## Data
+
+CSV Data file: *sars.csv* (input files folder)
+
+There were 229 individuals with SARS included in the retrospective study. Individuals either took Ribavirin or did not. The outcome of interest was whether an individual survived or died.
+
+Read in the dataset, which we'll call *sars*.
+
+```{r}
+#install/load packages you will need
+#read in the dataset
+#do the basic checks
+sars <- read.csv("sars.csv") 
+head(sars) # Shows the first six rows of the data set
+```
+
+The variable *id* is an ID variable for each individual in the study. The variable *Ribavirin* is equal to *No Ribavirin* when an individual did not receive Ribavirin and equal to *Ribavirin* when an individual did received Ribavirin. The variable *Survival* is equal to *Died* when an individual died and equal to *Survived* when an individual survived.
+
+## Questions of interest
+Two questions of interest are:
+
+1. Is there an association between the use of Ribavirin and survival?
+
+2. What is the odds ratio of survival with Ribavirin use?
+
+
+## Exploring the Data
+
+Let's begin by looking at the two variables of interest, Ribavirin use and survival.
+
+```{r}
+# Table of Ribavirin use
+table(sars$Ribavirin)
+
+# Table of Survival
+table(sars$Survival)
+
+```
+
+Of the 229 individuals included in the study:
+a) How many received ribovarin? How many did not?
+b) How many died? How many survived? 
+c) Are there incorrect values or additional levels to either categorical variable? Is cleaning the data necessary?
+
+## Data Analysis
+
+### Investigating the association between Ribavirin use and survival
+
+Begin by looking at a two-way table of Ribavirin use by survival.
+
+```{r}
+
+
+```
+
+Describe what you see: how many individuals died/survived within each treatment group? 
+
+
+This table does not give a complete view of the relationship because it does not show proportions.
+Make a proportions table from the table you created above.
+
+```{r}
+
+
+```
+
+
+You could also make a plot. A mosaic plot shows probabilities associated with survival and Ribavirin use. *Tip: there are at least two ways to do this - one with classic R plotting and one based on ggplot.*
+
+```{r}
+
+```
+*Describe what your mosaic plot is showing you: does there seem to be an asymmetric distribution of individuals who dies amongst the two treatments?*
+
+Answer: 
+
+We can perform a $\chi^2$ contingency test to see if there is a statistically significant association between Ribavirin and survival. 
+
+*Before you do this, how many degrees of freedom do you think you need here?*
+Answer:
+
+
+```{r}
+
+```
+
+*Describe the result of your hypothesis test: what is the p-value? Is it statistically significant? What do you conclude about the evidence of an association between Ribavirin use and death?*
+
+Since the $P$-value is larger than 0.05, there is no statistically significant  evidence of an association between Ribavirin use and death.
+
+*Are the results of the test above valid? Remember the assumptions for $\chi^2$ tests*?
+
+* no more than 20\% of the cells can have an expected frequency less than five
+* no cell can have an expected frequency less than one
+
+```{r}
+
+```
+
+Answer:
+
+### Odds ratio of survival
+
+To better quantify this lack of association, we'll next calculate the odds ratio of survival with Ribavirin.
+
+*What is the main difference between Fisher's exact test and the chi square contingency test we did above?*
+
+Answer:
+
+Calculate the OR of survival using the `fisher.test` function and obtain the OR of survival with Ribavirin and 95% CI for the OR:
+
+```{r}
+#Obtain the OR and 95% CI of the OR
+
+
+```
+
+*Describe your results: OR, CI of OR, what do they show and what do they mean.*
+Answer: 
+
+## Conclusions
+
+What can you conclude about the effect of Ribavirin use on survival in patients with sars? Discuss any limitations you detected in this study.
+
+## References
+H-N. Leung, et al., "Investigational Use of Ribavirin in the Treatment of Severe Acute Respiratory Syndrome, Singapore, 2003", *Tropical Medicine and International Health*, 9 [2004]: 923-927
+https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1365-3156.2004.01281.x
+

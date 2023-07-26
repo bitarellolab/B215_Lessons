@@ -1,0 +1,275 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Hospital readmission rates of acute ischemic stroke in California},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Hospital readmission rates of acute ischemic stroke in
+California}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+Tip: you can click on \texttt{visual} above this document to experience
+a friendlier interface.
+
+\hypertarget{motivation}{%
+\subsection{Motivation}\label{motivation}}
+
+According to the Nationwide Readmissions Database of the Healthcare Cost
+and Utilization Project between 2010 and 2015, the 30-day hospital
+readmission rate for acute ischemic stroke patients on a national level
+is 12.4\% (Bambhroliya et al.~2018). A researcher wants to test whether
+the proportion of 30-day hospital readmissions for a California hospital
+with an ``as expected'' hospital quality rating differs from the
+national 30-day readmission proportion.
+
+\hypertarget{data}{%
+\subsection{Data}\label{data}}
+
+CSV Data file: \emph{readmin.csv}
+
+The data file contains ischemic stroke 30-day hospital readmission
+incidence data for a random sample of patients in a California hospital
+with an ``as expected'' quality rating obtained from a set of hospital
+records for 2014-2015. The 30-day readmission data from a sample of 50
+patients was recorded.
+
+Read in the dataset, which we'll call \emph{readmin}. Use \texttt{head}
+to check what it looks like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# read dataset}
+\CommentTok{\# use head()}
+\end{Highlighting}
+\end{Shaded}
+
+The variable \emph{ReadmissionStatus} is a binary variable which is
+equal to 1 if the patient was readmitted to the hospital within 30 days
+of discharge and equal to 0 if the patient was not readmitted to the
+hospital within 30 days of discharge.
+
+\hypertarget{questions-of-interest}{%
+\subsection{Questions of interest}\label{questions-of-interest}}
+
+Two questions of interest are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Is the proportion of stroke patients readmitted within 30-days of
+  discharge from CA hospital different from the nationwide proportion?
+\item
+  What is the 95\% confidence interval for the proportion of acute
+  ischemic stroke patients readmitted within 30 days of discharge?
+\end{enumerate}
+
+\hypertarget{instructions}{%
+\subsection{Instructions}\label{instructions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Install the \texttt{binom()} package and load it:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Install}
+\CommentTok{\# load}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exploring-the-data}{%
+\subsection{Exploring the Data}\label{exploring-the-data}}
+
+Let's begin by looking at the variable of interest, readmission. Use the
+\texttt{table()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Table of Readmission Status}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{How many peope are readmitted to the hospital within 30 days? How
+many are not?}
+
+\hypertarget{data-analysis}{%
+\subsection{Data Analysis}\label{data-analysis}}
+
+Determine the proportion of individuals readmitted in the sample.
+\emph{Tip: check out the \texttt{prop.table()} function.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Proportion table of Readmission Status}
+\end{Highlighting}
+\end{Shaded}
+
+Answer: of the sample was readmitted within 30 days.
+
+\hypertarget{the-binomial-test}{%
+\paragraph{The Binomial test}\label{the-binomial-test}}
+
+Write the null and alternative hypotheses for this statistical test,
+comparing the proportion of readmission in our study, to the population
+proportion of 0.124.
+
+\(H_0: \text{The proportion of readmission in the population is }______\)
+
+\(H_A: \text{The proportion of readmission in the population is not }_______\)
+
+Run a two-sided binomial test to see if the sample proportion differs
+significantly from the population proportion. \emph{Tip: Some
+possibilities were covered in lectures. You can also just check out the
+\texttt{binom} package now.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Binomial test of readmission status}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{What is your decision based on the binomial test?}
+
+Answer:
+
+\hypertarget{agresti-coull-95-confidence-interval-for-the-proportion}{%
+\paragraph{Agresti-Coull 95\% Confidence Interval for the
+proportion}\label{agresti-coull-95-confidence-interval-for-the-proportion}}
+
+Next, calculate the 95\% CI for the proportion of stroke patients who
+were readmitted within 30 days of discharge using the Agresti-Coull
+method. \emph{Tip: Some possibilities were covered in lectures. You can
+also just check out the \texttt{binom} package now.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 95\% CI for binomial test}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{What is the Agresti-Coull 95\% CI?}
+
+Answer:
+
+\hypertarget{conclusions}{%
+\subsection{Conclusions}\label{conclusions}}
+
+Based on these results, we find no evidence that the population
+proportion is significantly different from 0.124. The 95\% CI interval
+(\(0.0525 < p < 0.2417\)) indicates medium level of precision, given
+that it covers nearly 20\% of possible proportions.
+
+\hypertarget{references}{%
+\subsection{References}\label{references}}
+
+Bambhroliya AB, Donnelly JP, Thomas EJ, et al., ``Estimates and Temporal
+Trend for US Nationwide 30-Day Hospital Readmission Among Patients With
+Ischemic and Hemorrhagic Stroke.'', \emph{JAMA Netw Open},
+1{[}2018{]}:e181190
+\url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2696869}
+
+\end{document}
