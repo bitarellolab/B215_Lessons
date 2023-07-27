@@ -16,6 +16,7 @@ library(ggmosaic)
 library(praise)
 library(utils)
 library(datasets)
+library(dplyr)
 tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
 gradethis::gradethis_setup(
   pass.praise = TRUE,
@@ -406,7 +407,7 @@ species_info <- list(
 
 ```
 
-print the result and use square brackets to select the third item from the list
+print the result and use double square brackets to select the third item from the list
 
 ```{r list1ex, exercise = TRUE, exercise.setup = "setuplist1"}
                     
@@ -415,7 +416,7 @@ print the result and use square brackets to select the third item from the list
 
 ```{r list1ex-solution}
 print(species_info)
-species_info[3]
+species_info[[3]]
 ```
 
 ```{r list1ex-check}
@@ -428,12 +429,12 @@ An array in R is a data structure for storing homogeneous data (i.e., data of th
 
 ```{r array1, exercise = F}
 # Create an array that holds gene expression data for 3 genes across 4 samples
-gene_expression <- array(c(5,3,4,9,2,8,7,1,6,2,3,6), dim = c(3,4))
+gene_expression <- array(c(5,3,4,9,2,8,7,1,6,2,3,6,9, 7, 3, 1, 4, 3, 3, 7, 0, 2, 9, 4), dim = c(3,4,2))
 dimnames(gene_expression) <- list(
   "Gene" = c("Gene1", "Gene2", "Gene3"),
-  "Sample" = c("Sample1", "Sample2", "Sample3", "Sample4")
+  "Sample" = c("Sample1", "Sample2", "Sample3", "Sample4"),
+  "Trials" = c("Trial1", "Trial2")
 )
-
 
 
 ```
@@ -441,12 +442,12 @@ dimnames(gene_expression) <- list(
 
 ```{r setuparray1}
 # Create an array that holds gene expression data for 3 genes across 4 samples
-gene_expression <- array(c(5,3,4,9,2,8,7,1,6,2,3,6), dim = c(3,4))
+gene_expression <- array(c(5,3,4,9,2,8,7,1,6,2,3,6,9, 7, 3, 1, 4, 3, 3, 7, 0, 2, 9, 4), dim = c(3,4,2))
 dimnames(gene_expression) <- list(
   "Gene" = c("Gene1", "Gene2", "Gene3"),
-  "Sample" = c("Sample1", "Sample2", "Sample3", "Sample4")
+  "Sample" = c("Sample1", "Sample2", "Sample3", "Sample4"),
+  "Trials" = c("Trial1", "Trial2")
 )
-
 
 
 ```
@@ -465,7 +466,25 @@ print(gene_expression)
 ```{r array1ex-check}
 grade_this_code()
 ```
-   
+
+Now, try and extract only the matrix which contains the data for trial 2. If you remember to extract columns and rows of a matrix we used the format col <- matrix[,1] and row <- matrix[1,] respectively. Arrays work the exact same way but because they are comprised of matrices that are glued together along the third dimension, you can call successive matrices as following: matrix1 <- array[,,1], matrix2 <- array[,,2], etc.
+
+Save trial 2 as a new matrix named trail2.
+
+```{r array1ex2, exercise = TRUE, exercise.setup = "setuparray1"}
+                    
+```
+
+
+```{r array1ex2-solution}
+trail2 <- gene_expression[,,2]
+```
+
+```{r array1ex2-check}
+grade_this_code()
+```
+
+Arrays are useful, but niche data structures. A much more common type of data is a data frame.
 
 ### Data Frames 
 
@@ -502,7 +521,7 @@ species_info <- data.frame(
 
 ```
 
-print the result and use the structure dataframe$columnname to select the column named "Family"
+Print the dataframe and on the next row practice using the structure dataframe$columnname to select the column named "Family" and save that as a vector called "family". You can also use square brackets but $ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
 
 ```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
                     
@@ -511,16 +530,72 @@ print the result and use the structure dataframe$columnname to select the column
 
 ```{r dfex1-solution}
 print(species_info)
-species_info$Family
+family <- species_info$Family
 ```
 
 ```{r dfex1-check}
 grade_this_code()
 ```
    
+Dataframes are useful because they can combine multiple different types of data into a single column. This is a dataset showing the hominin (early human) species name and hypothetical genome sizes for these early hominins (which we have no way of knowing yet).
+
+```{r df2, exercise = F}
+## Create a data frame that holds information about various species
+species_info <- data.frame(
+  "Genus" = c("Ardipithecus", "Australopithecus","Australopithecus","Australopithecus","Australopithecus","Australopithecus", "Homo","Homo","Homo","Homo","Homo","Homo","Homo","Paranthropus", "Paranthropus", "Sahelanthropus"),
+  "Species" = c("ramidus", "afarensis", "africanus", "anamensis", "garhi", "sediba", "erectus", "floresiensis", "habilis", "heidelbergensis", "naledi", "rudolfensis", "sapiens","boisei", "robustus", "tchadensis"),
+  "Genome length" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01)  # in Giga Base Pairs
+)
 
 
 
+```
+
+
+```{r setupdfex2}
+## Create a data frame that holds information about various species
+species_info <- data.frame(
+  "Genus" = c("Ardipithecus", "Australopithecus","Australopithecus","Australopithecus","Australopithecus","Australopithecus", "Homo","Homo","Homo","Homo","Homo","Homo","Homo","Paranthropus", "Paranthropus", "Sahelanthropus"),
+  "Species" = c("ramidus", "afarensis", "africanus", "anamensis", "garhi", "sediba", "erectus", "floresiensis", "habilis", "heidelbergensis", "naledi", "rudolfensis", "sapiens","boisei", "robustus", "tchadensis"),
+  "Genome_length" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01) # in Giga Base Pairs
+)
+
+australopithecus_genome_length<-filter(species_info, Genus == "Australopithecus")
+
+```
+
+In the following box, seperate all the rows with "Australopithecus" in the "Genus" column using the function "filter" from the dplyr package. dplyr has a whole host of useful functions that make working with dataframes conveinent. Filter is just the tip of the iceberg. Follow the format: filter(dataframe_name, columnname == "Australopithecus") and save the results as australopithecus_genome_length.
+
+```{r dfex2, exercise = TRUE, exercise.setup = "setupdfex2"}
+                    
+```
+
+
+```{r dfex2-solution}
+australopithecus_genome_length<-filter(species_info, Genus == "Australopithecus")
+```
+
+```{r dfex2-check}
+grade_this_code()
+```
+
+Now, using the dataframe you made (australopithecus_genome_length), use the function "summary" on the column of that dataframe which contains the genome information to calculate how variable hominin genomes are. Save that result into the object "summary_results" and print out that object.
+
+```{r dfex3, exercise = TRUE, exercise.setup = "setupdfex2"}
+                    
+```
+
+
+```{r dfex3-solution}
+summary_results <-summary(australopithecus_genome_length$Genome_length)
+print(summary_results)
+```
+
+```{r dfex3-check}
+grade_this_code()
+```
+
+The other nice thing
 
 ## The quiz
 This is just graded for completion! First part is basic questions like the tutorial. Feel free to go back to previous sections. You won't lose your progress unless you click "start over".
