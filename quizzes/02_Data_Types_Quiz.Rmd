@@ -640,6 +640,7 @@ grade_this_code()
 ```
 
 ### Analyzing the data
-Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. The 
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the dplyr filter function to select only chicks with time 21. 
+
 
 
