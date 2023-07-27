@@ -486,7 +486,8 @@ grade_this_code()
 
 Arrays are useful, but niche data structures. A much more common type of data is a data frame.
 
-### Data Frames 
+
+## Data Frames 
 
 A data frame in R is a table or a two-dimensional array-like structure in which each column contains values of one variable and each row contains one set of values from each column. The data stored in a data frame can be of numeric, factor, or character type. You will use these a lot, this is just a brief introduction!
 
@@ -595,7 +596,7 @@ print(summary_results)
 grade_this_code()
 ```
 
-The other nice thing
+
 
 ## The quiz
 This is just graded for completion! First part is basic questions like the tutorial. Feel free to go back to previous sections. You won't lose your progress unless you click "start over".
@@ -697,16 +698,17 @@ grade_this_code()
 Now we are going to practice working with an actual data set. We will be using one from the datasets package called chickweights. It's from an experiment on the effect of diet on early growth of chicks. If you want to learn more about the dataset type ??chickweights into your console. 
 
 ### Lets look at the data
-The datasets package already has the data stored as a data frame. If it wasn't you could call data.frame to turn it into one. 
-Load the ChickWeight data and name the object chicks. It's long, so we don't want to print the whole thing. Use a specific fucntion to call just the first 6 rows.
+The datasets package already has the data stored as a data frame. If it wasn't you could call data.frame to turn it into one. Rename the data chicks by assigning the code already loaded to that name. 
+It's long, so we don't want to print the whole thing. Use a specific function to call just the first 6 rows.
 
 ```{r chicks1, exercise = TRUE}
+datasets::ChickWeight
 
 ```
 
 
 ```{r chicks1-solution}
-chicks<-ChickWeight
+chicks<-datasets::ChickWeight
 head(chicks)
 ```
 
@@ -715,7 +717,81 @@ grade_this_code()
 ```
 
 ### Analyzing the data
-Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the dplyr filter function to select only chicks with time 21. 
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the dplyr filter function to select only chicks with time 21.
+name this resulting dataframe FinalChicks. Then print it. 
+```{r setupchicks}
+chicks<-datasets::ChickWeight
+FinalChicks<-filter(chicks, Time == "21")
+
+
+```
 
 
 
+```{r chicks2, exercise = TRUE, exercise.setup = "setupchicks"}
+
+```
+
+
+```{r chicks2-solution}
+FinalChicks<-filter(chicks, Time == "21")
+print(FinalChicks)
+```
+
+```{r chicks2-check}
+grade_this_code()
+```
+
+
+Now lets get the mean for each diet. Use the pattern below calculate the mean weight for the chicks in each of the 4 diets. 
+
+```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks"}
+diet1<-filter(FinalChicks, Diet == "1")
+mean(diet1$weight)
+
+```
+
+
+```{r chicks3-solution}
+diet1<-filter(FinalChicks, Diet == "1")
+mean(diet1$weight)
+
+diet2<-filter(FinalChicks, Diet == "2")
+mean(diet2$weight)
+
+diet3<-filter(FinalChicks, Diet == "3")
+mean(diet3$weight)
+
+diet4<-filter(FinalChicks, Diet == "4")
+mean(diet4$weight)
+
+```
+
+```{r chicks3-check}
+grade_this_code()
+```
+
+
+
+Isn't that a lot of work to get 4 simple means? Next week you are going to learn how to do all that in one go! Here's how you'd do it. Print the dataframe from this code to see how fast it is!
+
+```{r chicks4, exercise = TRUE, exercise.setup = "setupchicks"}
+avg_chick_wgts<- chicks %>%
+filter(Time == "21") %>% 
+group_by(Diet) %>%
+summarize(mean_weight = mean(weight, na.rm = TRUE))
+```
+
+
+```{r chicks4-solution}
+avg_chick_wgts<- chicks %>%
+filter(Time == "21") %>% 
+group_by(Diet) %>%
+summarize(mean_weight = mean(weight, na.rm = TRUE))
+
+print(avg_chick_wgts)
+```
+
+```{r chicks4-check}
+grade_this_code()
+```
