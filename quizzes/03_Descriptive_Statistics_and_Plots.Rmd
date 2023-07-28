@@ -1,5 +1,5 @@
 ---
-title: "Types of Data Structures"
+title: "Descriptive Statistics and Plots"
 output: 
   learnr::tutorial:
     progressive: TRUE
@@ -31,88 +31,48 @@ gradethis::gradethis_setup(
 Tasks: 
 
 -   Work through this document
--   
 
 Learning outcomes: 
 
-1.  Learn about the different types of data
+1.  Summary statistics
 
-2.  Familiarize yourselves with common types of data structures
+2.  Learn how to perform routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
 
-3.  Understand the interactions between vectors and matrices
+3.  Pipe `%>%` these operations together.
 
-4.  Use cbind and rbind
+4.  Be able to suggest improvements to basic graphs to improve readability and accurate communication
 
-5.  Read about other ways of saving data (lists, dataframes, arrays)
+5.  Explain the idea of mapping data onto aesthetics, and the use of different `geoms`
 
-## How many ways can data come
+6.  Match common plots to common data type.
 
-Numeric
 
-This is the default computational data type in R. If you enter a number without a decimal point, R will automatically convert it into a numeric data type. Numeric values in R can hold any real number, including both integers and fractions, and even negative numbers. For example, 5, 23.5, and -3 are all numeric values.
-```{r, echo=T, eval=F}
-pi <- 3.14
-print(pi)
-```
-Integer (for loops; we'll talk later)
+## Reading in data and dealing with missing data
 
-This data type in R is used to hold whole numbers. Unlike numeric values, integers cannot have a decimal point. You can create an integer in R by adding an 'L' suffix to a number, like this: 5L. Without the 'L', R would treat the number as numeric, not integer.
-```{r, echo=T, eval=F}
-class_number <- 215L
-```
-Logical T/F
-Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like <, >, ==, etc. to generate logical values. For example, the operation 5 > 3 will return TRUE because 5 is indeed greater than 3.
-```{r, echo=T, eval=F}
-reality <- TRUE
-```
-Character
+### Read in data
 
-Character data type in R is used to hold strings of text. You can create a character string by enclosing text in quotes. For example, "Hello, World!" is a character string.
-```{r, echo=T, eval=F}
-types_of_data <- c("Numeric", "Interger","Logical", "Complex", "Character", "Raw") 
-```
+You can import many types of data in R. If you want to see which file types are possible to read in from base R, type "read" in the console and then hit tab. That will show you all the various types of read functions for different file types inherent to base R.
 
-Complex <- 1 +2i
-
-This data type in R is used to store complex numbers, which have both real and imaginary parts. The imaginary part is denoted by 'i'. For example, 2+3i is a complex number where 2 is the real part and 3 is the imaginary part. (We won't use this in the course)
-```{r, echo=T, eval=F}
-Complex <- 1 +2i #we dont know when you'd use this i guess if you are mathy idk
-```
-
-Raw (for the real nerds)
-
-Raw data type in R is not commonly used for beginners. It is used to hold raw bytes, which can be anything from the contents of a file to an image. It's different from the other data types in that it doesn't represent something human-readable, but instead something that a machine might need to process. It's often used in more advanced topics like interfacing with other languages or dealing with binary data.
-```{r, echo=T, eval=F}
-hexcode1<- as.raw(0)
-hexcode2 <- as.raw(128)
-hexcode3 <- as.raw(255)
-```
-
-## Let's go through each type of data structure and why we use it
-
-### Numeric 
-Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate.
+Here, we'll be using read.csv which reads... csv files.
 
 ```{r, echo=T, eval=F}
-growth_data <- c(1.2, 2.3, 3.4, 5.6, 8.9) # Sizes of bacterial colonies at different time points
+titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
 
 ```
 
 
 ```{r setupnum}
-growth_data <- c(1.2, 2.3, 3.4, 5.6, 8.9)
-avg_growth<-mean(growth_data)
+titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
 ```
-Suppose you want to take the average of these values. Paste avg_growth <- mean(growth_data) then print avg_growth
+
+Sometimes, real world data sucks. It's missing entries, or it mixes data class types (e.g., a column that appears to be numeric, but is actually a sneaky character vector). For that reason, you always should inspect your data before you do any stats. For small files, view("r object") can be used, but for larger files, opening an r object can be prohibitively slow. You have already learned a function to call the first six rows of a dataset: head. Call it here and inspect the object titanicdata. This data both refers to the titanic and is, itself, titanic and therefore head is appropriate.
 ```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
 
 
-
 ```{r examplenum-solution}
-avg_growth <- mean(growth_data) 
-print(avg_growth)
+head(titanicdata)
 
 ```
 
