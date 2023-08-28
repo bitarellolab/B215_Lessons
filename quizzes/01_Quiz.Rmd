@@ -2,8 +2,8 @@
 title: "R Quiz 1"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: FALSE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 ---
@@ -15,6 +15,7 @@ library(tidyverse)
 library(knitr)
 library(ggmosaic)
 library(praise)
+library(utils)
 tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
 gradethis::gradethis_setup(
   pass.praise = TRUE,
@@ -24,18 +25,17 @@ gradethis::gradethis_setup(
 
 ```
 
+## Vectors
 
-
-
+### Exercise 1
 1. Below, assign the number 9 to the variable `a`, and a vector with numbers, 2, 9, and 8, in that order, to the variable  `b`. Then, ask if `a` is equal to `b` and then multiply `a` and `b`.
 
 
-```{r sim1, exercise=TRUE}
+```{r sim1, exercise=TRUE, allow_skip = FALSE}
                # assign 9 to a
 ```
 
-
-```{r sim1-solution}
+```{r sim1-solution, allow_skip = FALSE}
 a <- 9                
 #Note: I am not sure how to allow multiple correct answers, say
 # a<-9 and 
@@ -43,24 +43,36 @@ a <- 9
 ```
 
 
-```{r sim1-check}
+```{r sim1-check, allow_skip = FALSE}
 grade_this_code()
 
 ```
 
-```{r sim2, exercise = TRUE}
+### exercise 2
+```{r sim2, exercise = TRUE, allow_skip = FALSE}
 b <- c()            # assign a vector with 2, 9 and 8, in that order, to b
 ```
 
-```{r sim2-solution}
+
+```{r sim2-solution, allow_skip = FALSE}
 b <- c(2,9,8)      # assign a vector with 2, 9 and 8, in that order, to b 
 ```
 
-```{r sim2-check}
+```{r sim2-check, allow_skip = FALSE}
 grade_this_code()
 ```
 
-```{r sim3, exercise = TRUE}
+
+## Vector functions
+
+
+### ex3 
+```{r ex2setup}
+a <- 9
+b <- c(2,9,8)
+```
+
+```{r sim3, exercise = TRUE, exercise.setup = "ex2setup"}
                     # ask if a equals b 
 ```
 
@@ -72,7 +84,9 @@ a == b               # ask if a equals b
 grade_this_code()
 ```
 
-```{r sim4, exercise = TRUE}
+
+### exercise 4
+```{r sim4, exercise = TRUE, exercise.setup = "ex2setup"}
                     # multiply a and b
 ```
 
@@ -85,6 +99,7 @@ a * b             # multiply a and b
 grade_this_code()
 ```
 
+## Quiz
 
 ```{r pRactice, echo=FALSE}
 quiz(
@@ -144,6 +159,7 @@ a) The product of 15 by 17
 grade_result(
   pass_if(~identical(.result, 255))
 )
+
 ```
 
 b) Thirteen to the power of 3:
@@ -164,7 +180,7 @@ c) Log of 14 (use the natural log):
 
 ```{r ex3-check}
 grade_result(
-  pass_if(~identical(.result,  2.639057))
+  pass_if(~identical(.result,  log(14)))
 )  
 ```  
 
@@ -187,7 +203,9 @@ e) The square root of 81:
 
 ```{r ex5-check}
 grade_result(
-  pass_if(~identical(.result, 9))
+  #pass_if(~any(((9-0.5)<.result)==TRUE)&any(((9+0.5)>.result)==TRUE)
+      
+    pass_if(~identical(.result, 9))
 )  
 ```  
 

@@ -1,5 +1,5 @@
 ---
-title: "01. R, Rstudio: Crash Course"
+title: "02. R, Rstudio: Crash Course"
 output: 
   learnr::tutorial:
     progressive: true
@@ -20,85 +20,74 @@ knitr::opts_chunk$set(echo = FALSE)
 Tasks: 
 
 -   Work through this document
--   Create a basic R script
--   Create an R markdown document with your personal notes and code
--   Complete assignments in Codecamp
--   Complete RQ1
+-   
 
 Learning outcomes: 
 
-1.  Getting started with R and RStudio
+1.  Learn about the different types of data
 
-2.  Understand the difference between R and Rstudio
+2.  Familiarize yourselves with common types of data structures
 
-3.  Use the R console (command-line)
+3.  Understand the interactions between vectors and matrices
 
-4.  Use R as a calculator
+4.  Use cbind and rbind
 
-5.  Understand the concepts of input and output in R
+5.  Read about other ways of saving data (lists, dataframes, arrays)
 
-6.  Assign variables
+## How many ways can data come
 
-7.  Understand the main variable types in R (string, Boolean, numeric)
-
-8.  Use pre-built functions in R
-
-9.  Learn how to learn about a specific function
-
-10. Learn how to create, name, and index vectors
-
-11. Save your code in an R script
-
-## What is R?
-
-R is awesome. This is our first lesson. Let's dive in.
-
-R is a computer program that allows an extraordinary range of
-statistical calculations. It is a free (open source) programming
-language and program for statistical computing and graphic, mainly
-written by voluntary contributions from statisticians around the world.
-R is available on most operating systems, including Windows, Mac OS, and
-Linux.
-
-It is one of the primary languages used by data scientists and
-statisticians alike. It is supported by the R Foundation for Statistical
-Computing and a large community of open source developers.
-
-R can make *graphics* and do *statistical calculations*. It is also a
-full-fledged *computing language*. In this course, we will only scratch
-the surface of what R can do but hopefully it will be enough to give you
-a solid foundation and essential toolkit for any current-day biologist.
-
-Since R is an open source program and freely available, there can a
-large attraction for academics whose access to statistical programs are
-regulated through their association to various colleges or universities.
-
-Learn more at [R programming language
-    explained](https://www.freecodecamp.org/news/r-programming-language-explained/).
-
-## What is RStudio?
-
-[Rstudio](https://www.rstudio.com/) is a separate program, also free, that provides a more
-elegant front end for R. RStudio allows you to easily organize separate
-windows for R commands, graphic, help, etc. in one place.
-
-Since R utilizes a command line interface, there can be a steep learning
-curve for some individuals who are used to using GUI focused
-programs. [What is a GUI?](https://www.computerhope.com/jargon/g/gui.htm)
+Numeric
+```{r, echo=T, eval=F}
+pi <- 3.14
+print(pi)
+```
+Integer (for loops; well talk later)
+```{r, echo=T, eval=F}
+class_number <- 215
+```
+Logical T/F
+```{r, echo=T, eval=F}
+reality <- TRUE
+```
 
 
-For this course, we will use Rstudio Cloud.You are welcome (but not
-required) to install the desktop version of R and Rstudio as well on
-your machine.
+Complex <- 1 +2i
+```{r, echo=T, eval=F}
+Complex <- 1 +2i #we dont know when you'd use this i guess if you are mathy idk
+```
+Character
+```{r, echo=T, eval=F}
+types_of_data <- c("Numeric", "Interger","Logical", "Complex", "Character", "Raw") 
+```
+Raw
+for the real nerds
+```{r, echo=T, eval=F}
+hexcode1<- as.raw(0)
+hexcode2 <- as.raw(128)
+hexcode3 <- as.raw(255)
+```
 
-**R and RStudio are not the same thing!**
+## Why do we care about types of data structures
+Logical
+```{r, echo=T, eval=F}
+a <- c(1,2,3) #suppose this is your data and you misenter the first number
+b <- c(2,2,3) #and you want to make sure your data matches previous result
+which_entries_match <- a==b #paste this into the sandbox and look at the result
+```
 
-RStudio is a different program from R---it is installed separately and
-occupies its own place in the Programs menu (Windows PC) or Applications
-folder (Mac). **You can run R without RStudio but you cannot run RStudio
-without R.**
 
-Learn more at: [Rstudio](https://www.rstudio.com/)
+```{r setup1}
+a <- c(1,2,3) 
+b <- c(2,2,3)
+
+```
+
+
+```{r ex, exercise = TRUE, exercise.setup = "setup1"}
+                    
+```
+
+
 
 ## How does the Rstudio Cloud workspace work?
 
