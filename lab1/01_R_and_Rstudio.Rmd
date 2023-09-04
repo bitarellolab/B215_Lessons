@@ -1,0 +1,517 @@
+---
+title: "01. R, Rstudio: Crash Course"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: false
+runtime: shiny_prerendered
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Overview
+
+Tasks: 
+
+-   Work through this document
+-   Create a basic R script
+-   Create an R markdown document with your personal notes and code
+-   Complete assignments in Codecamp
+-   Complete RQ1
+
+Learning outcomes: 
+
+1.  Getting started with R and RStudio
+
+2.  Understand the difference between R and Rstudio
+
+3.  Use the R console (command-line)
+
+4.  Use R as a calculator
+
+5.  Understand the concepts of input and output in R
+
+6.  Assign variables
+
+7.  Understand the main variable types in R (string, Boolean, numeric)
+
+8.  Use pre-built functions in R
+
+9.  Learn how to learn about a specific function
+
+10. Learn how to create, name, and index vectors
+
+11. Save your code in an R script
+
+## What is R?
+
+R is awesome. This is our first lesson. Let's dive in.
+
+R is a computer program that allows an extraordinary range of
+statistical calculations. It is a free (open source) programming
+language and program for statistical computing and graphic, mainly
+written by voluntary contributions from statisticians around the world.
+R is available on most operating systems, including Windows, Mac OS, and
+Linux.
+
+It is one of the primary languages used by data scientists and
+statisticians alike. It is supported by the R Foundation for Statistical
+Computing and a large community of open source developers.
+
+R can make *graphics* and do *statistical calculations*. It is also a
+full-fledged *computing language*. In this course, we will only scratch
+the surface of what R can do but hopefully it will be enough to give you
+a solid foundation and essential toolkit for any current-day biologist.
+
+Since R is an open source program and freely available, there can a
+large attraction for academics whose access to statistical programs are
+regulated through their association to various colleges or universities.
+
+Learn more at [R programming language
+    explained](https://www.freecodecamp.org/news/r-programming-language-explained/).
+
+## What is RStudio?
+
+[Rstudio](https://www.rstudio.com/) is a separate program, also free, that provides a more
+elegant front end for R. RStudio allows you to easily organize separate
+windows for R commands, graphic, help, etc. in one place.
+
+Since R utilizes a command line interface, there can be a steep learning
+curve for some individuals who are used to using GUI focused
+programs. [What is a GUI?](https://www.computerhope.com/jargon/g/gui.htm)
+
+
+For this course, we will use Rstudio Cloud.You are welcome (but not
+required) to install the desktop version of R and Rstudio as well on
+your machine.
+
+**R and RStudio are not the same thing!**
+
+RStudio is a different program from R---it is installed separately and
+occupies its own place in the Programs menu (Windows PC) or Applications
+folder (Mac). **You can run R without RStudio but you cannot run RStudio
+without R.**
+
+Learn more at: [Rstudio](https://www.rstudio.com/)
+
+## How does the Rstudio Cloud workspace work?
+
+Join the B215 Rstudio cloud workspace. This space will be updated by the
+instructor often, and you will see a mirrored version in your own space.
+If the workspace is changed by the instructor, simply refreshing the
+page should get you the updated version.
+
+When you start RStudio, it will automatically start R as well. **You run
+R inside RStudio.**
+
+After you have started RStudio, you should see a new window with a menu
+bar at the top and three main sections. One of the sections is called
+the "Console" -- this is where you type commands to give instructions to
+R and typically where you see R's answers to you.
+
+![](images/image1.png){width="80%"}
+
+Another important corner of this window can show a variety of
+information. Most importantly to us, this is where graphics will appear,
+under the tab marked "Plots".
+
+## Saving your code
+
+Good science relies on reproducibility of findings. In the world of
+computer programming, this means:
+
+-   Raw data is never modified; you read it as is, process it, and
+    produce outputs
+-   Outputs should be disposible; if your computer explodes, as long as
+    you backed up your code you should be able to reproduce your
+    output/results
+-   Manual steps (i.e., these that cannot be automated) should be
+    avoided or otherwise minimized
+-   Ideally, one software package (in our case, R) should be enough to
+    run your code; if other software is needed, ideally you would make
+    the integration between them work seemlessly and in an automated way
+    [this is beyond the scope of our course]
+
+So how do you save your code?
+
+## A basic R script
+
+An R script is a text file containing your R code. Commented lines ('\#'
+sign) are read as comments.
+
+-   Go to the Lab Activities \> Lab1_Activity.
+-   Click on File \> New File \> Rscript. This will open a blank file.
+-   Type "\#" followed by your full name. That is a comment and is
+    ignored by R.
+-   In the next line, type:
+
+```{r, echo=T, eval=F}
+120/10
+```
+
+-   Now press command + s to save (or click File \> Save OR click on the
+    little save icon at the top of the script)
+-   Voilà! You have created your first R script. Save your file as
+    lab1_lastname_firstname (fill in with your name)
+-   Keep this file open and as your progress through this document,
+    whenever any code appears, write it down preceded by a description
+    in the form of a comment
+-   Later we will see how to turn this into an R markdown file
+
+## The command line
+
+When you start RStudio, you'll see a corner of the window called the
+"Console." By default the console window is in the bottom left of the
+Rstudio screen.
+
+You can type commands in this window where there is a **prompt** (which
+will look like a \> sign at the bottom of the window). The Console has
+to be the selected window. (Clicking anywhere in the Console selects
+it.)
+
+The \> prompt is R's way of inviting you to give it instructions. You
+communicate with R by typing commands after the \> prompt. What you type
+into the prompt will be treated as an input for R to do something with.
+Let's see some examples.
+
+Type "2+2" at the \> prompt, and hit return. You'll see that R can work
+like a calculator (among its many other powers). It will give you the
+answer, 4, and it will label that answer with [1] to indicate that it is
+the first element in the answer. (This is sort of annoying when the
+answers are simple like this, but can be very valuable when the answers
+become more complex.) In other words, your input being 2+2 will result
+in an output being [1] 4. Try it:
+
+```{r, echo = T, eval = F}
+2+2 #input
+
+```
+
+In these labs, the input will show up in a gray box and the output, if
+any, will follow in a white box.
+
+```{r, r-add2, echo = T}
+2+2
+```
+
+## log()
+
+You can use a wide variety of math functions to make calculations here,
+e.g., log() calculates the log of a number:
+
+```{r,  r-log1, echo =T }
+log(10)
+```
+
+(Note: By default, this gives the natural log with base e.)
+
+Parentheses are used both as a way to group elements of the calculation
+and also as a way to denote the arguments of functions. (The "arguments"
+of a function are the set of values given to it as input.) For example,
+log(3) is applying the function log() to the argument 3.
+
+## sqrt()
+
+Another mathematical function that often comes in handy is the square
+root function, sqrt(). For example, the square root of 4 is:
+
+```{r r-sqrt, echo = T}
+sqrt(4)
+```
+
+To calculate a value with an exponent, used the \^ symbol. For example
+$$4^3$$ is written as:
+
+```{r r-exp, echo =T}
+4^3
+```
+
+Of course, many math functions can be combined to give an almost
+infinite possibility of mathematical expressions. For example,
+
+$$\frac{1}{sqrt(2\pi(3.1)^2)}e^{-\frac{(12-10.7)^2}{2(3.1)}}$$
+
+can be calculated with:
+
+```{r, echo = T, eval = T}
+(1/(sqrt(2 * pi * (3.1)^2))) * exp(-(12-10.7)^2/(2*3.1))
+```
+
+Try to run these yourself in the sandbox:
+
+```{r sandbox1, exercise=TRUE, eval = FALSE}
+
+```
+
+## R commands summary
+
+| **Description**          | **Operator**   |
+|--------------------------|----------------|
+| Assignment               | \<- or =       |
+| Addition                 | \+             |
+| Subtraction              | \-             |
+| Multiplication           | \*             |
+| Division                 | /              |
+| Exponentiation           | x\^y or x\*\*y |
+| Modulo (x mod y)         | x %% y         |
+| Less than                | \<             |
+| Less than or equal to    | \<=            |
+| Greater than or equal to | \>=            |
+| Equal to                 | ==             |
+| Not equal to             | !=             |
+| x OR y (Boolean)         | x \|\| y         |
+| x AND y (Boolean)        | x && y         |
+
+## Getting info about a function
+
+In your prompt, type:
+
+```{r, echo =T, eval=F}
+?log
+```
+
+This will make an R documentation appear on the right side of your
+Rstudio pane. This is an R help page.
+
+![](images/image2.png){width="80%"}
+
+-   All pre-built functions in R have R pages that you can access in
+    this way
+-   If you are trying to access the help function for a package that is
+    nto installed by default in R, you will need to add an extra "?"
+
+For example, try to find the help page for the function "tstrsplit":
+
+```{r, echo = T, eval = T}
+?tstrsplit
+```
+
+You got an error, which would make some people give up. But if you are
+certain the function exists, you can try:
+
+```{r, echo = T, eval = T}
+??tstrsplit
+```
+
+This will show any match to "tstrsplit" within installed packages in
+your workspace.
+
+Note:
+
+-   If you click on "Packages" in the lower right, you will see
+    currently installed packages. The checkmark highlights those that
+    are currently "loaded" into your workspace
+-   You can install packages by going to Tools \> Install Packages and
+    searching for a package of interest.
+
+Sandbox: Use the area below for any R practice
+
+```{r sandbox2, exercise=TRUE, eval = FALSE}
+
+```
+
+## Assigning variables
+
+A variable is a thing that can change.
+
+Variable names should: \* be meaningful \* they can include letters and
+numbers \* they cannot begin with a number \* spaces are not tolerated.
+In fact, in the world of programming you should forget spaces altogether
+when naming things (variables, files, functions, etc.) because they are
+a no-no \* in stead of "my var", use "myvar", "myVar", "my_var", etc. \*
+choosing meaningful names makes your code easier to read - by you and
+others
+
+`{r=bla, exercise = T} xvar = 2  yvar <- 4 #you can use <- as well for assignments my_result <- (xvar + yvar) * yvar msg = "The result is" print(msg) print(my_result)`
+
+-   Both xcar and yvar are numeric variables.
+
+-   msg is a string.
+
+## Data types in R
+
+These things that change (variables) can be numeric, text, or Boolean
+(true/false).Text variables are referred to as strings in R (and many
+other programming languages).
+
+Basic data types in R can be divided into the following types:[^6]
+
+
+-   numeric \<- (10.5, 55, 787)
+-   integer \<- (1L, 55L, 100L, where the letter "L" declares this as an
+    integer)
+-   complex - (9 + 3i, where "i" is the imaginary part)
+-   character (a.k.a. string) - ("k", "R is exciting", "FALSE", "11.5")
+-   logical (a.k.a. boolean) - (TRUE or FALSE)
+
+Examples: (try these in the sandbox at the end of this section)
+
+```{r, echo = T, eval = F}
+
+# numeric
+x <- 10.5
+class(x)
+
+# integer
+x <- 1000L
+class(x)
+
+# complex
+x <- 9i + 3
+class(x)
+
+# character/string
+x <- "R is exciting"
+class(x)
+
+# logical/boolean
+x <- TRUE
+class(x) # this command tells you the class of a given variable or R object.
+
+2 < 0 #Try this and see what happens
+
+```
+Learn more at  [Data types in R. W3schools.com.
+    https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp)
+    
+### Numbers
+
+There are three number types in R:
+
+-   numeric: the most common type in R; contains any number with or
+    without a decimal
+-   integer:numeric data without decimals. This is used when you are
+    certain that you will never create a variable that should contain
+    decimals. Just add letter L after the number to create an integer.
+-   complex: number is written with an "i" as the imaginary part. Less
+    used.
+
+### Example
+
+Try these in the sandbox at the end of this section.
+
+```{r, echo = T, eval=F}
+x <- 200.8  # numeric
+y <- 1000L  # integer
+z <- 1i     # complex
+```
+
+You can convert from one type to another with the following functions:
+
+```{r, eval= F, echo = T}
+as.numeric()
+as.integer()
+as.complex()
+```
+
+Try these in the sandbox below:
+
+```{r, eval=F, echo = T}
+x <- 200.8  # numeric
+y <- 1000L  # integer
+
+x2 <- as.integer(x) #what happens here?
+
+y2 <- as.numeric(y) #what happens here?
+
+class(x2)
+
+class(y2)
+```
+
+Sandbox: Use the area below for any R practice
+
+```{r sandbox3, exercise=TRUE, eval = FALSE}
+
+```
+
+## R Data Structure
+
+R has several data strcutures: vectors, lists, matrices, arrays,
+data.frames, factors.
+
+Today we will see vectors and factors:
+
+### Vectors
+
+A vector is simply a list of items that are of the same type.
+
+To combine the list of items to a vector, use the c() function and
+separate the items by a comma.
+
+In the example below, we create a vector variable called planets, that
+combine strings:
+
+```{r, echo = T, eval=F}
+#vector of strings
+
+planets <- c("Earth", "Mars", "Saturn")
+
+#print planets
+planets
+```
+
+In this example, we create a vector that combines numerical values:
+
+```{r, echo = T, eval=F}
+#vector of numeric values
+
+prime_numbers<- c(2, 3, 5, 7, 11)
+
+#print prime numbers
+
+prime_numbers
+```
+
+You can create a sequence of numbers using `:` :
+
+Vector with numerical values in a sequence:
+
+```{r, eval=F, echo = T}
+numbers <- 1:10
+
+numbers
+```
+
+```{r sandbox, exercise=TRUE, eval = FALSE}
+
+```
+
+
+
+## R Quiz 1
+
+When you're ready, take the quiz. Go to our workspace, Lab1_Activity,
+open the file Rquiz1.Rmd, and click Run Document
+
+
+## Links & References
+
+[R Foundation for Statistical Computing](https://www.r-project.org/foundation/)
+    
+    
+[R programming language explained](https://www.freecodecamp.org/news/r-programming-language-explained/)
+    
+ [What is a GUI?](https://www.computerhope.com/jargon/g/gui.htm)
+ 
+ [Rstudio](https://www.rstudio.com/)
+ 
+ [Stephen J. Royle. The Digital Cell: Cell Biology as Data Science. Cold Spring Harbor Laboratory Press.](https://www.cshl.edu/press-news/the-digital-cell-cell-biology-as-a-data-science/)
+ 
+[Data types in R. W3schools.com.https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp)
+
+
+Datacamp material:
+
+
+1.  Introduction to R: Intro to Basics
+2.  Introduction to R: Vectors
+3.  Introduction to R: Factors
+
+
