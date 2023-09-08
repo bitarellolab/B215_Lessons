@@ -6,17 +6,26 @@ output:
     allow_skip: FALSE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
+tutorial:
+  id: "b215.f23.lab1.test"
+  version: 0.5
 ---
 
 ```{r setup, include=FALSE}
+library(devtools)
 library(learnr)
+library(submitr)
 library(gradethis)
 library(tidyverse)
 library(knitr)
 library(ggmosaic)
 library(praise)
 library(utils)
-tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
+learnr::tutorial_options(exercise.eval = TRUE, 
+                         exercise.reveal_solution = FALSE, 
+                         exercise.timelimit = 60,
+                         exercise.checker = gradethis::grade_learnr)
+
 gradethis::gradethis_setup(
   pass.praise = TRUE,
   fail.encourage = TRUE,
@@ -24,6 +33,52 @@ gradethis::gradethis_setup(
 )
 
 ```
+
+
+```{r context = "server", echo = FALSE}
+#options(tutorial.storage = "none")
+vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
+#storage_actions <- 
+#  record_gs4(
+#    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
+#    email = "bbitarello.teaching@gmail.com",
+#    vfun
+#  )
+storage_actions <- record_local("quiz1_record.txt")
+submitr::shiny_logic(input, output, session, vfun,
+                     storage_actions)
+```
+
+```{css echo=FALSE}
+ @media print {
+  .topicsContainer,
+  .topicActions,
+  .exerciseActions .skip {
+    display: none;
+  }
+  .topics .tutorialTitle,
+  .topics .section.level2,
+  .topics .section.level3:not(.hide) {
+    display: block;
+  }
+  .topics {
+    width: 100%;
+  }
+  .tutorial-exercise, .tutorial-question {
+    page-break-inside: avoid;
+  }
+  .section.level3.done h3 {
+    padding-left: 0;
+    background-image: none;
+  }
+  .topics .showSkip .exerciseActions::before {
+    content: "Topic not yet completed...";
+    font-style: italic;
+  }
+}
+/* paste CSS above here */
+```
+
 
 ## Vectors
 
@@ -210,16 +265,24 @@ grade_result(
 ```  
 
 
-Prove your reached the end and you're not a robot my creating a variable called `my_name` with your last name spelled backwards followed by your first name. E.g., mine would be "olleratib_arabrab".
+Create a variable called `my_name` with your last name spelled backwards followed by your first name. E.g., mine would be "olleratib_arabrab".
  
-
 
 ```{r sandbox1, exercise=TRUE, eval = FALSE}
 ```
 
+## Record your work
 
-Last but not least, take a screenshot of this last task and email it to me with subject line: "R quiz 1"!
+READ FIRST:
 
-The end!
+* as before, go to your browser and select "print" to keep a pdf copy of your work.
+* use your username from your institutional email as your username
+* use b215f23 as password
+* this will close the quiz and take you back to Posit cloud. Click on the little red "stop" icon in the console to stop the quiz for good.
+* in the files pane, you will see a file called "quiz1_record.txt". Select it and then go to the little wheel and click "export". 
+* upload that file and your PDF copy into the lab1-quiz on Moodle!
+* you're done!
 
-
+```{r, echo=F}
+submitr::login_controls()
+```

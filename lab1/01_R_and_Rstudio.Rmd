@@ -15,17 +15,17 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Overview
 
-Tasks: 
 
+## Tasks: 
+
+-   DataCamp activities
 -   Work through this document
 -   Create a basic R script
 -   Create an R markdown document with your personal notes and code
--   Complete assignments in Codecamp
 -   Complete RQ1
 
-Learning outcomes: 
+## Learning outcomes: 
 
 1.  Getting started with R and RStudio
 
@@ -73,19 +73,15 @@ Since R is an open source program and freely available, there can a
 large attraction for academics whose access to statistical programs are
 regulated through their association to various colleges or universities.
 
-Learn more at [R programming language
-    explained](https://www.freecodecamp.org/news/r-programming-language-explained/).
-
 ## What is RStudio?
 
-[Rstudio](https://www.rstudio.com/) is a separate program, also free, that provides a more
+Rstudio is a separate program, also free, that provides a more
 elegant front end for R. RStudio allows you to easily organize separate
 windows for R commands, graphic, help, etc. in one place.
 
 Since R utilizes a command line interface, there can be a steep learning
 curve for some individuals who are used to using GUI focused
-programs. [What is a GUI?](https://www.computerhope.com/jargon/g/gui.htm)
-
+programs.
 
 For this course, we will use Rstudio Cloud.You are welcome (but not
 required) to install the desktop version of R and Rstudio as well on
@@ -98,14 +94,11 @@ occupies its own place in the Programs menu (Windows PC) or Applications
 folder (Mac). **You can run R without RStudio but you cannot run RStudio
 without R.**
 
-Learn more at: [Rstudio](https://www.rstudio.com/)
-
 ## How does the Rstudio Cloud workspace work?
 
-Join the B215 Rstudio cloud workspace. This space will be updated by the
+Join the B215: Biostatistics with R (Fall 2023) Posit Cloud workspace. This space will be updated by the
 instructor often, and you will see a mirrored version in your own space.
-If the workspace is changed by the instructor, simply refreshing the
-page should get you the updated version.
+If the workspace is changed by the instructor, you would need to delete your mirrored version and create a new one to see those changes -- but hopefully we won't need to do this!
 
 When you start RStudio, it will automatically start R as well. **You run
 R inside RStudio.**
@@ -320,19 +313,29 @@ Sandbox: Use the area below for any R practice
 
 A variable is a thing that can change.
 
-Variable names should: \* be meaningful \* they can include letters and
-numbers \* they cannot begin with a number \* spaces are not tolerated.
-In fact, in the world of programming you should forget spaces altogether
+Variable names should: 
+
+* be meaningful 
+* they can include letters and
+numbers
+* NOT begin with a number 
+* spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether
 when naming things (variables, files, functions, etc.) because they are
-a no-no \* in stead of "my var", use "myvar", "myVar", "my_var", etc. \*
-choosing meaningful names makes your code easier to read - by you and
+a no-no 
+* in stead of "my var", use "myvar", "myVar", "my_var", etc. 
+* choosing meaningful names makes your code easier to read - by you and
 others
 
-`{r=bla, exercise = T} xvar = 2  yvar <- 4 #you can use <- as well for assignments my_result <- (xvar + yvar) * yvar msg = "The result is" print(msg) print(my_result)`
+```{r=bla, echo=T, eval=T}
+xvar = 2 #good 
+x_var = 9 #also good
+yvar <- 4 #you can use <- as well for assignments of values to variables
+```
 
--   Both xcar and yvar are numeric variables.
+Now try to recreate the variables above but call them `x var` and `y var` instead:
+```{r sandbox3, exercise=TRUE, eval = FALSE}
 
--   msg is a string.
+```
 
 ## Data types in R
 
@@ -427,7 +430,7 @@ class(y2)
 
 Sandbox: Use the area below for any R practice
 
-```{r sandbox3, exercise=TRUE, eval = FALSE}
+```{r sandbox4, exercise=TRUE, eval = FALSE}
 
 ```
 
@@ -479,7 +482,7 @@ numbers <- 1:10
 numbers
 ```
 
-```{r sandbox, exercise=TRUE, eval = FALSE}
+```{r sandbox5, exercise=TRUE, eval = FALSE}
 
 ```
 
@@ -487,8 +490,12 @@ numbers
 
 ## R Quiz 1
 
-When you're ready, take the quiz. Go to our workspace, Lab1_Activity,
-open the file Rquiz1.Rmd, and click Run Document
+When you're ready, take the quiz. Go to our workspace, Quizzes > Quiz 1.
+
+Type:
+
+`run("Quiz1.Rmd")`
+
 
 
 ## Links & References
@@ -505,13 +512,4 @@ open the file Rquiz1.Rmd, and click Run Document
  [Stephen J. Royle. The Digital Cell: Cell Biology as Data Science. Cold Spring Harbor Laboratory Press.](https://www.cshl.edu/press-news/the-digital-cell-cell-biology-as-a-data-science/)
  
 [Data types in R. W3schools.com.https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp)
-
-
-Datacamp material:
-
-
-1.  Introduction to R: Intro to Basics
-2.  Introduction to R: Vectors
-3.  Introduction to R: Factors
-
 

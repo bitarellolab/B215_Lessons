@@ -1,0 +1,6 @@
+suppressMessages(library("rmarkdown"))
+suppressMessages(library("markdown"))
+suppressMessages(library("shiny"))
+suppressMessages(library("devtools"))
+suppressMessages(library("learnr"))
+run("Quiz1.Rmd")
