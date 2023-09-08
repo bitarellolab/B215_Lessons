@@ -1,0 +1,6 @@
+"time","id","session_id","event","tutorial","prompt","answer","correct","feedback"
+"Tue Sep 05 18:24:40 2023 -0400","January bbitarello","78242721068","checked-code","sim1 checked-code b215.f23.lab1.test 0.5","None","a<-9               # assign 9 to a
+
+",TRUE,"<p>Impressive work!  Correct!</p>
+"
+"Tue Sep 05 18:24:48 2023 -0400","January bbitarello","78242721068","multiple-choice","pRactice-1 multiple-choice b215.f23.lab1.test 0.5","In the example above, what would R tell you when you ask it if a equals b?","The vector, `FALSE TRUE FALSE`",TRUE,"none"
