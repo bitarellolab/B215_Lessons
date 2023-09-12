@@ -1,5 +1,5 @@
 ---
-title: "Types of Data Structures"
+title: "Data types and Data Structures"
 output: 
   learnr::tutorial:
     progressive: TRUE
@@ -8,7 +8,7 @@ runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
   id: "b215.f23.lab2.test"
-  version: 1
+  version: 1.1
 ---
 
 ```{r setup, include=FALSE}
@@ -40,14 +40,14 @@ gradethis::gradethis_setup(
 ```{r context = "server", echo = FALSE}
 #options(tutorial.storage = "none")
 vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
-#storage_actions <- 
-#  record_gs4(
-#    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
-#    email = "bbitarello.teaching@gmail.com",
-#    vfun
-#  )
+storage_actions <- 
+  record_gs4(
+    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
+    email = "bbitarello.teaching@gmail.com",
+    vfun
+  )
 
-storage_actions <- record_local("lab2_record.txt")
+#storage_actions <- record_local("lab2_record.txt")
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
 ```
@@ -334,7 +334,6 @@ cell_counts <- c(100, 200, 150, 175, 225, 122, 270) # Number of cells in differe
 
 ```{r setupint}
 cell_counts <- c(100, 200, 150, 175, 225,  122, 270)
-total_cells <- sum(cell_counts)
 ```
 
 To get the mean, you might want to add up your total number of cells. You could define a variable `total_cells` where you put in the result of the function `sum` on the vector `cell_counts`. Do that and then print the `total_counts` object:
@@ -1201,7 +1200,7 @@ result<-rbind(chickID, dead) #this is a matrix
 ```
 
 ```{r quiz-question, echo=FALSE}
-#this chunk is giving me problems
+#this chunk is giving me a hard time
 #learnr::quiz(
 #  question("Which of the following statements is correct?",
 #    answer("result has 10 rows and 2 columns."),

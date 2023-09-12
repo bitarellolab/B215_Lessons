@@ -15,7 +15,7 @@
 <meta name="allow-skip" content="false" />
 <meta name="learnr-version-prerender" content="0.11.4.9000" />
 
-<title>Types of Data Structures</title>
+<title>Data types and Data Structures</title>
 
 <!-- header-includes START -->
 <!-- HEAD_CONTENT -->
@@ -1019,7 +1019,7 @@ gradethis::gradethis_setup(
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(id = "b215.f23.lab2.test", version = 1L))
+learnr:::register_http_handlers(session, metadata = list(id = "b215.f23.lab2.test", version = 1.1))
 </script>
 
 
@@ -1041,14 +1041,14 @@ session$onSessionEnded(function() {
 <script type="application/shiny-prerendered" data-context="server">
 #options(tutorial.storage = "none")
 vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
-#storage_actions <- 
-#  record_gs4(
-#    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
-#    email = "bbitarello.teaching@gmail.com",
-#    vfun
-#  )
+storage_actions <- 
+  record_gs4(
+    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
+    email = "bbitarello.teaching@gmail.com",
+    vfun
+  )
 
-storage_actions <- record_local("lab2_record.txt")
+#storage_actions <- record_local("lab2_record.txt")
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
 </script>
@@ -1615,8 +1615,8 @@ learnr:::store_exercise_cache(structure(list(label = "exampleinteger", global_se
 "", "", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "", "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = "cell_counts <- c(100, 200, 150, 175, 225,  122, 270)\ntotal_cells <- sum(cell_counts)", 
-    chunks = list(list(label = "setupint", code = "cell_counts <- c(100, 200, 150, 175, 225,  122, 270)\ntotal_cells <- sum(cell_counts)", 
+    include = FALSE)), setup = "cell_counts <- c(100, 200, 150, 175, 225,  122, 270)", 
+    chunks = list(list(label = "setupint", code = "cell_counts <- c(100, 200, 150, 175, 225,  122, 270)", 
         opts = list(label = "\"setupint\""), engine = "r"), list(
         label = "exampleinteger", code = " \n                   ", 
         opts = list(label = "\"exampleinteger\"", exercise = "TRUE", 
@@ -3095,7 +3095,7 @@ learnr:::store_exercise_cache(structure(list(label = "chicks4", global_setup = s
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h1 class="title toc-ignore" style="display:none;">Types of Data
+<h1 class="title toc-ignore" style="display:none;">Data types and Data
 Structures</h1>
 <h4 class="date"><em>2023-09-12</em></h4>
 </div>
