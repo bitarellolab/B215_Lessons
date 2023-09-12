@@ -344,7 +344,7 @@ To get the mean, you might want to add up your total number of cells. You could 
 ```
 
 
-```{r xampleinteger-solution}
+```{r exampleinteger-solution}
 total_cells <- sum(cell_counts) 
 print(total_cells)
 
@@ -399,7 +399,8 @@ dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
 ```
 
 ```{r examplechr, exercise = TRUE, exercise.setup = "setupchr"}
-                    
+  #create first_sequence                  
+  #print it
 ```
 
 
@@ -425,7 +426,7 @@ I have created a very long vector (I won't tell you how long!) called `dna_seque
 set.seed(1) 
 dna_sequences2<-sapply(1:1000, function(x) paste0(sample(c("A","C","G","T"),4, replace=T), collapse=""))
 ```
-```{r examplechrindex, exercise = TRUE, exercise.setup = "setupchr"}
+```{r examplechrindex, exercise = TRUE, exercise.setup = "setupchrindex"}
                     
 ```
 
@@ -439,7 +440,7 @@ print(last_sequence)
 grade_this_code()
 ```
 
-### Logical (also called boolean)
+### Example 5: Logical (also called boolean)
 
 If you ask R is one object is the same as another, it will typically return a logical (boolean) object.
 
@@ -472,11 +473,6 @@ print(which_entries_match)
 ```{r examplebool-check}
 grade_this_code()
 ```
-
-### Factors
-
-TO DO!!!
-
 
 ## Data Structures
 

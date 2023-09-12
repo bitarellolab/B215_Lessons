@@ -389,9 +389,6 @@ data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
-<pre class="r"><code>total_cells &lt;- sum(cell_counts) 
-print(total_cells)</code></pre>
-<pre><code>## [1] 1242</code></pre>
 <p>Once again, if your data are plagged with NAs (which is usually the
 case with real data), you will need to be explicit with R.</p>
 <pre class="r"><code>cell_counts &lt;- c(100, 200, 150, 175, 225,  122, 270) 
@@ -420,6 +417,8 @@ it.
 <div class="tutorial-exercise" data-label="examplechr"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
+<pre class="text"><code>  #create first_sequence                  
+  #print it</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <p>Now to get the last element, you could of course extract that with
@@ -1622,8 +1621,9 @@ learnr:::store_exercise_cache(structure(list(label = "exampleinteger", global_se
         opts = list(label = "\"exampleinteger\"", exercise = "TRUE", 
             exercise.setup = "\"setupint\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
-        label = "exampleinteger-check")), solution = NULL, tests = NULL, 
-    options = list(eval = TRUE, echo = TRUE, results = "markup", 
+        label = "exampleinteger-check")), solution = structure(c("total_cells <- sum(cell_counts) ", 
+    "print(total_cells)", ""), chunk_opts = list(label = "exampleinteger-solution")), 
+    tests = NULL, options = list(eval = TRUE, echo = TRUE, results = "markup", 
         tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
         comment = NA, highlight = FALSE, size = "normalsize", 
         background = "#F7F7F7", strip.white = TRUE, cache = 0, 
@@ -1720,7 +1720,7 @@ learnr:::store_exercise_cache(structure(list(label = "examplechr", global_setup 
     include = FALSE)), setup = "dna_sequences <- c(\"ATGC\", \"CGTA\", \"GATC\", \"TACG\") # DNA sequences\n\n", 
     chunks = list(list(label = "setupchr", code = "dna_sequences <- c(\"ATGC\", \"CGTA\", \"GATC\", \"TACG\") # DNA sequences\n\n", 
         opts = list(label = "\"setupchr\""), engine = "r"), list(
-        label = "examplechr", code = "                    ", 
+        label = "examplechr", code = "  #create first_sequence                  \n  #print it", 
         opts = list(label = "\"examplechr\"", exercise = "TRUE", 
             exercise.setup = "\"setupchr\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
@@ -1746,9 +1746,10 @@ learnr:::store_exercise_cache(structure(list(label = "examplechr", global_setup 
         exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
         exercise.error.check.code = "gradethis_error_checker()", 
         exercise.reveal_solution = FALSE, label = "examplechr", 
-        exercise = TRUE, exercise.setup = "setupchr", code = "                    ", 
-        out.width.px = 624, out.height.px = 384, params.src = "examplechr, exercise = TRUE, exercise.setup = \"setupchr\"", 
-        fig.alt = NULL, fig.num = 0L, exercise.df_print = "paged"), 
+        exercise = TRUE, exercise.setup = "setupchr", code = c("  #create first_sequence                  ", 
+        "  #print it"), out.width.px = 624, out.height.px = 384, 
+        params.src = "examplechr, exercise = TRUE, exercise.setup = \"setupchr\"", 
+        fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
@@ -1771,12 +1772,12 @@ learnr:::store_exercise_cache(structure(list(label = "examplechrindex", global_s
 "", "", "tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)", 
 "", "gradethis::gradethis_setup(", "  pass.praise = TRUE,", "  fail.encourage = TRUE,", 
 "  fail.hint = TRUE", ")", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = "dna_sequences <- c(\"ATGC\", \"CGTA\", \"GATC\", \"TACG\") # DNA sequences\n\n", 
-    chunks = list(list(label = "setupchr", code = "dna_sequences <- c(\"ATGC\", \"CGTA\", \"GATC\", \"TACG\") # DNA sequences\n\n", 
-        opts = list(label = "\"setupchr\""), engine = "r"), list(
-        label = "examplechrindex", code = "                    ", 
-        opts = list(label = "\"examplechrindex\"", exercise = "TRUE", 
-            exercise.setup = "\"setupchr\""), engine = "r")), 
+    include = FALSE)), setup = "set.seed(1) \ndna_sequences2<-sapply(1:1000, function(x) paste0(sample(c(\"A\",\"C\",\"G\",\"T\"),4, replace=T), collapse=\"\"))", 
+    chunks = list(list(label = "setupchrindex", code = "set.seed(1) \ndna_sequences2<-sapply(1:1000, function(x) paste0(sample(c(\"A\",\"C\",\"G\",\"T\"),4, replace=T), collapse=\"\"))", 
+        opts = list(label = "\"setupchrindex\""), engine = "r"), 
+        list(label = "examplechrindex", code = "                    ", 
+            opts = list(label = "\"examplechrindex\"", exercise = "TRUE", 
+                exercise.setup = "\"setupchrindex\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = structure("grade_this_code()", chunk_opts = list(
         label = "examplechrindex-check")), solution = structure(c("last_sequence <- dna_sequences2[length(dna_sequences2)]", 
     "print(last_sequence)"), chunk_opts = list(label = "examplechrindex-solution")), 
@@ -1800,8 +1801,8 @@ learnr:::store_exercise_cache(structure(list(label = "examplechrindex", global_s
         exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
         exercise.error.check.code = "gradethis_error_checker()", 
         exercise.reveal_solution = FALSE, label = "examplechrindex", 
-        exercise = TRUE, exercise.setup = "setupchr", code = "                    ", 
-        out.width.px = 624, out.height.px = 384, params.src = "examplechrindex, exercise = TRUE, exercise.setup = \"setupchr\"", 
+        exercise = TRUE, exercise.setup = "setupchrindex", code = "                    ", 
+        out.width.px = 624, out.height.px = 384, params.src = "examplechrindex, exercise = TRUE, exercise.setup = \"setupchrindex\"", 
         fig.alt = NULL, fig.num = 0L, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
