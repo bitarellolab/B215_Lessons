@@ -37,7 +37,7 @@ Tasks:
 -   Complete DataCamp assignments on data types and data structures
 -   Practice, practice, practice!
 
-## Learning outcomes: 
+## Learning outcomes 
 
 1.  Learn about the different types of data: numeric, integer, logical, character, factor, etc.
 
@@ -47,12 +47,13 @@ Tasks:
 
 4.  Understand the interactions between vectors and matrices
 
-4.  Use cbind and rbind [remove]
+5.  Indexing vectors, matrices, data.frames, lists
+
 
 ## Data types & Data structures- Why??
 
 This sounds boring and intimidating. Why do we need this?
-Well, these are fundamental concepts in programming, and it transcends R -- it applies to any programming language.
+Well, these are fundamental concepts in programming, and they transcend R -- they apply to any programming language.
 
 * **Data types** define the kind of data that a variable can hold and the operations that can be performed on that data.
 
@@ -60,7 +61,7 @@ Well, these are fundamental concepts in programming, and it transcends R -- it a
 
 ## Data types: How many ways can data come
 
-They help the computer interpret and manipulate the data correctly.
+Data types help the computer interpret and manipulate the data correctly.
 
 In R:
 
@@ -73,6 +74,14 @@ This is the default computational data type in R. If you enter a number without 
 ```{r, echo=T, eval=F}
 pi <- 3.14
 print(pi)
+class(pi)
+is.numeric(pi)
+is.integer(pi)
+```
+
+Try these out here:
+```{r sandbox, exercise=TRUE, eval = FALSE}
+
 ```
 ### Integer
 
@@ -80,6 +89,23 @@ This data type in R is used to hold whole numbers. Unlike numeric values, intege
 
 ```{r, echo=T, eval=F}
 class_number <- 215L
+class(class_number)
+is.integer(class_number)
+is.numeric(class_number)
+```
+
+Sometimes you can convert one type into another. Say numeric to integer or vice-versa:
+
+```{r, echo=T, eval=F}
+class_number <- 215
+class(class_number)
+new_class_number<-as.integer(class_number)
+class(new_class_number)
+```
+
+Try these out here:
+```{r sandbox2, exercise=TRUE, eval = FALSE}
+
 ```
 ### Logical (T/F)
 
@@ -87,6 +113,13 @@ Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can us
 ```{r, echo=T, eval=F}
 reality <- TRUE
 reality2 <- T #also works
+isTRUE(reality)
+isFALSE(reality2)
+```
+
+Try these out here:
+```{r sandbox3, exercise=TRUE, eval = FALSE}
+
 ```
 ### Character
 
@@ -94,7 +127,50 @@ Character data type in R is used to hold strings of text. You can create a chara
 
 ```{r, echo=T, eval=F}
 types_of_data <- c("Numeric", "Interger","Logical", "Complex", "Character", "Raw") 
+class(types_of_data)
+is.character(types_of_data)
 ```
+
+Try these out here:
+```{r sandboxchar, exercise=TRUE, eval = FALSE}
+
+```
+
+### Factor
+
+Factors are great for storing **categorical variables**. E.g. Champions of the American Major League Soccer (or, for the rest of the world, football) in the past 10 years.(Note, the MLS also includes Canadian and Mexican teams.)
+
+You could start off with a vector of which teams won each year.
+
+```{r, echo=T, eval=F}
+#first position is 2022, second is 2021 and so on
+mls_champions <- c("Los Angeles FC", "New York City FC", "Columbus Crew", "Seattle Sounders", "Atlanta United FC", "Toronto FC", "Seattle Sounders", "Portland Timbers", "Lost Angeles Galaxy")
+length(mls_champions) #check that there are 10 elements
+class(mls_champions) #check that class so far is character
+
+```
+
+And now you could convert this into a factor, since it is clearly a categorical variable.
+
+```{r setupmls}
+mls_champions <- c("Los Angeles FC", "New York City FC", "Columbus Crew", "Seattle Sounders", "Atlanta United FC", "Toronto FC", "Seattle Sounders", "Portland Timbers", "Lost Angeles Galaxy")
+mls_champions_factor<-as.factor(mls_champions)
+
+```
+
+```{r echo=T, eval=F}
+mls_champions_factor<-as.factor(mls_champions)
+class(mls_champions_factor)
+print(mls_champions_factor)
+```
+
+Try these out here:
+```{r sandboxfact, exercise=TRUE, eval = FALSE, , exercise.setup="setupmls"}
+
+
+```
+
+You will notice that printing `mls_champions_factor` will spit out the vector, followed by `8 Levels: Atlanta United FC Columbus Crew Los Angeles FC Lost Angeles Galaxy New York City FC ... Toronto FC`. What this means is that the function `as.factor` converted our simple character vector into a data type that is better equipped at handling categorical variables. The "levels" are the different categories observed in the data. Same of the advantages of this will become clearer later on (next week) when we start plotting things and summarizing them.
 
 ### Complex
 
@@ -102,31 +178,43 @@ This data type in R is used to store complex numbers, which have both real and i
 
 ```{r, echo=T, eval=F}
 complex <- 1 +2i #we dont know when you'd use this i guess if you are mathy idk
-```
-
-### Raw (for the real nerds)
-
-Raw data type in R is *_not_* commonly used for beginners. It is used to hold *raw bytes*, which can be anything from the contents of a file to an image. It's different from the other data types in that it doesn't represent something human-readable, but instead something that a machine might need to process. It's often used in more advanced topics like interfacing with other languages or dealing with binary data.
-
-```{r, echo=T, eval=F}
-hexcode1<- as.raw(0)
-hexcode2 <- as.raw(128)
-hexcode3 <- as.raw(255)
+#is.complex(complex) what do you think this would return?
 ```
 
 ## Why choose a certain data type?
 
-As mentioned, the data type defines the types of operations that can be done with the data. You wouldn't want to (gasp) take the mean of a vector of cahracters such as `c("mom","Australia", "bologne")`.
+### Example 1: character 
+As mentioned, the data type defines the types of operations that can be done with the data. You wouldn't want to (gasp) take the mean of a vector of characters such as `c("mom","Australia", "bologne")`.
 
 Actually, try that and see what happens. Use the function `mean` on the vector above: `print(mean(c('mom','Australia','bologne')))`:
 
-```{r sandbox1, exercise=TRUE, eval = FALSE}
-print(mean(c("mom","dad", "bologne")))
+```{r sandbox4, exercise=T, eval = F}
+
 ```
 
 As you can see, R will still try its best at guessing what you're up to. Unable to calculate the mean of such things, it will return a warning and `NA`. When you see NA in R, it means that the data at that point is missing or undefined. 
 
-### Numeric 
+On the other hand, there are things that only make sense with characters. For example, the function.
+
+* Concatenation: combining two or more character strings using `paste`.
+* Extracting substrings - e.g. `substr`
+* Calculating string length - e.g. `nchar`
+
+```{r, echo=T, eval=F}
+one_element <- "Joey"
+another_element <- "doesn't"
+yet_another <- "share food!"
+my_string<-paste(one_element, another_element, yet_another)
+print(my_string) 
+nchar(my_string) #24 characters (but only 19 letters)
+substr(my_string, start=1, stop=18) #Joey doesn't share
+```
+
+Try these out:
+```{r sandbox-string, exercise=TRUE, eval = FALSE}
+
+```
+### Example 2: numeric and/or integer
 Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate.
 
 ```{r, echo=T, eval=F}
@@ -168,7 +256,7 @@ print(x>y)
 ```
 
 Practice these a bit here:
-```{r sandbox2, exercise=TRUE, eval = FALSE}
+```{r sandbox5, exercise=TRUE, eval = FALSE}
 
 ```
 *Important:* If there are `NA` values present, we need to explicitly tell R how to handle them.
@@ -182,23 +270,23 @@ min(x)
 ```
 
 Try these out here:
-```{r sandbox3, exercise=TRUE, eval = FALSE}
+```{r sandbox6, exercise=TRUE, eval = FALSE}
 
 ```
 As you can see, that's not great. Now train again by adding the parameter na.rm=TRUE to the functions `mean`, `median`, `max`, `min`. E.g. `mean(x, na.rm=T)`. This argument tells R to ignore elements in the vector that are `NA`.
 
 
-```{r setupsandbox4}
+```{r setupsandbox7}
 x<-c(5.2,-7.3, 9.8, NA)
 ```
 
-```{r sandbox4, exercise=TRUE, eval = FALSE, exercise.setup="setupsandbox4"}
+```{r sandbox7, exercise=TRUE, eval = FALSE, exercise.setup="setupsandbox7"}
 
 ```
 
 Hopefully you got the same results as you had when the `NA` element was not present!
 
-### Integer
+### Example 3: numeric
 
 You are counting the number of cells in different samples under a microscope. This is where integers come into play, as you can't have a fraction of a cell.
 
@@ -246,13 +334,13 @@ total_cells_withNA_correct <- sum(cell_counts_withNA, na.rm=T)
 
 Try these for yourself:
 
-```{r sandbox5, exercise=TRUE, eval = FALSE}
+```{r sandbox8, exercise=TRUE, eval = FALSE}
 
 ```
 
 
 
-### Character
+### Example 4: characters
 
 In bioinformatics, character strings are often used to represent DNA sequences.
 
