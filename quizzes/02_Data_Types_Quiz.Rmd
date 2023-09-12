@@ -6,9 +6,6 @@ output:
     allow_skip: FALSE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
-tutorial:
-  id: "b215.f23.lab1.test"
-  version: 0.5
 ---
 
 ```{r setup, include=FALSE}
@@ -20,14 +17,7 @@ library(praise)
 library(utils)
 library(datasets)
 library(dplyr)
-learnr::tutorial_options(exercise.eval = TRUE, 
-                         exercise.reveal_solution = FALSE, 
-                         exercise.timelimit = 60,
-                         exercise.checker = gradethis::grade_learnr)
-
-
 tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
-
 gradethis::gradethis_setup(
   pass.praise = TRUE,
   fail.encourage = TRUE,
@@ -36,19 +26,6 @@ gradethis::gradethis_setup(
 
 ```
 
-```{r context = "server", echo = FALSE}
-#options(tutorial.storage = "none")
-vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
-#storage_actions <- 
-#  record_gs4(
-#    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
-#    email = "bbitarello.teaching@gmail.com",
-#    vfun
-#  )
-storage_actions <- record_local("quiz1_record.txt")
-submitr::shiny_logic(input, output, session, vfun,
-                     storage_actions)
-```
 ## Overview
 
 Tasks: 
