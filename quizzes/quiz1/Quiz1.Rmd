@@ -6,14 +6,9 @@ output:
     allow_skip: FALSE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
-<<<<<<< Updated upstream:quizzes/quiz1/Quiz1.Rmd
 tutorial:
   id: "b215.f23.lab1.test"
   version: 0.5
-=======
-tutorial: 
-        id: "Lab1.Quiz"
->>>>>>> Stashed changes:quizzes/01_Quiz.Rmd
 ---
 
 ```{r setup, include=FALSE}
@@ -26,15 +21,15 @@ library(knitr)
 library(ggmosaic)
 library(praise)
 library(utils)
-<<<<<<< Updated upstream:quizzes/quiz1/Quiz1.Rmd
+
 learnr::tutorial_options(exercise.eval = TRUE, 
                          exercise.reveal_solution = FALSE, 
                          exercise.timelimit = 60,
                          exercise.checker = gradethis::grade_learnr)
 
-=======
+
 tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
->>>>>>> Stashed changes:quizzes/01_Quiz.Rmd
+
 gradethis::gradethis_setup(
   pass.praise = TRUE,
   fail.encourage = TRUE,
@@ -42,8 +37,6 @@ gradethis::gradethis_setup(
 )
 
 ```
-<<<<<<< Updated upstream:quizzes/quiz1/Quiz1.Rmd
-
 
 ```{r context = "server", echo = FALSE}
 #options(tutorial.storage = "none")
