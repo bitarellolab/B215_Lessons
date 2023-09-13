@@ -3,12 +3,12 @@ title: "Data types and Data Structures"
 output: 
   learnr::tutorial:
     progressive: TRUE
-    allow_skip: FALSE
+    allow_skip: TRUE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
   id: "b215.f23.lab2.test"
-  version: 1.1
+  version: 2
 ---
 
 ```{r setup, include=FALSE}
@@ -37,21 +37,24 @@ gradethis::gradethis_setup(
 
 ```
 
-```{r context = "server", echo = FALSE}
-#options(tutorial.storage = "none")
-vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
-storage_actions <- 
-  record_gs4(
-    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
-    email = "bbitarello.teaching@gmail.com",
-    vfun
-  )
+```{r}
+submitr::login_controls()
+```
 
-#storage_actions <- record_local("lab2_record.txt")
+```{r context = "server", echo = FALSE}
+options(tutorial.storage = "none")
+vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
+#storage_actions <- 
+#  record_gs4(
+#    key = "",
+#    email = "bbitarello.teaching@gmail.com",
+#    vfun
+#  )
+
+storage_actions <- record_local("lab2_record.txt")
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
 ```
-
 ## Overview
 
 Tasks: 
@@ -483,12 +486,12 @@ R loves vectors and tends to treat everything like a vector: an object with only
 
 Check this is true by asserting object `a` is a vector using the function `is.vector`. Next, check its length with the function `length()`:
 
-```{r setupvec1}
+```{r setupvec1, echo=F}
 a<-9
 
 ```
 
-```{r examplevec1, exercise = TRUE, exercise.setup = "setupbool"}
+```{r examplevec1, exercise = TRUE, exercise.setup = "setupvec1"}
 # use function is.vector on object a
 #use function length on object a
                     
@@ -510,7 +513,7 @@ A matrix in R is a **two-dimensional** data structure, where each element is of 
 
 
 
-```{r matrix1, exercise = F }
+```{r, echo=T, eval=F}
 numeric_matrix <- matrix(seq(1:6), nrow = 2, ncol = 3) #create a matrix with numbers 1 through 6, with 2 rows and 3 columns
 print(numeric_matrix)
 dim(numeric_matrix) #gives dimensions of matrix. First value is number of rows, second value is number of columns.
@@ -518,7 +521,7 @@ dim(numeric_matrix) #gives dimensions of matrix. First value is number of rows, 
 
 Try these for yourself:
 
-```{r sandbox9, exercise=TRUE, eval = FALSE}
+```{r sandbox9, exercise=TRUE, eval=F}
 
 ```
 
@@ -558,7 +561,7 @@ Remember I created a very long vector before, called `dna_sequences2`? You will 
 ```{r examplemat1-solution}
 length(dna_sequences2)
 dna_sequences2_mat <- as.matrix(dna_sequences2, ncol=10)
-dim(dna_sequences2)
+dim(dna_sequences2_mat)
 ```
 
 ```{r examplemat1-check}
@@ -800,7 +803,7 @@ This is a dataset showing the hominin (early human) species name and hypothetica
 species_info <- data.frame(
   "Genus" = c("Ardipithecus", "Australopithecus","Australopithecus","Australopithecus","Australopithecus","Australopithecus", "Homo","Homo","Homo","Homo","Homo","Homo","Homo","Paranthropus", "Paranthropus", "Sahelanthropus"),
   "Species" = c("ramidus", "afarensis", "africanus", "anamensis", "garhi", "sediba", "erectus", "floresiensis", "habilis", "heidelbergensis", "naledi", "rudolfensis", "sapiens","boisei", "robustus", "tchadensis"),
-  "Genome length" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01)  # in Giga Base Pairs
+  "GenomSize" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01)  # in Giga Base Pairs
 )
 
 
@@ -814,10 +817,10 @@ library(dplyr)
 species_info <- data.frame(
   "Genus" = c("Ardipithecus", "Australopithecus","Australopithecus","Australopithecus","Australopithecus","Australopithecus", "Homo","Homo","Homo","Homo","Homo","Homo","Homo","Paranthropus", "Paranthropus", "Sahelanthropus"),
   "Species" = c("ramidus", "afarensis", "africanus", "anamensis", "garhi", "sediba", "erectus", "floresiensis", "habilis", "heidelbergensis", "naledi", "rudolfensis", "sapiens","boisei", "robustus", "tchadensis"),
-  "Genome_length" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01) # in Giga Base Pairs
+  "GenomeSize" = c(2.80, 2.86, 2.90, 2.79, 3.48, 2.68, 3.29, 3.30, 3.11, 3.30, 2.80, 3.10, 3.25,3.17, 3.29, 3.01) # in Giga Base Pairs
 )
 
-australopithecus_genome_length<-filter(species_info, Genus == "Australopithecus")
+australopithecus_genome_size<-dplyr::filter(species_info, Genus == "Australopithecus")
 
 ```
 
@@ -832,14 +835,14 @@ Follow the format: `filter(dataframe_name, columnname == "Australopithecus")` an
 
 
 ```{r dfex2-solution}
-australopithecus_genome_length<-filter(species_info, Genus == "Australopithecus")
+australopithecus_genome_size<-filter(species_info, Genus == "Australopithecus")
 ```
 
 ```{r dfex2-check}
 grade_this_code()
 ```
 
-Now, using the dataframe you made (`australopithecus_genome_length`), use the function `summary` on the column of that dataframe which contains the genome information to calculate how variable hominin genomes are. Save that result into the object `summary_results` and print out that object.
+Now, using the dataframe you made (`australopithecus_genome_size`), use the function `summary` on the column of that dataframe which contains the genome information to calculate how variable hominin genomes are. Save that result into the object `summary_results` and print out that object.
 
 ```{r dfex3, exercise = TRUE, exercise.setup = "setupdfex2"}
                     
@@ -847,7 +850,7 @@ Now, using the dataframe you made (`australopithecus_genome_length`), use the fu
 
 
 ```{r dfex3-solution}
-summary_results <-summary(australopithecus_genome_length$Genome.length)
+summary_results <-summary(australopithecus_genome_size$GenomeSize)
 print(summary_results)
 ```
 
@@ -991,7 +994,7 @@ Which species are of particular interest? First, create the vector `species_coun
 
 ```{r numvecex-solution}
 species_counts <- c(10, 20, 15, 30, 25)
-species_counts < 20
+species_counts <= 20
 ```
 
 ```{r numvecex-check}
@@ -1026,7 +1029,7 @@ grade_this_code()
 
 
 
-### 3- Cbind/rbind
+### 3- cbind/rbind
 You have two vectors representing the diameters of two different types of cells observed under a microscope.  Combine these two vectors into a matrix where each column represents a different cell type. Name the matrix `cell_diameters` and then print it. 
 
 ```{r bindex1, exercise = TRUE}
@@ -1083,7 +1086,7 @@ The datasets package already has the data stored as a data frame. If it wasn't y
 It's long, so we don't want to print the whole thing. Use a specific function called `head` to call just the first 6 rows of the object.
 
 ```{r chicks1, exercise = TRUE}
-datasets::ChickWeight
+
             # create chicks object
 ```
 
@@ -1115,7 +1118,7 @@ chicks<-datasets::ChickWeight
 
 
 ```{r chicks2-solution}
-FinalChicks<-filter(chicks, Time == "21")
+FinalChicks<-filter(chicks, Time == 21)
 print(FinalChicks)
 ```
 
@@ -1129,23 +1132,25 @@ Now lets get the mean for each diet. Use the pattern below calculate the mean we
 
 
 ```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks"}
-diet1<-filter(chicks, Diet == "1")
+diet1<-filter(chicks, Diet == "1") #diet 1
 mean(diet1$weight)
-
+                                  #diet 2
+                                  #diet 3
+                                  #diet 4
 ```
 
 
 ```{r chicks3-solution}
-diet1<-filter(FinalChicks, Diet == "1")
+diet1<-filter(chicks, Diet == "1")
 mean(diet1$weight)
 
-diet2<-filter(FinalChicks, Diet == "2")
+diet2<-filter(chicks, Diet == "2")
 mean(diet2$weight)
 
-diet3<-filter(FinalChicks, Diet == "3")
+diet3<-filter(chicks, Diet == "3")
 mean(diet3$weight)
 
-diet4<-filter(FinalChicks, Diet == "4")
+diet4<-filter(chicks, Diet == "4")
 mean(diet4$weight)
 
 ```
@@ -1197,13 +1202,19 @@ result<-rbind(chickID, dead) #this is a matrix
 
 ```{r quiz-question, echo=FALSE}
 #this chunk is giving me a hard time
-#learnr::quiz(
-#  question("Which of the following statements is correct?",
-#    answer("result has 10 rows and 2 columns."),
-#    answer("Row 2 of result will be: TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE"),
-#    answer("The output of result[1,1] is 4.", correct=TRUE),
-#   allow_retry = TRUE))
+learnr::quiz(caption="",
+  question("Which of the following statements is correct?",
+    answer("`result` has 10 rows and 2 columns."),
+    answer("Row 2 of `result` will be: `TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE`"),
+    answer("The output of `result[1,1]` is 4.", correct=TRUE),
+   allow_retry = TRUE))
 ```
+
+## The end!
+
+
+* username is what comes before your `@brynmawr.edu` or `@haverford.edu`.
+* password if b215f23
 
 ```{r, echo=F}
 submitr::login_controls()
