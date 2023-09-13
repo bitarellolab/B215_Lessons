@@ -7,8 +7,8 @@ output:
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
-  id: "b215.f23.lab2.test"
-  version: 2
+  id: "b215.f23.lab2.test2"
+  version: 2.1
 ---
 
 ```{r setup, include=FALSE}
@@ -24,7 +24,7 @@ library(utils)
 library(dplyr)
 learnr::tutorial_options(exercise.eval = TRUE, 
                          exercise.reveal_solution = FALSE, 
-                         exercise.timelimit = 60,
+                         exercise.timelimit = 30,
                          exercise.checker = gradethis::grade_learnr)
 
 gradethis::gradethis_setup(
@@ -37,7 +37,7 @@ gradethis::gradethis_setup(
 
 
 ```{r context = "server", echo = FALSE}
-options(tutorial.storage = "none")
+#options(tutorial.storage = "none")
 vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
 #storage_actions <- 
 #  record_gs4(

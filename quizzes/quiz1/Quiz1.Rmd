@@ -3,12 +3,12 @@ title: "R Quiz 1"
 output: 
   learnr::tutorial:
     progressive: TRUE
-    allow_skip: FALSE
+    allow_skip: TRUE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
   id: "b215.f23.lab1.test"
-  version: 0.5
+  version: 1.3
 ---
 
 ```{r setup, include=FALSE}
@@ -40,10 +40,10 @@ gradethis::gradethis_setup(
 vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
 #storage_actions <- 
 #  record_gs4(
-#    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
+#    key = "1GZK3mkBTk0y4dsPu3vuZMd_wcvdShvTNoyJWJwqmG8k",
 #    email = "bbitarello.teaching@gmail.com",
 #    vfun
-#  )
+ #)
 storage_actions <- record_local("quiz1_record.txt")
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
@@ -286,3 +286,6 @@ READ FIRST:
 ```{r, echo=F}
 submitr::login_controls()
 ```
+
+
+
