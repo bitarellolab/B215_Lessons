@@ -12,22 +12,20 @@ tutorial:
 ---
 
 ```{r setup, include=FALSE}
+library(devtools)
 library(learnr)
+library(submitr)
+library(gradethis)
 library(tidyverse)
 library(knitr)
 library(ggmosaic)
 library(praise)
 library(utils)
-library(datasets)
 library(dplyr)
-library(submitr)
 learnr::tutorial_options(exercise.eval = TRUE, 
                          exercise.reveal_solution = FALSE, 
                          exercise.timelimit = 60,
                          exercise.checker = gradethis::grade_learnr)
-
-
-tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
 
 gradethis::gradethis_setup(
   pass.praise = TRUE,
@@ -37,9 +35,6 @@ gradethis::gradethis_setup(
 
 ```
 
-```{r}
-submitr::login_controls()
-```
 
 ```{r context = "server", echo = FALSE}
 options(tutorial.storage = "none")
@@ -55,6 +50,36 @@ storage_actions <- record_local("lab2_record.txt")
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
 ```
+```{css echo=FALSE}
+ @media print {
+  .topicsContainer,
+  .topicActions,
+  .exerciseActions .skip {
+    display: none;
+  }
+  .topics .tutorialTitle,
+  .topics .section.level2,
+  .topics .section.level3:not(.hide) {
+    display: block;
+  }
+  .topics {
+    width: 100%;
+  }
+  .tutorial-exercise, .tutorial-question {
+    page-break-inside: avoid;
+  }
+  .section.level3.done h3 {
+    padding-left: 0;
+    background-image: none;
+  }
+  .topics .showSkip .exerciseActions::before {
+    content: "Topic not yet completed...";
+    font-style: italic;
+  }
+}
+/* paste CSS above here */
+```
+
 ## Overview
 
 Tasks: 
@@ -1134,13 +1159,9 @@ Now lets get the mean for each diet. Use the pattern below calculate the mean we
 
 
 
-<<<<<<< HEAD
-```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks"}
-diet1<-filter(chicks, Diet == "1") #diet 1
-=======
+
 ```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks2"}
 diet1<-filter(chicks, Diet == "1")
->>>>>>> a61eebaa4e64bd7d24d0ab6e1ce29d15c33fa199
 mean(diet1$weight)
                                   #diet 2
                                   #diet 3
@@ -1223,7 +1244,6 @@ learnr::quiz(caption="",
 
 * username is what comes before your `@brynmawr.edu` or `@haverford.edu`.
 * password if b215f23
-
 ```{r, echo=F}
 submitr::login_controls()
 ```
