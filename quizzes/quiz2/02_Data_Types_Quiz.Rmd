@@ -991,7 +991,7 @@ Which species are of particular interest? First, create the vector `species_coun
 
 ```{r numvecex-solution}
 species_counts <- c(10, 20, 15, 30, 25)
-species_counts < 20
+species_counts <= 20
 ```
 
 ```{r numvecex-check}
@@ -1106,7 +1106,10 @@ chicks<-datasets::ChickWeight
 
 ```
 
-
+```{r setupchicks2}
+chicks<-datasets::ChickWeight
+FinalChicks<-filter(chicks, Time == "21")
+```
 
 ```{r chicks2, exercise = TRUE, exercise.setup = "setupchicks"}
             #select only chicks with time 21 from the chicks object and call it FinalChicks
@@ -1128,7 +1131,7 @@ Now lets get the mean for each diet. Use the pattern below calculate the mean we
 
 
 
-```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks"}
+```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks2"}
 diet1<-filter(chicks, Diet == "1")
 mean(diet1$weight)
 
