@@ -22,6 +22,7 @@ library(ggmosaic)
 library(praise)
 library(utils)
 library(dplyr)
+library(basket)
 learnr::tutorial_options(exercise.eval = TRUE, 
                          exercise.reveal_solution = FALSE, 
                          exercise.timelimit = 30,
@@ -37,19 +38,21 @@ gradethis::gradethis_setup(
 
 
 ```{r context = "server", echo = FALSE}
-#options(tutorial.storage = "none")
-vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
-#storage_actions <- 
-#  record_gs4(
-#    key = "",
-#    email = "bbitarello.teaching@gmail.com",
-#    vfun
-#  )
+options(tutorial.storage = "none")
+vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela")
+storage_actions <- 
+  record_gs4(
+    key = "1GZK3mkBTk0y4dsPu3vuZMd_wcvdShvTNoyJWJwqmG8k",
+    email = "bbitarello.teaching@gmail.com",
+    vfun
+)
 
-storage_actions <- record_local("lab2_record.txt")
+#storage_actions <- record_local("lab2_record.txt")
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
 ```
+
+
 ```{css echo=FALSE}
  @media print {
   .topicsContainer,

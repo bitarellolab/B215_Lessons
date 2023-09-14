@@ -1,0 +1,13 @@
+name: 02_Data_Types_Quiz
+title: 02_Data_Types_Quiz
+username: 3peejj-barbara-bitarello
+account: 3peejj-barbara-bitarello
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9848927
+bundleId: 7685383
+url: https://3peejj-barbara-bitarello.shinyapps.io/02_Data_Types_Quiz/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: lab2_record.txt|minimal.html|minimal.Rmd
