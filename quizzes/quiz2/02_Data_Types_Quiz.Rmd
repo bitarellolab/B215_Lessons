@@ -7,8 +7,8 @@ output:
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
-  id: "b215.f23.lab2.test2"
-  version: 2.1
+  id: "b215.f23.lab2.test10"
+  version: 2.3
 ---
 
 ```{r setup, include=FALSE}
@@ -23,10 +23,14 @@ library(praise)
 library(utils)
 library(dplyr)
 library(basket)
+
+
 learnr::tutorial_options(exercise.eval = TRUE, 
                          exercise.reveal_solution = FALSE, 
                          exercise.timelimit = 30,
-                         exercise.checker = gradethis::grade_learnr)
+                         exercise.checker = gradethis::grade_learnr,
+)
+
 
 gradethis::gradethis_setup(
   pass.praise = TRUE,
@@ -34,24 +38,66 @@ gradethis::gradethis_setup(
   fail.hint = TRUE
 )
 
-```
 
+#https://stackoverflow.com/questions/51778262/how-can-i-record-exercise-submission-in-a-learnr-r-tutorial
+#
+#new_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
+#    cat(tutorial_id, " (", tutorial_version, "): ", user_id, ", ", event, ", ", #data$label, ", ", data$answers, ", ", data$correct, "\n", sep = "", file="test2.txt", #append=TRUE)
+#}
+
+#options(tutorial.event_recorder = new_recorder)
+#
+tutorial_event_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
+  
+    data_names <- c("label", "question", "answer", "code")
+    data_in_standard_format <- list()
+    data_in_standard_format[data_names] <- NA
+    actual_names <- intersect(data_names, names(data))
+    data_in_standard_format[actual_names] <- data[actual_names]
+    
+
+# Data : User and Email
+  this_event <- data.frame(time = lubridate::with_tz(Sys.time(), "America/New_York"), 
+                 user_id = user_id,
+                #email = NA,
+                 event = event, 
+                 correct  = ifelse(is.null(data$correct), NA, data$correct),
+                 feedback = ifelse(is.null(data$feedback$correct), NA, data$feedback$correct), 
+                 stringsAsFactors = FALSE)
+  
+      sam <- cbind(this_event, data_in_standard_format)
+      out_file<-"test5.txt"
+      if(file.exists(out_file)){
+              colnamesYN<-FALSE
+              appendYN<-TRUE
+      }else{
+              colnamesYN<-TRUE
+              appendYN<-FALSE
+      }
+     #sam<-data.table::setDT(sam)
+      data.table::fwrite(sam[,c(1,2,3,4,6)], file=out_file, sep="\t", col.names = colnamesYN, append = appendYN)
+      print(sam)
+      #saveRDS(data,"data.Rds", append=ifelse(file.exists("data.Rds"), T, F))
+}
+options(tutorial.event_recorder = tutorial_event_recorder)
+```
 
 ```{r context = "server", echo = FALSE}
-options(tutorial.storage = "none")
-vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela")
-storage_actions <- 
-  record_gs4(
-    key = "1GZK3mkBTk0y4dsPu3vuZMd_wcvdShvTNoyJWJwqmG8k",
-    email = "bbitarello.teaching@gmail.com",
-    vfun
-)
+#options(tutorial.event_recorder = my_event_recorder)
+#options(tutorial.storage = "none")
+#vfun <- make_basic_validator(psfile=".cred/credentials.txt", instructor_secret="mortadela")
+
+#storage_actions <- 
+#  record_gs4(
+#    key = "1GZK3mkBTk0y4dsPu3vuZMd_wcvdShvTNoyJWJwqmG8k",
+#    email = "bbitarello.teaching@gmail.com",
+#    vfun
+#)
 
 #storage_actions <- record_local("lab2_record.txt")
-submitr::shiny_logic(input, output, session, vfun,
-                     storage_actions)
+#submitr::shiny_logic(input, output, session, vfun,
+#                     storage_actions)
 ```
-
 
 ```{css echo=FALSE}
  @media print {
@@ -85,13 +131,13 @@ submitr::shiny_logic(input, output, session, vfun,
 
 ## Overview
 
-Tasks: 
+Tasks:
 
 -   Work through this document
 -   Complete DataCamp assignments on data types and data structures
 -   Practice, practice, practice!
 
-## Learning outcomes 
+## Learning outcomes
 
 1.  Learn about the different types of data: numeric, integer, logical, character, factor, etc.
 
@@ -103,15 +149,13 @@ Tasks:
 
 5.  Indexing vectors, matrices, data.frames, lists
 
-
 ## Data types & Data structures- Why??
 
-This sounds boring and intimidating. Why do we need this?
-Well, these are fundamental concepts in programming, and they transcend R -- they apply to any programming language.
+This sounds boring and intimidating. Why do we need this? Well, these are fundamental concepts in programming, and they transcend R -- they apply to any programming language.
 
-* **Data types** define the kind of data that a variable can hold and the operations that can be performed on that data.
+-   **Data types** define the kind of data that a variable can hold and the operations that can be performed on that data.
 
-* **Data structures** are ways to organize and store data in a structured and efficient manner within a computer program. They allow you to group and manage related pieces of data together. Think of data structures as containers that hold data in specific formats to make it easier to work with that data.
+-   **Data structures** are ways to organize and store data in a structured and efficient manner within a computer program. They allow you to group and manage related pieces of data together. Think of data structures as containers that hold data in specific formats to make it easier to work with that data.
 
 ## Data types: How many ways can data come
 
@@ -119,12 +163,13 @@ Data types help the computer interpret and manipulate the data correctly.
 
 In R:
 
-* The five main ones: Numeric, integer, logical, character, factor
-* Extras: date, complex, raw
+-   The five main ones: Numeric, integer, logical, character, factor
+-   Extras: date, complex, raw
 
 ### Numeric
 
 This is the default computational data type in R. If you enter a number without a decimal point, R will automatically convert it into a numeric data type. Numeric values in R can hold any real number, including both integers and fractions, and even negative numbers. For example, 5, 23.5, and -3 are all numeric values.
+
 ```{r, echo=T, eval=F}
 pi <- 3.14
 print(pi)
@@ -134,9 +179,11 @@ is.integer(pi)
 ```
 
 Try these out here:
+
 ```{r sandbox, exercise=TRUE, eval = FALSE}
 
 ```
+
 ### Integer
 
 This data type in R is used to hold whole numbers. Unlike numeric values, integers cannot have a decimal point. You can create an integer in R by adding an 'L' suffix to a number, like this: 5L. Without the 'L', R would treat the number as numeric, not integer.
@@ -158,12 +205,15 @@ class(new_class_number)
 ```
 
 Try these out here:
+
 ```{r sandbox2, exercise=TRUE, eval = FALSE}
 
 ```
+
 ### Logical (T/F)
 
-Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like <, >, ==, etc. to generate logical values. For example, the operation 5 > 3 will return TRUE because 5 is indeed greater than 3.
+Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like \<, \>, ==, etc. to generate logical values. For example, the operation 5 \> 3 will return TRUE because 5 is indeed greater than 3.
+
 ```{r, echo=T, eval=F}
 reality <- TRUE
 reality2 <- T #also works
@@ -172,9 +222,11 @@ isFALSE(reality2)
 ```
 
 Try these out here:
+
 ```{r sandbox3, exercise=TRUE, eval = FALSE}
 
 ```
+
 ### Character
 
 Character data type in R is used to hold strings of text. You can create a character string by enclosing text in quotes. For example, "Hello, World!" is a character string.
@@ -186,6 +238,7 @@ is.character(types_of_data)
 ```
 
 Try these out here:
+
 ```{r sandboxchar, exercise=TRUE, eval = FALSE}
 
 ```
@@ -219,18 +272,20 @@ print(mls_champions_factor)
 ```
 
 Try these out here:
+
 ```{r sandboxfact, exercise=TRUE, eval = FALSE, , exercise.setup="setupmls"}
 
 
 ```
 
-You will notice that printing `mls_champions_factor` will spit out the vector, followed by `8 Levels: Atlanta United FC Columbus Crew Los Angeles FC Lost Angeles Galaxy New York City FC ... Toronto FC`. 
+You will notice that printing `mls_champions_factor` will spit out the vector, followed by `8 Levels: Atlanta United FC Columbus Crew Los Angeles FC Lost Angeles Galaxy New York City FC ... Toronto FC`.
 
 What this means is that the function `as.factor` converted our simple character vector into a data type that is better equipped at handling categorical variables. The "levels" are the different categories observed in the data. Same of the advantages of this will become clearer later on (next week) when we start plotting things and summarizing them.
 
 ## Why choose a certain data type?
 
-### Example 1: character 
+### Example 1: character
+
 As mentioned, the data type defines the types of operations that can be done with the data. You wouldn't want to (gasp) take the mean of a vector of characters such as `c("mom","Australia", "bologne")`.
 
 Actually, try that and see what happens. Use the function `mean` on the vector above: `print(mean(c('mom','Australia','bologne')))`:
@@ -239,13 +294,13 @@ Actually, try that and see what happens. Use the function `mean` on the vector a
 
 ```
 
-As you can see, R will still try its best at guessing what you're up to. Unable to calculate the mean of such things, it will return a warning and `NA`. When you see NA in R, it means that the data at that point is missing or undefined. 
+As you can see, R will still try its best at guessing what you're up to. Unable to calculate the mean of such things, it will return a warning and `NA`. When you see NA in R, it means that the data at that point is missing or undefined.
 
 On the other hand, there are things that only make sense for characters. For example, the function.
 
-* Concatenation: combining two or more character strings using `paste`.
-* Extracting substrings - e.g. `substr`
-* Calculating string length - e.g. `nchar`
+-   Concatenation: combining two or more character strings using `paste`.
+-   Extracting substrings - e.g. `substr`
+-   Calculating string length - e.g. `nchar`
 
 ```{r, echo=T, eval=F}
 one_element <- "Joey"
@@ -260,6 +315,7 @@ print(paste(one_element, another_element, yet_another, not_a_string)) #converts 
 ```
 
 Try these out:
+
 ```{r sandbox-string, exercise=TRUE, eval = FALSE}
 
 ```
@@ -267,25 +323,24 @@ Try these out:
 As you can see, while pasting an integer and text together might make sense in some contexts, that is only true because the integer ceases to be an integer and becomes a string.
 
 ### Example 2: numeric and/or integer
+
 Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate for different strains of bacteria in the same type of medium.
 
 ```{r, echo=T, eval=F}
 growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5) # Sizes of bacterial colonies for different bacterial strains
 ```
 
-
 ```{r setupnum}
 growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5)
 avg_growth<-mean(growth_data)
 med_growth<-median(growth_data)
 ```
+
 Suppose you want to take the mean and median of these values. Paste `avg_growth <- mean(growth_data)` and `med_growth <- median(growth_data)` and then print `avg_growth` and `med_growth`:
 
 ```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
-
-
 
 ```{r examplenum-solution}
 avg_growth <- mean(growth_data) 
@@ -301,7 +356,6 @@ grade_this_code()
 
 Here are a few more operations that are appropriate for `numeric` and `integer` values:
 
-
 ```{r, echo=T, eval=F}
 x<-c(5.2,-7.3, 9.8) #numeric
 y<-2L #integer
@@ -311,9 +365,11 @@ print(x>y)
 ```
 
 Practice these a bit here:
+
 ```{r sandbox5, exercise=TRUE, eval = FALSE}
 
 ```
+
 *Important:* If there are `NA` values present, we need to explicitly tell R how to handle them.
 
 ```{r, echo=T, eval=F}
@@ -325,11 +381,12 @@ min(x)
 ```
 
 Try these out here:
+
 ```{r sandbox6, exercise=TRUE, eval = FALSE}
 
 ```
-As you can see, that's not great. Now try the commands above again by adding the parameter `na.rm=TRUE` to the functions `mean`, `median`, `max`, and `min`. E.g. `mean(x, na.rm=T)`. This argument tells R to ignore elements in the vector that are `NA`.
 
+As you can see, that's not great. Now try the commands above again by adding the parameter `na.rm=TRUE` to the functions `mean`, `median`, `max`, and `min`. E.g. `mean(x, na.rm=T)`. This argument tells R to ignore elements in the vector that are `NA`.
 
 ```{r example-with-na-setup}
 x<-c(5.2,-7.3, 9.8, NA)
@@ -362,7 +419,6 @@ cell_counts <- c(100, 200, 150, 175, 225, 122, 270) # Number of cells in differe
 
 ```
 
-
 ```{r setupint}
 cell_counts <- c(100, 200, 150, 175, 225,  122, 270)
 ```
@@ -374,13 +430,11 @@ To get the mean, you might want to add up your total number of cells. You could 
                    
 ```
 
-
 ```{r exampleinteger-solution}
 total_cells <- sum(cell_counts) 
 print(total_cells)
 
 ```
-
 
 ```{r exampleinteger-check}
 grade_this_code()
@@ -405,23 +459,16 @@ Try these for yourself:
 
 ```
 
-
-
 ### Example 4: characters (again)
 
 In bioinformatics, character strings are often used to represent DNA sequences.
-
-
 
 ```{r, echo=T, eval=F}
 dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
 
 ```
 
-
-
 Suppose you want to look at the first sequence from a long list. Paste the following code to define a character variable and then print it. `first_sequence <- dna_sequences[1] # DNA sequence`:
-
 
 ```{r setupchr}
 dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
@@ -433,7 +480,6 @@ dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
   #create first_sequence                  
   #print it
 ```
-
 
 ```{r examplechr-solution}
 first_sequence <- dna_sequences[1] # Get the first DNA sequence
@@ -451,16 +497,16 @@ Hot tip: make your code generalizable even if it doesn't seem immediately necess
 
 Instead of using `dna_sequences[4]` we could use `length(dna_sequences)` to index `dna_sequences`.
 
-I have created a very long vector (I won't tell you how long!) called `dna_sequences2` and I want you to extract the last element of this vector and then print it, just as you did above. First extract the last element and place it an an object called `last_sequence`, then print the object. 
+I have created a very long vector (I won't tell you how long!) called `dna_sequences2` and I want you to extract the last element of this vector and then print it, just as you did above. First extract the last element and place it an an object called `last_sequence`, then print the object.
 
 ```{r setupchrindex}
 set.seed(1) 
 dna_sequences2<-sapply(1:1000, function(x) paste0(sample(c("A","C","G","T"),4, replace=T), collapse=""))
 ```
+
 ```{r examplechrindex, exercise = TRUE, exercise.setup = "setupchrindex"}
                     
 ```
-
 
 ```{r examplechrindex-solution}
 last_sequence <- dna_sequences2[length(dna_sequences2)]
@@ -489,12 +535,10 @@ b <- c(2,2,3)
 
 ```
 
-
 ```{r examplebool, exercise = TRUE, exercise.setup = "setupbool"}
            #create  which_entries_match 
            #print it
 ```
-
 
 ```{r examplebool-solution}
 which_entries_match <- a == b
@@ -508,7 +552,8 @@ grade_this_code()
 ## Data Structures
 
 ### Vectors
-You already learned about vectors in the last lesson. They are a  sequence of data elements of the same basic type. They can be numeric, integer, complex, character, or logical. They are **one-dimensional.**
+
+You already learned about vectors in the last lesson. They are a sequence of data elements of the same basic type. They can be numeric, integer, complex, character, or logical. They are **one-dimensional.**
 
 R loves vectors and tends to treat everything like a vector: an object with only one element is a vector. E.g., `a<-9` is simply a vector of length `1`.
 
@@ -534,12 +579,9 @@ length(a) #use function length on object a
 grade_this_code()
 ```
 
-
 ### Matrices
 
-A matrix in R is a **two-dimensional** data structure, where each element is of the **same type**. You can think of a matrix as a collection of vectors arranged side by side (for columns) or one on top of another (for rows). Here's an example of a numeric matrix. 
-
-
+A matrix in R is a **two-dimensional** data structure, where each element is of the **same type**. You can think of a matrix as a collection of vectors arranged side by side (for columns) or one on top of another (for rows). Here's an example of a numeric matrix.
 
 ```{r, echo=T, eval=F}
 numeric_matrix <- matrix(seq(1:6), nrow = 2, ncol = 3) #create a matrix with numbers 1 through 6, with 2 rows and 3 columns
@@ -562,7 +604,7 @@ numeric_matrix[1,] #select entire 1st row
 numeric_matrix[,3] #select entire 3rd column
 ```
 
-You can also convert a vector that you made previously into a matrix. 
+You can also convert a vector that you made previously into a matrix.
 
 ```{r, echo=T, eval=F}
 numeric_vector<-seq(1:6) #create vector with numbers 1:6
@@ -579,7 +621,6 @@ Try these for yourself:
 
 Remember I created a very long vector before, called `dna_sequences2`? You will do the following: a) check the length of the vector; b) convert the vector into a matrix with 10 columns (don't specify the number of rows) and save this into object `dna_sequences2_mat`; c) use the `dim` function to figure out how many rows and columns the matrix has
 
-
 ```{r examplemat1, exercise = TRUE, exercise.setup = "setupchrindex"}
       # check length of dna_sequences2
       # convert dna_sequences2 into matrix with 10 columns
@@ -595,10 +636,10 @@ dim(dna_sequences2_mat)
 ```{r examplemat1-check}
 grade_this_code()
 ```
+
 ```{r, echo=T, eval=F}
 
 ```
-
 
 Finally, what happens if you try to create a vector or a matrix with elements of different types? We can use the command `c` to concatenate different objects.
 
@@ -645,6 +686,7 @@ class(num_log2)
 log_vec<-c(FALSE, TRUE, TRUE, FALSE)
 as.numeric(log_vec)
 ```
+
 Try it!
 
 ```{r sandbox12, exercise=TRUE, eval = FALSE}
@@ -653,7 +695,7 @@ Try it!
 
 Everything we just said for vectors applies to matrices as well.
 
-E.g., if you try to make a matrix composed of mixed elements. 
+E.g., if you try to make a matrix composed of mixed elements.
 
 ```{r, echo=T, eval=F}
 a<-c(0, -5) #numeric
@@ -677,16 +719,18 @@ Try it!
 
 As seen above, vectors and matrices interact in various ways in R. Here are a few examples:
 
-* You can create a matrix from vectors. Each vector can become a row or a column of the matrix.
+-   You can create a matrix from vectors. Each vector can become a row or a column of the matrix.
 
-* You can extract a row or a column from a matrix as a vector.
+-   You can extract a row or a column from a matrix as a vector.
 
-* You can use a vector to index a matrix, meaning to select certain rows or columns from the matrix.
+-   You can use a vector to index a matrix, meaning to select certain rows or columns from the matrix.
 
-* You can perform arithmetic operations between a matrix and a vector. In this case, R will often apply the operation element-wise, meaning it will operate on each corresponding pair of elements from the matrix and the vector. If the vector is shorter than the matrix, R will recycle the elements of the vector to match the length of the matrix.
+-   You can perform arithmetic operations between a matrix and a vector. In this case, R will often apply the operation element-wise, meaning it will operate on each corresponding pair of elements from the matrix and the vector. If the vector is shorter than the matrix, R will recycle the elements of the vector to match the length of the matrix.
 
 ### Creating a matrix from vectors:
+
 You can use the `cbind()` function to combine vectors as columns of a matrix, or `rbind()` to combine vectors as rows.
+
 ```{r matrix2, exercise = F }
 # Create two vectors
 vector1 <- c(1, 2, 3)
@@ -701,6 +745,7 @@ matrix2 <- rbind(vector1, vector2)
 ```
 
 Print them both to compare
+
 ```{r setupmat1}
 vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
@@ -709,12 +754,9 @@ matrix2 <- rbind(vector1, vector2)
 
 ```
 
-
 ```{r examplemat2, exercise = TRUE, exercise.setup = "setupmat1"}
                     
 ```
-
-
 
 ```{r examplemat2-solution}
 print(matrix1)
@@ -726,11 +768,9 @@ print(matrix2)
 grade_this_code()
 ```
 
-
-
 ### Performing arithmetic operations between a matrix and a vector:
-R will apply the operation element-wise, and will recycle elements of the vector if necessary.
 
+R will apply the operation element-wise, and will recycle elements of the vector if necessary.
 
 ```{r mat3, exercise = F}
 # Create a matrix
@@ -742,7 +782,6 @@ vector4 <- c(1, 2, 3)
 # Add the vector to each row of the matrix
 result4 <- matrix4 + vector4
 ```
-
 
 ```{r setupmat3}
 matrix4 <- matrix(1:6, nrow = 2)
@@ -757,7 +796,6 @@ Print the result
                     
 ```
 
-
 ```{r examplemat3-solution}
 print(result4)
 ```
@@ -765,16 +803,14 @@ print(result4)
 ```{r examplemat3-check}
 grade_this_code()
 ```
-        
 
 ## Other ways to store data
 
-### Data Frames 
+### Data Frames
 
-A data frame in R is a table or a two-dimensional matrix-structure in which each column contains values of one variable and each row contains one set of values from each column. The data stored in a data frame can be of numeric, factor, or character type. You will use these a lot, this is just a brief introduction! 
+A data frame in R is a table or a two-dimensional matrix-structure in which each column contains values of one variable and each row contains one set of values from each column. The data stored in a data frame can be of numeric, factor, or character type. You will use these a lot, this is just a brief introduction!
 
 The key difference in relation to matrices is that different columns can have elements of different types.
-
 
 ```{r df1, exercise = F}
 ## Create a data frame that holds information about various species
@@ -789,7 +825,6 @@ species_info <- data.frame(
 
 
 ```
-
 
 ```{r setupdfex1}
 # Create a data frame that holds information about various species
@@ -806,12 +841,11 @@ species_info <- data.frame(
 
 ```
 
-In the space below: a) Print the dataframe and b) on the next row practice using the structure `dataframe$columnname` to select the column named "Family" and save that as a vector called "family". You can also use square brackets as seen for vectors and matrices but $ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
+In the space below: a) Print the dataframe and b) on the next row practice using the structure `dataframe$columnname` to select the column named "Family" and save that as a vector called "family". You can also use square brackets as seen for vectors and matrices but \$ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
 
 ```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
                     
 ```
-
 
 ```{r dfex1-solution}
 print(species_info)
@@ -821,8 +855,8 @@ family <- species_info$Family
 ```{r dfex1-check}
 grade_this_code()
 ```
-   
-Dataframes are useful because they can combine multiple different types of data into a single object. 
+
+Dataframes are useful because they can combine multiple different types of data into a single object.
 
 This is a dataset showing the hominin (early human) species name and hypothetical genome sizes for these early hominins (which we have no way of knowing yet).
 
@@ -838,7 +872,6 @@ species_info <- data.frame(
 
 ```
 
-
 ```{r setupdfex2}
 ## Create a data frame that holds information about various species
 library(dplyr)
@@ -852,15 +885,13 @@ australopithecus_genome_size<-dplyr::filter(species_info, Genus == "Australopith
 
 ```
 
-In the following box, seperate all the rows with "Australopithecus" in the `Genus` column using the function `filter` from the dplyr package. `dplyr` has a whole host of useful functions that make working with dataframes convenient. We will learn a lot more about the `dplyr` package in future lessons. Filter is just the tip of the iceberg. 
+In the following box, seperate all the rows with "Australopithecus" in the `Genus` column using the function `filter` from the dplyr package. `dplyr` has a whole host of useful functions that make working with dataframes convenient. We will learn a lot more about the `dplyr` package in future lessons. Filter is just the tip of the iceberg.
 
 Follow the format: `filter(dataframe_name, columnname == "Australopithecus")` and save the results as `australopithecus_genome_length`. Then, print `australopithecus_genome_length`.
-
 
 ```{r dfex2, exercise = TRUE, exercise.setup = "setupdfex2"}
                     
 ```
-
 
 ```{r dfex2-solution}
 australopithecus_genome_size<-filter(species_info, Genus == "Australopithecus")
@@ -876,7 +907,6 @@ Now, using the dataframe you made (`australopithecus_genome_size`), use the func
                     
 ```
 
-
 ```{r dfex3-solution}
 summary_results <-summary(australopithecus_genome_size$GenomeSize)
 print(summary_results)
@@ -888,8 +918,8 @@ grade_this_code()
 
 The summary function has a lot of interesting properties depending on the object type. In this case, because the column in question is numeric, it spits out some useful values like the minimum, maximum, mean, median, 1st, and 3rd quartile values.
 
+### Lists
 
-### Lists 
 A list in R is an object that contains elements of different types - like numbers, strings, vectors, and even other lists. Lists are very flexible and are often used when data can't be held in other types of data structures. Different elements in a list can be of entirely different types.
 
 ```{r list1, exercise = F}
@@ -903,7 +933,6 @@ species_info <- list(
 )
 
 ```
-
 
 ```{r setuplist1}
 # Create a list that holds information about a species
@@ -925,7 +954,6 @@ Print the result and use double square brackets -`[[]]` -to select the third ite
                     #select the 3rd element from the list
 ```
 
-
 ```{r list1ex-solution}
 print(species_info)
 species_info[[3]]
@@ -934,11 +962,12 @@ species_info[[3]]
 ```{r list1ex-check}
 grade_this_code()
 ```
+
 Note: just like with dataframes, you can also use `$` to index a list based on the name of each element rather than its position.
 
 ### Arrays
-An array in R is a multi-dimensionaldata structure for storing homogeneous data (i.e., data of the same type: numeric, logical, character, etc). In that way, it is similar to a matrix. It can be viewed as a multi-dimensional version of matrices.  You can think of an array as a multi-dimensional table of data, with each dimension being a different attribute.
 
+An array in R is a multi-dimensionaldata structure for storing homogeneous data (i.e., data of the same type: numeric, logical, character, etc). In that way, it is similar to a matrix. It can be viewed as a multi-dimensional version of matrices. You can think of an array as a multi-dimensional table of data, with each dimension being a different attribute.
 
 ```{r array1, exercise = F}
 # Create an array that holds gene expression data for 3 genes across 4 samples
@@ -951,7 +980,6 @@ dimnames(gene_expression) <- list(
 
 
 ```
-
 
 ```{r setuparray1}
 # Create an array that holds gene expression data for 3 genes across 4 samples
@@ -971,7 +999,6 @@ Print the object:
                     
 ```
 
-
 ```{r array1ex-solution}
 print(gene_expression)
 ```
@@ -988,7 +1015,6 @@ Save trial 2 as a new matrix named `trial2`.
                     
 ```
 
-
 ```{r array1ex2-solution}
 trial2 <- gene_expression[,,2]
 ```
@@ -999,26 +1025,22 @@ grade_this_code()
 
 Arrays are useful, but niche data structures. A much more common type of data is a data frame.
 
-
-
-
 ## The final quiz
 
-You've been tested throughout! This here is just graded for completion to check that you still remember everything. 
+You've been tested throughout! This here is just graded for completion to check that you still remember everything.
 
 The first part is basic questions like the tutorial. Feel free to go back to previous sections. You won't lose your progress unless you click "start over".
- 
+
 ### 1-integer vector
+
 Consider the following integer vector that represents the quantity of different species observed in a field study: `species_counts <- c(10, 20, 15, 30, 25)`. Let's say the researchers are particularly interested in species with observed counts of 20 or below.
 
 Which species are of particular interest? First, create the vector `species_counts` and then use logical comparison to create a vector of TRUE/FALSE values indicating which species meet the criteria.
-
 
 ```{r numvecex, exercise = TRUE}
  #create vector
  # use logical statement
 ```
-
 
 ```{r numvecex-solution}
 species_counts <- c(10, 20, 15, 30, 25)
@@ -1029,21 +1051,15 @@ species_counts <= 20
 grade_this_code()
 ```
 
-
-
-
-
 ### 2- list
-You have a list that holds various information about a species,
-Is the species endangered? Use list indexing (with `$`) to retrieve the information.
 
+You have a list that holds various information about a species, Is the species endangered? Use list indexing (with `$`) to retrieve the information.
 
 ```{r listexam, exercise = TRUE}
 species_info_list <- list("SpeciesName" = "Panthera leo", "Population" = 20000, "Endangered" = TRUE)       
 
 
 ```
-
 
 ```{r listexam-solution}
 species_info_list <- list("SpeciesName" = "Panthera leo", "Population" = 20000, "Endangered" = TRUE)
@@ -1054,11 +1070,9 @@ species_info_list$Endangered
 grade_this_code()
 ```
 
-
-
-
 ### 3- cbind/rbind
-You have two vectors representing the diameters of two different types of cells observed under a microscope.  Combine these two vectors into a matrix where each column represents a different cell type. Name the matrix `cell_diameters` and then print it. 
+
+You have two vectors representing the diameters of two different types of cells observed under a microscope. Combine these two vectors into a matrix where each column represents a different cell type. Name the matrix `cell_diameters` and then print it.
 
 ```{r bindex1, exercise = TRUE}
 cell1_diameters <- c(10, 12, 11, 13, 12)  
@@ -1066,7 +1080,6 @@ cell2_diameters <- c(15, 17, 16, 18, 17)
       #create object cell_diameters
       #print it
 ```
-
 
 ```{r bindex1-solution}
 cell1_diameters <- c(10, 12, 11, 13, 12)  
@@ -1082,14 +1095,12 @@ grade_this_code()
 
 You have two vectors representing the heights of two different types of plants measured in a field study. Combine these two vectors into a matrix where each row represents a different plant type. Name the matrix `plant_heights` and then print it.
 
-
 ```{r bindex2, exercise = TRUE}
 plant1_heights <- c(100, 120, 110, 130, 120) 
 plant2_heights <- c(150, 170, 160, 180, 170)
             #create `plant_heights`
              #print it
 ```
-
 
 ```{r bindex2-solution}
 plant1_heights <- c(100, 120, 110, 130, 120) 
@@ -1102,22 +1113,18 @@ print(plant_heights)
 grade_this_code()
 ```
 
-
 ## Quiz Part 2: Working with real data
-
-
 
 Now we are going to practice working with an actual data set. We will be using one from the `datasets` package called `chickweights`. It's from an experiment on the effect of diet on early growth of chicks. If you want to learn more about the dataset type ??chickweights into your console (later, now while you are taking this quiz!)
 
 ### Lets look at the data
-The datasets package already has the data stored as a data frame. If it wasn't you could call data.frame to turn it into one. Rename the data `chicks` by assigning the code already loaded to that name. 
-It's long, so we don't want to print the whole thing. Use a specific function called `head` to call just the first 6 rows of the object.
+
+The datasets package already has the data stored as a data frame. If it wasn't you could call data.frame to turn it into one. Rename the data `chicks` by assigning the code already loaded to that name. It's long, so we don't want to print the whole thing. Use a specific function called `head` to call just the first 6 rows of the object.
 
 ```{r chicks1, exercise = TRUE}
 
             # create chicks object
 ```
-
 
 ```{r chicks1-solution}
 chicks<-datasets::ChickWeight
@@ -1129,8 +1136,8 @@ grade_this_code()
 ```
 
 ### Analyzing the data
-Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the `dplyr` package's `filter` function to select only chicks with time 21 from the `chicks` object.
-name this resulting dataframe `FinalChicks`. Then print it. 
+
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the `dplyr` package's `filter` function to select only chicks with time 21 from the `chicks` object. name this resulting dataframe `FinalChicks`. Then print it.
 
 ```{r setupchicks}
 chicks<-datasets::ChickWeight
@@ -1147,7 +1154,6 @@ FinalChicks<-filter(chicks, Time == "21")
             #print it
 ```
 
-
 ```{r chicks2-solution}
 FinalChicks<-filter(chicks, Time == 21)
 print(FinalChicks)
@@ -1157,11 +1163,7 @@ print(FinalChicks)
 grade_this_code()
 ```
 
-
-Now lets get the mean for each diet. Use the pattern below calculate the mean weight for the chicks in each of the 4 diets. 
-
-
-
+Now lets get the mean for each diet. Use the pattern below calculate the mean weight for the chicks in each of the 4 diets.
 
 ```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks2"}
 diet1<-filter(chicks, Diet == "1")
@@ -1170,7 +1172,6 @@ mean(diet1$weight)
                                   #diet 3
                                   #diet 4
 ```
-
 
 ```{r chicks3-solution}
 diet1<-filter(chicks, Diet == "1")
@@ -1191,8 +1192,6 @@ mean(diet4$weight)
 grade_this_code()
 ```
 
-
-
 Isn't that a lot of work to get 4 simple means? Next week you are going to learn how to do all that in one go! Here's how you'd do it. Print the dataframe from this code to see how fast it is!
 
 ```{r chicks4, exercise = TRUE, exercise.setup = "setupchicks"}
@@ -1204,7 +1203,6 @@ summarize(mean_weight = mean(weight, na.rm = TRUE))
 
       #print it
 ```
-
 
 ```{r chicks4-solution}
 avg_chick_wgts<- chicks %>%
@@ -1219,10 +1217,7 @@ print(avg_chick_wgts)
 grade_this_code()
 ```
 
-
-
 ### Coercion, rbind, cbind
-
 
 Suppose you ran the following code.
 
@@ -1244,9 +1239,9 @@ learnr::quiz(caption="",
 
 ## The end!
 
+-   username is what comes before your `@brynmawr.edu` or `@haverford.edu`.
+-   password if b215f23
 
-* username is what comes before your `@brynmawr.edu` or `@haverford.edu`.
-* password if b215f23
 ```{r, echo=F}
-submitr::login_controls()
+#submitr::login_controls()
 ```

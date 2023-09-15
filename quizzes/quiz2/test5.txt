@@ -1,0 +1,39 @@
+time	user_id	event	correct	label
+2023-09-14T23:05:09.427700Z	bbitarello	session_start		
+2023-09-14T23:05:11.500653Z	bbitarello	exercise_submitted		examplemat2
+2023-09-14T23:05:11.618697Z	bbitarello	exercise_result		examplemat2
+2023-09-14T23:05:12.450676Z	bbitarello	exercise_submitted		examplemat2
+2023-09-14T23:05:12.594736Z	bbitarello	exercise_result		examplemat2
+2023-09-14T23:05:42.399730Z	bbitarello	exercise_submitted		examplemat3
+2023-09-14T23:05:42.662580Z	bbitarello	exercise_result		examplemat3
+2023-09-14T23:05:43.319347Z	bbitarello	exercise_submitted		examplemat3
+2023-09-14T23:05:43.452860Z	bbitarello	exercise_result		examplemat3
+2023-09-14T23:05:43.461842Z	bbitarello	section_viewed		
+2023-09-14T23:05:43.463897Z	bbitarello	section_viewed		
+2023-09-14T23:08:27.534750Z	bbitarello	section_skipped		
+2023-09-14T23:08:29.255987Z	bbitarello	exercise_submitted		dfex1
+2023-09-14T23:08:29.549488Z	bbitarello	exercise_result		dfex1
+2023-09-14T23:08:30.986239Z	bbitarello	exercise_submitted		dfex1
+2023-09-14T23:08:31.128865Z	bbitarello	exercise_result		dfex1
+2023-09-14T23:08:31.581159Z	bbitarello	exercise_submitted		dfex1
+2023-09-14T23:08:31.712653Z	bbitarello	exercise_result		dfex1
+2023-09-14T23:09:40.322954Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:09:40.421115Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:09:52.783538Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:09:53.040655Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:09:58.423137Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:09:58.571736Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:10:45.111184Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:10:45.398172Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:10:46.640702Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:10:46.776612Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:11:03.081174Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:11:03.367026Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:11:04.422403Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:11:04.536770Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:11:05.504866Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:11:05.638127Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:11:11.482452Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:11:11.627208Z	bbitarello	exercise_result		dfex2
+2023-09-14T23:11:12.241223Z	bbitarello	exercise_submitted		dfex2
+2023-09-14T23:11:12.379278Z	bbitarello	exercise_result		dfex2

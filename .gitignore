@@ -5,3 +5,8 @@
 .DS_Store
 .httr-oauth
 .secrets
+quizzes/quiz1/.cred
+quizzes/quiz1/.secrets
+quizzes/quiz2/.cred
+quizzes/quiz2/.secrets
+

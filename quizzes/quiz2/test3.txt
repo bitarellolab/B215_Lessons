@@ -1,0 +1,18 @@
+2023-09-14T22:43:27.515673Z	bbitarello		session_start						
+2023-09-14T22:43:33.543126Z	bbitarello		exercise_submitted			examplemat2			"print(matrix1)
+print(matrix2)
+
+"
+2023-09-14T22:43:33.664634Z	bbitarello		exercise_result			examplemat2			"print(matrix1)
+print(matrix2)
+
+"
+2023-09-14T22:43:34.663140Z	bbitarello		exercise_submitted			examplemat2			"print(matrix1)
+print(matrix2)
+
+"
+2023-09-14T22:43:34.800929Z	bbitarello		exercise_result		TRUE	examplemat2			"print(matrix1)
+print(matrix2)
+
+"
+2023-09-14T22:43:43.240984Z	bbitarello		session_stop						
