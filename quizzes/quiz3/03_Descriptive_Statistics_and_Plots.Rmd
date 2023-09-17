@@ -3,21 +3,35 @@ title: "Descriptive Statistics and Plots"
 output: 
   learnr::tutorial:
     progressive: TRUE
-    allow_skip: FALSE
+    allow_skip: TRUE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
+tutorial:
+  id: "b215.f23.lab3"
+  version: 0.8
 ---
 
 ```{r setup, include=FALSE}
+library(devtools)
 library(learnr)
+library(submitr)
+library(gradethis)
 library(tidyverse)
 library(knitr)
 library(ggmosaic)
 library(praise)
 library(utils)
-library(datasets)
 library(dplyr)
-tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
+library(basket)
+
+
+learnr::tutorial_options(exercise.eval = TRUE, 
+                         exercise.reveal_solution = FALSE, 
+                         exercise.timelimit = 30,
+                         exercise.checker = gradethis::grade_learnr,
+)
+
+
 gradethis::gradethis_setup(
   pass.praise = TRUE,
   fail.encourage = TRUE,
@@ -26,11 +40,42 @@ gradethis::gradethis_setup(
 
 ```
 
+```{css echo=FALSE}
+ @media print {
+  .topicsContainer,
+  .topicActions,
+  .exerciseActions .skip {
+    display: none;
+  }
+  .topics .tutorialTitle,
+  .topics .section.level2,
+  .topics .section.level3:not(.hide) {
+    display: block;
+  }
+  .topics {
+    width: 100%;
+  }
+  .tutorial-exercise, .tutorial-question {
+    page-break-inside: avoid;
+  }
+  .section.level3.done h3 {
+    padding-left: 0;
+    background-image: none;
+  }
+  .topics .showSkip .exerciseActions::before {
+    content: "Topic not yet completed...";
+    font-style: italic;
+  }
+}
+/* paste CSS above here */
+```
+
 ## Overview
 
 Tasks: 
 
 -   Work through this document
+-   Complete datacamp activities about R markdown, reading in data into R, the tidyverse
 
 Learning outcomes: 
 
@@ -53,47 +98,61 @@ Learning outcomes:
 
 You can import many types of data in R. If you want to see which file types are possible to read in from base R, type "read" in the console and then hit tab. That will show you all the various types of read functions for different file types inherent to base R.
 
-Here, we'll be using read.csv which reads... csv files.
+Here, we'll be using read.csv which reads... csv files - files where columns are separated by ",". This is a very common format for tables of data. For example, you can export an Excel or google sheets spreasheet into a .csv file very easily.
 
 ```{r, echo=T, eval=F}
-titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
+titanicdata <- read.csv("titanic.csv")
 
 ```
+
+Sometimes, real world data sucks. It's missing entries, or it mixes data class types (e.g., a column that appears to be numeric, but is actually a sneaky character vector). For that reason, you always should inspect your data before you do any stats. For small files, view("r object") can be used, but for larger files, opening an r object can be prohibitively slow. You have already learned a function to call the first six rows of a dataset: head. We also mentioned a similar function called `tail`. 
+
+Call both of them here (`head`, `tail`) and inspect the object titanicdata. This data both refers to the titanic and is, itself, titanic (am I right??) and therefore using `head` is appropriate.
+
+
 
 
 ```{r setupnum}
-titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
-```
-
-Sometimes, real world data sucks. It's missing entries, or it mixes data class types (e.g., a column that appears to be numeric, but is actually a sneaky character vector). For that reason, you always should inspect your data before you do any stats. For small files, view("r object") can be used, but for larger files, opening an r object can be prohibitively slow. You have already learned a function to call the first six rows of a dataset: head. Call it here and inspect the object titanicdata. This data both refers to the titanic and is, itself, titanic and therefore head is appropriate.
-```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
-                    
+titanicdata <- read.csv("titanic.csv")
 ```
 
 
-```{r examplenum-solution}
+```{r ex1, exercise = TRUE}
+        # read in the file as shown above
+        # use the head command
+        # use the tail command
+
+```
+
+
+```{r ex1-solution}
+titanicdata <- read.csv("titanic.csv")
 head(titanicdata)
+tail(titanicdata)
 
 ```
 
-```{r examplenum-check}
+```{r ex1-check}
 grade_this_code()
 ```
+
+######Note: maybe add summary here as well as dim() again.
 
 ## Summary statistics and missing data!
 
 Now look at age by selecting the column `age` in the `titanicdata` object and printing out that column:
-```{r examplenum1, exercise = TRUE, exercise.setup = "setupnum"}
+
+```{r example2, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
 
 
-```{r examplenum1-solution}
+```{r example2-solution}
 print(titanicdata$age)
 
 ```
 
-```{r examplenum1-check}
+```{r example2-check}
 grade_this_code()
 ```
 
@@ -121,34 +180,34 @@ Many other functions have this "na.rm = T" option, but for those that don't, you
 
 Try this with the function for standard deviation: sd()
 
-```{r examplenum2, exercise = TRUE, exercise.setup = "setupnum"}
+```{r example3, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
 
 
-```{r examplenum2-solution}
+```{r example3-solution}
 is.na(titanicdata$age)
 
 ```
 
-```{r examplenum2-check}
+```{r example3-check}
 grade_this_code()
 ```
 
 SD is one way to measure variance and deviation but there are others!
 
 Try calculating the variance of the age data using the implemtation in r: var()
-```{r examplenum3, exercise = TRUE, exercise.setup = "setupnum"}
+```{r example4, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
 
 
-```{r examplenum3-solution}
+```{r example4-solution}
 var(titanicdata$age, na.rm = T)
 
 ```
 
-```{r examplenum3-check}
+```{r example4-check}
 grade_this_code()
 ```
 
@@ -182,47 +241,47 @@ nrow(titanicdata)-nrow(titanicdata2)
 Well, three functions are useful for us to decide. length, which returns the number of entries, which, and is.na, which returns a logical statement stating whether any entry in the input is NA.
 
 Try testing whether there are any NAs in titanicdata$age (which, becuase we know there are, should return TRUE)
-```{r examplenum4, exercise = TRUE, exercise.setup = "setupnum"}
+```{r example5, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
 
 
-```{r examplenum4-solution}
+```{r example5-solution}
 var(titanicdata$age, na.rm = T)
 
 ```
 
-```{r examplenum4-check}
+```{r example5-check}
 grade_this_code()
 ```
 
 Now, since we know that there are NAs in the age column, try finding out which rows in titanicdata contain NAs
-```{r examplenum5, exercise = TRUE, exercise.setup = "setupnum"}
-                    
-```
-
-
-```{r examplenum5-solution}
-which(is.na(titanicdata$age))
-
-```
-
-```{r examplenum5-check}
-grade_this_code()
-```
-
-This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that na.omit worked:
-```{r examplenum6, exercise = TRUE, exercise.setup = "setupnum"}
+```{r example6, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
 
 
 ```{r examplenum6-solution}
-length(which(is.na(titanicdata$age)))
+which(is.na(titanicdata$age))
 
 ```
 
 ```{r examplenum6-check}
+grade_this_code()
+```
+
+This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that na.omit worked:
+```{r examplenum7, exercise = TRUE, exercise.setup = "setupnum"}
+                    
+```
+
+
+```{r examplenum7-solution}
+length(which(is.na(titanicdata$age)))
+
+```
+
+```{r examplenum7-check}
 grade_this_code()
 ```
 
