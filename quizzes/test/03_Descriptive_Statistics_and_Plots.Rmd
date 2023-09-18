@@ -70,12 +70,21 @@ You can import many types of data in R. If you want to see which file types are 
 
 Here, we'll be using read.csv which reads... csv files - files where columns are separated by ",". This is a very common format for tables of data. For example, you can export an Excel or google sheets spreasheet into a .csv file very easily.
 
+
 ```{r, echo=T, eval=F}
-titanicdata <- read.csv("titanic.csv")
+titanicdata <- read.csv("titanic.csv",stringsAsFactors = TRUE)
 ```
 
+I put this file in an URL so that you can practice reading it in:
+[https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv](https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv)
 
+* read in the file and save it as `titanicdata`
+* use head on the object `titanicdata`
+* use tail on the object
+
+Here is the URL
 ```{r ex1, exercise = TRUE, eval=T}
+        # read in the file
         # use the head command
         # use the tail command
 
@@ -83,6 +92,7 @@ titanicdata <- read.csv("titanic.csv")
 
 
 ```{r ex1-solution}
+titanicdata<-read.csv("https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv", stringsAsFactors = TRUE)
 head(titanicdata)
 tail(titanicdata)
 

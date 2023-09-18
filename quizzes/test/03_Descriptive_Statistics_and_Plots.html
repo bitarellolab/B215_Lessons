@@ -147,9 +147,18 @@ columns are separated by “,”. This is a very common format for tables of
 data. For example, you can export an Excel or google sheets spreasheet
 into a .csv file very easily.</p>
 <pre class="r"><code>titanicdata &lt;- read.csv(&quot;titanic.csv&quot;)</code></pre>
+<p>I put this file in an URL so that you can practice reading it in: <a
+href="https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv">https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv</a></p>
+<ul>
+<li>read in the file and save it as <code>titanicdata</code></li>
+<li>use head on the object <code>titanicdata</code></li>
+<li>use tail on the object</li>
+</ul>
+Here is the URL
 <div class="tutorial-exercise" data-label="ex1" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>        # use the head command
+<pre class="text"><code>        # read in the file
+        # use the head command
         # use the tail command</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -220,17 +229,17 @@ learnr:::store_exercise_cache(structure(list(label = "ex1", global_setup = struc
 ")", "", "", "gradethis::gradethis_setup(", "  pass.praise = TRUE,", 
 "  fail.encourage = TRUE,", "  fail.hint = TRUE", ")", ""), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
-    list(label = "ex1", code = "        # use the head command\n        # use the tail command\n", 
+    list(label = "ex1", code = "        # read in the file\n        # use the head command\n        # use the tail command\n", 
         opts = list(label = "\"ex1\"", exercise = "TRUE", eval = "T"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
     check = structure("grade_this_code()", chunk_opts = list(
-        label = "ex1-check")), solution = structure(c("head(titanicdata)", 
-    "tail(titanicdata)", ""), chunk_opts = list(label = "ex1-solution")), 
-    tests = NULL, options = list(eval = TRUE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "03_Descriptive_Statistics_and_Plots_cache/html/", 
+        label = "ex1-check")), solution = structure(c("titanicdata<-read.csv(\"https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv\")", 
+    "head(titanicdata)", "tail(titanicdata)", ""), chunk_opts = list(
+        label = "ex1-solution")), tests = NULL, options = list(
+        eval = TRUE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "03_Descriptive_Statistics_and_Plots_cache/html/", 
         cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
         autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
         fig.show = "asis", fig.align = "default", fig.path = "03_Descriptive_Statistics_and_Plots_files/figure-html/", 
@@ -245,9 +254,9 @@ learnr:::store_exercise_cache(structure(list(label = "ex1", global_setup = struc
         max.print = 1000, exercise.timelimit = 30, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
         exercise.error.check.code = "gradethis_error_checker()", 
         exercise.eval = TRUE, exercise.reveal_solution = FALSE, 
-        label = "ex1", exercise = TRUE, code = c("        # use the head command", 
-        "        # use the tail command", ""), out.width.px = 624, 
-        out.height.px = 384, params.src = "ex1, exercise = TRUE, eval=T", 
+        label = "ex1", exercise = TRUE, code = c("        # read in the file", 
+        "        # use the head command", "        # use the tail command", 
+        ""), out.width.px = 624, out.height.px = 384, params.src = "ex1, exercise = TRUE, eval=T", 
         fig.alt = NULL, fig.num = 0, exercise.df_print = "paged"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
