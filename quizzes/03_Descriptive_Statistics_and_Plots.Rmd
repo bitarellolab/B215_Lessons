@@ -56,13 +56,22 @@ You can import many types of data in R. If you want to see which file types are 
 Here, we'll be using read.csv which reads... csv files.
 
 ```{r, echo=T, eval=F}
+<<<<<<< Updated upstream
 titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
+=======
+titanicdata <- read.csv("~/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/datatitanic.csv", stringsAsFactors = TRUE)
+>>>>>>> Stashed changes
 
 ```
 
 
 ```{r setupnum}
+<<<<<<< Updated upstream
 titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
+=======
+titanicdata <- read.csv("~/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/datatitanic.csv", stringsAsFactors = TRUE)
+
+>>>>>>> Stashed changes
 ```
 
 Sometimes, real world data sucks. It's missing entries, or it mixes data class types (e.g., a column that appears to be numeric, but is actually a sneaky character vector). For that reason, you always should inspect your data before you do any stats. For small files, view("r object") can be used, but for larger files, opening an r object can be prohibitively slow. You have already learned a function to call the first six rows of a dataset: head. Call it here and inspect the object titanicdata. This data both refers to the titanic and is, itself, titanic and therefore head is appropriate.
@@ -225,6 +234,19 @@ length(which(is.na(titanicdata$age)))
 ```{r examplenum6-check}
 grade_this_code()
 ```
+<<<<<<< Updated upstream
+=======
+
+
+
+## Exploring the data
+
+This data has age, sex, class of the passenger and whether or not they survived. 
+
+Lets compare survival odds between classes. Use the group_by() function to group the passengers by class. The summarize() function lets you create a new data frame to look at summary statistics from your original dataset. 
+
+
+>>>>>>> Stashed changes
 
 
 ## Quiz Part 2: Working with real data
