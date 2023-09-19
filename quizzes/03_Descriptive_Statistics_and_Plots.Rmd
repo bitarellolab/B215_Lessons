@@ -34,7 +34,7 @@ Tasks:
 
 Learning outcomes: 
 
-1.  Summary statistics
+1. Learn about Rmarkdown
 
 2.  Learn how to perform routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
 
@@ -46,6 +46,24 @@ Learning outcomes:
 
 6.  Match common plots to common data type.
 
+## What is rmarkdown
+
+1. Take this [short tutorial](https://rmarkdown.rstudio.com/lesson-1.html) from Rstudio about the basics of R markdown (you can go up until "Notebooks" but no need to work through the final 4 steps starting at ("slide presentations").
+
+2. Here is a very useful [R Markdown cheatsheet](https://rmarkdown.rstudio.com/lesson-15.html).
+
+No need to watch these now, but try to watch them before you start working on LA1.
+(these are also posted in the assignment instructions)
+
+* [What is R Markdown](https://capture.dropbox.com/8iVT7yksrItSTpkW)
+* [Using R markdown in Rstudio](https://www.youtube.com/watch?v=DNS7i2m4sB0&feature=youtu.be)
+* [Overview of R markdown](https://www.youtube.com/watch?v=mcTB7h9lpCg&feature=youtu.be)
+
+
+
+
+
+
 
 ## Reading in data and dealing with missing data
 
@@ -56,13 +74,18 @@ You can import many types of data in R. If you want to see which file types are 
 Here, we'll be using read.csv which reads... csv files.
 
 ```{r, echo=T, eval=F}
-titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
+<<<<<<< Updated upstream
 
+titanicdata <- read.csv("~/Documents/GitHub/B215_Lessons/fall_2022_materials/lab3/data/titanic.csv", stringsAsFactors = TRUE)
 ```
 
 
 ```{r setupnum}
-titanicdata <- read.csv("C:/Users/levir/Documents/GitHub/B215_Lessons/Lab3/rstudio-export_lab3/data/titanic.csv")
+
+titanicdata <- read.csv("~/Documents/GitHub/B215_Lessons/fall_2022_materials/lab3/data/titanic.csv", stringsAsFactors = TRUE)
+titanicdata2<-na.omit(titanicdata)
+
+
 ```
 
 Sometimes, real world data sucks. It's missing entries, or it mixes data class types (e.g., a column that appears to be numeric, but is actually a sneaky character vector). For that reason, you always should inspect your data before you do any stats. For small files, view("r object") can be used, but for larger files, opening an r object can be prohibitively slow. You have already learned a function to call the first six rows of a dataset: head. Call it here and inspect the object titanicdata. This data both refers to the titanic and is, itself, titanic and therefore head is appropriate.
@@ -227,7 +250,75 @@ grade_this_code()
 ```
 
 
-## Quiz Part 2: Working with real data
+
+## Exploring the data
+
+This data has age, sex, class of the passenger and whether or not they survived. 
+
+
+
+The summarize function is super useful. This is how you'd use it to group by if someone survived, and get the mean of their ages. print the new data frame to see.
+
+
+```{r examplenum7, exercise = TRUE, exercise.setup = "setupnum"}
+ mean_ages <- titanicdata2 %>%
+  group_by(survive) %>%
+  summarise(
+    mean_age = mean(age)
+  )
+                   
+```
+
+
+
+```{r examplenum7-solution}
+
+class_survive <- titanic %>%
+  group_by(passenger_class) %>%
+  summarise(
+    survived = sum(survive == "yes"),
+    died = sum(survive == "no")
+  )
+
+
+
+```
+
+```{r examplenum7-check}
+grade_this_code()
+```
+
+
+
+Lets compare survival odds between classes. Use the group_by() function to group the passengers by class. The summarize() function lets you create a new data frame to look at summary statistics from your original dataset. Dplyr lets you chain commands together using  %>%. Let's use the filtered data that doesn't have any missing values. 
+(you'll have two arguments inside the summarise function)
+
+
+```{r examplenum8, exercise = TRUE, exercise.setup = "setupnum"}
+                    
+```
+
+
+
+```{r examplenum8-solution}
+
+class_survive <- titanic %>%
+  group_by(passenger_class) %>%
+  summarise(
+    survived = sum(survive == "yes"),
+    died = sum(survive == "no")
+  )
+
+
+
+```
+
+```{r examplenum8-check}
+grade_this_code()
+```
+
+
+## Working with real data
 
 
 
@@ -309,25 +400,140 @@ grade_this_code()
 
 
 
-Isn't that a lot of work to get 4 simple means? Next week you are going to learn how to do all that in one go! Here's how you'd do it. Print the dataframe from this code to see how fast it is!
+Isn't that a lot of work to get 4 simple means? Let's go over how to do this with dyplr. First group by diet, then summarise to find the mean weight. Then print the result
 
 ```{r chicks4, exercise = TRUE, exercise.setup = "setupchicks"}
-avg_chick_wgts<- chicks %>%
-filter(Time == "21") %>% 
-group_by(Diet) %>%
-summarize(mean_weight = mean(weight, na.rm = TRUE))
+
+
 ```
 
 
 ```{r chicks4-solution}
-avg_chick_wgts<- chicks %>%
-filter(Time == "21") %>% 
+avg_chick_wgts<- FinalChicks %>%
 group_by(Diet) %>%
-summarize(mean_weight = mean(weight, na.rm = TRUE))
+summarize(mean_weight = mean(weight))
 
 print(avg_chick_wgts)
 ```
 
 ```{r chicks4-check}
 grade_this_code()
+```
+
+
+There are other dplyr commands that are very useful, and they follow the same basic structure. 
+
+
+
+Now let's graph the chicks. We are going to make a basic ggplot, using geom_jitter. We don't just want to use our means because that tells us less than our original data. so using FinalChicks, graph diet on the x axis and weight on the y axis. 
+
+```{r chicks5, exercise = TRUE, exercise.setup = "setupchicks"}
+
+
+```
+
+
+```{r chicks5-solution}
+ggplot(FinalChicks, aes(x=Diet, y=weight))+geom_jitter()
+```
+
+```{r chicks5-check}
+grade_this_code()
+```
+
+
+
+
+## The quiz
+
+Let us analyze some beautiful black cherry trees. Load the dataset trees from the package datasets, name it trees, and call head on it
+
+
+```{r trees1, exercise = TRUE}
+trees<-datasets::trees
+
+```
+
+
+```{r trees1-solution}
+trees<-datasets::trees
+head(trees)
+```
+
+```{r trees1-check}
+grade_this_code()
+```
+
+lets make a new column called "ratio" where we divide the girth of the tree by its height. We will use the mutate function. Use mutate like summarise, and create the new column in a data frame called tree_ratios. Then print it.
+
+
+```{r trees2, exercise = TRUE}
+
+
+```
+
+
+```{r trees2-solution}
+tree_ratios <- trees %>% 
+  mutate(ratio = Girth / Height)
+print(tree_ratios)
+```
+
+```{r trees2-check}
+grade_this_code()
+```
+
+
+Now that we have our ratios, we can see that they range from 0.118 to 0.236. Lets sort these trees into 2 types of tree. any tree under or equal to 0.17 is to be called "skinny legeand" and anytree over is to be call "thicc". Call this data frame tree_types and the new column tree_judgement You're going to use the case_when function inside the mutate function.  
+
+```{r setuptrees}
+
+trees<-datasets::trees
+tree_ratios <- trees %>% 
+  mutate(ratio = Girth / Height)
+
+```
+
+
+
+```{r trees3, exercise = TRUE, setup="setuptrees"}
+
+
+
+```
+
+
+```{r trees3-solution}
+trees_types <- trees_with_type_and_ratio %>%
+  mutate(tree_judgement = case_when(
+    ratio <= 0.17 ~ "skinny legend",
+    ratio > 0.17 ~ "thicc"
+  ))
+
+```
+
+```{r tree3-check}
+grade_this_code()
+```
+
+
+
+I have typed the word tree so many times while making this that it doesn't seem like a word anymore. tree. tree. silly word right? seems like its missing something. 
+
+
+
+
+
+READ FIRST:
+
+* as before, go to your browser and select "print" to keep a pdf copy of your work.
+* use your username from your institutional email as your username
+* use b215f23 as password
+* this will close the quiz and take you back to Posit cloud. Click on the little red "stop" icon in the console to stop the quiz for good.
+* in the files pane, you will see a file called "quiz1_record.txt". Select it and then go to the little wheel and click "export". 
+* upload that file and your PDF copy into the lab1-quiz on Moodle!
+* you're done!
+
+```{r, echo=F}
+submitr::login_controls()
 ```

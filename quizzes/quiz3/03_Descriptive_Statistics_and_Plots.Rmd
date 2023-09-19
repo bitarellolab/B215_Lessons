@@ -17,6 +17,7 @@ library(learnr)
 library(submitr)
 library(gradethis)
 library(tidyverse)
+<<<<<<< Updated upstream:quizzes/quiz3/03_Descriptive_Statistics_and_Plots.Rmd
 library(knitr)
 library(ggmosaic)
 library(praise)
@@ -38,6 +39,10 @@ gradethis::gradethis_setup(
   fail.hint = TRUE
 )
 
+=======
+learnr::tutorial_options(exercise.eval = T)
+knitr::opts_chunk$set(error = TRUE, eval = T, echo = T)
+>>>>>>> Stashed changes:Lab3/rstudio-export_lab3/Lab3_Guide.Rmd
 ```
 
 ```{css echo=FALSE}
@@ -74,8 +79,18 @@ gradethis::gradethis_setup(
 
 Tasks: 
 
+<<<<<<< Updated upstream:quizzes/quiz3/03_Descriptive_Statistics_and_Plots.Rmd
 -   Work through this document
 -   Complete datacamp activities about R markdown, reading in data into R, the tidyverse
+=======
+* About three data types of variables : factors, strings or characters, numeric.
+* How to use R as a calculator.
+* About four data structures in R: vectors, matrices, data.frames, and lists. 
+* How to create vectors, matrices, and data.frames and index their elements.
+* How to create a basic  R script with code and comments.
+* How to have a general look at the imported data and understand its structure
+* How to extract parts of the data for further analysis
+>>>>>>> Stashed changes:Lab3/rstudio-export_lab3/Lab3_Guide.Rmd
 
 Learning outcomes: 
 
@@ -128,6 +143,13 @@ Try running the commands above for yourself below. Run one line at a time to see
 ```{r sandbox1, exercise=T, eval=F}
 
 
+<<<<<<< Updated upstream:quizzes/quiz3/03_Descriptive_Statistics_and_Plots.Rmd
+=======
+For example, in the Titanic data set, we do not know the age of several passengers. Let’s look at it. Use `read.csv` to read in the `titanic.csv` file from the `data` directory:
+
+```{r, exersize = T }
+titanicData <- read.csv("data/titanic.csv", stringsAsFactors = TRUE)
+>>>>>>> Stashed changes:Lab3/rstudio-export_lab3/Lab3_Guide.Rmd
 ```
 
 
