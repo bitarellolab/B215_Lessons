@@ -1,0 +1,104 @@
+---
+title: "Descriptive Statistics and Plots"
+output: 
+  learnr::tutorial:
+    progressive: TRUE
+    allow_skip: TRUE
+runtime: shiny_prerendered
+date: "`r Sys.Date()`"
+tutorial:
+  id: "b215.f23.lab3"
+  version: 1
+---
+
+```{r setup, include=FALSE}
+library(devtools)
+library(learnr)
+library(gradethis)
+library(tidyverse)
+library(knitr)
+library(ggmosaic)
+library(praise)
+library(utils)
+library(dplyr)
+library(ggplot2)
+
+
+learnr::tutorial_options(exercise.eval = TRUE, 
+                         exercise.reveal_solution = FALSE, 
+                         exercise.timelimit = 30,
+                         exercise.checker = gradethis::grade_learnr,
+)
+
+
+gradethis::gradethis_setup(
+  pass.praise = TRUE,
+  fail.encourage = TRUE,
+  fail.hint = TRUE
+)
+
+```
+
+
+## Overview
+
+Tasks: 
+
+-   Work through this document
+-   Complete datacamp activities about R markdown, reading in data into R, the tidyverse
+
+Learning outcomes: 
+
+1.  Summary statistics
+
+2.  Learn how to perform routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
+
+3.  Pipe `%>%` these operations together.
+
+4.  Be able to suggest improvements to basic graphs to improve readability and accurate communication
+
+5.  Explain the idea of mapping data onto aesthetics, and the use of different `geoms`
+
+6.  Match common plots to common data type.
+
+
+## Reading in data and dealing with missing data
+
+### Read in data
+
+You can import many types of data in R. If you want to see which file types are possible to read in from base R, type "read" in the console and then hit tab. That will show you all the various types of read functions for different file types inherent to base R.
+
+Here, we'll be using read.csv which reads... csv files - files where columns are separated by ",". This is a very common format for tables of data. For example, you can export an Excel or google sheets spreasheet into a .csv file very easily.
+
+
+```{r, echo=T, eval=F}
+titanicdata <- read.csv("titanic.csv",stringsAsFactors = TRUE)
+```
+
+I put this file in an URL so that you can practice reading it in:
+[https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv](https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv)
+
+* read in the file and save it as `titanicdata`
+* use head on the object `titanicdata`
+* use tail on the object
+
+Here is the URL
+```{r ex1, exercise = TRUE, eval=T}
+        # read in the file
+        # use the head command
+        # use the tail command
+
+```
+
+
+```{r ex1-solution}
+titanicdata<-read.csv("https://github.com/bitarellolab/Teaching/blob/c8fd4738895bc800b28bca1b0d15d25273ab382d/B215/data/titanic.csv", stringsAsFactors = TRUE)
+head(titanicdata)
+tail(titanicdata)
+
+```
+
+```{r ex1-check}
+grade_this_code()
+```
+

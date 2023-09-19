@@ -15,9 +15,9 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Overview
 
-Tasks: 
+
+## Tasks: 
 
 -   DataCamp activities
 -   Work through this document
@@ -25,7 +25,7 @@ Tasks:
 -   Create an R markdown document with your personal notes and code
 -   Complete RQ1
 
-Learning outcomes: 
+## Learning outcomes: 
 
 1.  Getting started with R and RStudio
 
@@ -490,8 +490,12 @@ numbers
 
 ## R Quiz 1
 
-When you're ready, take the quiz. Go to our workspace, Lab1_Activity,
-open the file Rquiz1.Rmd, and click Run Document
+When you're ready, take the quiz. Go to our workspace, Quizzes > Quiz 1.
+
+Type:
+
+`run("Quiz1.Rmd")`
+
 
 
 ## Links & References

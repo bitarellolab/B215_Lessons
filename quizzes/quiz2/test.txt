@@ -1,0 +1,9 @@
+time	user_id	event	correct	feedback	label	question	answer
+2023-09-14T23:01:15.396592Z	bbitarello	session_start					
+2023-09-14T23:01:16.114929Z	bbitarello	section_viewed					
+2023-09-14T23:01:16.117992Z	bbitarello	section_viewed					
+2023-09-14T23:01:17.906830Z	bbitarello	exercise_submitted			examplemat2		
+2023-09-14T23:01:18.035092Z	bbitarello	exercise_result			examplemat2		
+2023-09-14T23:01:18.539724Z	bbitarello	exercise_submitted			examplemat2		
+2023-09-14T23:01:18.690615Z	bbitarello	exercise_result		TRUE	examplemat2		
+2023-09-14T23:01:21.286042Z	bbitarello	session_stop					
