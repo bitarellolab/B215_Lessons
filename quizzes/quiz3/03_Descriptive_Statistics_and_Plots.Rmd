@@ -4,6 +4,7 @@ output:
   learnr::tutorial:
     progressive: TRUE
     allow_skip: TRUE
+
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
@@ -17,7 +18,6 @@ library(learnr)
 library(submitr)
 library(gradethis)
 library(tidyverse)
-<<<<<<< Updated upstream:quizzes/quiz3/03_Descriptive_Statistics_and_Plots.Rmd
 library(knitr)
 library(ggmosaic)
 library(praise)
@@ -38,11 +38,7 @@ gradethis::gradethis_setup(
   fail.encourage = TRUE,
   fail.hint = TRUE
 )
-
-=======
-learnr::tutorial_options(exercise.eval = T)
 knitr::opts_chunk$set(error = TRUE, eval = T, echo = T)
->>>>>>> Stashed changes:Lab3/rstudio-export_lab3/Lab3_Guide.Rmd
 ```
 
 ```{css echo=FALSE}
@@ -79,80 +75,69 @@ knitr::opts_chunk$set(error = TRUE, eval = T, echo = T)
 
 Tasks: 
 
-<<<<<<< Updated upstream:quizzes/quiz3/03_Descriptive_Statistics_and_Plots.Rmd
 -   Work through this document
 -   Complete datacamp activities about R markdown, reading in data into R, the tidyverse
-=======
-* About three data types of variables : factors, strings or characters, numeric.
-* How to use R as a calculator.
-* About four data structures in R: vectors, matrices, data.frames, and lists. 
-* How to create vectors, matrices, and data.frames and index their elements.
-* How to create a basic  R script with code and comments.
-* How to have a general look at the imported data and understand its structure
-* How to extract parts of the data for further analysis
->>>>>>> Stashed changes:Lab3/rstudio-export_lab3/Lab3_Guide.Rmd
 
-Learning outcomes: 
+## Learning outcomes: 
 
-1.  Summary statistics
+1.  The bare bones of R markdown - a way to make your work reproducible and pretty!
 
-2.  Learn how to perform routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
 
-3.  Pipe `%>%` these operations together.
+2. Getting data into R
 
-4.  Be able to suggest improvements to basic graphs to improve readability and accurate communication
+3. Summary statistics and NAs
 
-5.  Explain the idea of mapping data onto aesthetics, and the use of different `geoms`
+4. Soft introduction to the `tidyverse` packages
 
-6.  Match common plots to common data type.
+5. The Routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
 
+6. Pipe `%>%` these operations together.
+
+7. The `ggplot2` package for plots
+
+## R markdown
+
+For this portion we are going to use Rstudio's R markdown tutorial. They created R markdown, after all.
+
+Remember: all your Lab Assignments will need to be written in R markdown, so take the time to learn this.
+
+* Go to [https://rmarkdown.rstudio.com/lesson-1.html](https://rmarkdown.rstudio.com/lesson-1.html) and complete the tutorial
+* Make sure you use your Posit cloud workspace to try out things.
+* When you're done, restart this tutorial and continue from here.
+
+For future reference, there is no need to memorize anything, check out [this handy cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf) and [this reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) anytime. 
 
 ## Getting data into R
 
-```{r setupnum}
-titanicdata<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/titanic.csv", stringsAsFactors = TRUE)
-```
-
-```{r setupbat}
-bat.tongues<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv", stringsAsFactors = TRUE)
-```
-### Reading in data
+Main ways:
 
 
-You can import many types of data in R. If you want to see which file types are possible to read in from base R, type "read" in the console and then hit tab. That will show you all the various types of read functions for different file types inherent to base R. E.g.
+* load an R "object" from a package (e.g. the `datasets` package)
+* load an R "object" from a file (e.g. files that end in `.Rds` or `.rds``)
+* reading in data from a flat text file with delimiters like comma (`.csv` files) or tab
+* reading in data from other data file types 
+* in Rstudio, you can also use the "Import Dataset" option from the file menu. This is not ideal in terms of reproducibility but can be helpful for beginners.
+
+You can import many types of data in R. If you want to see which file types are possible to read in from base R, type "read" in the console and then hit tab. That will show you all the various types of read functions for different file types inherent to base R. 
 
 
-```{r, echo=T, eval=F}
-titanicdata<-read.csv("titanic.csv")
-```
+E.g., reading in data from a `.csv` text file:
 
-A .cvs file is a very common format for tables of data. For example, you can export an Excel or google sheets spreadsheet into a .csv file very easily.
+
+A `.csv` file is a very common format for tables of data. For example, you can export an Excel or google sheets spreadsheet into a `.csv` file very easily.
 
 Here we will use a very simple function from base R called `read.csv`.
 
 
-
-```{r, echo=T, eval=F}
-
+```{r setupnum, echo=F}
 titanicdata<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/titanic.csv", stringsAsFactors = TRUE)
-print(titanicdata)
-```
-
-Try running the commands above for yourself below. Run one line at a time to see what happens.
-
-```{r sandbox1, exercise=T, eval=F}
-
-
-<<<<<<< Updated upstream:quizzes/quiz3/03_Descriptive_Statistics_and_Plots.Rmd
-=======
-For example, in the Titanic data set, we do not know the age of several passengers. Let’s look at it. Use `read.csv` to read in the `titanic.csv` file from the `data` directory:
-
-```{r, exersize = T }
-titanicData <- read.csv("data/titanic.csv", stringsAsFactors = TRUE)
->>>>>>> Stashed changes:Lab3/rstudio-export_lab3/Lab3_Guide.Rmd
+bat.tongues<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv", stringsAsFactors = TRUE)
 ```
 
 
+```{r, echo=T, eval=T}
+titanicdata<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/titanic.csv", stringsAsFactors = TRUE)
+```
 
 ### Quick summary and checking dimensions
 
@@ -180,7 +165,7 @@ tail(titanicdata)
 grade_this_code()
 ```
 
-There are three other functions that are great for having a first glance at your data.
+There are at least three other functions that are great for having a first glance at your data.
 
 `dim`: we've seen this one. It gives the number of rows and columns.
 
@@ -249,11 +234,9 @@ grade_this_code()
 ```
 
 
-
-
 ## Summary statistics and missing data!
 
-Now look at age by selecting the column `age` in the `titanicdata` object and printing out that column:
+Now look at age by selecting the column `age` in the `titanicdata` object and printing out that column (use `$` to index the column). Use `print`.
 
 ```{r x5, exercise = TRUE, exercise.setup = "setupnum"}
                     
@@ -269,7 +252,7 @@ print(titanicdata$age)
 grade_this_code()
 ```
 
-If you look through the results, you will see that most individuals have numbers in this list, but some have NA. These NAs are the people for which we do not have age information.
+If you look through the results, you will see that most values in this list are numbers, but some are NAs. These NAs are the people for which we do not have age information.
 
 By the way, the `titanic.csv` file simply has nothing in the places where there is missing data. See for yourself: [link](https://docs.google.com/spreadsheets/d/111Ez-a6GCeUYcprUzKwcTWE3Adux30UHKRxXDL83Luw/edit?usp=sharing).
 
@@ -354,12 +337,9 @@ Make sure you understand the command above before continuing! Practice here:
 
 Other metrics include range and interquartile range which are the difference between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as `range()` and `IQR()` in the exact same format as `mean()` and `sd()`.
 
-**Attention**: I had said there was no `range` function in R in a previous lesson but apparently now there is!
-
 Try running them below.
 
 ```{r sandbox3, exercise=T, eval=F}
-
   # try running range
   # try running IQR
 ```
@@ -367,7 +347,7 @@ Try running them below.
 
 ### Actually removing missing data from your R object
 
-Lets say you are trying to do a statistical test which lacks na. rm capabilities? Well, it's pretty simple:
+Lets say you are trying to do a statistical test which lacks na. rm capabilities? Well, it's pretty simple. You can use `na.omit`.
 
 ```{r}
 titanicdata2<-na.omit(titanicdata)
@@ -445,50 +425,42 @@ length(which(is.na(titanicdata$age)))
 grade_this_code()
 ```
 
+## A soft intro to the Tidyverse packages
+
+*Note: most of the material in this section comes from Y. Brandvain's Applied Biostatistics online book. *
+
+A great part about R is that many people have written packages to help with specific tasks.
+
+The tidyverse refers to both a set of packages, and a way to do things in R. The tidyverse packages we use the most in this course are:
+
+`ggplot2`: For making plots.
+
+`dplyr`: For summarizing and handling data.
+
+`tidyr`: For converting data from wide to long format (and vice versa).
+
+`readr`: For reading in data.
+
+We will use the `tibble`, `stringr`, `forcats`, and `purrr` packages less often if at all. But `ggplot2` and `dplyr` are crucial in this day and age.
+
+![](images/tidyverse.png){width=70%}
 
 
+**Why?**
 
+One major reason for this is that the focus on a shared and coherent philosophy, grammar and data structure makes the tidyverse **easier to teach and learn than base R**. However, there are still challenges to learning and teaching the tidyverse, the two major challenges are:
 
-## Structure of a good data file
+1. It takes time to learn and appreciate the shared philosophy and data structure.
 
-Data files appear in many formats, and different formats are sometimes preferable for different tasks. But there is one way to structure data—called “long” format—that is extremely useful for most things that you will want to do in statistics and R.
+2. Many people first learned R using base R, so it can be frustrating to start to learn again.
 
-Long format is actually very simple. Every row in the data set is a unique individual. Every column is a variable being measured on those individuals.
-
-For example, here are some data about the tongue and palate lengths of several species of bats. There are three variables in that data set, the species name, tongue length, and palate length. Here each “individual” is a species. Here is that data in long format—each row is an individual. There are three columns, one for each variable:
-
-```{r, echo=T, eval=F}
-bat_tongue<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv")
-str(bat_tongue)
-```
-
-### Creating a data file
-
-When you have new data that you want to get into the computer in a format that R can read, it is often easiest to do this outside of R. A spreadsheet program like Excel (or a freely available program like OpenOffice Calc) is a straightforward way to create a .csv file that R can read.
-
-In your spreadsheet program, open a new window with New Workbook under the File menu. (In OpenOffice, under the File menu, choose New and then Spreadsheet.) In the first row of your new spreadsheet, write your variable names, one for each column. (Be sure to give them good names that will work in R. Mainly, don’t have any spaces in a variable name and make sure that it doesn’t start with a number or contain punctuation marks. See Week 1 for more about naming variables.)
-
-On the rows immediately below that first row, enter the data for each individual, in the correct column. Here’s what the spreadsheet would look like for the bat data after they are entered:
-
-![](images/spreadsheet view.jpeg)
-
-### Saving as .csv
-
-Saving a spreadsheet in a format that R can read is very straightforward. In these labs, we are using .csv files (which stands for comma separated values). Once you have made your spreadsheet, under “File” click on “Save as…”. This will open a dialog box. First, give the file a name with the extension .csv at the end. We used “BatTongues.csv”. Then choose what folder you want to save the file in.
-
-Finally, choose the right format for the file. The right format is “Comma separated values” which you can choose from after Format: in the dialog box. It might look something like this:
-
-![](images/Screen Shot 2022-09-14 at 12.13.10 PM.png){width=50%}
-
-In the resulting file, the first line will be a header that lists the names of each column (variable). After that there will be one line for each individual. All the variable names in the first row and the variable values in the later rows will be separated by commas, hence the name of the format. If you opened the .csv file in a text editor, it would look like this:
-
-![](images/Screen Shot 2022-09-14 at 12.13.16 PM.png){width=60%}
+Overcoming challenge 1 takes time but is helped by reflecting on why and how code works when it works, and fails when it fails (rather than copying and pasting code that works), and continually asking questions.
 
 ### Tidy data
 
-Above we introduce the tidyverse ecosystem of tools for R. Tidyverse tools can be useful and general because they rely on a certain and predictable data structure known as “tidy data.”
+Tidyverse tools can be useful and general because they rely on a certain and predictable data structure known as “tidy data.”
 
-Characteristics of tidy data
+Characteristics of tidy data:
 
 * Each variable must have its own column.
 * Each observation must have its own row.
@@ -522,39 +494,47 @@ head(flower_visits)
 write.csv(x = flower_visits, file = "my_flower_visits.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
 ```
 
-If you look at the `files` pane on the right you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
+Inside this quiz you can't really do this successfully, but within R, later, you can. When you do this, look at the `files` pane on the right and you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
 
-*_NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!_*
-
-
+**NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!**
 
 
+### Structure of a good data file
 
-## A soft intro to the Tidyverse packages
+Data files appear in many formats, and different formats are sometimes preferable for different tasks. But there is one way to structure data—called “long” format—that is extremely useful for most things that you will want to do in statistics and R.
 
-*Note*: most of the material in this section comes from three sources: Rstudio, [Y. Brandvain's online book](https://bookdown.org/ybrandvain/Applied_Biostats_Fall_2022/viz1.html)
-A great part about R is that many people have written packages to help with specific tasks.
+Long format is actually very simple. Every row in the data set is a unique individual. Every column is a variable being measured on those individuals.
 
-The tidyverse refers to both a set of packages, and a way to do things in R. The tidyverse packages we use the most in this course are:
+For example, here are some data about the tongue and palate lengths of several species of bats. There are three variables in that data set, the species name, tongue length, and palate length. Here each “individual” is a species. Here is that data in long format—each row is an individual. There are three columns, one for each variable:
 
-`ggplot2`: For making plots.
-`dplyr`: For summarizing and handling data.
-`tidyr`: For converting data from wide to long format (and vice versa).
-`readr`: For reading in data.
-`forcats`: For controlling the order of categorical variables.
+```{r, echo=T, eval=F}
+bat_tongue<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv")
+str(bat_tongue)
+head(bat_tongue)
+```
 
-We will use the tibble, stringr, and purrr packages less often if at all (although I use them often). But `ggplot2` and `dplyr` are crucial in this day and age.
+### Creating a data file
 
-![](images/tidyverse.png){width=70%}
+When you have new data that you want to get into the computer in a format that R can read, it is often easiest to do this outside of R. A spreadsheet program like Excel (or a freely available program like OpenOffice Calc, Google sheets, etc) is a straightforward way to create a .csv file that R can read.
 
+In your spreadsheet program, open a new window with New Workbook under the File menu. In the first row of your new spreadsheet, write your variable names, one for each column. (Be sure to give them good names that will work in R. Mainly, don’t have any spaces in a variable name and make sure that it doesn’t start with a number or contain punctuation marks. See Week 1 for more about naming variables.)
 
-Why? One major reason for this is that the focus on a shared and coherent philosophy, grammar and data structure makes the tidyverse easier to teach and learn than base R. However, there are still challenges to learning and teaching the tidyverse, the two major challenges are
+On the rows immediately below that first row, enter the data for each individual, in the correct column. Here’s what the spreadsheet would look like for the bat data after they are entered:
 
-It takes time to learn and appreciate the shared philosophy and data structure.
-Many people first learned R using base R, so it can be frustrating to start to learn again.
-Overcoming challenge (1) takes time but is helped by reflecting on why and how code works when it works, and fails when it fails (rather than copying and pasting code that works), and continually asking questions.
+![](images/spreadsheet view.jpeg)
 
-### A note about tibbles
+### Saving as .csv
+
+Saving a spreadsheet in a format that R can read is very straightforward. In these labs, we are using `.csv` files (which stands for comma separated values). Once you have made your spreadsheet, under “File” click on “Save as…”. This will open a dialog box. First, give the file a name with the extension .csv at the end. We used `BatTongues.csv`. Then choose what folder you want to save the file in.
+
+Finally, choose the right format for the file. The right format is “Comma separated values” which you can choose from after Format: in the dialog box. It might look something like this:
+
+![](images/Screen Shot 2022-09-14 at 12.13.10 PM.png){width=50%}
+
+In the resulting file, the first line will be a header that lists the names of each column (variable). After that there will be one line for each individual. All the variable names in the first row and the variable values in the later rows will be separated by commas, hence the name of the format. If you opened the .csv file in a text editor, it would look like this:
+
+![](images/Screen Shot 2022-09-14 at 12.13.16 PM.png){width=60%}
+#### A note about tibbles
 
 “Tibbles” are a new modern data frame. It keeps many important features of the original data frame. It removes many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
 
@@ -583,7 +563,6 @@ Compared to Data Frames:
 
 ## The dplyr package 
 
-* Note* : most of the material in this section comes from three sources: Rstudio, [Y. Brandvain's online book](https://bookdown.org/ybrandvain/Applied_Biostats_Fall_2022/viz1.html), and the [R Labs from your textbook.](https://whitlockschluter3e.zoology.ubc.ca/RLabs/index.html)
 
 ![](images/Screen Shot 2022-09-14 at 11.02.46 AM.png){width=80%}
 
@@ -591,7 +570,7 @@ Compared to Data Frames:
 
 We will learn about several useful functions for data wrangling from the dplyr package, including: `filter`, `mutate`, `select`, `summarise`, and a few others.
 
-### filter()
+#### `filter()`
 
 `filter()` lets you use a logical test to extract specific rows from a data frame. To use `filter()`, pass it the data frame followed by one or more logical tests. `filter()` will return every row that passes each logical test.
 
@@ -630,7 +609,6 @@ Check what are the levels for `Species`:
 #the names here refer to the second part of the species name, after the genus, Iris. 
 levels(iris$Species) #Iris setosa, Iris versicolor, Iris virginica
 ```
-
 
 We can use `filter()` to select only the rows concerning "virginica".
 
@@ -689,7 +667,7 @@ table(virg_set_filt$Species)
 
 The `table()` command counts how many occurences of each level of a factor exist in your data. Notice that although there are zero occurrences of "versicolor" in your object, the level exists because it is inherited from the parent object.
 
-### Common mistakes
+**Common mistakes:**
 
 In R, the order of operations doesn't work like English. You can't write `filter(iris, Species == "setosa" | "virginica")`, even though you might say  "finds all measurements from I. setosa or I. virginica". Be sure to write out a _complete_ test on each side of a boolean operator.
 
@@ -700,12 +678,12 @@ Here are two more tips to help you use logical tests and Boolean operators in R:
 1. A useful short-hand for this problem is `x %in% y`. This will select every row where `x` is one of the values in `y`. We could use it to rewrite the code in the question above:
 
 ```{r}
-    set_or_virg <- filter(iris, Species %in% c("setosa", "virginica"))
+set_or_virg <- filter(iris, Species %in% c("setosa", "virginica"))
 ```
 
 2. As well as `&` and `|`, R also has `&&` and `||`. Don't use them with `filter()`! You'll learn when you should use them later.
 
-### filter() and NAs
+**`filter()` and NAs**
 
 `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values. If you want to preserve missing values, ask for them explicitly:
 
@@ -728,16 +706,14 @@ which(between(iris$Sepal.Length,5,6))
 
 ![](images/Screen Shot 2022-09-14 at 11.49.02 AM.png){width=70%}
 
-### Add new variables with mutate()
-
-A data set often contains information that you can use to compute new variables. `mutate()` helps you compute those variables. Since `mutate()` always adds new columns to the end of a dataset, we'll start by creating a narrow dataset which will let us see the new variables.
-
-### select()
+### `select()`
 
 You can select a subset of variables by name with the `select()` function in `dplyr`. Run the code below to see the narrow data set that `select()` creates.
 
 ### mutate()
 
+
+A data set often contains information that you can use to compute new variables. `mutate()` helps you compute those variables. Since `mutate()` always adds new columns to the end of a dataset, we'll start by creating a narrow dataset which will let us see the new variables.
 The code below creates two new variables with dplyr's `mutate()` function. `mutate()` returns a new data frame that contains the new variables appended to a copy of the original data set. Take a moment to imagine what this will look like, and then click "Run Code" to find out.
 ![](images/Screen Shot 2022-09-14 at 11.48.39 AM.png)
 
@@ -768,7 +744,7 @@ iris_sepal <- select(iris,
 
 transmute(iris_sepal, leng_wid_ratio = Sepal.Length/Sepal.Width)
 ```
-### summarise()
+### `summarise()`
 
 `summarise()` collapses a data frame to a single row of summaries. You get to choose how many summaries appear in the row and how they are computed:
 
@@ -791,7 +767,7 @@ The main difference between `summarise()` and `mutate()` is the type of function
 
 `mutate()` will always return the new variables appended to a copy of the original data. If you want to return only the new variables, use `transmute()`. 
 
-### arrange()
+### `arrange()`
 
 
 You might recall that arranging data in R can be quite cumbersome. Let's look at `iris` again and try to rearrange the data.frame so that it's ordered by Petal.Length (smallest to highest value).
@@ -813,12 +789,12 @@ Now the `arrange` way:
 
 arrange(iris, Petal.Length) #that's all!
 
-arrange(iris, -Petal.Length,) #this arranges it by descending petal length values
+arrange(iris, -Petal.Length) #this arranges it by descending petal length values
 
 ```
 
 
-## Using the pipe `%>%` operator
+### `Using the pipe `%>%` operator`
 
 In the previous section we learned how to do a bunch of things to data. For example, in our toad dataset, below, we
 
@@ -857,9 +833,8 @@ dim(titanicData) #dimensions: # rows &  # cols
 dim(sorted_titanic)
 ```
 
-## The ggplot2 package
+## Plots! The ggplot2 package
 
-*Note: most of the material in this section comes from Y. Brandvain's Applied Biostatistics online book. *
 
 We generally think of two extremes of the goals of data visualization
 
@@ -885,18 +860,93 @@ Whether developing an explanatory or exploratory plot, you should think hard abo
 
 *_The answers to these questions should guide our data visualization strategy, as this is a key step in our statistical analysis of a dataset. The best plots should evoke an immediate understanding of the (potentially complex) data. Put another way, a plot should highlight both the biological question and its answer._*
 
+
 Before jumping into making a plot in R, it is often useful to take this step back, think about your main biological question, and take a pencil and paper to sketch some ideas and potential outcomes.
 
-[Here](https://vimeo.com/747889723?embedded=true&source=vimeo_logo&owner=183870356) is a cool video by Y. Brandvain explaining how ggplot2 'thinks'.
+### How ggplot thinks
 
 `ggplot2` is built on a framework for building plots called the grammar of graphics. A major idea here is that plots are made up of data that we map onto aesthetic attributes.
 
 Lets unpack this sentence, because there’s a lot there. 
 
-Say we wanted to make a very simple plot e.g. observations for categorical data, or a simple histogram for a single continuous variable. Here we are mapping this variable onto a single aesthetic attribute – the x-axis.
+Say we wanted to make a very simple plot e.g. observations for categorical data, or a simple histogram for a single continuous variable. Here we are **mapping** this variable onto a single **aesthetic attribute** – the x-axis.
 
-[Here](https://ggplot2-book.org/introduction.html) is a book about `ggplot2` written by its creator, Hadley Wickham
 
+- Takes arguments `data =` and `mapping =`.   
+- We usually leave these implied and type e.g. `ggplot(my.data, aes(...)`) rather than `ggplot(data = my.data, mapping = aes(...)`).      
+- We can pipe data into the `ggplot()` function, so my.data %>% ggplot(aes(...)) does the same thing as ggplot(my.data, aes(...)).
+
+There is no need to memorize anything, check out [this handy cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)!
+
+#####  Arguments for aes() function {-}  
+
+The [`aes()`](https://ggplot2.tidyverse.org/reference/aes.html) function takes many potential arguments each of which specifies the aesthetic we are mapping onto a variable:
+
+###### x, y, and label:      {-}  
+
+```{block2, type='rmdcode'}
+- x: What is shown on the x-axis.     
+
+- y: What is shown on the y-axis.    
+
+- label: What is show as text in plot (when using geom_text())  
+```
+
+###### Color related aesthetics:      {-}  
+
+```{block2, type='rmdcode'}
+
+- [`color =`](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html): What is shown by color, where color refers to the color of a point or a line (e.g. lines around a histogram).   
+
+- [`fill =`](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html): What is shown by fill, where fill refers to the color of an area (e.g. area inside a histogram).     
+
+- [`alpha =`](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html): What is shown by the transparency of a line or point or area.
+```
+
+
+###### Differentiation related aesthetics: linetype, size, shape   {-}
+
+```{block2, type='rmdcode'}   
+- [`shape =`](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html): What is shown by the shape of our points.  
+
+- [`linetype `](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html)=: What is shown by the linetype (e.g. dashed, dotted, etc…).   
+
+- [`size =`](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html): What is shown by the size of a line or point.  
+```
+
+
+#####  Commonly used geoms {-}  
+
+
+```{block2, type='rmdcode'}
+- [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html): Makes a histogram.     
+- [`geom_density()`](https://ggplot2.tidyverse.org/reference/geom_density.html): Makes a density plot.  
+- [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html): Makes points - ideal for a scatterplot.  
+- [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html): Maks jittered points - ideal for showing data when x is catgorical or discrete.    
+- [`geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html): or  [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html): Makes a barplot from count data `geom_col()`, or from all observations `geom_bar()`.    
+- [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html): Connect observations with a line.   
+```
+
+
+#####  Faceting {-}
+
+Faceting allows us to use the concept of small multiples [@tufte1983] to highlight patterns.
+
+```{block2, type='rmdcode'}
+For one facetted variable: `facet_wrap(~ <var>, nocl = )`  
+
+For two facetted variable: `facet_grid(<var1>~ <var2>)`, where one is shown by rows, and is shown by columns.  
+```
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
 
 The function `ggplot()` allows us to graph most kinds of data relatively simply. Its syntax is slightly odd but very flexible. We’ll show specific commands for several types of plots below.
 
@@ -946,6 +996,7 @@ ggplot(titanicdata, aes(x=sex)) + geom_bar(stat="count")
 
 
 ### Boxplots
+
 A boxplot is a convenient way of showing the frequency distribution of a numerical variable in multiple groups (i.e., a categorical variable). Here’s the code to draw a boxplot for age in the titanic data set, separately for each sex:
 
 ```{r, eval=F}
@@ -1027,4 +1078,73 @@ ggplot(guppyFatherSonData,
 ```
 
 
+## Quick quiz
 
+```{r quiz-question-1, echo=FALSE}
+#this chunk is giving me a hard time
+learnr::quiz(caption="",
+  question("ggplot2 thinks about plots in layers. Which of the following is **not** a layer",
+    answer("geom"),
+    answer("data"),
+    answer("color", correct = TRUE),
+    answer("aesthetics"),
+   allow_retry = TRUE),
+   question("We map variables onto aesthetics. Which of the following is **not** an aesthetic?",
+    answer("barplot", correct = TRUE),
+    answer("color"),
+    answer("x"),
+    answer("y"),
+    answer("shape"),
+   allow_retry = TRUE),
+  
+  
+  )
+```
+
+![](images/Screenshot 2023-09-19 at 3.16.06 PM.png){width=80%}
+){width=80%}
+```{r quiz-question-2, echo=FALSE}
+#this chunk is giving me a hard time
+learnr::quiz(caption="Map the aesthetics onto the appropriate variable (for the figure above)",
+  question("Circumference",
+    answer("x"),
+    answer("shape"),
+    answer("color"),
+    answer("y", correct = TRUE),
+    answer("line"),
+   allow_retry = TRUE),
+   question("Tree",
+    answer("x"),
+    answer("shape"),
+    answer("color",correct = TRUE),
+    answer("y"),
+    answer("line"),
+   allow_retry = TRUE),
+  question("Age",
+    answer("x",correct = TRUE),
+    answer("shape"),
+    answer("color"),
+    answer("y"),
+    answer("line"),
+   allow_retry = TRUE),
+   question("The code that generated the figure above uses two geom layers. What are",
+    answer("x",correct = TRUE),
+    answer("shape"),
+    answer("color"),
+    answer("y"),
+    answer("line"),
+   allow_retry = TRUE),
+  
+  )
+```
+
+## Learn more
+
+* [Tidyverse cookbook: https://rstudio-education.github.io/tidyverse-cookbook/](https://rstudio-education.github.io/tidyverse-cookbook/)
+* [Visualizing data in R: An introduction to ggplot](https://bookdown.org/ybrandvain/Applied_Biostats_Fall_2022/viz1.html)
+* [Here](https://vimeo.com/747889723?embedded=true&source=vimeo_logo&owner=183870356) is a cool video by Y. Brandvain explaining how ggplot2 'thinks'.
+* [Here](https://ggplot2-book.org/introduction.html) is a book about `ggplot2` written by its creator, Hadley Wickham
+* See [Section 3.1 of the ggplot2 book](https://ggplot2-book.org/individual-geoms.html) for more on ggplot geoms.
+* [R Labs from your textbook.](https://whitlockschluter3e.zoology.ubc.ca/RLabs/index.html)
+* [R markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf)
+* [R markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
