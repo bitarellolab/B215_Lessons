@@ -9,7 +9,7 @@ runtime: shiny_prerendered
 date: "`r Sys.Date()`"
 tutorial:
   id: "b215.f23.lab3"
-  version: 1
+  version: 2
 ---
 
 ```{r setup, include=FALSE}
@@ -39,6 +39,9 @@ gradethis::gradethis_setup(
   fail.hint = TRUE
 )
 knitr::opts_chunk$set(error = TRUE, eval = T, echo = T)
+titanicdata<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/titanic.csv", stringsAsFactors = TRUE)
+bat.tongues<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv", stringsAsFactors = TRUE)
+guppyFatherSonData <-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/chap02e3bGuppyFatherSonAttractiveness.csv")
 ```
 
 ```{css echo=FALSE}
@@ -90,7 +93,7 @@ Tasks:
 
 4. Soft introduction to the `tidyverse` packages
 
-5. The Routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
+5. Routine data wrangling tasks with `dplyr` core functions: `filter`, `select`, `mutate`, `arrange`, `transmute`, `summarise`
 
 6. Pipe `%>%` these operations together.
 
@@ -238,7 +241,7 @@ grade_this_code()
 
 ## Summary statistics and missing data!
 
-Now look at age by selecting the column `age` in the `titanicdata` object and printing out that column (use `$` to index the column). Use `print`.
+Now look at age by selecting the column `age` in the `titanicdata` object and printing out that column (use `$` to index the column). Use `print` to print it.
 
 ```{r x5, exercise = TRUE, exercise.setup = "setupnum"}
                     
@@ -271,7 +274,7 @@ Calculate the mean of the `age` column below:
 
 
 ```{r x6-solution}
-mean(titanic$age, na.rm=TRUE)
+mean(titanicdata$age, na.rm=TRUE)
 
 ```
 
@@ -303,8 +306,11 @@ grade_this_code()
 
 This will return a logical vector of same length as `titanicdata$age` which tells you which rows have NA (TRUE) and which don't (FALSE).
 
+This turned out to be a very long vector! How can we simplify this output? 
 
-Try calculating the standard deviation and variance of the age data using the R functions `sd` and `var`. Don't forget to deal with the NAs.
+We could use the function `table` on the output of the command above. THis will give us two columns, one containing the number of results that are `TRUE` and anoter for `FALSE`.
+
+Try that here:
 
 ```{r x8, exercise = TRUE, exercise.setup = "setupnum"}
                     
@@ -312,11 +318,29 @@ Try calculating the standard deviation and variance of the age data using the R 
 
 
 ```{r x8-solution}
-sd(titanicdata$age, na.rm = T)
-var(titanicdata$age, na.rm = T)
+table(is.na(titanicdata$age))
+
 ```
 
+
+
 ```{r x8-check}
+grade_this_code()
+```
+
+Try calculating the standard deviation and variance of the age data using the R functions `sd` and `var`. Don't forget to deal with the NAs.
+
+```{r x9, exercise = TRUE, exercise.setup = "setupnum"}
+                    
+```
+
+
+```{r x9-solution}
+sd(titanicdata$age, na.rm = TRUE)
+var(titanicdata$age, na.rm = TRUE)
+```
+
+```{r x9-check}
 grade_this_code()
 ```
 
@@ -324,51 +348,58 @@ If you notice, variance is just SD squared. Or. SD is just variance square roote
 
 Other metrics of variation include the coefficient of variation. Surprisingly, there is no standard function in R to calculate the coefficient of variation. You can do this yourself, though, directly from the definition: $CV=100\times \frac{S_{X}}{\bar{X}}$
 
-```{r}
+```{r manual-cv, exercise=TRUE}
 100 * sd(titanicdata$age, na.rm = TRUE) / mean(titanicdata$age, na.rm = TRUE) 
 
 ```
-
-Make sure you understand the command above before continuing! Practice here:
-
-```{r sandbox2, exercise=T, eval=F}
-
-
-```
-
 
 Other metrics include range and interquartile range which are the difference between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as `range()` and `IQR()` in the exact same format as `mean()` and `sd()`.
 
 Try running them below.
 
-```{r sandbox3, exercise=T, eval=F}
-  # try running range
-  # try running IQR
+```{r x-iqr, exercise = TRUE, exercise.setup = "setupnum"}
+                    
 ```
+
+
+```{r x-iqr-solution}
+IQR(titanicdata$age, na.rm = TRUE)
+range(titanicdata$age, na.rm = TRUE)
+```
+
+```{r x-iqr-check}
+grade_this_code()
+```
+
 
 
 ### Actually removing missing data from your R object
 
 Lets say you are trying to do a statistical test which lacks na. rm capabilities? Well, it's pretty simple. You can use `na.omit`.
 
-```{r}
+```{r ex-naomit-setup, exercise = TRUE}
 titanicdata2<-na.omit(titanicdata)
 ```
 
-We can confirm that the missing rows have been deleted by comparing the number of rows in titanicdata2 with titanic data:
-```{r}
+We can confirm that the missing rows have been deleted by comparing the number of rows in titanicdata2 with titanic data by using `nrow` on both objects:
+
+
+```{r ex-naomit, exercise = TRUE, exercise.setup="ex-naomit-setup"}
+
+```
+
+
+```{r ex-naomit-solution}
 nrow(titanicdata)-nrow(titanicdata2)
 ```
 
-Try:
 
-```{r sandbox4, exercise=T, eval=F}
-
-
+```{r ex-naomit-check}
+grade_this_code()
 ```
 
 
-680 rows with missing data! But did this function actually remove all the rows with missing data or did it mess up? 
+But did this function actually remove all the rows with missing data or did it mess up? 
 
 Well, three functions are useful for us to decide. 
 
@@ -378,23 +409,7 @@ Well, three functions are useful for us to decide.
 
 `is.na`, which returns a logical statement stating whether any entry in the input is NA.
 
-Try testing whether there are any NAs in `titanicdata`  using `is.na` (which, because we know there are, should return TRUE)
-
-```{r x9, exercise = TRUE, exercise.setup = "setupnum"}
-                    
-```
-
-
-```{r x9-solution}
-is.na(titanicdata)
-
-```
-
-```{r x9-check}
-grade_this_code()
-```
-
-Now, since we know that there are NAs in the age column, try finding out which rows in titanicdata contain NAs for the age column. To do this, you will need to use the two functions mentioned above: `which` and `is.na`:
+Try testing whether there are any NAs in `titanicdata`  (entire data.frame, not any single column) using `is.na` (which, because we know there are, should return TRUE). Use the command `table` around this to simplify the output.
 
 ```{r x10, exercise = TRUE, exercise.setup = "setupnum"}
                     
@@ -402,7 +417,7 @@ Now, since we know that there are NAs in the age column, try finding out which r
 
 
 ```{r x10-solution}
-which(is.na(titanicdata$age))
+table(is.na(titanicdata))
 
 ```
 
@@ -410,22 +425,8 @@ which(is.na(titanicdata$age))
 grade_this_code()
 ```
 
-This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that `na.omit` worked:
+Now, since we know the number of NAs in the age column,we can check whether these numbers are the same. (they are!)
 
-
-```{r x11, exercise = TRUE, exercise.setup = "setupnum"}
-                    
-```
-
-
-```{r x11-solution}
-length(which(is.na(titanicdata$age)))
-
-```
-
-```{r x11-check}
-grade_this_code()
-```
 
 ## A soft intro to the Tidyverse packages
 
@@ -482,30 +483,11 @@ A major benefit of the tidy data structure is that when data structure is reliab
 ![](images/Screen Shot 2022-09-14 at 11.27.11 AM.png){width=70%}
 
 
-When handed data to analyze, it is good practice to ask yourself if it is tidy. If it isn't, you can modify it and save a new version after you've processed it. How?
-
-There are many ways but here is one. Let's say you wanted to change something about `flower_visits` and then save that as a new file.
-
-```{r, eval=F}
-
-head(flower_visits) #this you know
-#change column name from "flower" to "Flower.ID"
-colnames(flower_visits)[1]<-"Flower.ID"
-head(flower_visits)
-
-write.csv(x = flower_visits, file = "my_flower_visits.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
-```
-
-Inside this quiz you can't really do this successfully, but within R, later, you can. When you do this, look at the `files` pane on the right and you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
-
-**NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!**
-
-
 ### Structure of a good data file
 
 Data files appear in many formats, and different formats are sometimes preferable for different tasks. But there is one way to structure data—called “long” format—that is extremely useful for most things that you will want to do in statistics and R.
 
-Long format is actually very simple. Every row in the data set is a unique individual. Every column is a variable being measured on those individuals.
+Long format is actually very simple. Every row in the data set is a unique individual (see "tidy data", above). Every column is a variable being measured on those individuals.
 
 For example, here are some data about the tongue and palate lengths of several species of bats. There are three variables in that data set, the species name, tongue length, and palate length. Here each “individual” is a species. Here is that data in long format—each row is an individual. There are three columns, one for each variable:
 
@@ -513,15 +495,18 @@ For example, here are some data about the tongue and palate lengths of several s
 Use this link to read in a csv file into `bat_tongue` using the `read.csv` function. Next, call `str` and `head` on the object to have a first look at it.
 
 ```{r bat1, echo=T, exercise=TRUE}
-
-
+link_to_file<-"https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv"
+        #use read.csv
+        #use str
+        #use head
 
 
 ```
 
 
 ```{r bat1-solution}
-bat_tongue<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv")
+link_to_file<-"https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv"
+bat_tongue<-read.csv(link_to_file)
 str(bat_tongue)
 head(bat_tongue)
 ```
@@ -529,6 +514,24 @@ head(bat_tongue)
 ```{r bat1-check}
 grade_code()
 ```
+
+
+When handed data to analyze, it is good practice to ask yourself if it is tidy. If it isn't, you can modify it and save a new version after you've processed it. How?
+
+There are many ways but here is one. Let's say you wanted to change something about `bat.tongues` and then save that as a new file.
+
+```{r, eval=F}
+head(bat.tongues) #this you know
+# change colum name "species" to "Species"
+colnames(bat.tongues)[1]<-"Species" 
+head(bat.tongues)
+
+write.csv(x = bat.tongues, file = "my_bat_tongues.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
+```
+
+**Warning**: you can't actually write files while using this interactive activity, but within R, later, you can. When you do this, look at the `files` pane on the right and you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
+
+**NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!**
 
 
 ### Creating a data file
@@ -556,19 +559,31 @@ In the resulting file, the first line will be a header that lists the names of e
 
 #### A note about tibbles
 
-“Tibbles” are a new modern data frame. It keeps many important features of the original data frame. It removes many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
+“Tibbles” are a new modern data frame. THey keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
 
 
-If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble.
+If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble. Then, have a quick check to see what the file looks like.
 
-```{r}
+```{r flower, exercise=TRUE}
 library(readr)
 data_link <- "https://raw.githubusercontent.com/ybrandvain/datasets/master/FlowerColourVisits.csv"
-flower_visits  <- readr::read_csv(file = data_link) # get the data into R and assign it to flower visits
+        # get the data into R and assign it to flower_visits. Use read_csv
+        # use dim 
+        # use str
+        # use head
 ```
 
-Notice that when data is read in as `tibble`, it gives you some summary info. Normally you'd have to run additional commands to see those.
-
+```{r flower-solution}
+library(readr)
+data_link <- "https://raw.githubusercontent.com/ybrandvain/datasets/master/FlowerColourVisits.csv"
+flower_visits<-read_csv(data_link) # get the data into R and assign it to flower_visits. Use read_csv
+dim(flower_visits)        # use dim 
+str(flower_visits)        # use str
+head(flower_visits)        # use head
+```
+```{r flower-check}
+grade_this_code()
+```
 
 Compared to Data Frames:
 
@@ -603,38 +618,54 @@ library(dplyr)
 data(datasets::iris)
 ```
 
-Check the structure of the object:
-```{r}
+Check the structure of the object with `str`, `head`, `summary`:
+
+```{r iris-1, exercise=TRUE, exercise.setup="iris-setup"}
+
+
+
+```
+
+```{r iris-1-solution, exercise=TRUE}
 str(iris)
 head(iris)
-summary(iris) # 50 individuals of each of 3 species
+summary(iris)
+
 ```
+
+```{r iris-1-check}
+
+grade_this_code()
+```
+
 
 Here is a new function to have a glimpse of your data, from the dplyr package:
 
-```{r}
+```{r glimpse, exercise=TRUE}
 library(dplyr)
 
 glimpse(iris)
 ```
 
-Compare this with `strc()`:
+Check what are the levels for `Species` by selecting the column (use `$`) and the function `levels`:
 
-```{r}
-str(iris)
+```{r levels, exercise=TRUE, exercise.setup="iris-setup"}
+ 
+
 ```
 
-
-Check what are the levels for `Species`:
-
-```{r}
-#the names here refer to the second part of the species name, after the genus, Iris. 
-levels(iris$Species) #Iris setosa, Iris versicolor, Iris virginica
+```{r levels-solution}
+ levels(iris$Species)
 ```
+
+```{r lvels-check}
+grade_this_code()
+```
+
 
 We can use `filter()` to select only the rows concerning "virginica".
 
-```{r}
+```{r filter, exercise=TRUE, exercise.setup="iris-setup"}
 library(dplyr) # you need to do this because there are other packages with functions called "filter" and R can get confused.
 filter(iris, Species == "virginica")
 #another way to avoid confusions for R is to call the package before the function name, like this:
@@ -643,9 +674,9 @@ dplyr::filter(iris, Species == "virginica")
 
 What if you only wanted to see rows where the Species is "virginica" AND the Petal.Width is lower than 2?
 
-You can combine filters:
+You can combine filters with `&`:
 
-```{r}
+```{r filter2, exercise=TRUE, exercise.setup="iris-setup"}
 filter(iris, Species == "virginica", Petal.Width<2)
 #or
 filter(iris, Species == "virginica" & Petal.Width<2) #this is the equivalent to the line above. "&" signifies AND in the world of logical operators, whereas | signifies OR.
@@ -666,28 +697,39 @@ We saw this in Lab1, so if you need to recap that, it might be a good idea...
 If you want to save the output of `filter()`, you'll need to use the assignment operator, `<-` (or `=`).
 
 Rerun the previous command and save the output to an object called `virg_filt`:
-```{r}
+
+```{r iris-2, exercise=TRUE, exercise.setup="iris-setup"}
+
+
+```
+
+
+```{r iris-2-solution}
 virg_filt<-filter(iris, Species == "virginica", Petal.Width<2)
 ```
 
-Good job! You can now see the results by running the name virg_filt by itself. Or you can pass `virg_filt` to a function that takes data frames as input.
+
+```{r iris-2-check}
+grade_this_code()
+```
+
+Good job! You can now see the results by running the name `virg_filt` by itself. Or you can pass `virg_filt` to a function that takes data frames as input.
 
 Did you notice that this code used the double equal operator, `==`? `==` is one of R's logical comparison operators. Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
 
 Suppose you wanted to filter the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
 
-```{r}
+```{r filter3,  exercise=TRUE, exercise.setup="iris-setup"}
 filter(iris, Species == "virginica" | Species == "setosa")
 ```
 
 To check that this worked you could save the output into a variable and then `table()` the `Species` column:
 
-```{r}
+```{r filter4,  exercise=TRUE, exercise.setup="iris-setup"}
 virg_set_filt<-filter(iris, Species == "virginica" | Species == "setosa")
 table(virg_set_filt$Species)
 ```
 
-The `table()` command counts how many occurences of each level of a factor exist in your data. Notice that although there are zero occurrences of "versicolor" in your object, the level exists because it is inherited from the parent object.
 
 **Common mistakes:**
 
@@ -696,10 +738,9 @@ In R, the order of operations doesn't work like English. You can't write `filter
 Here are two more tips to help you use logical tests and Boolean operators in R:
 
 
-
 1. A useful short-hand for this problem is `x %in% y`. This will select every row where `x` is one of the values in `y`. We could use it to rewrite the code in the question above:
 
-```{r}
+```{r filter8,  exercise=TRUE, exercise.setup="iris-setup"}
 set_or_virg <- filter(iris, Species %in% c("setosa", "virginica"))
 ```
 
@@ -709,7 +750,7 @@ set_or_virg <- filter(iris, Species %in% c("setosa", "virginica"))
 
 `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values. If you want to preserve missing values, ask for them explicitly:
 
-```{r}
+```{r filter5, exercise=TRUE}
 df <- data.frame(x = c(1, NA, 3))
 filter(df, x > 1)
 filter(df, is.na(x) | x > 1) #is.na(x) OR x >1
@@ -717,12 +758,12 @@ filter(df, is.na(x) | x > 1) #is.na(x) OR x >1
 
 Another useful dplyr filtering helper is `between()`. What does it do?
 
-```{r}
+```{r filter6, exercise=TRUE}
 between(iris$Sepal.Length,5,6)
 ```
 If you add the command `which`, you get the index of the positions in the vector that fullfill the requirement of being between 5 and 6.
 
-```{r}
+```{r which1, exercise= TRUE}
 which(between(iris$Sepal.Length,5,6))
 ```
 
@@ -732,7 +773,7 @@ which(between(iris$Sepal.Length,5,6))
 
 You can select a subset of variables by name with the `select()` function in `dplyr`. Run the code below to see the narrow data set that `select()` creates.
 
-```{r selectfun, exercise=TRUE}
+```{r selectfun, exercise=TRUE, exercise.setup="iris-setup"}
 iris_sepal <- select(iris,
   Sepal.Length,
   Sepal.Width,
@@ -750,7 +791,7 @@ The code below creates two new variables with dplyr's `mutate()` function. `muta
 
 The code below creates two new variables with dplyr's `mutate()` function. `mutate()` returns a new data frame that contains the new variables appended to a copy of the original data set. Take a moment to imagine what this will look like, and then click "Run Code" to find out.
 
-```{r mutatesetup, echo=F}
+```{r mutatesetup, exercise=TRUE, exercise.setup="iris-setup"}
 iris_sepal <- select(iris,
   Sepal.Length,
   Sepal.Width,
@@ -765,8 +806,8 @@ mutate(iris_sepal, leng_wid_ratio = Sepal.Length/Sepal.Width)
 
 `summarise()` collapses a data frame to a single row of summaries. You get to choose how many summaries appear in the row and how they are computed:
 
-```{r}
-titanicdata<-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/titanic.csv", stringsAsFactors = TRUE)
+```{r tit11, exercise=TRUE, exercise.setup="setupnum"}
+
 head(titanicdata,2)
 require(dplyr) #again, this makes R less confused about where the function "summarise" is coming from
 summarise(titanicdata, Nr_Female = sum(sex=="female" & survive == 'yes', na.rm = TRUE),
@@ -791,7 +832,7 @@ The main difference between `summarise()` and `mutate()` is the type of function
 Example: if we group titanic passengers by sex, we can then look at the mean age for each group:
 
 
-```{r groupby, exercise = TRUE}
+```{r groupby, exercise = TRUE, exercise.setup="setupnum"}
 summarise(group_by(titanicdata, sex),Mean_age=mean(age, na.rm=TRUE))
 
 ```
@@ -802,7 +843,7 @@ Arranging data in R can be quite cumbersome using base R functions like `ordert`
 
 One way to do this:
 
-```{r x13, exercise = TRUE}
+```{r x13, exercise = TRUE,  exercise.setup="iris-setup"}
 order(iris$Petal.Length) #this gives you the index of the Petal.Length vector in the order they should be if the vector was ordered.
 
 iris$Petal.Length[order(iris$Petal.Length)] #this orders the column Petal.Length only
@@ -813,7 +854,7 @@ iris[order(iris$Petal.Length),] #order the entire data.frame based on the column
 
 Now the `arrange` way:
 
-```{r x14, exercise=TRUE}
+```{r x14, exercise=TRUE, exercise.setup="iris-setup"}
 
 arrange(iris, Petal.Length) #that's all!
 
@@ -862,13 +903,13 @@ dim(sorted_titanic)
 Use a similar approach to the one above to produce an object called `sorted_titanic2` containing `PropM` (proportion of males) and `PropF`(proportion of females).
 
 
-```{r x12, exercise = TRUE, exercise.setup="setupnum"}
+```{r x15, exercise = TRUE, exercise.setup="setupnum"}
 #add your code here
 
 
 ```
 
-```{r x12-solution}
+```{r x15-solution}
 #add your code here
 sorted_titanic2 <- titanicdata     %>% # initial data
   na.omit()  %>% #omit rows containing NAs
@@ -882,7 +923,7 @@ sorted_titanic2 <- titanicdata     %>% # initial data
 ```
 
 
-```{r x12-check}
+```{r x15-check}
 grade_this_code()
 ```
 
@@ -1037,7 +1078,7 @@ A bar graph plots the frequency distribution of a categorical variable.
 
 In `ggplot()`, the syntax for a bar graph is very similar to that for a histogram. For example, here is a bar graph for the categorical variable sex in the titanic data set. Aside from specifying a different variable for `x`, we use a different geom function here, geom_bar.
 
-```{r, eval=F}
+```{r tita1,  exercise=TRUE, exercise.setup="setupnum"}
 ggplot(titanicdata, aes(x=sex)) + geom_bar(stat="count")
 ```
 
@@ -1047,8 +1088,8 @@ ggplot(titanicdata, aes(x=sex)) + geom_bar(stat="count")
 
 A boxplot is a convenient way of showing the frequency distribution of a numerical variable in multiple groups (i.e., a categorical variable). Here’s the code to draw a boxplot for age in the titanic data set, separately for each sex:
 
-```{r, eval=F}
-ggplot(titanicData, aes(x=sex, y=age)) + geom_boxplot()
+```{r tita2,  exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_boxplot()
 ## Warning: Removed 680 rows containing non-finite values (stat_boxplot).
 ```
 
@@ -1061,20 +1102,20 @@ The vertical lines are called whiskers, and they cover most of the range of the 
 ### Violin plots
 
 They share many similarities with a boxplot, but unlike boxplots they show a mirrored image of the smoothed distribution of the numerical variable:
-```{r, eval=F}
-ggplot(titanicData, aes(x=sex, y=age)) + geom_violin()
+```{r tita3,  exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin()
 ```
 
 Violin plot with points (strip chart) overlaid:
 
-```{r, eval=F}
-ggplot(titanicData, aes(x=sex, y=age)) + geom_violin() + geom_point()
+```{r tita4, exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin() + geom_point()
 ```
 
 This is not great for seeing the points because they are on top of each other, so we could add some jitter:
 
-```{r,eval=F}
-ggplot(titanicData, aes(x=sex, y=age)) + geom_violin() + geom_jitter(width=0.2) #feel free to play with this width
+```{r tita5,exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin() + geom_jitter(width=0.2) #feel free to play with this width
 ```
 ### Scatterplots
 The last graphical style that we will cover here is the scatter plot, which shows the relationship between two numerical variables.
@@ -1116,7 +1157,7 @@ It can also be nice to remove the default gray background, to make what some fee
 ```
 to the end of one of your lines of code making a graph, to see whether you prefer the result to the default design.
 
-```{r, eval=F}
+```{r guppy1,exercise=TRUE, exercise.setup="setupnum"}
 ggplot(guppyFatherSonData,   
     aes(x = fatherOrnamentation, y = sonAttractiveness)) +
     geom_point() +
@@ -1127,6 +1168,27 @@ ggplot(guppyFatherSonData,
 
 
 ## Test your knowledge!
+
+```{r titanicquiz, echo=F}
+quiz(caption="Titanic Quiz!",
+     question("How many rows in the titanicdata object are free of missing values?",
+                    answer(1314),
+                    answer(633, correct = TRUE),
+                    answer(681),
+                    allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+  question("Which dplyr 'verb' was used to make the tibble above?",
+           answer("dplyr::mutate"),
+           answer("dplyr::arrange"),
+           answer("dplyr::summarise", correct = TRUE),
+           answer("dplyr::filter"),
+           answer("dplyr::transform")
+)
+)
+```
+
 
 1. Earlier in this tutorial you ran the following command to group titanic passengers by sex and then calculate the mean age for each group:
 
