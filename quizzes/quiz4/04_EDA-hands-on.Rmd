@@ -1,0 +1,356 @@
+---
+title: "Exploratory Data Analysis - hands-on!"
+author: "YOUR NAME"
+date: "2023-09-24"
+output: pdf_document
+#This code is from (jng, 2021) and is AMAZING! It automatically warps the text to fit the page
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r setup, echo=F}
+#knitr::opts_chunk(echo=T, eval=T)
+
+```
+
+## Tasks (no particular order)
+* Complete DataCamp assignments: more `ggplot`, `dplyr`, and EDA
+* Apply what you learned with a guided case study. Input your code directly into `.Rmd` file and submit the PDF on Moodle.
+* Walk through some difficulties folks are having with LA1 and time for questions 
+
+## Outline for this document
+
+* Quick recap
+* EDA Part 1: mass and metabolic rate in Artiodactyla
+* EDA Part 2: 
+
+
+## What you know already
+
+In Labs 1-3 you learned:
+
+* About three data types of variables : factors, strings or characters, numeric.
+* How to use R as a calculator.
+* About four data structures in R: vectors, matrices, data.frames, and lists. (the only missing is: arrays) 
+* How to create vectors, matrices, and data.frames and index their elements.
+* How to create a basic  R script with code and comments.
+* How to read into data saved in a a tabular format (e.g. csv)
+* How to have a general look at the imported data and understand its structure
+* How to extract parts of the data for further analysis
+ about another type of script to write R code and text: R markdown
+* How to handling missing data in some of the functions we've learned so far. 
+* The ideal ways to save data files for analysis in R.
+* A soft introduction to the Tidyverse suit of packages, focusing on the `dplyr` and `ggplot` packages.
+
+## Tasks
+
+* Complete the Data Camp Activities set as due 09/21.
+* Replace `YOUR NAME` in the header of this file with your actual name
+* Work on the hands-on in class project
+* Work on or ask questions about LA1
+* Upload to Moodle this file knitted into a PDF + the final modified .csv you will create.
+
+
+## Data Camp activities
+
+* Data manipulation with `dplyr`: Transforming Data with dplyr - covers `select`, `filter`, `mutate`, `arrange`.
+* Aggregating data - covers `group_by`, `summarize`, etc
+
+## Applying what you've learned
+
+Today we will be using these eight functions:
+```{r, eval=F}
+library()
+read_csv()
+select()
+filter()
+mutate()
+group_by()
+summarise()
+n()
+ggplot()
+```
+
+
+## Exercise 1: Mass vs Metabolism
+
+#### Familiarizing ourselves with the data {-}
+The relationship between the body size of an organism and its metabolic rate is one of the most well studied and still most controversial areas of organismal physiology. We want to graph this relationship in the *Artiodactyla* using a subset of data from a large compilation of body size data (Savage et al. 2004). The data are in the `mass_metabolism.csv` file in the `input_files/` directory in your workspace.
+
+Make the following manipulations and plots with appropriate axis labels, or answer the questions.
+
+* this is an R markdown file, so for each exercise, write your code inside a code chunk. You can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface
+
+* use `ggplot2` and `dplyr`
+
+* after you make a plot, save it with a descriptive name as a `.png` using `ggsave`
+
+* comment your code thoroughly
+
+Ex.1: Make sure `ggplot2` and `dplyr` are installed. The easiest way is to just use the `tidyverse` package, which installs those two and more for you:
+
+
+```{r ex1}
+#install the tidyverse package here
+#after you do this, you can comment the line so it doesn't reinstall this every time you knit your document.
+
+#then, load the tidyverse package here
+
+```
+
+Ex.2. Read in the dataset using the `read_csv` function. Assign the data into an object called `mass_metabolism`. Have a look at the first 6 rows of the data. What kinf of data structure is this? How many columns are there?
+
+```{r ex2}
+# type your code here
+mass_metabolism<-read_csv("mass_metabolism.csv")
+head(mass_metabolism)
+```
+
+Answer: 
+
+Have a first look at the data:
+
+Ex.3. What are the dimensions (# rows, # columns)
+```{r ex3}
+# type your code here
+dim(mass_metabolism)
+```
+
+Answer: 
+
+Ex.4. Check whether `mass_metabolism` is a tibble. Hint: you can use the `is.tibble` function.
+
+```{r ex4}
+# type your code here
+is.tibble(mass_metabolism)
+```
+
+Answer: 
+
+Ex.5. What are the classes of each variable in `mass_metabolism`? 
+
+```{r ex5}
+# type your code here
+str(mass_metabolism)
+```
+
+Answer: 
+
+
+Ex.6. Convert the `family` column into the `factor` data type and assign that new object to `mass_metabolism2`. Use the function `mutate` to accomplish this change. What are the levels of the variable `family?`. Hint, you can figure this out with the command `levels(your_object_name)`. Save the levels into an object called `mass_metab_levels`
+
+```{r ex6}
+# type your code here
+mass_metabolism2<-mass_metabolism %>% mutate(family=factor(family))
+mass_metab_levels<-levels(mass_metabolism2$family)
+```
+
+Answer: 
+
+"Antilocapridae" "Bovidae"        "Camelidae"      "Canidae"       
+"Cervidae"       "Suidae"         "Tayassuidae"    "Tragulidae"
+
+
+
+Ex.7. Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the two and why?
+
+```{r ex7}
+# type your code here
+summary(mass_metabolism)
+summary(mass_metabolism2)
+```
+
+Answer: 
+
+Ex.8. Check whether the dataset has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` is there are missing values and `FALSE` if not.
+
+```{r ex8}
+# type your code here
+table(is.na(mass_metabolism2))
+#the command above shows there are no missing data
+mass_metab_na<-FALSE
+```
+
+Answer:
+
+
+Ex.9. Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
+
+
+```{r ex9}
+range_mass<-mass_metabolism %>% summarise(range=diff(range(body_mass)))
+range_mass_bovidae<-mass_metabolism %>% filter(family=="Bovidae") %>% summarise(range=diff(range(body_mass)))
+```
+
+
+Ex.10. Make a plot for body mass for members of the `Bovidae` family only. What does this distribution look like? Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+
+
+```{r ex10}
+mass_metabolism2 %>% filter(family=="Bovidae") %>% ggplot(aes(x=body_mass)) + geom_histogram()
+
+```
+
+Ex.11. Explore the variable `metabolic_rate`. What is the range of the values? Save your answer into a variable called `range_metab`. Then, create a separate object called `range_metab_bovidae` containing the metabolic rate range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
+
+
+```{r ex11}
+range_metab<-mass_metabolism %>% summarise(range=diff(range(metabolic_rate)))
+range_metab_bovidae<-mass_metabolism %>% filter(family=="Bovidae") %>% summarise(range=diff(range(metabolic_rate)))
+```
+
+Answer:
+
+Ex.12. Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+
+
+```{r ex12}
+
+mass_metabolism2 %>% filter(family=="Bovidae") %>% ggplot(aes(x=metabolic_rate)) + geom_histogram()
+```
+
+Answer:
+
+Ex.13. Using the entire dataset, make a plot of metabolic rate vs. body mass: which variable should be the response variable and which should be the explanatory variable?
+
+
+```{r ex13}
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate)) + geom_point() + ylab("Metabolic rate") + xlab("Body mass")
+
+```
+
+Answer:
+
+
+Ex.14. Make a plot of body mass vs. metabolic rate, with log10 scaled axes (this stretches the axis, but keeps the numbers on the original scale), and the point size set to 3. Hint: use `scale_y_continuous(trans='log10')` and `scale_x_continuous(trans='log10')`. You may need to read a little about what these do.
+
+
+```{r ex14}
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate)) + geom_point(size=3) + ylab("Metabolic rate") + xlab("Body mass") + scale_y_continuous(trans='log10') + scale_x_continuous(trans='log10')
+
+
+```
+
+
+Ex.15. Make the same plot as in Ex. 14, but with the different families indicated using color.
+
+
+```{r ex15}
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate, color=family)) + geom_point(size=3) + ylab("Metabolic rate") + xlab("Body mass") + scale_y_continuous(trans='log10') + scale_x_continuous(trans='log10')
+
+```
+
+Ex.16. Make the same plot as in Ex.14, but with the different families each in their own subplot. Hint: to achieve this, use `facet_wrap`.
+
+```{r ex16}
+#type your code here
+```
+
+Ex.17. Using `group_by`, `summarise`, and `group_by`, calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero?
+
+
+```{r ex17}
+#type your code here
+```
+
+---
+## Exercise 2: Carbon storage in shrubs
+
+Dr. Granger is interested in studying the factors controlling the size and carbon storage of shrubs. She has conducted an experiment looking at the effect of three different treatments on shrub volume at four different locations. The data are in the file `shrub-volume-data.csv` in your workspace files.
+
+
+Ex.18. Using the previous activity (Ex. 2-6) as guide, read in the data and assing it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make
+sense and save the new object to `shrubs2`. Then, run summary on both `shrubs` and `shrubs2`
+
+```{r ex18}
+
+```
+
+Answer: 
+
+Ex.19. Before moving further, look at the output from the previous question. Do you see NA values? If so, filter them out and save the clean object into `shrubs3`.
+
+Next, explore the variables `length`, `width`, `height` one at a time. Make a histogram for each. Note: use 10 bins in each histogram.
+
+```{r ex19}
+#create shrubs3
+shrubs3<-shrubs2 %>% na.omit()
+#length
+shrubs3 %>% ggplot(aes(x=length)) + geom_histogram(bins=10)
+
+#width
+shrubs3 %>% ggplot(aes(x=width)) + geom_histogram(bins=10)
+
+# height
+shrubs3 %>% ggplot(aes(x=height)) + geom_histogram(bins=10)
+```
+
+Ex.20. Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
+
+```{r ex20}
+#type your code here
+
+```
+
+Ex.21. Add a new column named `area` containing the area of the shrub, which is the `length` times the `width` (using `mutate`). Then, filter the data to include only plants with heights greater than 5 (using `filter`). Finally, sort the data by length (using `arrange`). Save the result into object `shrubs4`.
+
+
+```{r ex21}
+#type your code here
+
+```
+
+Ex.22. Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2 (using `,` or `&` to include two conditions). Save the result into object `shrubs5`.
+
+```{r ex 22}
+#type your code here
+
+
+```
+
+Ex23. Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3 (using `|` for `or`). Save the result into object `shrubs6`.
+
+
+```{r ex23}
+#type your code here
+shrubs6<-shrubs3 %>% filter(experiment ==1 | experiment == 2)
+
+shrubs6
+
+```
+
+Ex.24.Filter the data in `shrubs` to remove rows with null values in the height column (using `!is.na`). 
+```{r ex24}
+#type your code here
+shrubs %>% filter(!is.na(height))
+```
+
+
+Ex.25. Create a new data frame called `shrub_volumes` that includes all of the original data (before any filtering), plus the `area` column you created above, and a new column containing the volumes (length * width * height), and display it. Assign it to an object `shrub_volumes`.
+
+
+```{r ex25}
+#type your code here
+
+
+```
+
+Ex.26. Save your new data frame as a cvs file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data.
+
+
+
+---
+
+The end!
+
+* Knit your document into a PDF using the button above this text editor and upload the PDF into Moodle.
+* Also upload your `shrub_volumes.csv` file.
+
+## References
+
+Savage, Van M., et al. "The predominance of quarter‐power scaling in biology." Functional Ecology 18.2 (2004): 257-282.
+
+Data Carpentry for Biologists. https://datacarpentry.org/semester-biology/exercises/Dplyr-shrub-volume-data-basics-R/
+
+Data Carpentry for Biologists. https://datacarpentry.org/semester-biology/exercises/Graphing-mass-vs-metabolism-R/
