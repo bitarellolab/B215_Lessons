@@ -1,0 +1,328 @@
+---
+title: "Expected answers"
+date: "`r Sys.Date()`"
+output: pdf_document
+#This code is from (jng, 2021) and is AMAZING! It automatically warps the text to fit the page
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T)
+suppressMessages(library(tidyverse))
+```
+
+## Part 1: body mass and metabolic rate
+
+
+**Ex.1)**
+
+```{r ex1}
+#install the tidyverse package here
+#after you do this, you can comment the line so it doesn't reinstall this every time you knit your document.
+#install.packages("tidyverse")
+#then, load the tidyverse package here
+library(tidyverse)
+```
+
+**Ex.2)**
+
+Expected output
+
+```{r ex2}
+# type your code here
+mass_metabolism<-read_csv("mass_metabolism.csv")
+head(mass_metabolism)
+```
+
+Answer: It's a tibble. There are three columns.
+
+**Ex.3)**
+
+```{r ex3}
+# type your code here
+dim(mass_metabolism)
+```
+
+Answer: 25 rows, 3 columns
+
+**Ex.4)**
+
+```{r ex4}
+# type your code here
+is.tibble(mass_metabolism)
+```
+
+
+Answer: we had seen with `head` that this is a tibble. The `is.tibble` command confirms this by returning `TRUE`.
+
+**Ex.5)**
+
+```{r ex5}
+# type your code here
+str(mass_metabolism)
+```
+
+Answer:
+
+* body_mass: numeric
+* metabolic_rate: numeric
+* family: character
+
+
+**Ex.6)**
+
+```{r ex6}
+# type your code here
+mass_metabolism2<-mass_metabolism %>% mutate(family=factor(family))
+levels(mass_metabolism2$family)
+mass_metab_levels<-levels(mass_metabolism2$family)
+```
+
+Answer: The levels for `mass_metabolism2$family` are:
+
+"Antilocapridae" "Bovidae"        "Camelidae"      "Canidae"       
+"Cervidae"       "Suidae"         "Tayassuidae"    "Tragulidae"    
+
+
+
+**Ex.7)**
+
+```{r ex7}
+# type your code here
+summary(mass_metabolism)
+summary(mass_metabolism2)
+```
+
+Answer: `summary` is meaningless for a character column. Once we converted into factor, `summary` gives us counts within each category. For example, there are 11 rows where `family=='Bovidae'`.
+
+**Ex.8)**
+
+```{r ex8}
+# type your code here
+table(is.na(mass_metabolism2))
+#the command above shows there are no missing data
+mass_metab_na<-FALSE
+```
+
+
+Answer: there are no NAs.
+
+
+**Ex.9)**
+
+
+```{r ex9}
+range_mass<-diff(range(mass_metabolism2$body_mass))
+range_mass_bovidae<-mass_metabolism %>% filter(family=="Bovidae") %>% summarise(range=diff(range(body_mass)))
+```
+
+Answer: the range in mass overall is pretty huge (405387 kg!). But the range within Bovidae alone is also very impressive: 342800, so yes, I would say yes.
+
+**Ex.10)**
+
+
+```{r ex10}
+mass_metabolism2 %>% filter(family=="Bovidae") %>% ggplot(aes(x=body_mass)) + geom_histogram()
+```
+
+Answer: skewed right.
+
+
+**Ex.11)**
+
+
+```{r ex11}
+range_metab<-mass_metabolism %>% summarise(range=diff(range(metabolic_rate)))
+range_metab_bovidae<-mass_metabolism %>% filter(family=="Bovidae") %>% summarise(range=diff(range(metabolic_rate)))
+range_metab
+range_metab_bovidae
+```
+
+
+Answer: Yes, the range in Bovidae alone (297) is almost as high as the overall range (302).
+
+
+**Ex.12)**
+
+
+
+
+
+```{r ex12}
+
+mass_metabolism2 %>% filter(family=="Bovidae") %>% ggplot(aes(x=metabolic_rate)) + geom_histogram()
+```
+
+
+
+Answer: skewed right
+
+**Ex.13)**
+
+
+
+```{r ex13}
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate)) + geom_point() + ylab("Metabolic rate") + xlab("Body mass")
+
+```
+
+
+Answer: body mass (explanatory), metabolic rate (response).
+
+**Ex.14)**
+
+
+
+```{r ex14}
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate)) + geom_point(size=3) + ylab("Metabolic rate") + xlab("Body mass") + scale_y_continuous(trans='log10') + scale_x_continuous(trans='log10')
+
+
+```
+
+
+
+
+**Ex.15)**
+
+
+
+```{r ex15}
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate, color=family)) + geom_point(size=3) + ylab("Metabolic rate") + xlab("Body mass") + scale_y_continuous(trans='log10') + scale_x_continuous(trans='log10')
+```
+
+
+
+**Ex.16)**
+
+
+
+```{r ex16}
+#type your code here
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate)) + geom_point(size=3) + ylab("Metabolic rate") + xlab("Body mass") + scale_y_continuous(trans='log10') + scale_x_continuous(trans='log10') + facet_wrap(~family, ncol=2)
+
+ggplot(mass_metabolism2, aes(x=body_mass, y=metabolic_rate)) + geom_point(size=3) + ylab("Metabolic rate") + xlab("Body mass") + scale_y_continuous(trans='log10') + scale_x_continuous(trans='log10') + facet_wrap(~family, ncol=2)
+```
+
+
+
+
+
+**Ex.17)**
+
+
+```{r ex17}
+body_mass_summary<-mass_metabolism2 %>% group_by(family) %>% summarise(
+  N=n(),
+  Range_body_mass=diff(range(body_mass))
+)
+body_mass_summary
+```
+
+Answer: because there is only one value so range cannot really be calculated.
+
+-----------
+
+## Part 2: Carbon storage in shrubs
+
+
+**Ex.18)**
+
+
+
+```{r ex18}
+# type your code here
+shrubs<-read_csv("shrub-volume-data.csv")
+head(shrubs)
+dim(shrubs)
+str(shrubs)
+shrubs2<-shrubs %>% mutate(site=factor(site), experiment=factor(experiment))
+summary(shrubs)
+summary(shrubs2)
+```
+Answer: site and experiment were coded as `numeric` which does make sense since they are categorical variables. We change them to factors instead.
+
+
+
+**Ex.19)**
+
+
+```{r ex19}
+#create shrubs3
+shrubs3<-shrubs2 %>% na.omit()
+#length
+shrubs3 %>% ggplot(aes(x=length)) + geom_histogram(bins=10)
+#width
+shrubs3 %>% ggplot(aes(x=width)) + geom_histogram(bins=10)
+# height
+shrubs3 %>% ggplot(aes(x=height)) + geom_histogram(bins=10)
+```
+
+
+
+**Ex.20)**
+
+
+
+```{r ex20}
+shrubs3_summ<-shrubs3 %>% group_by(experiment) %>% summarise(N=n(), Range_length=diff(range(length)), Range_width=diff(range(width), Range_height=diff(range(height))))
+shrubs3_summ
+```
+
+**Ex.21)**
+
+
+```{r ex21}
+#type your code here
+shrubs4<-shrubs3 %>% mutate(area=width * length) %>% filter(height > 5) %>% arrange(length)
+shrubs4
+```
+
+
+
+**Ex.22)**
+
+
+
+```{r ex 22}
+#type your code here
+shrubs5<-shrubs3 %>% filter(height>4 & width>2)
+shrubs5
+
+```
+
+
+**Ex.23)**
+
+
+
+
+
+```{r ex23}
+#type your code here
+
+shrubs6<-shrubs3 %>% filter(experiment ==1 | experiment == 2)
+
+shrubs6
+```
+
+
+**Ex.24)**
+
+
+
+```{r ex24}
+shrubs %>% filter(!is.na(height))
+```
+
+**Ex.25)**
+
+
+```{r ex25}
+shrub_volumes<-shrubs %>% mutate(area=width*length, volume=length*width*height)
+shrub_volumes
+```
+
+

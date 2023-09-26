@@ -83,7 +83,7 @@ We will also be working directly within this R Markdown document to help you get
 
 ----------------------
 
-## Part 1: Mass vs Metabolism
+## Exercise 1: Mass vs Metabolism
 
 
 The relationship between the body size of an organism and its metabolic rate is one of the most well studied and still most controversial areas of organismal physiology. 
@@ -263,7 +263,7 @@ Answer:
 
 ----------------------
 
-## Part 2: Carbon storage in shrubs
+## Exercise 2: Carbon storage in shrubs
 
 Dr. Granger is interested in studying the factors controlling the size and carbon storage of shrubs. She has conducted an experiment looking at the effect of three different treatments on shrub volume at four different locations. The data are in the file `shrub-volume-data.csv` in your workspace files.
 
@@ -361,3 +361,6 @@ Savage, Van M., et al. "The predominance of quarter‐power scaling in biology."
 Data Carpentry for Biologists. https://datacarpentry.org/semester-biology/exercises/Dplyr-shrub-volume-data-basics-R/
 
 Data Carpentry for Biologists. https://datacarpentry.org/semester-biology/exercises/Graphing-mass-vs-metabolism-R/
+
+
+Stack Overflow. [In R markdown in RStudio, how can I prevent the source code from running off a pdf page?](https://stackoverflow.com/questions/26210656/in-r-markdown-in-rstudio-how-can-i-prevent-the-source-code-from-running-off-a-p/69065325#69065325)
