@@ -325,4 +325,11 @@ shrub_volumes<-shrubs %>% mutate(area=width*length, volume=length*width*height)
 shrub_volumes
 ```
 
+**Ex.26)**
+
+
+```{r ex26}
+write_csv(shrub_volumes, file="shrub-volumes.csv")
+```
+
 
