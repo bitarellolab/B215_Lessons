@@ -1,5 +1,5 @@
 ---
-title: "Exploratory Data Analysis - hands-on!"
+title: "Exploratory Data Analysis - Hands-on!"
 author: "YOUR NAME"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -363,4 +363,4 @@ Data Carpentry for Biologists. https://datacarpentry.org/semester-biology/exerci
 Data Carpentry for Biologists. https://datacarpentry.org/semester-biology/exercises/Graphing-mass-vs-metabolism-R/
 
 
-Stack Overflow. [In R markdown in RStudio, how can I prevent the source code from running off a pdf page?](https://stackoverflow.com/questions/26210656/in-r-markdown-in-rstudio-how-can-i-prevent-the-source-code-from-running-off-a-p/69065325#69065325)
+Stack Overflow. In R markdown in RStudio, how can I prevent the source code from running off a pdf page? [https://stackoverflow.com/questions/26210656/in-r-markdown-in-rstudio-how-can-i-prevent-the-source-code-from-running-off-a-p/69065325#69065325](https://stackoverflow.com/questions/26210656/in-r-markdown-in-rstudio-how-can-i-prevent-the-source-code-from-running-off-a-p/69065325#69065325)
