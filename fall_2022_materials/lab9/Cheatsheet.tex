@@ -1,0 +1,561 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Cheatsheet},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Cheatsheet}
+\author{}
+\date{\vspace{-2.5em}2022-11-02}
+
+\begin{document}
+\maketitle
+
+\hypertarget{what-is-r}{%
+\subsection{What is R?}\label{what-is-r}}
+
+\begin{itemize}
+\tightlist
+\item
+  R is a free, open-source statistical programming language
+\item
+  Many programming languages exist: E.g. java script, C, C++, Python,
+  etc.
+\item
+  R is widely used by scientists worldwide
+\item
+  You can use R to do everything: calculating simple summary statistics,
+  performing complex simulations, creating gorgeous plots
+\end{itemize}
+
+\hypertarget{what-is-rstudio}{%
+\subsection{What is Rstudio}\label{what-is-rstudio}}
+
+\includegraphics{images/Screen Shot 2022-10-19 at 12.45.58 PM.png}
+
+Rstudio is an IDE - integrated development environment that allows you
+to write and run R code, visualize figures produced in R, and many other
+neat things
+
+\begin{itemize}
+\tightlist
+\item
+  Allows one to combine R code, analyses, plots, and written text into
+  elegant documents all in one place using \emph{Rmarkdown}
+\end{itemize}
+
+\hypertarget{r-as-a-calculator}{%
+\subsection{R as a calculator}\label{r-as-a-calculator}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2} \CommentTok{\#addition}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{534{-}430} \CommentTok{\#subtraction}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 104
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{128421847}\SpecialCharTok{*}\DecValTok{3} \CommentTok{\#multiplication}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 385265541
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{12819482}\SpecialCharTok{/}\DecValTok{17} \CommentTok{\#division}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 754087.2
+\end{verbatim}
+
+\hypertarget{r-as-a-calculator-1}{%
+\subsection{R as a calculator}\label{r-as-a-calculator-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{\^{}} \DecValTok{3} \CommentTok{\#exponent}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{**} \DecValTok{3} \CommentTok{\#exponent (also works)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{\%\%} \DecValTok{3} \CommentTok{\#modulo: the remainder of a division}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\hypertarget{r-for-logical-operations}{%
+\subsection{R for logical operations}\label{r-for-logical-operations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{==} \DecValTok{3} \CommentTok{\#equality}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{!=} \DecValTok{3} \CommentTok{\#non{-}equality}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{\textless{}} \DecValTok{3} \CommentTok{\#logical, lower than}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \SpecialCharTok{\textgreater{}=} \DecValTok{3} \CommentTok{\#logical, greater than or equal to}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ConstantTok{TRUE} \SpecialCharTok{==} \DecValTok{1} \CommentTok{\#this may surprise you!}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{assigning-values-to-r-objects}{%
+\subsection{Assigning values to R
+objects}\label{assigning-values-to-r-objects}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{4} \CommentTok{\# assign 4 to R object x}
+
+\NormalTok{x }\CommentTok{\#print object x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{=} \DecValTok{4} \CommentTok{\# assign 4 to R object y}
+
+\NormalTok{y }\CommentTok{\#print object y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{==}\NormalTok{ y }\CommentTok{\#logical, equality}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{data-types-in-r}{%
+\subsection{Data types in R}\label{data-types-in-r}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{12} \CommentTok{\# assign number 12 to x}
+
+\FunctionTok{class}\NormalTok{(x) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \StringTok{"12"} \CommentTok{\# assign string 12 to x}
+
+\FunctionTok{class}\NormalTok{(x1) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{\textless{}{-}} \ConstantTok{FALSE} \CommentTok{\# assign boolean FALSE to y}
+
+\FunctionTok{class}\NormalTok{(y) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "logical"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y1 }\OtherTok{\textless{}{-}} \StringTok{"FALSE"} \CommentTok{\# assign string "FALSE" to y}
+
+\FunctionTok{class}\NormalTok{(y1) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\hypertarget{data-structures}{%
+\subsection{Data Structures}\label{data-structures}}
+
+\hypertarget{vectors}{%
+\subsubsection{Vectors}\label{vectors}}
+
+All elements must be of the same type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{12}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{5765}\NormalTok{,}\DecValTok{12}\NormalTok{) }\CommentTok{\# concatenate numbers and assign to x}
+
+\FunctionTok{is.vector}\NormalTok{(x) }\CommentTok{\#logical}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(x) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   12   13    1 5765   12
+\end{verbatim}
+
+\hypertarget{data-structures-1}{%
+\subsection{Data Structures}\label{data-structures-1}}
+
+\hypertarget{vectors-1}{%
+\subsubsection{Vectors}\label{vectors-1}}
+
+All elements must be of the same type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Pumpkin"}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{5765}\NormalTok{,}\DecValTok{12}\NormalTok{) }\CommentTok{\# concatenate numbers and assign to x}
+
+\FunctionTok{is.vector}\NormalTok{(x1) }\CommentTok{\#logical}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(x1) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(x1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Pumpkin" "13"      "1"       "5765"    "12"
+\end{verbatim}
+
+\hypertarget{data-structures-2}{%
+\subsection{Data Structures}\label{data-structures-2}}
+
+\hypertarget{lists}{%
+\subsubsection{Lists}\label{lists}}
+
+Elements can be of different types
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Pumpkin"}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{5765}\NormalTok{,}\DecValTok{12}\NormalTok{) }\CommentTok{\# concatenate numbers and assign to x}
+
+\FunctionTok{is.vector}\NormalTok{(x1) }\CommentTok{\#logical}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(x1) }\CommentTok{\#check class or data type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(x1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Pumpkin" "13"      "1"       "5765"    "12"
+\end{verbatim}
+
+\hypertarget{data-structures-3}{%
+\subsection{Data Structures}\label{data-structures-3}}
+
+\hypertarget{matrix}{%
+\subsubsection{Matrix}\label{matrix}}
+
+All elements must be of the same type. Two dimensiosn
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat}\OtherTok{\textless{}{-}}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{) }\CommentTok{\#sample 100 numbers from normal distribution}
+\CommentTok{\#with mean 0 and sd 1}
+\CommentTok{\#use them to make a matrix of two rows (50 cols by extension)}
+\FunctionTok{dim}\NormalTok{(mat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2 50
+\end{verbatim}
+
+\hypertarget{general-functions}{%
+\subsubsection{General functions:}\label{general-functions}}
+
+\texttt{group\_by()}: Conduct operations separately by values of a
+column (or columns).
+
+\texttt{summarise()}: Reduces our data from the many observations for
+each variable to just the summaries we ask for. Summaries will be one
+row long if we have not group\_by() anything, or the number of groups if
+we have.
+
+\texttt{sum()}: Adding up all values in a vector.
+
+\texttt{diff()}: Subtract sequential entries in a vector.
+
+\texttt{sqrt()}: Find the square root of all entries in a vector.
+
+\texttt{unique()}: Reduce a vector to only its unique values.
+
+\texttt{pull()}: Extract a column from a tibble as a vector.
+
+\texttt{round()}: Round values in a vector to the specified number of
+digits.
+
+\hypertarget{summarizing-location-center}{%
+\subsubsection{Summarizing location
+(center):}\label{summarizing-location-center}}
+
+\texttt{n()}: The size of a sample.
+
+\texttt{mean()}: The mean of a variable in our sample.
+
+\texttt{median()}: The median of a variable in our sample.
+
+\hypertarget{summarizing-width-spread}{%
+\subsubsection{Summarizing width
+(spread):}\label{summarizing-width-spread}}
+
+\texttt{max()}: The largest value in a vector.
+
+\texttt{min()}: The smallest value in a vector.
+
+\texttt{range()}: Find the smallest and larges values in a vector.
+Combine with diff() to find the difference between the largest and
+smallest value.
+
+\texttt{quantile()}: Find values in a give quantile. Use
+\texttt{diff(quantile(...\ ,\ probs\ =\ c(0.25,\ 0.75)))} to find the
+interquartile range.
+
+\texttt{IQR()}: Find the difference between the third and first quartile
+(aka the interquartile range).
+
+\texttt{var()}: Find the sample variance of vector.
+
+\texttt{sd()}: Find the sample standard deviation of vector.
+
+\end{document}

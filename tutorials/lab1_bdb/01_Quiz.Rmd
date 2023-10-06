@@ -2,20 +2,30 @@
 title: "R Quiz 1"
 output: 
   learnr::tutorial:
-    progressive: true
-    allow_skip: true
+    progressive: TRUE
+    allow_skip: FALSE
 runtime: shiny_prerendered
 date: "`r Sys.Date()`"
+tutorial:
+  id: "b215.f23.lab1.test"
+  version: 0.5
 ---
 
 ```{r setup, include=FALSE}
+library(devtools)
 library(learnr)
+library(submitr)
 library(gradethis)
 library(tidyverse)
 library(knitr)
 library(ggmosaic)
 library(praise)
-tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
+library(utils)
+learnr::tutorial_options(exercise.eval = TRUE, 
+                         exercise.reveal_solution = FALSE, 
+                         exercise.timelimit = 120,
+                         exercise.checker = gradethis::grade_learnr)
+
 gradethis::gradethis_setup(
   pass.praise = TRUE,
   fail.encourage = TRUE,
@@ -25,17 +35,62 @@ gradethis::gradethis_setup(
 ```
 
 
+```{r context = "server", echo = FALSE}
+#options(tutorial.storage = "none")
+vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
+#storage_actions <- 
+#  record_gs4(
+#    key = "1slz3tMsSx0gNL6Zr5-fpXMkcpPAaziyRdufr5d6DofA",
+#    email = "bbitarello.teaching@gmail.com",
+#    vfun
+#  )
+storage_actions <- record_local("quiz1_record.txt")
+submitr::shiny_logic(input, output, session, vfun,
+                     storage_actions)
+```
 
-
-1. Below, assign the number 9 to the variable `a`, and a vector with numbers, 2, 9, and 8, in that order, to the variable  `b`. Then, ask if `a` is equal to `b` and then multiply `a` and `b`.
-
-
-```{r sim1, exercise=TRUE}
-               # assign 9 to a
+```{css echo=FALSE}
+ @media print {
+  .topicsContainer,
+  .topicActions,
+  .exerciseActions .skip {
+    display: none;
+  }
+  .topics .tutorialTitle,
+  .topics .section.level2,
+  .topics .section.level3:not(.hide) {
+    display: block;
+  }
+  .topics {
+    width: 100%;
+  }
+  .tutorial-exercise, .tutorial-question {
+    page-break-inside: avoid;
+  }
+  .section.level3.done h3 {
+    padding-left: 0;
+    background-image: none;
+  }
+  .topics .showSkip .exerciseActions::before {
+    content: "Topic not yet completed...";
+    font-style: italic;
+  }
+}
+/* paste CSS above here */
 ```
 
 
-```{r sim1-solution}
+## Vectors
+
+### Exercise 1
+1. Below, assign the number 9 to the variable `a`, and a vector with numbers, 2, 9, and 8, in that order, to the variable  `b`. Then, ask if `a` is equal to `b` and then multiply `a` and `b`.
+
+
+```{r sim1, exercise=TRUE, allow_skip = FALSE}
+               # assign 9 to a
+```
+
+```{r sim1-solution, allow_skip = FALSE}
 a <- 9                
 #Note: I am not sure how to allow multiple correct answers, say
 # a<-9 and 
@@ -43,24 +98,36 @@ a <- 9
 ```
 
 
-```{r sim1-check}
+```{r sim1-check, allow_skip = FALSE}
 grade_this_code()
 
 ```
 
-```{r sim2, exercise = TRUE}
+### exercise 2
+```{r sim2, exercise = TRUE, allow_skip = FALSE}
 b <- c()            # assign a vector with 2, 9 and 8, in that order, to b
 ```
 
-```{r sim2-solution}
+
+```{r sim2-solution, allow_skip = FALSE}
 b <- c(2,9,8)      # assign a vector with 2, 9 and 8, in that order, to b 
 ```
 
-```{r sim2-check}
+```{r sim2-check, allow_skip = FALSE}
 grade_this_code()
 ```
 
-```{r sim3, exercise = TRUE}
+
+## Vector functions
+
+
+### ex3 
+```{r ex2setup}
+a <- 9
+b <- c(2,9,8)
+```
+
+```{r sim3, exercise = TRUE, exercise.setup = "ex2setup"}
                     # ask if a equals b 
 ```
 
@@ -72,7 +139,9 @@ a == b               # ask if a equals b
 grade_this_code()
 ```
 
-```{r sim4, exercise = TRUE}
+
+### exercise 4
+```{r sim4, exercise = TRUE, exercise.setup = "ex2setup"}
                     # multiply a and b
 ```
 
@@ -85,6 +154,7 @@ a * b             # multiply a and b
 grade_this_code()
 ```
 
+## Quiz
 
 ```{r pRactice, echo=FALSE}
 quiz(
@@ -144,6 +214,7 @@ a) The product of 15 by 17
 grade_result(
   pass_if(~identical(.result, 255))
 )
+
 ```
 
 b) Thirteen to the power of 3:
@@ -164,7 +235,7 @@ c) Log of 14 (use the natural log):
 
 ```{r ex3-check}
 grade_result(
-  pass_if(~identical(.result,  2.639057))
+  pass_if(~identical(.result,  log(14)))
 )  
 ```  
 
@@ -187,21 +258,31 @@ e) The square root of 81:
 
 ```{r ex5-check}
 grade_result(
-  pass_if(~identical(.result, 9))
+  #pass_if(~any(((9-0.5)<.result)==TRUE)&any(((9+0.5)>.result)==TRUE)
+      
+    pass_if(~identical(.result, 9))
 )  
 ```  
 
 
-Prove your reached the end and you're not a robot my creating a variable called `my_name` with your last name spelled backwards followed by your first name. E.g., mine would be "olleratib_arabrab".
+Create a variable called `my_name` with your last name spelled backwards followed by your first name. E.g., mine would be "olleratib_arabrab".
  
-
 
 ```{r sandbox1, exercise=TRUE, eval = FALSE}
 ```
 
+## Record your work
 
-Last but not least, take a screenshot of this last task and email it to me with subject line: "R quiz 1"!
+READ FIRST:
 
-The end!
+* as before, go to your browser and select "print" to keep a pdf copy of your work.
+* use your username from your institutional email as your username
+* use b215f23 as password
+* this will close the quiz and take you back to Posit cloud. Click on the little red "stop" icon in the console to stop the quiz for good.
+* in the files pane, you will see a file called "quiz1_record.txt". Select it and then go to the little wheel and click "export". 
+* upload that file and your PDF copy into the lab1-quiz on Moodle!
+* you're done!
 
-
+```{r, echo=F}
+submitr::login_controls()
+```

@@ -1,0 +1,57 @@
+---
+title: "example"
+output: 
+  learnr::tutorial:
+    progressive: TRUE
+    allow_skip: FALSE
+runtime: shiny_prerendered
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(tidyverse)
+library(knitr)
+library(ggmosaic)
+library(praise)
+library(utils)
+tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
+gradethis::gradethis_setup(
+  pass.praise = TRUE,
+  fail.encourage = TRUE,
+  fail.hint = TRUE
+)
+
+```
+
+
+TLogical
+```{r, echo=T, eval=F}
+a <- c(1,2,3) #suppose this is your data and you misenter the first number
+b <- c(2,2,3) #and you want to make sure your data matches previous result
+which_entries_match <- a==b #paste this into the sandbox and call print() on the vector to look at the result
+```
+
+
+```{r setup1}
+a <- c(1,2,3) 
+b <- c(2,2,3)
+
+```
+
+
+```{r example1, exercise = TRUE, exercise.setup = "setup1"}
+                    
+```
+
+
+
+```{r example1-solution}
+which_entries_match <- a==b
+print(which_entries_match)
+```
+
+```{r example1-check}
+grade_this_code()
+```

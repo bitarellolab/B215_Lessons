@@ -1,0 +1,660 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fvextra} \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Lab 11 Exercises},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Lab 11 Exercises}
+\author{}
+\date{\vspace{-2.5em}2022-11-13}
+
+\begin{document}
+\maketitle
+
+\hypertarget{instructions}{%
+\subsection{Instructions}\label{instructions}}
+
+\begin{itemize}
+\tightlist
+\item
+  I will post a key a week from now
+\item
+  If you'd like to get extra credit you must submit your answers AND
+  code in this format on Moodle.
+\item
+  Submit your pdf and point me to where I can find your .Rmd and compile
+  it
+\item
+  You must do this before I post the key
+\end{itemize}
+
+\hypertarget{contingency-analysis-problems}{%
+\subsubsection{Contingency analysis
+problems}\label{contingency-analysis-problems}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Spousal Grief (Chapter 9, problem 29)
+\end{enumerate}
+
+It is common wisdom that death of a spouse can lead to health
+deterioration of the partner left behind. Is common wisdom right or
+wrong in this case? To investigate, Maddison and Viola (1968) measured
+the degree of health deterioration of 132 widows in the Boston area, all
+of whose husbands had died at the age of 45--60 within a fixed six-month
+period before the study. A total of 28 of the 132 widows had experienced
+a marked deterioration in health, 47 had seen a moderate deterioration,
+and 57 had seen no deterioration in health. Of 98 control women with
+similar characteristics who had not lost their husbands, 7 saw a marked
+deterioration in health over the same time period, 31 experienced a
+moderate deterioration of health, and 60 saw no deterioration.
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\item
+  Test whether the pattern of health deterioration was different between
+  the two groups of women. Give the as precisely as possible from the
+  statistical tables.
+\item
+  Now use R to check your answer:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Interpret your result in words:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Kuru disease (Chapter 9, problem 35)
+\end{enumerate}
+
+Kuru is a prion disease of the Fore people of highland New Guinea. It
+was once transmitted by the consumption of deceased relatives at
+mortuary feasts, a ritual that was ended by about 1960. Using archived
+tissue samples, Mead et al.~(2009) investigated genetic variants that
+might confer resistance to kuru. The data in the accompanying table are
+genotypes at codon 129 of the prion protein gene of young and elderly
+individuals all having the disease. Since the elderly individuals have
+survived long exposure to kuru, unusually common genotypes in this group
+might indicate resistant genotypes. The file is
+\texttt{input\_files/kuru.csv}.
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Illustrate these data with a grouped bar graph. Which genotype(s) are
+  especially prevalent in the elderly compared with young individuals?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Test whether genotype frequencies differ between the two age groups.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{using-webapps-to-get-a-feel-for-the-normal-distribution-and-the-central-limit-theorem}{%
+\subsubsection{Using webapps to get a feel for the normal distribution
+and the central limit
+theorem}\label{using-webapps-to-get-a-feel-for-the-normal-distribution-and-the-central-limit-theorem}}
+
+We return to the applet we used in tutorial 3, located at
+\url{http://www.zoology.ubc.ca/~whitlock/Kingfisher/SamplingNormal.htm}
+to investigate three points made in the text.
+
+\begin{itemize}
+\item
+  Point 1: The distribution of sample means is normal, if the variable
+  itself has a normal distribution. First, hit ``COMPLETE SAMPLE OF 10''
+  and ``CALCULATE MEAN'' a few times, to remind yourself of what this
+  applet does. (It takes a sample from the normal distribution shown
+  when you click ``SHOW POPULATION''. The top panel shows a histogram of
+  that sample, and the bottom panel shows the distribution of sample
+  means from all the previous samples.)
+\item
+  Next, hit the ``MEANS FOR MANY SAMPLES'' button. This button makes a
+  large number of separate samples at one go, all of the same sample
+  size, to save you from making the samples one by one. Notice that the
+  sample mean differs from sample to sample. The sample mean produced by
+  random sampling from a probability distribution is itself a random
+  variable.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Look at the distribution of sample means. Does it seem to have a
+  normal distribution? Click the checkbox by ``SHOW SAMPLING
+  DISTRIBUTION'' off to the right, which will draw the curve for a
+  normal distribution with the same mean and variance as this
+  distribution of sample means.
+\end{enumerate}
+
+Answer:
+
+\begin{itemize}
+\tightlist
+\item
+  Point 2: The standard deviation of the distribution of sample means is
+  reduced with larger sample sizes. The standard deviation of the
+  population is controlled by the right slider marked with \(\sigma\).
+  The sample size is set by left slider. (The default when it opens is
+  set to n=10.)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For \(n=10\), have the applet calculate a large number of sample means
+  as you did in the previous exercise. If each sample size is 10 and the
+  standard deviation is 30 (as in the default). What do you predict the
+  standard deviation of the sample means to be? (Use the equation you
+  have learned in class to make this calculation.)
+\end{enumerate}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Change the sample size to \(n=100\), and recalculate many sample
+  means. Calculate the predicted standard deviation of all the sample
+  means. Should the sampling distribution of sample means be wider or
+  narrower with this larger sample size than in the previous case with a
+  smaller sample size? What do you observe in the simulations?
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Point 3: The distribution of sample means is approximately normal no
+  matter what the distribution of the variable, as long as the sample
+  size is large enough. (The Central Limit Theorem) Load another web
+  page: \url{http://www.zoology.ubc.ca/~whitlock/Kingfisher/CLT.htm}
+\end{itemize}
+
+This will simulate a very skewed distribution of data, showing the
+number of cups of coffee drunk per week for a population of university
+students. Click on ``COFFEE'' to see the distribution of the variable
+among individual students. Describe the ways that this looks different
+from a normal distribution.
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Set \(n=2\) for the sample size, and simulate many sample means. Does
+  the distribution of sample means look normal? Is it closer to normal
+  in its shape than the distribution of individuals in the population?
+\end{enumerate}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Now set \(n=25\) and simulate many sample means. How does the
+  distribution of sample means look now? It should look much more like a
+  normal distribution, because of the Central Limit Theorem.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-exercises}{%
+\subsubsection{Normal Distribution
+exercises}\label{normal-distribution-exercises}}
+
+1.Let's use R's random number generator for the normal distribution to
+build intuition for how to view and interpret histograms and QQ plots.
+Remember, the lists of values generated by rnorm() come from a
+population that truly have a normal distribution.
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Generate a list of 10 random numbers from a normal distribution with
+  mean 15 and standard deviation 3 and save the results to
+  \texttt{normal\_vector}:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Use hist() to plot a histogram of these numbers from part a.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Plot a QQ plot from the numbers in part a.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Repeat a through c several times (at least a dozen times). For each,
+  look at the histograms and QQ plots. Think about the ways in which
+  these look different from the expectation of a normal distribution
+  (but remember that each of these samples comes from a truly normal
+  population).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Observations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Repeat the procedures of Question 1, except this time have R sample
+  250 individuals for each sample. (You can use the same command as in
+  Question 1, but now set n = 250.) Do the graphs and QQ plots from
+  these larger samples look more like the normal expectations than the
+  smaller sample you already did? Why do you think that this is?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Observations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  In 1898, Hermon Bumpus collected house sparrows that had been caught
+  in a severe winter storm in Chicago. He made several measurements on
+  these sparrows, and his data are in the file ``bumpus.csv''.
+\end{enumerate}
+
+Bumpus used these data to observe differences between the birds that
+survived and those that died from the storm. This became one of the
+first direct and quantitative observations of natural selection on
+morphological traits. Here, let's use these data to practice looking for
+fit of the normal distribution. (We'll return to this data set next week
+to look for evidence of natural selection.)
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Use ggplot() to plot the distribution of total length (this is the
+  length of the bird from beak to tail). Does the data look as though it
+  comes from distribution that is approximately normal?
+\end{enumerate}
+
+Answer: B) Use qqnorm() to plot a QQ plot for total length. Does the
+data fall approximately along a straight line in the QQ plot? If so,
+what does this imply about the fit of these data to a normal
+distribution?
+
+Answer: C) Calculate the mean of total length and a 95\% confidence
+interval for this mean. (You may want to refer back to Week 5 for the R
+commands to do this.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+For the problems below, use both:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  the ``manual'' route (using R only as a calculator) and
+\item
+  using R built-in normal distribution functions (use this to check your
+  first answer)
+\item
+  The gestation period for cats has an approximate mean of 64 days and a
+  standard deviation of 3 days, and the distribution of the gestation
+  period is approximately Normal. What gestation period best corresponds
+  to the 25th percentile?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  The gestation period for cats has an approximate mean of 64 days and a
+  standard deviation of 3 days, and the distribution of the gestation
+  period is approximately Normal. What gestation period corresponds to
+  the top 10\% of gestation periods? Round to the nearest tenth of a
+  day.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  The gestation period for cats has an approximate mean of 64 days and a
+  standard deviation of 3 days, and the distribution of the gestation
+  period is approximately Normal. What proportion of kittens have a
+  gestation period between 62 days and 70 days? Round to two decimal
+  places.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  The gestation period for cats has an approximate mean of 64 days and a
+  standard deviation of 3 days, and the distribution of the gestation
+  period is approximately Normal. What proportion of kittens have a
+  gestation period longer than 62 days? Round your answer to two decimal
+  places.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  The length of time before a seed germinates when falling on fertile
+  soil is approximately Normally distributed with a mean of 600 hours
+  and a standard deviation of 100 hours. What is the probability that a
+  seed will take more than 720 hours before germinating? Round to two
+  decimal places.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Using fluorescent imaging techniques, researchers observed that the
+  position of binding sites on HIV peptides is approximately Normally
+  distributed with a mean of 2.45 microns and a standard deviation of
+  0.35 micron. What is the standardized score for a binding site
+  position of 2.03 microns? (Enter your answer rounded to one decimal
+  place.)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+10.Scientists discovered a new group of proteins in an animal species.
+They found that the distribution of the number of amino acids these
+proteins were made of was approximately Normal with mean 530 and
+standard deviation 80. About what percent of these new proteins will be
+between 490 and 590 amino acids long?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  An 1868 paper by German physician Carl Wunderlich reported, based on
+  over a million body temperature readings, that healthy‑adult body
+  temperatures are approximately Normal with mean 𝜇=98.6 degrees
+  Fahrenheit (∘F) and standard deviation 𝜎=0.6∘F . This is still the
+  most widely quoted result for human temperature.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  According to this study, what is the range of body temperatures that
+  can be found in 95\% of healthy adults? (We are looking for the middle
+  95\% of the adult population.)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer: B) According to this study, what is the variance in normal human
+temperature in Celsius. Use the function you wrote previously.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#your code}
+\end{Highlighting}
+\end{Shaded}
+
+Answer:
+
+\end{document}
