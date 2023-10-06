@@ -70,13 +70,13 @@ The relationship between the body size of an organism and its metabolic rate is 
 
 Make the following manipulations and plots with appropriate axis labels, or answer the questions.
 
-* this is an R markdown file, so for each exercise, write yoir code inside a code chunk. You can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface
+* this is an R markdown file, so for each exercise, write your code inside a code chunk. You can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface
 
 * use `ggplot2` and `dplyr`
 
 * after you make a plot, save it with a descriptive name as a `.png` using `ggsave`
 
-* comment your code throughly
+* comment your code thoroughly
 
 1: Make sure `ggplot2` and `dplyr` are installed. If they are not, install them. Then load both packages
 
@@ -90,7 +90,7 @@ install.packages("dplyr") #install this package dor data manipulation
 2.a: what are the dimensions (# rows, # columns)
 2.b: what are the classes of each variable? 
 2.c: obtain a summary of each variable (column)
-2.d: check whether the dataset has any missing data
+2.d: check whether the dataset has any missing data and decide what to do with
 
 ```{r}
 
