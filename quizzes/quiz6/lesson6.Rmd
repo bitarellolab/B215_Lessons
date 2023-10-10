@@ -98,8 +98,7 @@ Hint: if you add the argument sep = "" to paste you don't get a space in between
 
 
 
-**Ex.3)** A question.
-
+**Ex.3)** ADD A QUESTION
 
 
 
@@ -110,6 +109,7 @@ You can do a lot more with loops once you learn about functions. But alas, that'
 ----------
 
 ## Part 2: Sampling
+
 There is a basic function in R for taking samples very appropriately named `sample`. You need three arguments for it to work (there is a 4th but don't worry about it yet). The first is the data set, the second is the number of samples, and the third is with or without replacement. 
 
 Read in the `human_genes.csv` file and name it `human_genes`. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
@@ -118,7 +118,8 @@ Overall goal of this exercise is to compare sample means at different n to the p
 
 
 Its big right? So let's take some samples. 
-NOTE: Your output will look different to the pdf beacuse your samples will be different values. 
+
+**NOTE:** Your output will look different to the pdf beacuse your samples will be different values. 
 
 2.1. First filter it to only keep the size and name column. 
 ```{r}
@@ -165,10 +166,17 @@ mean1000<-mean(sample(human_genes$size, 1000, replace = TRUE))
         
 ```
 
+------
+
+## The end!
+
+* Knit your document into a PDF using the button above this text editor and upload the PDF into
+Moodle.
+
 
 
 ## References
 
-[1] Kodable. What are loops? Link: [http://support.kodable.com/en/articles/417331-what-are-loops#:~:text=Definition%3A%20Loops%20are%20a%20programming,save%20time%20and%20minimize%20errors.](http://support.kodable.com/en/articles/417331-what-are-loops#:~:text=Definition%3A%20Loops%20are%20a%20programming,save%20time%20and%20minimize%20errors)
+[1] Kodable. What are loops? [Link](http://support.kodable.com/en/articles/417331-what-are-loops)
 
 [2] Intro2r. For loops. [https://intro2r.com/loops.html](https://intro2r.com/loops.html)

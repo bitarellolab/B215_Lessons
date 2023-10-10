@@ -254,3 +254,5 @@ sample(x, size, replace = FALSE, prob = NULL)
 
 
 ## Taking samples with replacement
+
+## Taking samples without replacement
