@@ -10,6 +10,7 @@ header-includes:
 ```{r setup, echo=F}
 knitr::opts_chunk$set(echo=T, eval=T)
 options(tinytex.verbose = TRUE)
+suppressMessages(library(dplyr))
 ```
      
 ## Outline
@@ -26,12 +27,15 @@ Hello R students! Your silly student coder has returned to make your assignments
 
 ---------------
 
-### What is a loop?
+## Part 1: Loops
 Loops are a programming element that repeat a portion of code a set number of times until the desired process is complete.^[See ref 1 at the end of this document.]
 
 All programming languages have loops. Their syntax might differ, but they are always there, just like element types, data structures, etc.
 
-We are going to be focusing on "for loops". A for loop applies a command to each value provided then stops. 
+
+### `for` loops
+
+First, we are going to be focusing on "for loops". A for loop applies a command to each value provided then stops. In other words, the                  `for` loop runs for a preset number of times.
 
 Basic example: 
 
@@ -90,15 +94,22 @@ Hint: if you add the argument sep = "" to paste you don't get a space in between
 
 ```
 
+### `while` loops
+
+
+
+**Ex.3)** A question.
+
+
+
 
 You can do a lot more with loops once you learn about functions. But alas, that's for next lab. For now that's probably enough for loops. 
 
 **Recommended:** This guide someone wrote on the internet is really good if you want to also read it. [https://intro2r.com/loops.html](https://intro2r.com/loops.html)
 
-## Conditional statements
+----------
 
-
-## Sampling
+## Part 2: Sampling
 There is a basic function in R for taking samples very appropriately named `sample`. You need three arguments for it to work (there is a 4th but don't worry about it yet). The first is the data set, the second is the number of samples, and the third is with or without replacement. 
 
 Read in the `human_genes.csv` file and name it `human_genes`. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
@@ -109,10 +120,25 @@ Overall goal of this exercise is to compare sample means at different n to the p
 Its big right? So let's take some samples. 
 NOTE: Your output will look different to the pdf beacuse your samples will be different values. 
 
-1. First filter it to only keep the size and name column. 
-2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??)
-3. Now let's take some samples. Take 3 samples of gene size with replacement on. Use n = 10, 100, 1000. Calculate the mean of these samples, and save each mean as mean10, mean100, and mean1000. 
-4. Compare these means to the population mean. Which is closest?
+2.1. First filter it to only keep the size and name column. 
+```{r}
+
+```
+
+2.2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??)
+```{r}
+
+```
+
+2.3. Now let's take some samples. Take 3 samples of gene size with replacement on. Use n = 10, 100, 1000. Calculate the mean of these samples, and save each mean as mean10, mean100, and mean1000. 
+```{r}
+
+```
+
+2.4. Compare these means to the population mean. Which is closest?
+```{r}
+
+```
 
 
 ```{r ex3}

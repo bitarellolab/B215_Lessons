@@ -1,0 +1,166 @@
+---
+title: "R Quiz 8"
+output:
+  ioslides_presentation:
+    widescreen: true
+    size: smaller
+date: "2022-10-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE, eval=F)
+data(iris)
+```
+
+## Fill in the code to return the output
+
+
+```{r, eval=F}
+survey_vector <- c("M", "F", "F")
+factor_survey_vector <- factor(survey_vector)
+levels(factor_survey_vector) <- c("Female", "Male")
+___(factor_survey_vector)
+```
+
+```{r, eval=T}
+survey_vector <- c("M", "F", "F")
+factor_survey_vector <- factor(survey_vector)
+levels(factor_survey_vector) <- c("Female", "Male")
+summary(factor_survey_vector)
+```
+
+```{r}
+View()
+Summary()
+summarise()
+summary()
+table()
+```
+
+## What is the correct way of removing column `Temp` from the `airquality` dataset?
+
+
+```{r,eval=T, echo=F}
+head(iris)
+
+```
+
+```{r}
+iris %>% select(~Temp)
+iris %>% select(rm(Temp))
+iris %>% select(-Temp)
+iris %>% select(!Temp)
+```  
+  
+
+
+## Complete the code so that the conditional statement below prints "This number is divisible by 8" if it is divisible by 8 and "This number is not divisible by 8" if it isn't.
+
+```{r, eval = F}
+
+if (x ___ ) { #A
+  ___ #B
+} ___ { #C
+  ___ #D
+}
+```  
+  
+Options: 
+%% 8 == 0
+ %% 8 == 0 
+ %% 8 == 0
+%% 8 == 0 
+%% 8 ==0
+ %% 8 ==0
+%% 8 ==0 
+ %% 8 ==0 
+%% 8==0
+ %% 8==0
+ %% 8==0 
+%% 8==0 
+%%8== 0
+ %%8== 0
+ %%8== 0 
+%%8== 0 
+%%8==0
+ %%8==0
+%%8==0 
+ %%8==0 
+print("This number is divisible by 8")
+print ("This number is divisible by 8")
+else
+ else
+ else 
+print("This number is not divisible by 8")
+print ("This number is not divisible by 8")
+
+
+## Examine the following code
+
+```{r}
+if (number < 10) {
+  if (number < 5) {
+    result <- "extra small"
+  } else {
+    result <- "small"
+  }
+} else if (number < 100) {
+  result <- "medium"
+} else {
+  result <- "large"
+}
+print(result)
+
+```
+
+Which of the statements below are correct? 
+
+If number is set to 6, “small” gets printed. T
+If number is set to 100, "medium" is printed.
+If number is set to 10 %% 5, R will generate an error because this is not a number. 
+If number is set to 4, "extra small" gets printed. T
+If number is set to 2500, R will generate an error, as result will not be defined.
+
+
+
+## Predict the output of the following code:
+
+
+```{r, eval=F}
+my_function <- function(fname, lname) {
+  paste(fname, lname)
+}
+
+my_function("Madonna")
+
+```
+
+```{r, echo=T, eval=F}
+"Madonna" NULL
+"Madonna"
+An error because only one argument was provided, with no default for the other one
+"Madonna" lname
+An error because the argument name was not specified
+```
+
+
+
+## Predict the output of the following code
+
+```{r}
+Nested_function <- function(x, y) {
+  if(!(x %% 2 == 0)){
+  a <- x * y + 1
+  } else {
+    a <- x * y
+  }
+  return(a)
+}
+
+Nested_function(Nested_function(2,2), Nested_function(3,3))
+```
+
+45
+An error
+40
+60

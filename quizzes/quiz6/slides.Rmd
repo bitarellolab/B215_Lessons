@@ -1,0 +1,253 @@
+---
+title: "Lab 6"
+author: "Bárbara Bitarello"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation: default
+subtitle: Data types and data structures
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=F)
+suppressMessages(library(dplyr))
+suppressMessages(library(readr))
+human_genes<-read_csv("human_genes.csv")
+```
+
+
+## Today
+
+* Quick recap
+
+        - indexing elements (base R and dplyr)
+
+* Go over some of lab 4
+
+* New stuff!
+
+        - Loops
+        - Sampling
+
+
+## Indexing elements: Base R
+
+* Selecting a column (data.frame, tibble) or element (list) with `$`.
+E.g. `iris` dataset
+
+```{r, eval=T}
+# select column containing petal lengths from iris
+petal_lengths<-iris$Petal.Length
+head(petal_lengths)
+```
+
+## Indexing elements: Base R
+
+* Selecting a column (data.frame, tibble) or element (list) with `$`.
+* E.g. a list containing `iris` and a vector containing all letters from the Roman alphabet
+
+```{r, eval=T}
+my_list<-list(iris=iris, letters=LETTERS)
+str(my_list)
+```
+
+## Indexing elements: Base R
+
+* Selecting a column (data.frame, tibble) or element (list) with `$`.
+* E.g. a list containing `iris` and a vector containing all letters from the Roman alphabet
+
+```{r, eval=T}
+#index the second element of the list, i.e, the letters
+#PS: $ only works if you name the elements
+my_list$letters
+```
+
+
+## Indexing elements: Base R
+
+Filtering elements with `[]`. E.g. data.frame
+
+```{r, eval=T}
+# Syntax: [row, col]
+head(iris[iris$Sepal.Length>2,])
+
+```
+
+## Indexing elements: Base R
+
+Filtering elements with `[]`. E.g. vector
+
+```{r, eval=T}
+# Syntax: [row, col]
+LETTERS[LETTERS=='A']
+
+LETTERS[3]
+
+```
+## Indexing elements: `dplyr`
+
+Select columns with `select`:
+
+```{r, eval=T}
+#option 1
+library(dplyr)
+head(select(iris, Petal.Length))
+```
+
+
+## Indexing elements: `dplyr`
+
+Select columns with `select`:
+
+```{r, eval=T}
+#option 2
+iris %>% select(Petal.Length) %>% head()
+```
+## Indexing elements: `dplyr`
+
+Filter rows with `filter`:
+
+```{r, eval=T}
+#option 1
+head(filter(iris, Sepal.Length>2))
+```
+
+## Indexing elements: `dplyr`
+
+Filter rows with `filter`:
+
+```{r, eval=T}
+#option 2
+iris %>% filter(Petal.Length>2) %>% head()
+```
+
+## Loops in computer programming
+
+
+* All programming languages have loops
+* Loops are among the most basic and powerful of programming concepts. 
+* A loop in a computer program is an instruction that repeats until a specified condition is reached. 
+* The loop asks a question. If the answer requires action, it is executed. 
+* The same question is asked again and again until no further action is required. 
+* Each time the question is asked is called an iteration. 
+
+## Loops in R
+
+Three kinds of loops:
+
+* `for` loop
+
+* `while` loop 
+
+* `repeat` loop [we won't discuss]
+
+## `for` loops
+
+Basic syntax
+
+```{r, eval=F}
+for (value in sequence){
+  
+  statement #DO SOMETHING
+}
+
+```
+
+## Loops in R: `for` loops
+
+```{r}
+# iterate over elements of a sequence
+for (i in 1: 4){
+  
+    print(i * 2)
+  
+}
+```
+
+## Loops in R: `for` loops
+
+```{r}
+#iterate over elements of a vector
+for (i in c(-8^2, 2*4, 239, 29321)){
+
+    print(i)
+  
+}
+```
+
+## Loops in R: `for` loops
+
+```{r}
+#create vector outside of loop and then use it to iterate
+x <- c(-8^2, 2*4, 239, 29321)
+for (i in x){
+  
+    print(i)
+  
+}
+```
+
+## `while` loops
+
+Basic syntax
+
+```{r, eval=F}
+while ( condition ) {
+  
+  statement #do something
+}
+
+```
+
+
+## Loops in R: `while` loops
+
+```{r, eval=T}
+y<-0
+while (y <= 5){ #logical
+    # statements
+    print(y) # if y <=5, print it
+    y = y + 1 #if y <=5 add 1 to it
+}
+y #print y after the loop has concluded
+```
+
+## `while` loops
+
+A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
+
+```{r}
+# whose factorial will be calculated
+n <- 5 
+factorial <- 1 # assigning the factorial variable
+i <- 1 # and iteration variable to 1
+# using while loop
+while (i <= n){
+    # multiplying the factorial variable
+    # with the iteration variable
+    factorial = factorial * i
+    # incrementing the iteration variable
+    i = i + 1
+}
+print(factorial) # displaying the factorial
+```
+
+
+## Sampling 
+
+* In data analysis, taking samples of the data is the most common process done by the analysts. 
+* To study and understand the data, sometimes taking a sample is the best way and it is mostly true in case of big data.
+* R offers the standard function `sample()` to take a sample from the datasets. 
+* Many business and data analysis problems will require taking samples from the data. 
+* The random data is generated in this process with or without replacement.
+
+## The `sample()` function
+
+```{r,eval=F}
+sample(x, size, replace = FALSE, prob = NULL)
+```
+
+
+* **x** - vector or a data set.
+* **size** - sample size.
+* **replace** - with or without replacement of values.
+* **prob** - probability weights

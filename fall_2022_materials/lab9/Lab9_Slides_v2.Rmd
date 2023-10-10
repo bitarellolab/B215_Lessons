@@ -1,0 +1,512 @@
+---
+title: "Lab9"
+output:
+  ioslides_presentation:
+    widescreen: true
+    size: smaller
+    font_adjustment: -1
+    toc: 1
+date: "2022-11-02"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE,fig.align = 'center')
+```
+
+```{r, eval=T, echo=F}
+suppressPackageStartupMessages(library(dplyr))
+```
+
+## Tasks
+
+* Recap
+* Conditional statements (cont.): else if/while
+* Loops
+* `apply`, `lapply`,`sapply`, `replicate`, `rep_sample_n` 
+* Sampling in R: `sample`, `sample_n`, `rep_sample_n`
+* Use one or more of these tools to solve Exercise 3 (Lab 7)
+* Lab 9 Problems
+* R Quiz 9 (will be posted tomorrow)
+
+## Recap
+
+### General functions:
+
+
+`group_by()`: Conduct operations separately by values of a column (or columns).
+
+`summarise()`: Reduces our data from the many observations for each variable to just the summaries we ask for. Summaries will be one row long if we have not group_by() anything, or the number of groups if we have.
+
+`sum()`: Adding up all values in a vector.
+
+`diff()`: Subtract sequential entries in a vector.
+
+`sqrt()`: Find the square root of all entries in a vector.
+
+`unique()`: Reduce a vector to only its unique values.
+
+`pull()`: Extract a column from a tibble as a vector.
+
+`round()`: Round values in a vector to the specified number of digits.
+
+
+
+## Recap
+
+### Summarizing location (center):
+
+
+`n()`: The size of a sample.
+
+`mean()`: The mean of a variable in our sample.
+
+`median()`: The median of a variable in our sample.
+
+
+
+### Summarizing width (spread):
+
+`max()`: The largest value in a vector.
+
+`min()`: The smallest value in a vector.
+
+`range()`: Find the smallest and larges values in a vector. Combine with diff() to find the difference between the largest and smallest value.
+
+`quantile()`: Find values in a give quantile. Use `diff(quantile(... , probs = c(0.25, 0.75)))` to find the interquartile range.
+
+`IQR()`: Find the difference between the third and first quartile (aka the interquartile range).
+
+`var()`: Find the sample variance of vector.
+
+`sd()`: Find the sample standard deviation of vector.
+
+
+
+## Conditional statements: else if
+
+Last week we learned about `if` and `else`.
+
+You can also
+
+
+## Conditional statements
+
+## Loops in R
+
+Three kinds of loops:
+
+*`for` loop
+*`while` loop
+*`repeat` loop
+
+
+Resources [optional]:
+
+* https://www.geeksforgeeks.org/loops-in-r-for-while-repeat/
+* DataCamp: Intermediate R 
+
+
+## Loops in R
+
+```{r, eval=T, echo=F}
+url<-'https://media.geeksforgeeks.org/wp-content/uploads/20200327192448/for_flowdiagram.png'
+```
+
+
+## Loops in R: `for` loops
+
+Basic syntax
+
+```{r, eval=F}
+for (value in sequence){
+  
+  statement #DO SOMETHING
+}
+
+```
+
+
+## Loops in R: `for` loops
+
+![](`r url`)
+
+
+
+
+## Loops in R: `for` loops
+
+```{r}
+# iterate over elements of a sequence
+for (i in 1: 4){
+  
+    print(i * 2)
+  
+}
+```
+
+
+## Loops in R: `for` loops
+
+```{r}
+#iterate over elements of a vector
+for (i in c(-8^2, 2*4, 239, 29321)){
+
+    print(i)
+}
+```
+
+## Loops in R: `for` loops
+
+```{r}
+#create vector outside of loop and then use it to iterate
+x <- c(-8^2, 2*4, 239, 29321)
+
+for (i in x){
+  
+    print(i)
+}
+```
+
+
+## Loops in R: `while` loops
+
+Basic syntax
+
+```{r, eval=F}
+
+while ( condition ) {
+  
+  statement #do something
+}
+
+```
+
+
+## Loops in R: `while` loops
+
+```{r, echo=F}
+url2<-'https://media.geeksforgeeks.org/wp-content/uploads/20200327192542/while_flowdiagram.png'
+```
+
+![](`r url2`)
+
+
+## Loops in R: `while` loops
+
+```{r, eval=T}
+y<-0
+
+while (y <= 5){ #logical
+    # statements
+    print(y) # if y <=5, print it
+    y = y + 1 #if y <=5 add 1 to it
+}
+
+y
+```
+
+## Loops in R: `while` loops
+
+```{r}
+# whose factorial will be calculated
+n <- 5
+# assigning the factorial variable
+# and iteration variable to 1
+factorial <- 1
+i <- 1
+# using while loop
+while (i <= n){
+ 
+    # multiplying the factorial variable
+    # with the iteration variable
+    factorial = factorial * i
+ 
+    # incrementing the iteration variable
+    i = i + 1
+}
+# displaying the factorial
+print(factorial)
+```
+
+
+
+## Looping in the command line
+
+
+`lapply()`: Loop over a `list` and evaluate a function on each element
+
+`sapply()`: Same as `lapply` but try to simplify the result
+
+`apply()`: Apply a function over the margins of an array
+
+There are others, like `tapply()`, `mapply()`, but we won't discuss them.
+
+
+## Looping in the command line:`lapply()`
+
+* it loops over a list, iterating over each element in that list
+* it applies a function to each element of the list (a function that you specify)
+* and returns a list (the `l` is for “list”).
+
+## Looping in the command line:`lapply()`
+
+Basic syntax
+
+```{r, eval=F}
+
+lapply(data, function to apply to data)
+```
+
+## Looping in the command line:`lapply()`
+
+```{r}
+#rnorm samples numbers randomly from a normal distribution
+set.seed(123)
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+str(x)
+lapply(x, mean)
+```
+
+## Looping in the command line:`sapply()`
+
+```{r}
+#rnorm samples numbers randomly from a normal distribution
+set.seed(123)
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+str(x)
+sapply(x, mean)
+```
+
+## Looping in the command line: `apply()`
+
+```{r}
+set.seed(123)
+#make a matrix
+mat<-matrix(rnorm(20,1), ncol=2)
+
+apply(mat,1, mean) # 1 signifies rows
+
+apply(mat,2, mean) # signifies columns
+```
+
+
+## Sampling in R
+
+`sample(x = , size = , replace = , prob = )`: Generate a sample of size size, from a vector `x`, with `(replace = TRUE)` or without `(replacement = FALSE)` replacement. By default the size is the length of `x`, sampling occurs without replacement and probabilities are equal. Change these defaults by specifying a value for the argument. For example, to have unequal sampling probabilities, include a vector of length `x`, in which the  $i^th$ entry describes the relative probability of sampling the  $i^th$ value in `x`. 
+
+`sample_n(tbl = , size = , replace = , weight = )`: Generate a sample of size `size`, from a `tibble tbl`, with `(replace = TRUE)` or without `(replacement = FALSE)` replacement. All arguments are the same as in `sample()` except `weight` replaces `prob`, and `tbl` replaces `x`. `sample_n()` is a function in the `dplyr` package, which is loaded with `tidyverse`.
+
+## Sampling in R: The replicate function:
+
+```{r}
+#replicate the value 3 exactly 10 times
+replicate(n=10, 3)
+#replicate the letter 'A' exactly 7 times
+replicate(n=7, 'A')
+```
+
+## A new function for sampling in R!
+
+`rep_sample_n():` Generate `reps` samples of size `siz`e, from a `tibble tb`l, with `(replace = TRUE)` or without `(replacement = FALSE)` replacement. All arguments are the same as in `sample()`, except `tbl` replaces `x`, and `reps` allows us to specify how many samples of size `size` we would like. `rep_sample_n()` returns a tibble grouped by replicate. `rep_sample_n()` is a function in the infer package, which must be installed and loaded in addition to tidyverse.
+
+
+```{r}
+#show example
+
+```
+
+## Back to the Exercise: Making a distribution of sample means (from lab 7)
+
+
+Last week you learned how to take a sample (random rows) from a dataset and calculate statistics on it. 
+
+Specifically, you took two independent samples from the `human_genes` dataset and calculated some descriptive statistics. 
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Step 1: Read in the `human_genes.csv` dataset and get summaries
+
+```{r}
+library(dplyr) #load the dplyr package
+library(readr) #load the readr package
+human_genes<-readr::read_csv("input_files/human_genes.csv") #read in the human genes dataset
+glimpse(human_genes) #glimpse the dataset
+#remove useless columns
+human_genes<-human_genes %>% 
+  select(name, size)
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Step 2: Calculate the following descriptive statistics for the dataset: `mean`, `median`,`standard deviation`, `mode`, `IQR`.
+
+```{r}
+#summarise the human genes dataset creating three columns
+human_genes_summ <- human_genes %>%
+  summarise(
+  MeanLength = mean(size),
+  MedianLength = median(size),
+  SDLength = sd(size),
+  IQR = IQR(size)
+)
+human_genes_summ #
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Step 3: take 10,000 random samples of length `n=100` from the `human_genes` dataset and calculate the same summaries as above.
+
+
+Wow! Let's break this down:
+
+* sample 10 random samples of length `n=100`
+* calculate the same summaries as above for each sample
+* if everything works, switch to 10,000
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Step 3a: sample 10 random samples of length `n=100` (using `for`)
+
+```{r}
+library(dplyr)
+x<-seq(1:10) #create a vector with numbers from 1 to 10000
+# for each iteration,take a sample of size 100 without replacement from human_genes
+samps<-list() #create empty list to put resamps in
+for(i in x){ #for loop
+  
+  samps[[i]]<-human_genes %>% 
+    sample_n(size=100, replace=F)
+  
+  print(i) #print each iteration 
+}
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Step 3b: calculate the same summaries as above for each sample
+```{r}
+res<-list() #create empty list to put the summaries in
+for(i in 1:length(samps)){ #for loop for each elements in the samps list
+  
+  res[[i]]<- samps[[i]] %>% 
+   summarise(
+    MeanLength = mean(size),
+    MedianLength = median(size),
+    SDLength = sd(size),
+    IQR = IQR(size)
+)
+  
+  print(i) #print each iteration 
+}
+res
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Can we do it all in one go?
+
+```{r}
+x<-seq(1:10) #create a vector with numbers from 1 to 10000
+#create tibble with the columns produced by our summaries
+#dummy tibble
+
+resamps<-tibble(MeanLength=NA, MedianLength=NA, SDLength=NA, IQR=NA) 
+for(i in x){ #for loop
+  
+  temp<-human_genes %>% #assign to temp object
+    sample_n(size=100, replace=F) %>% #sample
+    summarise( # summaries
+    MeanLength = mean(size),
+    MedianLength = median(size),
+    SDLength = sd(size),
+    IQR = IQR(size)
+    )
+
+  resamps<-bind_rows(resamps, temp) #add new row to tibble
+  print(i) #print each iteration 
+}
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+```{r}
+#the first row has NAs. we can easily get rid of it.
+
+resamps<-na.omit(resamps)
+resamps
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+Step 3c: if everything works, switch to 10,000
+
+```{r}
+nsamps=10000
+resamps<-tibble(MeanLength=NA, MedianLength=NA, SDLength=NA, IQR=NA) 
+for(i in 1:nsamps){ #for loop
+  
+  temp<-human_genes %>% #assign to temp object
+    sample_n(size=100, replace=F) %>% #sample
+    summarise( # summaries
+    MeanLength = mean(size),
+    MedianLength = median(size),
+    SDLength = sd(size),
+    IQR = IQR(size)
+    )
+  resamps<-bind_rows(resamps, temp) #add new row to tibble
+  if(i %in%  seq(from=1, to=nsamps, by=100))
+  print(i) #print each iteration 
+}
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Another option: using `rep_slice_sample`
+
+Make a function that calculates all the summaries
+
+```{r}
+library(infer)
+#samps
+nsamps<-10
+reps<-rep_sample_n(human_genes, size=100, replace=FALSE, reps=nsamps) %>% 
+  group_by(replicate) %>% 
+  summarise( # summaries
+  MeanLength = mean(size),
+  MedianLength = median(size),
+  SDLength = sd(size),
+  IQR = IQR(size)
+) %>%
+  ungroup
+
+```
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Step 4: Plot the sampling distribution with ggplot
+
+```{r}
+library(ggplot2)
+#rerun previous code with nsamps=10000
+ggplot(reps, aes(x=MeanLength)) + 
+  geom_density() + 
+  theme_minimal()
+
+```
+
+## Exercise: Making a distribution of sample means (from lab 7)
+
+Final step: Obtain the grand mean (mean of sample means) and the standard deviation of the sample means and: compare with the population mean; calculate SEM using the distribution and the formula and compare.
+
+```{r}
+#Try it!
+
+```
+
+
+### Exercises!
+
+Practice!
+
+* Binomial hypothesis testing: `lab9_ex1.Rmd`
+* Loops & Condtional Statements: Exercises in `lab9_ex2.Rmd`.
+
