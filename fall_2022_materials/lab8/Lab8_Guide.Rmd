@@ -1,0 +1,549 @@
+---
+title: "Lab8 Guide"
+output:
+  ioslides_presentation:
+    widescreen: true
+    size: smaller
+    font_adjustment: -1
+    toc: 1
+date: "2022-10-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE,fig.align = 'center')
+```
+
+```{r, eval=T, echo=F}
+suppressPackageStartupMessages(library(dplyr))
+```
+
+
+## Tasks
+
+* Go over the acorn size case study from Lab 7
+* Learn conditional statements (if/else)
+* Use if/else to complete Exercise 2 (Lab 7)
+* Learn about `apply` and `replicate`
+* Use these tools to solve Exercise 3 (Lab 7)
+* Extra practice with conditional statements
+
+## Case Study: Introduction (from Lab 7)
+
+It is thought that the size of a plant’s seed may have some effect on the geographic range of a plant. In fact, a positive correlation is believed to exist between acorn size and the geographical range of the North American Oaks. The idea behind this theory is that larger acorns will be carried away by larger animals who in turn have a wider territorial range. Aizen and Patterson studied 39 species of oak trees to examine this correlation.
+
+## Case Study: Protocol (1/2)
+
+Fifty species of oaks are found growing in the United States, 80% of which are accounted for in the Atlantic and California regions. The 28 oaks in the Atlantic region and the 11 oaks in the California region were used in this study. Acorn size was expressed as a volume, using measurements of specific nut lengths and widths to estimate the acorn volume as the volume of an ellipsoid. The areas of the geographical range for each species were obtained from the available literature.
+
+## Case Study: Protocol (2/2)
+
+The range of species number 11 of the California region is unusual in that it does not include any land on the continental United States. 
+
+This particular species of oak grows only on the Channel Islands of Southern Cax`lifornia (see the map) and the island of Guadalupe off the coast of Baja California. The area of the Channel Islands is 1014 sq. km and the area of the island of Guadalupe is 265 sq. km.
+
+![](images/acorn_map.png){width=50%}
+
+## Case Study: Data
+
+The data collected by Aizen & Patterson is provided in the file `acorn.txt`. The file `Readme_acorn.txt` describes what is in the data file.
+
+## Case Study: Questions
+
+Look at the data file and the readme file and answer:
+![](images/acornfile.png){width='40%'}
+
+
+
+## Case Study Questions
+ 
+* how many variables are present in the data file?
+<p style="color:orange">Six: Species, Region,Range, Acorn size, Tree height.</p>
+
+* which ones are numerical? (name the subtype)
+<p style="color:orange">Continuous: Acorn size, Tree height. Continuous in principle but could be treated as discrete here: Range.</p>
+
+* which ones are categorical (name the subtype)
+<p style="color:orange">Nominal: Species, Region. Ordinal: None.</p>
+
+## Case Study: Questions
+
+* how are the columns separated in the data file?
+
+Let's look at the function `read.table`:
+
+```{r, eval=F}
+#read.table("acorn.txt") #fails
+?read.table
+```
+
+> "If sep = '' (the default for read.table) the separator is ‘white space’, that is one or more spaces, tabs, newlines or carriage returns."
+>
+
+## Case Study: Questions
+
+* how are the columns separated in the data file? <p style="color:orange">Tab!</p>
+
+Let's try tab!
+
+```{r, eval=F}
+#read.table("acorn.txt") #fails
+read.table("acorn.txt", sep="\t") #works! 
+#"\t" is tab in linux/programming world.
+read.delim("acorn.txt") #also works.
+#see ?read.delim. It's default is sep="\t"
+readr::read_table("acorn.txt") #does not work; 
+#expects white space
+```
+
+
+## Case Study: Questions
+
+* Read in the data file
+* Check its dimensions 
+* Check its structure
+* Do the classes of each column seem appropriate to you? Now is a good time to change them.
+* Check that there are no missing values. 
+
+## Case Study: Questions
+
+Read in the data file; check its dimensions. <p style="color:orange"> 39 rows, 5 columns </p>  
+```{r}
+acorn<-read.delim("input_files/acorn.txt") #Read in the data file
+dim(acorn) #39 rows, 5 columns
+nrow(acorn) #39 rows
+ncol(acorn) #5 columns
+```
+
+
+## Case Study: Questions
+
+Check its structure
+```{r}
+#check its structure
+str(acorn)
+```
+
+## Case Study: Questions
+
+Do the classes of each column seem appropriate to you? Now is a good time to change them.
+<p style="color:orange">Species and Region could be better handled as factors (not ordered).</p>
+
+```{r}
+library(dplyr)
+acorn <- acorn %>% 
+  mutate(Species=factor(Species), #transform to factor
+         Region=factor(Region)) #transform to factor
+```
+
+## Case Study: Questions
+
+```{r}
+summary(acorn) # Check that there are no missing values. no NAs show up in summaries
+```
+
+## Case Study: Questions
+
+```{r}
+#2
+table(is.na(acorn)) #195 FALSE
+```
+
+## Case Study: Questions
+
+```{r}
+table(na.omit(acorn) == acorn) #if all are TRUE, there are no NAs
+```
+
+## Case Study: Questions
+
+```{r}
+#4
+anyNA(acorn) #if FALSE, all good.
+```
+
+
+## Case Study: Questions
+
+* What type of visualization would be appropriate in order to investigate the relationship between tree range and acorn size?
+* Who are the response and explanatory variables here?
+* Make that plot.
+
+
+## Case Study: Questions
+
+* What type of visualization would be appropriate in order to investigate the relationship between tree range and acorn size?<p style="color:orange">Tree range is numerical and acorn size is also numerical. Therefore, a scatter plot.</p>
+
+* Who are the response and explanatory variables here? <p style="color:orange">The idea is to investigate the idea that larger acorns get dispersed further by larger animals, so acorn size (explanatory) and range (response).</p>
+
+
+## Case Study: Questions
+
+```{r, fig.height=3.7}
+library(ggplot2) #load ggplot package
+ggplot(acorn, aes(x=Acorn.size, y=Range)) +  # basic scatter plot
+  geom_point()
+```
+
+## Case Study: Questions
+
+```{r,  fig.height=3.7}
+library(ggplot2) #load ggplot package
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + geom_point() +
+  theme_bw()  # white background
+```
+
+## Case Study: Questions
+
+Examine the summary statistics for tree range. 
+
+* What are the mean and the standard deviation?
+
+* What do these values tell you about the likely shape of the distribution?
+
+
+## Case Study: Questions
+
+```{r}
+mean(acorn$Range) #mean
+sd(acorn$Range) #standard deviation
+```
+
+
+## Case Study: Questions
+
+```{r,  fig.height=3.5}
+library(dplyr)
+acorn %>%
+  summarise(mean(Range), sd(Range)) #produce two summaries at once
+```
+
+## Case Study: Questions
+
+```{r,  fig.height=3.5}
+library(dplyr)
+acorn %>%
+  summarise(MeanRange=mean(Range), SDRange=sd(Range)) #name summaries
+```
+$$SD >> Mean$$
+
+## Case Study: Questions
+
+```{r}
+summary(acorn) # mean, median, quartiles, min, max
+```
+
+## Case Study: Questions
+
+```{r,  fig.height=3.5}
+library(dplyr)
+acorn %>% 
+  select(Range) %>% #select col Range
+  summary() #summary()
+```
+
+$$Median << Mean $$
+
+## Case Study: Questions
+
+What are the mean and standard deviation?  <p style="color:orange">7882.564,8054.823</p>
+
+What do these values tell you about the likely shape of the distribution?
+<p style="color:orange">This suggests an enormous spread or range of the data. Also, 50% of the data are contained within 827 and 11924.5 and 75% of the data have values  below 11924.5. Further, the median (5328) is much lower than the mean (7882.6), suggesting a strong right (positive) skew.</p>
+
+## Case Study: Questions
+
+We could also plot the distribution for Range:
+```{r,  fig.height=3.1}
+# place the mean (7882.564) and median (5328) in this distribution
+ggplot(acorn, aes(x=Range))  + #define aesthetics
+  geom_histogram(bins=35) + #define layer
+  theme_bw() #white background
+```
+
+## Case Study: Questions
+
+We could also plot the distribution for Acorn size:
+```{r,  fig.height=3.1}
+# place the mean (3.341026) and median (1.8) in this distribution
+ggplot(acorn, aes(x=Acorn.size))  + 
+  geom_histogram(bins=35) + 
+  theme_bw()
+```
+
+## Case Study: Questions
+
+Transform the data using the log transformation on both the range and the size. 
+
+<p style="color:orange">The problem did not specify if the log base should be *e* or 10, but let's start with 10.</p>
+
+## Case Study: Questions
+
+```{r,  fig.height=3.2}
+acorn2<- acorn %>% #option 1
+  mutate(Range=log(Range, base=10), #log10 would also work
+            Acorn.size=log(Acorn.size, base=10))
+ggplot(acorn2, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  theme_bw()  # white background
+```
+
+## Case Study: Questions
+
+```{r,  fig.height=3.5}
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + #option 2
+  geom_point() +
+  scale_y_continuous(trans="log10") +
+  scale_x_continuous(trans="log10") +
+  theme_bw()  # white background
+```
+
+## Case Study: Questions
+
+```{r,  fig.height=3.5}
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + #option 3
+  geom_point() +
+  scale_x_log10() + #built-in ggplot log10 option
+  scale_y_log10() +
+  theme_bw()  # white background
+```
+
+## Case Study: Questions
+Now make a scatter plot of Ln(range) vs. Ln(acorn size). 
+```{r, fig.height=3.2}
+acorn3<- acorn %>% #option 1
+  mutate(Range=log(Range), #default base is e (2.718281828459)
+            Acorn.size=log(Acorn.size))
+ggplot(acorn3, aes(x=Acorn.size, y=Range)) + 
+  geom_point() + theme_bw()  #white background
+```
+
+## Case Study: Questions
+
+```{r, fig.height=3.2}
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + #option 2
+  geom_point() +
+  scale_y_continuous(trans="log") + #convert x to log scale
+  scale_x_continuous(trans="log") +
+  theme_bw()  # white background
+```
+
+## Case Study: Questions
+
+How did the pattern change? Does it surprise you? Do you see any obvious reason that might help explain the correlation?
+<p style="color:orange">Since both distributions (Range and Acorn size) have a longer than normal right-tail, a log transformation might be suggested to dampen the influence of the largest observations. Also, relationships between the transformed variables would then be interpretable on a relative scale. It now becomes apparent there is a positive relationship between the two. In other words, there was a relationship between the two all along, but it was not LINEAR.</p>
+
+## Case Study: Questions
+```{r,  fig.height=3.5}
+#boxplot of Range by Region
+ggplot(acorn, aes(x=Region, y=Range, color=Region)) + #color by Region
+  geom_boxplot() + theme_bw() #white background
+```
+
+
+## Case Study: Questions
+Compare boxplots of tree range by geographical region in order to investigate the relationship between tree range and region. What do you learn?
+
+<p style="color:orange"> The comparative boxplots show that the bigger ranges are found in the Atlantic region, the smaller ranges are found in the California region. The range/scales are so different it is hard to see both boxplots with a shared y-axis.</p>
+
+
+## Case Study: Questions
+Make an appropriate plot of Ln(range) vs. Ln(acorn size) for the Atlantic region.
+```{r,  fig.height=3.2}
+acorn3 %>% #this object has ln-transformed Range and Acorn.size
+  filter(Region=="Atlantic") %>% #Atlantic region
+  ggplot(aes(x=Acorn.size, y=Range)) + #does not require input because of %>%
+  geom_point() + theme_bw()  # white background
+```
+
+## Case Study: Questions
+Make an appropriate plot of Ln(range) vs. Ln(acorn size) for the California region.
+```{r,  fig.height=3.2}
+acorn3 %>% #this object has ln-transformed Range and Acorn.size
+  filter(Region =="California") %>% #California region
+  ggplot(aes(x=Acorn.size, y=Range)) + #does not require input because of %>%
+  geom_point() + theme_bw()  #white background
+```
+
+## Case Study: Questions
+Make an appropriate plot of Ln(range) vs. Ln(acorn size) for the Atlantic region. Is the correlation (visually) any better than that found in Question 1?
+
+<p style="color:orange">You didn't really have to calculate the correlation but just visually assess it. The scatter plot for the Atlantic Region shows a moderate positive association.</p>
+
+Make an appropriate plot of Ln(range) vs. Ln(acorn size) for the California region. What is the correlation? Why do you think that the correlation is so low?
+
+<p style="color:orange">You didn't really have to calculate the correlation but just visually assess it. It seems pretty low here.This low correlation is due to the presence of the outlier at the bottom right of the plot. The rest of the data seem to be associated in a stronger manner.</p>
+
+## Case study: Convince yourself of this 
+Add a linear regression line for both plots
+```{r,  fig.height=3.3,fig.align='center'}
+acorn3 %>% ggplot(aes(x=Acorn.size, y=Range)) + geom_point() +
+  stat_smooth(method="lm", formula='y~x')+
+  theme_bw() +  # white background
+  facet_wrap(vars(Region),nrow = 1,scales="free") #splits plots by column Region
+```
+
+## Case study: Convince yourself of this
+Same plots without log transformation
+```{r,  fig.height=3.3, fig.align='center'}
+acorn %>% ggplot(aes(x=Acorn.size, y=Range)) + geom_point() +
+  stat_smooth(method="lm", formula='y~x') +
+  theme_bw() + facet_wrap(vars(Region),nrow = 1,scales="free")
+```
+
+## Linear regression
+
+We will learn about this when discussing _linear regressions_, but this was just a start at building this intuition.
+
+Ok, next activity!
+
+## Exercise 2 (Lab 7): Taking your first function to the next level!
+
+In Lab 6, you created a simple function that takes in a user defined value and converts into something else. Specifically, the function convert a temperature in Celsius to the corresponding temperature in Fahrenheit. You were then asked to make a similar function that converts temperature in Fahrenheit to Celsius. If you didn't complete that activity, you should do so before moving forward. This is under Lab6_Activity in Rstudio Cloud but also posted on Moodle.
+
+## Taking your first function to the next level!
+
+* Combine both functions into one. Basically, you want the function to have two arguments: temperature in Celsius and temperature in Fahrenheit. A few things to consider:
+
+- only one of the two arguments should be provided by the user
+
+- how does the function decide what to do based on the user input?  
+
+- what happens if the user does not understand the function and provides both arguments?
+
+* Apply your function to the "Temp" column to the `airquality` dataset from the `datasets` package.
+
+## Conditional statements
+
+Before solving this, let's learn about conditional statements.
+```{r}
+if(3>1){ #logical statement
+  print("TRUE.")
+}else{
+  print("FALSE.")
+}
+```
+
+## Conditional Statements:
+
+Another example
+```{r}
+x<-2
+if (class(x)=="character"){
+  print ("This will execute...")
+} else
+{
+  print ("but this will not.")
+}
+```
+
+Play around with this for a bit!
+
+## Task 1: Combine both functions into one.
+
+Celsius to Fahrenheit function (from lab 6):
+
+```{r}
+#function to convert Fahrenheit to Celsius
+FtoC<-function(tf){ #one argument:tf
+tc<-(tf-32)/1.8 #conversion F to C
+return(tc) #output of the function
+}
+```
+
+Fahrenheit to Celsius function (from lab 6):
+
+```{r}
+#function to convert Fahrenheit to Celsius
+CtoF<-function(tc){ #one argument:tf
+tf<-(tc * 1.8) + 32 #conversion C to F
+return(tf) #output of the function
+}
+```
+
+## Task 1: Combine both functions into one.
+
+```{r}
+FtoC(tf=104) # test
+CtoF(tc=40) # test
+CtoF(tc=c(0,25,42,100)) # test
+FtoC(tf=c(32,77,107.6,212)) #test
+```
+
+## Task 1: Combine both functions into one.
+
+Setting the stage: (this is not real code)
+
+```{r, eval=F}
+temp_conv<-function(parameters){ #define function and parameters
+  if(temp is in Celsius){ #if temp is in Celsius
+    convert to fahrenheit 
+  } else { #otherwise
+    convert fahrenheit to celsius
+  }
+```
+
+## Task 1: Combine both functions into one.
+
+Real code:
+
+```{r, eval=T}
+temp_conv<-function(t=30, unit="C"){ #define function and parameters
+  if(unit=="C"){
+    t2<-(t * 1.8) + 32 #converto to Fahrenheit
+  } else { #otherwise
+    t2<-(t-32)/1.8 #convert to Celsius
+  }
+  return(t2)
+}
+```
+
+## Task 1: Combine both functions into one.
+
+```{r}
+temp_conv(t=45, unit="C") #test
+temp_conv(t=45, unit="F") #test
+temp_conv(t=110, unit="F") #test
+temp_conv(t=110, unit="C") #test
+```
+
+## Functions applied to vectors
+
+```{r}
+temp_conv(t=c(0,25,42,100), unit="C") #freezing, room, very hot, boiling water
+```
+
+```{r}
+temp_conv(t=c(32,77,107.6,212), unit="F") #freezing, room, very hot, boiling water
+```
+
+## Let's look at the tasks again:
+
+- only one of the two arguments should be provided by the user. <p style="color:orange"> Done.</p>
+
+- how does the function decide what to do based on the user input. <p style="color:orange">parameter "unit"</p>
+
+- what happens if the user does not understand the function and provides both arguments? <p style="color:orange">Not possible in the way we set up this function.</p>
+
+## Next task: Apply your function
+
+Apply your function to the "Temp" column to the `airquality` dataset from the `datasets` package.
+
+* load the dataset
+* check its structure
+
+```{r}
+data(airquality) #load dataset
+str(airquality) # temp seems to be in Fahrenheit
+```
+
+## Next task: Apply your function
+
+* Use your function to convert temperatures from Fahrenheit to Celsius
+
+```{r}
+airquality_tempC<-temp_conv(t=airquality$Temp, unit="F")
+summary(airquality$Temp)
+summary(airquality_tempC)
+```
+
+### The end!

@@ -1,0 +1,792 @@
+---
+title: "Lab 8"
+output: slidy_presentation
+date: "2022-10-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE)
+```
+
+## Tasks
+
+* Go over the case study from Lab 7
+* Learn conditional statements (if/else)
+* Use if/else to complete Exercise 2 (Lab 7)
+* Go over Exercise 2
+* Learn about `apply` and `replicate`
+* Use these tools to solve Exercise 3 (Lab 7)
+* Go over Exercise 3
+* Extra practice with conditional statements
+
+## Case Study: Acorn size and oak tree range (from Lab 7)
+
+
+### Introduction
+
+It is thought that the size of a plant’s seed may have some effect on the geographic range of a plant. In fact, a positive correlation is believed to exist between acorn size and the geographical range of the North American Oaks. The idea behind this theory is that larger acorns will be carried away by larger animals who in turn have a wider territorial range. Aizen and Patterson studied 39 species of oak trees to examine this correlation.
+
+
+## Protocol
+
+Fifty species of oaks are found growing in the United States, 80% of which are accounted for in the Atlantic and California regions. The 28 oaks in the Atlantic region and the 11 oaks in the California region were used in this study. Acorn size was expressed as a volume, using measurements of specific nut lengths and widths to estimate the acorn volume as the volume of an ellipsoid. The areas of the geographical range for each species were obtained from the available literature.
+
+## Protocol (cont.)
+
+The range of species number 11 of the California region is unusual in that it does not include any land on the continental United States. 
+
+This particular species of oak grows only on the Channel Islands of Southern Cax`lifornia (see the map) and the island of Guadalupe off the coast of Baja California. The area of the Channel Islands is 1014 sq. km and the area of the island of Guadalupe is 265 sq. km.
+
+![](images/acorn_map.png){width=50%}
+
+## Data
+
+The data collected by Aizen & Patterson is provided in the file `acorn.txt`. The file `Readme_acorn.txt` describes what is in the data file.
+
+## Question 1:
+
+Look at the data file and the readme file and answer:
+
+a) how many variables are present in the data file?
+b) which ones are numerical? (name the subtype)
+c) which ones are categorical (name the subtype)
+d) how are the columns separated in the data file?
+
+![](images/acornfile.png){width=40%}
+
+## Question 1 (answers):
+
+Look at the data file and the readme file and answer:
+ 
+* how many variables are present in the data file? 
+*Six: Species, Region,Range, Acorn size, Tree height*
+* which ones are numerical? (name the subtype)
+*Continuous: Acorn size, Tree height. Continuous in principle but could be treated as discrete here: Range.*
+
+* which ones are categorical (name the subtype)
+*Nominal: Species, Region. Ordinal: None.*
+
+## Question 1 (answers):
+
+* how are the columns separated in the data file?
+
+```{r, eval=F}
+#read.table("acorn.txt") #fails
+?read.table
+```
+
+> "If sep = "" (the default for read.table) the separator is ‘white space’, that is one or more spaces, tabs, newlines or carriage returns."
+>
+
+Let's try tab!
+
+```{r, eval=F}
+#read.table("acorn.txt") #fails
+read.table("acorn.txt", sep="\t") #works! 
+#"\t" is tab in linux/programming world.
+read.delim("acorn.txt") #also works.
+#see ?read.delim. It's default is sep="\t"
+readr::read_table("acorn.txt") #does not work; expects white space
+```
+
+
+## Question 2:
+
+
+## Question 2 (answers):
+
+* Read in the data file
+* check its dimensions 
+
+```{r}
+#Read in the data file
+acorn<-read.delim("input_files/acorn.txt")
+#check its dimensions 
+dim(acorn) #39 rows, 5 columns
+nrow(acorn) #39
+ncol(acorn) #5
+```
+
+
+## Question 2 (answers):
+
+* check its structure
+
+
+```{r}
+#check its structure
+str(acorn)
+```
+
+## Question 2 (answers):
+
+* Do the classes of each column seem appropriate to you? Now is a good time to change them.
+*Species and Region could be better handled as factors (not ordered)*
+
+```{r}
+library(dplyr)
+acorn <- acorn %>% 
+  mutate(Species=factor(Species), #transform to factor
+         Region=factor(Region)) #transform to factor
+```
+
+## Question 2 (answers):
+
+* check that there are no missing values. 
+
+```{r}
+#check that there are no missing values. 
+# four ways. 1
+summary(acorn) # no NAs show up in summaries
+```
+
+## Question 2 (answers):
+
+* check that there are no missing values. 
+
+```{r}
+#2
+table(is.na(acorn)) #195 FALSE
+#3
+table(na.omit(acorn) == acorn) #if all are TRUE, there are no NAs
+```
+
+```{r}
+#4
+anyNA(acorn) #if FALSE, all good.
+```
+
+
+## Question 3:
+
+* What type of visualization would be appropriate in order to investigate the relationship between tree range and acorn size?
+* Who are the response and explanatory variables here?
+* Make that plot.
+
+
+## Question 3 (answers):
+
+* What type of visualization would be appropriate in order to investigate the relationship between tree range and acorn size?
+*Tree range is numerical and acorn size is also numerical. Therefore, a scatter plot.*
+
+* Who are the response and explanatory variables here?
+*The idea is to investigate the idea that larger acorns get dispersed further by larger animals, so acorn size (explanatory) and range (response).*
+
+
+## Question 3 (answers):
+
+```{r}
+library(ggplot2) #load ggplot package
+ggplot(acorn, aes(x=Acorn.size, y=Range)) +  # basic scatter plot
+  geom_point()
+
+```
+
+## Question 3 (answers):
+
+```{r}
+library(ggplot2) #load ggplot package
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  theme_bw()  # white background
+
+```
+
+## Question 4:
+Examine the summary statistics for tree range. 
+
+* What are the mean and the standard deviation? 
+
+* What do these values tell you about the likely shape of the distribution?
+
+
+## Question 4 (answers):
+Examine the summary statistics for tree range. 
+
+
+```{r}
+mean(acorn$Range) #mean
+sd(acorn$Range) #standard deviation
+summary(acorn) # both and more
+```
+
+
+## Question 4 (answers):
+* Examine the summary statistics for tree range. 
+
+
+```{r, eval=T, echo=F}
+suppressPackageStartupMessages(library(dplyr))
+```
+
+```{r}
+library(dplyr)
+acorn %>%
+  summarise(mean(Range), sd(Range)) #produce two summaries at once
+```
+
+
+```{r}
+library(dplyr)
+acorn %>%
+  summarise(MeanRange=mean(Range), SDRange=sd(Range)) #name summaries
+```
+
+$$SD >> Mean$$
+
+## Question 4 (answers):
+* Examine the summary statistics for tree range. 
+```{r}
+library(dplyr)
+acorn %>% 
+  select(Range) %>% #select col Range
+  summary() #summary()
+```
+
+$$Median << Mean $$$
+* What do these values tell you about the likely shape of the distribution?
+*This suggests an enormous spread or range of the data. Also, 50% of the data are contained within 827 and 11924.5 and 75% of the data have values  below 11924.5. Further, the median (5328) is much lower than the mean (7882.6), suggesting a strong right (positive) skew.*
+
+```{r}
+mean(acorn$Range)
+```
+
+
+## Question 4 (answers):
+
+Distribution of Range:
+
+```{r}
+#you could also plot the distribution to get this intuition. 
+# place the mean (7882.564) and median (5328) in this distribution
+ggplot(acorn, aes(x=Range))  + geom_histogram() + 
+  theme_bw()
+```
+
+## Question 4 (answers):
+
+Distribution of Acorn size:
+
+```{r}
+#you could also plot the distribution to get this intuition. 
+# place the mean mean and median in this distribution
+ggplot(acorn, aes(x=Acorn.size))  + geom_histogram() + 
+  theme_bw()
+```
+
+## Question 5:
+
+* Transform the data using the log transformation on both the range and the size. 
+
+```{r}
+#transform to log scale. Option 1
+acorn2<- acorn %>% 
+  mutate(Range=log(Range, base=10), #log10 would also work
+            Acorn.size=log(Acorn.size, base=10))
+
+ggplot(acorn2, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  theme_bw()  # white background
+
+```
+
+## Question 5:
+
+* Transform the data using the log transformation on both the range and the size. 
+
+```{r}
+# ggplot2 directly option 2
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  scale_y_continuous(trans="log10") +
+  scale_x_continuous(trans="log10") +
+  theme_bw()  # white background
+
+```
+
+## Question 5:
+
+* Transform the data using the log transformation on both the range and the size. 
+
+```{r}
+# ggplot2 directly option 3
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10() +
+  theme_bw()  # white background
+
+```
+
+## Question 5:
+
+* Now make a scatter plot of Ln(range) vs. Ln(acorn size). 
+
+```{r}
+#option 1
+acorn3<- acorn %>% 
+  mutate(Range=log(Range), #default base is e (2.718281828459)
+            Acorn.size=log(Acorn.size))
+
+ggplot(acorn3, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  theme_bw()  
+
+```
+
+## Question 5:
+
+* Now make a scatter plot of Ln(range) vs. Ln(acorn size). 
+
+```{r}
+#option 2
+ggplot(acorn, aes(x=Acorn.size, y=Range)) + 
+  geom_point() +
+  scale_y_continuous(trans="log") +
+  scale_x_continuous(trans="log") +
+  theme_bw()  # white background
+
+```
+
+## Question 5:
+
+* How did the pattern change? Does it surprise you? Do you see any obvious reason that might help explain the correlation?
+
+*ince both distributions have a longer than normal right-tail, a log transformation might be suggested to dampen the influence of the largest observations. Also, relationships between the transformed variables would then be interpretable on a relative scale. It now becomes apparent there is a positive relationship between the two.*
+
+
+
+
+## Question 6:
+
+Compare boxplots of tree range by geographical region in order to investigate the relationship between tree range and region. What do you learn?
+
+```{r}
+#boxplot of Range by Region
+ggplot(acorn, aes(x=Region, y=Range, color=Region)) + 
+  geom_boxplot() +
+  theme_bw() #white background
+
+```
+
+*The comparative boxplots show that the bigger ranges are found in the Atlantic region, the smaller ranges are found in the California region.*
+
+
+## Question 7:
+
+* Make an appropriate plot of Ln(range) vs. Ln(acorn size) for the Atlantic region. Is the correlation (visually) any better than that found in Question 1?
+*You didn't really have to calculate the correlation but just visually assess it. The scatter plot for the Atlantic Region shows a moderate positive association.* 
+```{r}
+#Atlantic
+acorn3 %>% 
+  filter(Region=="Atlantic") %>% #atlantic region
+  ggplot(aes(x=Acorn.size, y=Range)) + #does not require input because of %>%
+  geom_point() +
+  scale_y_continuous(trans="log") + #log transformation
+  scale_x_continuous(trans="log") +
+  theme_bw()  # white background
+
+```
+
+## Question 7:
+
+* Make an appropriate plot of Ln(range) vs. Ln(acorn size) for the California region. What is the correlation? Why do you think that the correlation is so low?
+*You didn't really have to calculate the correlation but just visually assess it. It seems pretty low here.This low correlation is due to the presence of the outlier at the bottom right of the plot. The rest of the data seem to be associated in a stronger manner. *
+
+```{r}
+#California
+acorn3 %>% 
+  filter(Region =="California") %>% #atlantic region
+  ggplot(aes(x=Acorn.size, y=Range)) + #does not require input because of %>%
+  geom_point() +
+  scale_y_continuous(trans="log") + #log transformation
+  scale_x_continuous(trans="log") +
+  theme_bw()  # white background
+```
+
+## Question 7:
+
+Convince yourself of this by adding a linear regression line for both plots:
+
+```{r}
+#scatter plots by Region with regression line
+acorn3 %>% 
+  ggplot(aes(x=Acorn.size, y=Range)) + #does not require input because of %>%
+  geom_point() +
+  stat_smooth(method="lm")+
+  theme_bw() +  # white background
+  facet_wrap(vars(Region),nrow = 2,scales="free") #splits plots by column Region
+```
+
+
+## Exercise 2: Taking your first function to the next level!
+
+In Lab 6, you created a simple function that takes in a user defined value and converts into something else. Specifically, the function convert a temperature in Celsius to the corresponding temperature in Fahrenheit. You were then asked to make a similar function that converts temperature in Fahrenheit to Celsius. If you didn't complete that activity, you should do so before moving forward. This is under Lab6_Activity in Rstudio Cloud but also posted on Moodle.
+
+You had two tasks:
+
+1. Combine both functions into one. Basically, you want the function to have two arguments: temperature in Celsius and temperature in Fahrenheit. A few things to consider:
+
+- only one of the two arguments should be provided by the user
+
+- how does the function decide what to do based on the user input?  
+
+- what happens if the user does not understand the function and provides both arguments?
+
+2. Apply your function to the "Temp" column to the `airquality` dataset from the `datasets` package.
+
+
+## Task 1: Combine both functions into one.
+
+
+Celsius to Fahrenheit
+
+```{r}
+#function to convert Fahrenheit to Celsius
+FtoC<-function(tf){ #one argument:tf
+tc<-(tf-32)/1.8 #conversion F to C
+return(tc) #output of the function
+}
+```
+
+Fahrenheit to Celsius
+
+```{r}
+#function to convert Fahrenheit to Celsius
+CtoF<-function(tc){ #one argument:tf
+tf<-(tc * 1.8) + 32 #conversion C to F
+return(tf) #output of the function
+}
+```
+
+Test
+
+```{r}
+FtoC(tf=104)
+CtoF(tc=40)
+```
+
+## Conditional statements
+
+Example:
+
+```{r}
+if (TRUE){
+  print ("This will execute...")
+} else
+{
+  print ("but this will not.")
+}
+
+```
+
+## Task 1: Combine both functions into one.
+
+Setting the stage: (this is not real code)
+
+```{r, eval=F}
+temp_conv<-function(parameters){ #define function and parameters
+  if(temp is in Celsius){
+    conver to fahrenheit
+  } else { #othersise
+    convert fahrenheit to celsius
+  
+  }
+```
+
+## Task 1: Combine both functions into one.
+
+Real code:
+
+```{r, eval=F}
+temp_conv<-function(t=30, unit="C"){ #define function and parameters
+  if(unit=="C"){
+    t2<-(t * 1.8) + 32 #converto to Fahrenheit
+  } else { #otherwise
+    t2<-(t-32)/1.8 #convert to Celsius
+  }
+  return(t2)
+}
+#tests
+temp_conv(t=45, unit="C")
+temp_conv(t=45, unit="F")
+temp_conv(t=110, unit="F")
+temp_conv(t=110, unit="C")
+```
+
+
+## Let's look at the tasks again:
+
+- only one of the two arguments should be provided by the user. *Done.*
+
+- how does the function decide what to do based on the user input. *parameter "unit"*
+
+- what happens if the user does not understand the function and provides both arguments? *Not possible the way we set up this function.*
+
+```{r}
+temp_conv<-function(t=30, unit="C"){ #define function and parameters
+  if(unit=="C"){
+    t2<-(t * 1.8) + 32 #convert to Fahrenheit
+  } else { #otherwise
+    t2<-(t-32)/1.8 #convert to Celsius
+  }
+  return(t2)
+}
+
+```
+
+## Functions applied to vectors
+
+```{r}
+temp_conv(t=c(0,25,42,100), unit="C") #freezing, room, very hot, boiling water
+```
+
+```{r}
+temp_conv(t=c(32,77,107.6,212), unit="F") #freezing, room, very hot, boiling water
+```
+
+
+## Next task
+
+*Apply your function to the "Temp" column to the `airquality` dataset from the `datasets` package.
+
+* load the dataset
+* check its structure
+
+
+```{r}
+data(airquality)
+```
+
+```{r}
+str(airquality) # temp seems to be in Fahrenheit
+```
+
+## Next task
+
+* use your function to convert temperatures from Fahrenheit to Celsius
+
+```{r}
+airquality_tempC<-temp_conv(t=airquality$Temp, unit="F")
+summary(airquality$Temp)
+summary(airquality_tempC)
+```
+
+# The end!
+
+## Exercise 1: Making a distribution of sample means (from lab 7)
+
+
+Last week you learned how to take a sample (random rows) from a dataset and calculate statistics on it. Specifically, you took two independent samples from the `human_genes` dataset and calculated some descriptive statistics. If you didn't complete that activity, you should do so before moving forward. This is under Lab6_Activity in Rstudio Cloud but also posted on Moodle.
+
+Today, you have two tasks:
+
+* take 10,000 random samples of length `n=100` from the `human_genes` dataset.Tip: explore the function `replicate` from the `dplyr` package
+
+The replicate function:
+
+```{r}
+#replicate the value 3 exactly 10 times
+replicate(n=10, 3)
+#replicate the letter 'A' exactly 7 times
+replicate(n=7, 'A')
+```
+## From lab 6
+
+```{r}
+library(dplyr) #load the dplyr package
+human_genes<-readr::read_csv("input_files/human_genes.csv") #read in the human genes dataset
+glimpse(human_genes) #glimpse the dataset
+#remove useless columns
+human_genes<-human_genes %>% select(name, size)
+```
+
+## From lab 6
+
+```{r}
+library(dplyr) #load the dplyr package
+library(readr) #load readr package
+human_genes<-readr::read_csv("input_files/human_genes.csv") #read in the human genes dataset
+glimpse(human_genes) #glimpse the dataset
+#remove useless columns
+human_genes<-human_genes %>% select(name, size)
+```
+
+## From lab 6
+
+Calculate the following descriptive statistics for each of the samples (for the gene length): `mean`, `median`,`standard deviation`, `mode`, `IQR` for the entire dataset:
+
+```{r}
+library(dplyr) #load dplyr
+
+#summarise the human genes dataset creating three columns
+human_genes_summ <- human_genes %>%
+  summarise(
+  MeanLength = mean(size),
+  MedianLength = median(size),
+  SDLength = sd(size),
+  IQR = IQR(size),
+  Mode =  pull(select(slice(arrange(human_genes, desc(size)),1),size)),
+  SEM = sd(size)/sqrt(100) #Standard error of the mean (n=100)
+)
+human_genes_summ #
+```
+
+## Recap from lab 6
+
+Let’s take a sample from `human_genes`:
+```{r}
+set.seed(1)
+# take a sample of size 100 without replacement from human_genes
+samp_rep1 <- human_genes %>%
+  sample_n(size = 100, replace = F) #take a sample of size 100, no replacement.
+
+```
+
+## Recap from Lab 6
+
+Now use the code above to create the summaries for this sample and compare it to the population summaries:
+
+```{r}
+samp_rep1_summ<-samp_rep1 %>%
+  summarise(
+  MeanLength = mean(size),
+  MedianLength = median(size),
+  SDLength = sd(size),
+  IQR = IQR(size),#IQR
+  Mode =  pull(select(slice(arrange(human_genes, desc(size)),1),size)),
+  SEM = sd(size)/sqrt(100) #Standard error of the mean (n=100)
+)
+
+```
+
+## Back to the exercise
+
+* take 10,000 random samples of length `n=100` from the `human_genes` dataset.
+
+- first, create an object and insert the replicate function
+```{r, eval=F}
+samp_reps<- replicate(
+  
+)
+```
+
+- define number of replicates:
+
+```{r, eval=F}
+#let's test with 3 first
+samp_reps<- replicate(n=3, 
+  simplify=TRUE) #simplify the output
+
+```
+
+## Insert the expression to be evaluated repeatedly
+
+
+```{r, eval=T}
+#let's test with 3 first
+
+samp_reps<- replicate(n=3, human_genes %>% 
+                        sample_n(size = 100, replace = F) %>%
+                        select(size) %>% 
+                        pull()
+                      )
+                      
+#did it work?
+class(samp_reps)
+head(samp_reps)
+```
+
+## Calculate the summaries for each replicate sampled:
+
+Make a function that calculates all the summaries
+
+```{r}
+
+my_summ<-function(x){
+  mean_x<-mean(x) #mean
+  median_x<-median(x) #median
+  sd_x<-sd(x) #sd
+  iqr_x<-IQR(x) #iqr
+  mode<-sort(x,decreasing = T)[1] #mode
+  SEM<-sd_x/sqrt(length(x)) #standard error from one resamp
+  return(list(Mean=mean_x, Median=median_x, SD=sd_x, IQR=iqr_x, Mode=mode, SEM=SEM))
+}
+
+#test
+my_summ(x=samp_reps[,1])
+```
+
+## Calculate the summaries for each replicate sampled:
+
+Use your function on all the replicates.
+
+Option 1: Using the `apply` function:
+
+```{r}
+#how apply works
+
+#X: data, MARGIN: 1 for rows, 2 for columns
+#FUN for function
+apply(X=matrix(c(1,2,3,4,5,6), ncol=2), MARGIN=2, FUN=function(x) mean(x))
+
+```
+
+## Calculate the summaries for each replicate sampled:
+
+Use your function on all the replicates.
+
+Option 1: Using the `apply` function:
+
+
+```{r}
+#retain only the mean
+just_means<-apply(X=samp_reps, 2, function(x) my_summ(x)$Mean)
+
+#make a data.frame
+
+just_means_dt<-data.frame(Mean=just_means, Rep=1:3)
+
+```
+
+## Plot a distribution of the means
+
+```{r}
+#first, make more replicates to get a proper distribution
+samp_reps<- replicate(n=1000, human_genes %>% 
+                        sample_n(size = 100, replace = F) %>%
+                        select(size) %>% 
+                        pull()
+                      )
+#retain only the mean
+just_means<-apply(X=samp_reps, 2, function(x) my_summ(x)$Mean)
+#make a data.frame
+just_means_dt<-data.frame(Mean=just_means, Rep=1:1000)
+#plot
+ggplot(just_means_dt, aes(Mean)) + 
+  geom_histogram()
+
+```
+
+## Explore the sampling distribution
+
+* calculate the standard deviation of the sampling distribution and compare it to the standard error you obtain by applying the standard formula $\sigma_{\bar X}=\frac{\sigma_{X}}{\sqrt{n}}$.
+*They are SUPER similar!*
+
+```{r}
+#SD of the sampling distribution
+#the GRAND MEAN
+mean(just_means_dt$Mean)
+sd(just_means_dt$Mean)
+#standard formula
+sd(human_genes$size)/sqrt(100)
+
+```
+
+## Oof!
+
+Congratulations! You learned:
+
+*conditional statements (if/else)
+*apply
+*replicate (tidyverse version of apply)
