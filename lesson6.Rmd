@@ -1,9 +1,8 @@
 ---
-title: "Loopy for Loops, Silly for Samples - Hands-on!"
+title: "Loopy for Loops, Crazy for Conditionals,  Silly for Samples - Hands-on!"
 author: "YOUR NAME"
 date: "`r Sys.Date()`"
 output: pdf_document
-#This code is from (jng, 2021) and is AMAZING! It automatically warps the text to fit the page
 header-includes:
   \usepackage{fvextra}
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
@@ -15,7 +14,7 @@ knitr::opts_chunk$set(echo=T, eval=T)
 ## Outline
 Hello R students your silly student coder has returned to make your assignments notably worse than if Dr. B had made them. This week you will learn:
 
--intro to loops: for (you will later learn about while and repeat)
+-intro to loops: for and while. (R also has a loop called repeat that I only learned about when I googled "types of loops in R. I don't think you'll need to know about it)
 -intro to sampling
 -as much dplyr as I can include to drive Levi crazy (ask Levi about his beef with tidyverse if you are unaware).
 
@@ -55,5 +54,67 @@ mean <- sum / length(numbers)
 print(mean)
 
 ```
+
+
+You can also write loops with character vectors. Here's a character vector. Write a loop that adds day to each day of the week.
+days<-c("Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "Sun")
+(hint: if you add the argument sep = "" to paste you don't get a space in between)
+
+```{r ex 2}
+days<-c("Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "Sun")
+
+for (day in days){
+ print(paste(day, "day", sep = ""))   
+        
+}
+
+
+```
+
+
+You can do a lot more with loops once you learn about functions. But alas, that's for next week. For now that's probably enough for loops. 
+
+
+## Sampling
+There is a basic function in R for taking samples very appropriately named sample. You need three arguments for it to work (there is a 4th but don't worry about it yet). The first is the data set, the second is the number of samples, and the third is with or without replacement. 
+
+Read in the human_genes.csv file and name it human_genes. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
+
+Overall goal of this exercise is to compare sample means at different n to the population mean. 
+
+
+Its big right? So let's take some samples. 
+NOTE: Your output will look different to the pdf beacuse your samples will be different values. 
+
+1. First filter it to only keep the size and name column. 
+2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??)
+3. Now let's take some samples. Take 3 samples of gene size with replacement on. Use n = 10, 100, 1000. Calculate the mean of these samples, and save each mean as mean10, mean100, and mean1000. 
+4. Compare these means to the population mean. Which is closest?
+
+
+```{r ex3}
+library(dplyr)
+library(readr)
+human_genes <- read_csv("fall_2022_materials/lab5/input_files/human_genes.csv") 
+
+
+human_genes<-human_genes %>% select(name, size)
+
+human_genes_summ <- human_genes %>%
+  summarise(
+    MeanLength = mean(size),
+    MedianLength = median(size),
+    SDLength = sd(size)
+)
+
+mean10<-mean(sample(human_genes$size, 10, replace = TRUE))
+mean100<-mean(sample(human_genes$size, 100, replace = TRUE))
+mean1000<-mean(sample(human_genes$size, 1000, replace = TRUE))
+        
+        
+        
+        
+```
+
 
 
