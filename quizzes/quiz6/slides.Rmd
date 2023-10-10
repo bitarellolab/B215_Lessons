@@ -251,3 +251,6 @@ sample(x, size, replace = FALSE, prob = NULL)
 * **size** - sample size.
 * **replace** - with or without replacement of values.
 * **prob** - probability weights
+
+
+## Taking samples with replacement
