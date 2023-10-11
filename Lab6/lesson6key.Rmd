@@ -9,40 +9,42 @@ header-includes:
 ---
 ```{r setup, echo=F}
 knitr::opts_chunk$set(echo=T, eval=T)
+options(tinytex.verbose = TRUE)
+suppressMessages(library(dplyr))
 ```
-     
-## Outline
-Hello R students! Your silly student coder has returned to make your assignments notably worse than if Dr. B had made them. This week you will learn:
 
-* intro to loops: `for` and `while`.^[R also has a loop called repeat that I only learned about when I googled "types of loops in R. I don't think you'll need to know about it]
-
-
-* conditional statement: `if`, `then`, `else`, and `ifelse`.
-
-* a soft intro intro to sampling using mostly base R.
-
-* as much dplyr as I can include to drive Levi crazy^[Ask Levi about his beef with `tidyverse` if you are unaware].
-
----------------
 
 ## Part 1: Loops
-Loops are a programming element that repeat a portion of code a set number of times until the desired process is complete.
 
-This guide someone wrote on the internet is really good if you want to also read it. https://intro2r.com/conditional-statements.html
 
-#### `for` Loops
-A for loop applies a command to each value provided then stops. basic example: 
 
-```{r, echo=TRUE}
+### `for` loops
+
+First, we are going to be focusing on "for loops". A for loop applies a command to each value provided then stops. In other words, the                  `for` loop runs for a preset number of times.
+
+Basic example: 
+
+```{r r1}
 for (i in 1:5) {
   print(i)
 }
 ```
-You don't actually have to use i for the value there but most people do. 
 
-So this loop printed each value for i. How would you write code that printed the values 6-10?
+* You don't actually have to use i for the value there but most people do. `i` is presumably short for "index", which makes sense. But you could just as well call it `banana`.
 
-```{r for1}
+**Ex.1)** run the same command above replacing `i` with `banana`.
+
+```{r ex1 }
+for (banana in 1:5) {
+  print(banana)
+}
+
+
+```
+
+So this loop printed each value for `i` (or `banana`). How would you write code that printed the values 6-10?
+
+```{r r2}
 for (i in 6:10) {
   print(i)
 }
@@ -50,7 +52,7 @@ for (i in 6:10) {
 
 It's often useful to define a placeholder variable before running your loop. For example, this loop calculates the mean of a given data set. 
 
-```{r}
+```{r r3}
 numbers <- c(4, 22, 6, 13, 19, 2, 11)
 sum <- 0
 for(num in numbers) {
@@ -62,11 +64,18 @@ print(mean)
 ```
 
 
-You can also write loops with character vectors. Here's a character vector. Write a loop that adds day to each day of the week.
-days<-c("Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "Sun")
-(hint: if you add the argument sep = "" to paste you don't get a space in between)
+You can also write loops with character vectors. Here's a character vector:
+`days<-c("Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "Sun")` 
 
-```{r for2}
+**Ex.2)** Write a loop that adds day to each day of the week so that the output of `days` gives you "Monday", "Tuesday", etc, one in each line.
+
+Hint: if you add the argument sep = "" to paste you don't get a space in between)
+
+```{r ex 2}
+#First create the vector days as show above
+
+#now write a for loop that adds "day" to each of the elements and print each one as you go
+
 days<-c("Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "Sun")
 
 for (day in days){
@@ -77,12 +86,14 @@ for (day in days){
 
 ```
 
+### `while` loops
 
-#### `while` Loops
-A while loop repeats code until a condition is met. It's really important to include the condition because the loop might continue forever if you don't. 
+
+
+**Ex.3)** A while loop repeats code until a condition is met. It's really important to include the condition because the loop might continue forever if you don't. 
 
 Here's an example of a loop that prints x then multiplies it by two, as long as x is under 16. 
-```{r}
+```{r r4}
 x <- 2
 while (x < 16) {
   print(x)
@@ -94,14 +105,12 @@ while (x < 16) {
 
 Now write a while loop that prints the value, then doubles it, starting at 1 and  stopping at 100.
 
-```{r while1}
+```{r ex3}
 x <- 1
 while (x <= 100) {
   print(x)
   x <- x * 2
 }
-
-
 ```
 
 Just for fun try running that loop without with while(x). This will run forever. Make sure you remember to add the condition!
@@ -109,7 +118,7 @@ Just for fun try running that loop without with while(x). This will run forever.
 
  Say you have a number and you want to find the smallest divisor that isn't 1. You could use a while loop to do this.  
 ```{r while2}
-
+#your code here
 number <- 91
 divisor <- 2
 while (number %% divisor != 0) {
@@ -123,15 +132,20 @@ print(divisor)
 
 
 
+You can do a lot more with loops once you learn about functions. But alas, that's for next lab. For now that's probably enough for loops. 
 
+**Recommended:** This guide someone wrote on the internet is really good if you want to also read it. [https://intro2r.com/loops.html](https://intro2r.com/loops.html)
 
-## Sampling
+----------
+
+## Part 2: Sampling
+
 There is a basic function in R for taking samples very appropriately named sample. You need three arguments for it to work (there is a 4th also, probability). The first is the data set, the second is the number of samples, and the third is with or without replacement. 
 
 
-Let's with some basic sampling. Imagine you have a coin, equal chances of heads and tails. You want to flip it 10 times and see how many heads and how many tails. First make a vector called coin, with heads and tails. then sample it 10 times, with replacement
+**Ex.4)**Let's with some basic sampling. Imagine you have a coin, equal chances of heads and tails. You want to flip it 10 times and see how many heads and how many tails. First make a vector called coin, with heads and tails. then sample it 10 times, with replacement
 
-```{r}
+```{r ex4.1}
 coin_toss<-c("heads", "tails")
 
 sample(coin_toss<-c("heads", "tails"), 10, replace = TRUE)
@@ -144,7 +158,7 @@ Now lets try and do this same thing with a for loop. Make an empty vector called
 Hint:Because you are looping over the sample you are only sampling one each time
 
 
-```{r}
+```{r ex4.2}
 all_tosses <- c()
 
 for (i in 1:10) {
@@ -156,7 +170,7 @@ Now I'm being sneaky. I challenge you to flip a coin but its weighted. It lands 
 Hint: make them decimals in a vector. 
 
 
-```{r}
+```{r ex4.3}
 
 all_tosses <- c()
 
@@ -172,7 +186,7 @@ hint: you can use the table function to get a count of heads and tails
 
 
 
-```{r}
+```{r ex4.4}
 all_tosses <- c()
 
 for (i in 1:100) {
@@ -201,66 +215,66 @@ print(weighted_counts)
 This is why you shouldn't play games with other peoples strange coins
 
 
-
-
-
-
-Read in the human_genes.csv file and name it human_genes. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
+**Ex.5)**
+Read in the `human_genes.csv` file and name it `human_genes`. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
 
 Overall goal of this exercise is to compare sample means at different n to the population mean. 
 
 
 Its big right? So let's take some samples. 
-NOTE: Your output will look different to the pdf because your samples will be different values. 
 
-1. First filter it to only keep the size and name column. 
-2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??)
-3. Now let's take some samples. Take 3 samples of gene size with replacement on. Use n = 10, 100, 1000. Calculate the mean of these samples, and save each mean as mean10, mean100, and mean1000. 
-4. Compare these means to the population mean. Which is closest?
+**NOTE:** Your output will look different to the pdf because your samples will be different values. 
 
+5.1. First filter it to only keep the size and name column. 
 
-```{r samp1}
-library(dplyr)
+```{r ex5.1}
 library(readr)
+library(dplyr)
 human_genes <- read_csv("fall_2022_materials/lab5/input_files/human_genes.csv") 
-
-
 human_genes<-human_genes %>% select(name, size)
 
+```
+
+5.2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??)
+```{r ex5.2}
 human_genes_summ <- human_genes %>%
   summarise(
     MeanLength = mean(size),
     MedianLength = median(size),
     SDLength = sd(size)
 )
+```
 
+5.3. Now let's take some samples. Take 3 samples of gene size with replacement on. Use n = 10, 100, 1000. Calculate the mean of these samples, and save each mean as mean10, mean100, and mean1000. 
+```{r ex5.3}
 mean10<-mean(sample(human_genes$size, 10, replace = TRUE))
 mean100<-mean(sample(human_genes$size, 100, replace = TRUE))
 mean1000<-mean(sample(human_genes$size, 1000, replace = TRUE))
-        
-        
-        
-        
+```
+
+5.4. Compare these means to the population mean. Which is closest?
+```{r ex5.4}
+#they will just write the values tthey got. should be the third one
+
 ```
 
 
+**Ex.5)** Congrats you did sampling! Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
 
+6.1 First you want to create 3 vectors to store each of your results. Them mean_values_10 etc.
 
-3. Congrats you did sampling! Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
-
-3.1 First you want to create 3 vectors to store each of your results. Them mean_values_10 etc.
-
-```{r boot1}
+```{r ex6.1}
 mean_values_10 <- numeric(100)
 mean_values_100 <- numeric(100)
 mean_values_1000 <- numeric(100)
 
 
+
 ```
 
-3.2 Now you write a for loop like you did before. Execept you can include all three of your new vectors in the same loop. 
+6.2 Now you write a for loop like you did before. Execept you can include all three of your new vectors in the same loop. 
 
-```{r boot2}
+```{r 6.2}
 
 for (i in 1:100) {
   mean_values_10[i] <- mean(sample(human_genes$size, 10, replace = TRUE))
@@ -270,19 +284,20 @@ for (i in 1:100) {
 
 
 
+
 ```
 
-You hav now bootstrapped. Lets graph
+You have now bootstrapped. Lets graph
 
 
-4. We want to compare our samples to see which sample size got closest to our population mean. You are going to make a histogram of these means. 
+**Ex.7)**. We want to compare our samples to see which sample size got closest to our population mean. You are going to make a histogram of these means. 
 
 
-4.1 It's probably a good idea to start with making a data frame of our values. Take the vectors you just made and make one column called "mean" and another column with the corresponding sample size called "sample_size." You're going to have to make this a factor for the graphs to turn out right.  You also need to nestle the functions rep inside your factor call, with the argument each = 100.
+7.1 It's probably a good idea to start with making a data frame of our values. Take the vectors you just made and make one column called "mean" and another column with the corresponding sample size called "sample_size." You're going to have to make this a factor for the graphs to turn out right.  You also need to nestle the functions rep inside your factor call, with the argument each = 100.
 Call your data frame mean_data. 
 
 
-```{r}
+```{r ex 7.1}
 mean_data <- data.frame(
   mean = c(mean_values_10, mean_values_100, mean_values_1000),
 sample_size = factor(rep(c(10, 100, 1000), each = 100)))
@@ -290,35 +305,36 @@ sample_size = factor(rep(c(10, 100, 1000), each = 100)))
 ```
 
 
-4.2 Lets make a basic histogram.  x axis is mean, fill by sample_size. Within the 
+7.2 Lets make a basic histogram.  x axis is mean, fill by sample_size. 
 
 
 
-```{r}
+```{r 7.2}
 library(ggplot2)
 plot<-ggplot(mean_data, aes(x = mean, fill = sample_size)) + geom_histogram()
 print(plot)
 
 
+
 ```
 
  
-4.3 This is a bit hard to read. Let's add some detail. inside geom_histogram, change position to "fill", and both alpha to 0.5 and binwidth to 5.
+7.3 This is a bit hard to read. Let's add some detail. inside geom_histogram, change position to "fill", and both alpha to 0.5 and binwidth to 5.
 
 
 
-```{r}
+```{r 7.3}
 plot <- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
   geom_histogram(position="identity", alpha=0.5, binwidth=5)
 print(plot)
 
 
 ```
-4.4 Much better! Ok add some labels on your axis and legend. perhpas even add a theme if you feel silly
+7.4 Much better! Ok add some labels on your axis and legend. perhaps even add a theme if you feel silly
 
 
 
-```{r}
+```{r 7.4}
 library(ggplot2)
 plot<- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
   geom_histogram(position="identity", alpha=0.5, binwidth=5) +
@@ -333,6 +349,21 @@ print(plot)
 
 Are you tired of boring ggplot themes? Sick of theme_minimal? Run this code and go crazy
 devtools::install_github("https://github.com/MatthewBJane/ThemePark")
+------
+
+## The end!
+
+* Knit your document into a PDF using the button above this text editor and upload the PDF into
+Moodle.
+
+
+
+## References
+
+[1] Kodable. What are loops? [Link](http://support.kodable.com/en/articles/417331-what-are-loops)
+
+[2] Intro2r. For loops. [https://intro2r.com/loops.html](https://intro2r.com/loops.html)
+
 
 
 
