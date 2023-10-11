@@ -8,7 +8,7 @@ subtitle: Data types and data structures
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=F)
+knitr::opts_chunk$set(echo = TRUE, eval=T)
 suppressMessages(library(dplyr))
 suppressMessages(library(readr))
 human_genes<-read_csv("human_genes.csv")
@@ -20,9 +20,7 @@ human_genes<-read_csv("human_genes.csv")
 * Quick recap
 
         - indexing elements (base R and dplyr)
-
 * Go over some of lab 4
-
 * New stuff!
 
         - Loops
@@ -120,6 +118,34 @@ Filter rows with `filter`:
 iris %>% filter(Petal.Length>2) %>% head()
 ```
 
+
+## Lab 4
+
+Ex.20) Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
+
+
+```{r,eval=T}
+shrubs<-read_csv("shrub-volume-data.csv") %>% 
+  mutate(site=factor(site), 
+         experiment=factor(experiment)) %>% 
+  na.omit()
+```
+
+## Lab 4
+
+Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
+
+
+```{r, eval=T}
+shrubs %>% 
+  group_by(experiment) %>% 
+  summarise(N=n(), 
+            Range_length=diff(range(length)), 
+            Range_width=diff(range(width), 
+            Range_height=diff(range(height))))
+```
+
+
 ## Loops in computer programming
 
 
@@ -201,7 +227,7 @@ while ( condition ) {
 
 ## Loops in R: `while` loops
 
-```{r, eval=T}
+```{r}
 y<-0
 while (y <= 5){ #logical
     # statements
@@ -215,22 +241,72 @@ y #print y after the loop has concluded
 
 A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
 
-```{r}
+```{r, eval=F}
 # whose factorial will be calculated
 n <- 5 
-factorial <- 1 # assigning the factorial variable
+factorial <- 1 # assigning the factorial variable to start with value 1
+i <- 1 # and iteration variable to 1
+
+```
+
+## `while` loops
+
+A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
+
+```{r, eval=F}
+# whose factorial will be calculated
+n <- 5 
+factorial <- 1 # assigning the factorial variable to start with value 1
 i <- 1 # and iteration variable to 1
 # using while loop
 while (i <= n){
-    # multiplying the factorial variable
-    # with the iteration variable
-    factorial = factorial * i
-    # incrementing the iteration variable
-    i = i + 1
+#do something
 }
-print(factorial) # displaying the factorial
+
 ```
 
+## `while` loops
+
+A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
+
+```{r, eval=F}
+# whose factorial will be calculated
+n <- 5 
+factorial <- 1 # assigning the factorial variable to start with value 1
+i <- 1 # and iteration variable to 1
+# using while loop
+while (i <= n){
+    # multiplying the factorial variable by the iteration variable. 
+    #For the first iteration, 5*1, second iteration 5*2, etc
+    factorial = factorial * i
+}
+
+```
+
+## `while` loops
+A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
+
+```{r, eval=T}
+# whose factorial will be calculated
+n <- 5 
+factorial <- 1 # assigning the factorial variable to start with value 1
+i <- 1 # and iteration variable to 1
+# using while loop
+while (i <= n){
+    # multiplying the factorial variable by the iteration variable. 
+    #For the first iteration, 5*1, second iteration 5*2, etc
+    factorial = factorial * i
+    # increment the iteration variable
+    i = i + 1
+}
+```
+
+## `while` loops
+A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
+
+```{r, eval=T}
+print(factorial) # displaying the factorial
+```
 
 ## Sampling 
 
@@ -253,6 +329,16 @@ sample(x, size, replace = FALSE, prob = NULL)
 * **prob** - probability weights
 
 
-## Taking samples with replacement
 
-## Taking samples without replacement
+## The `sample()` function
+
+
+
+```{r,eval=T}
+LETTERS
+#once
+sample(LETTERS, size=2, replace = TRUE, prob = NULL)
+#again
+sample(LETTERS, size=2, replace = TRUE, prob = NULL)
+
+```
