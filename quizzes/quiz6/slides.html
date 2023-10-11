@@ -3070,21 +3070,18 @@ var loadDeck = function(event) {
   });
 };
 
-if (!window.Shiny) {
-  // If Shiny is loaded, the slide deck is initialized in ioslides template
-
-  if (document.readyState !== "loading" &&
-      document.querySelector('slides') === null) {
-    // if the document is done loading but our element hasn't yet appeared, defer
-    // loading of the deck
-    window.setTimeout(function() {
-      loadDeck(null);
-    }, 0);
-  } else {
-    // still loading the DOM, so wait until it's finished
-    document.addEventListener("DOMContentLoaded", loadDeck);
-  }
+if (document.readyState !== "loading" &&
+    document.querySelector('slides') === null) { 
+  // if the document is done loading but our element hasn't yet appeared, defer
+  // loading of the deck
+  window.setTimeout(function() {
+    loadDeck(null);
+  }, 0);
+} else {
+  // still loading the DOM, so wait until it's finished
+  document.addEventListener("DOMContentLoaded", loadDeck);
 }
+
 
 
 </script>
@@ -3585,12 +3582,41 @@ while (i &lt;= n){
 <pre class = 'prettyprint lang-r'>#once
 sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
 
-<pre >## [1] &quot;I&quot; &quot;L&quot;</pre>
+<pre >## [1] &quot;X&quot; &quot;A&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>#again
 sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
 
-<pre >## [1] &quot;G&quot; &quot;S&quot;</pre></article></slide>
+<pre >## [1] &quot;W&quot; &quot;W&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>The boostrap</h2></hgroup><article  id="the-boostrap">
+
+<ul>
+<li>The bootstrap is a tremendously useful tool for constructing confidence intervals and calculating standard errors for difficult statistics</li>
+<li>For example, how would one derive a confidence interval for the median?</li>
+<li>The bootstrap procedure follows from the so called bootstrap principle</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>The bootstrap principle</h2></hgroup><article  id="the-bootstrap-principle">
+
+<ul>
+<li>Suppose that I have a statistic that estimates some population parameter, but I don’t know its sampling distribution</li>
+<li>The bootstrap principle suggests using the distribution defined by the data to approximate its sampling distribution</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>The bootstrap in practice</h2></hgroup><article  id="the-bootstrap-in-practice">
+
+<ul>
+<li><p>In practice, the bootstrap principle is always carried out using simulation</p></li>
+<li><p>We will cover only a few aspects of bootstrap resampling</p></li>
+<li><p>The general procedure follows by first simulating complete data sets from the observed data with replacement</p>
+
+<pre >  - This is approximately drawing from the sampling distribution of that statistic, at least as far as</pre>
+
+<p>the data is able to approximate the true population distribution</p></li>
+<li><p>Calculate the statistic for each simulated data set</p></li>
+<li><p>Use the simulated statistics to either define a confidence interval or take the standard deviation to calculate a standard error</p></li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
@@ -3617,11 +3643,6 @@ sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
        window.jQuery(document).on('slideenter', function(e) {
          window.jQuery(e.target).trigger('shown');
       });
-    }
-    if (window.Shiny) {
-      // Initialize slides when this script appears on the page, since it
-      // indicates that the <slides> markup has been fully loaded.
-      window.loadDeck();
     }
   })();
 </script>

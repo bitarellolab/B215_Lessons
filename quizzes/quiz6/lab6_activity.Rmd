@@ -146,6 +146,8 @@ There is a basic function in R for taking samples very appropriately named sampl
 
 ```{r ex4.1}
 #your code here
+coin_toss<-c("heads","tails")
+sample(coin_toss, size=10, replace=TRUE)
 
 ```
 
@@ -157,9 +159,16 @@ Hint:Because you are looping over the sample you are only sampling one each time
 
 ```{r ex4.2}
 # first create an empty vector called all_tosses
-
+all_tosses<-c()
 #now run the loop
 
+for(i in 1:10){
+        #print(i)  
+        all_tosses[i]<-sample(coin_toss, size=1, replace=F)
+        
+}
+
+print(all_tosses)
 ```
 
 Now I'm being sneaky. I challenge you to flip a coin but its weighted. It lands on heads 60% of the time. Use the same loop and add the probabilities to the sample function.
