@@ -119,7 +119,7 @@ Overall goal of this exercise is to compare sample means at different n to the p
 
 Its big right? So let's take some samples. 
 
-**NOTE:** Your output will look different to the pdf beacuse your samples will be different values. 
+**NOTE:** Your output will look different to the pdf because your samples will be different values. 
 
 2.1. First filter it to only keep the size and name column. 
 ```{r}
