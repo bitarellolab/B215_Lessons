@@ -161,3 +161,93 @@ mean1000<-mean(sample(human_genes$size, 1000, replace = TRUE))
 
 
 
+
+3. Congrats you did sampling! Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
+
+3.1 First you want to create 3 vectors to store each of your results. Them mean_values_10 etc.
+
+```{r boot1}
+mean_values_10 <- numeric(100)
+mean_values_100 <- numeric(100)
+mean_values_1000 <- numeric(100)
+
+
+```
+
+3.2 Now you write a for loop like you did before. Execept you can include all three of your new vectors in the same loop. 
+
+```{r boot2}
+
+for (i in 1:100) {
+  mean_values_10[i] <- mean(sample(human_genes$size, 10, replace = TRUE))
+  mean_values_100[i] <- mean(sample(human_genes$size, 100, replace = TRUE))
+  mean_values_1000[i] <- mean(sample(human_genes$size, 1000, replace = TRUE))
+}
+
+
+
+```
+
+You hav now bootstrapped. Lets graph
+
+
+4. We want to compare our samples to see which sample size got closest to our population mean. You are going to make a histogram of these means. 
+
+
+4.1 It's probably a good idea to start with making a data frame of our values. Take the vectors you just made and make one column called "mean" and another column with the corresponding sample size called "sample_size." You're going to have to make this a factor for the graphs to turn out right.  You also need to nestle the functions rep inside your factor call, with the argument each = 100.
+Call your data frame mean_data. 
+
+
+```{r}
+mean_data <- data.frame(
+  mean = c(mean_values_10, mean_values_100, mean_values_1000),
+sample_size = factor(rep(c(10, 100, 1000), each = 100)))
+
+```
+
+
+4.2 Lets make a basic histogram.  x axis is mean, fill by sample_size. Within the 
+
+
+
+```{r}
+plot<-ggplot(mean_data, aes(x = mean, fill = sample_size)) + geom_histogram()
+print(plot)
+
+
+```
+
+ 
+4.3 This is a bit hard to read. Let's add some detail. inside geom_histogram, change position to "fill", and both alpha to 0.5 and binwidth to 5.
+
+
+
+```{r}
+plot <- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
+  geom_histogram(position="identity", alpha=0.5, binwidth=5)
+print(plot)
+
+
+```
+4.4 Much better! Ok add some labels on your axis and legend. perhpas even add a theme if you feel silly
+
+
+
+```{r}
+plot<- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
+  geom_histogram(position="identity", alpha=0.5, binwidth=5) +
+  labs(x = "Mean Value", 
+       y = "Frequency", 
+       title = "Distribution of Bootstrapped Mean Values",
+       fill = "Sample Size") +
+  theme_minimal()
+
+print(plot)
+```
+
+Are you tired of boring ggplot themes? Sick of theme_minimal? Run this code and go crazy
+devtools::install_github("https://github.com/MatthewBJane/ThemePark")
+
+
+
+
