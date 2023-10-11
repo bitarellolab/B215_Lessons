@@ -12,18 +12,25 @@ knitr::opts_chunk$set(echo=T, eval=T)
 ```
      
 ## Outline
-Hello R students your silly student coder has returned to make your assignments notably worse than if Dr. B had made them. This week you will learn:
+Hello R students! Your silly student coder has returned to make your assignments notably worse than if Dr. B had made them. This week you will learn:
 
--intro to loops: for and while. (R also has a loop called repeat that I only learned about when I googled "types of loops in R. I don't think you'll need to know about it)
--intro to sampling
--as much dplyr as I can include to drive Levi crazy (ask Levi about his beef with tidyverse if you are unaware).
+* intro to loops: `for` and `while`.^[R also has a loop called repeat that I only learned about when I googled "types of loops in R. I don't think you'll need to know about it]
 
-### What is a loop?
+
+* conditional statement: `if`, `then`, `else`, and `ifelse`.
+
+* a soft intro intro to sampling using mostly base R.
+
+* as much dplyr as I can include to drive Levi crazy^[Ask Levi about his beef with `tidyverse` if you are unaware].
+
+---------------
+
+## Part 1: Loops
 Loops are a programming element that repeat a portion of code a set number of times until the desired process is complete.
 
 This guide someone wrote on the internet is really good if you want to also read it. https://intro2r.com/conditional-statements.html
 
-#### For Loops
+#### `for` Loops
 A for loop applies a command to each value provided then stops. basic example: 
 
 ```{r, echo=TRUE}
@@ -71,7 +78,7 @@ for (day in days){
 ```
 
 
-#### While Loops
+#### `while` Loops
 A while loop repeats code until a condition is met. It's really important to include the condition because the loop might continue forever if you don't. 
 
 Here's an example of a loop that prints x then multiplies it by two, as long as x is under 16. 
@@ -288,6 +295,7 @@ sample_size = factor(rep(c(10, 100, 1000), each = 100)))
 
 
 ```{r}
+library(ggplot2)
 plot<-ggplot(mean_data, aes(x = mean, fill = sample_size)) + geom_histogram()
 print(plot)
 

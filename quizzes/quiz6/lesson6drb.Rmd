@@ -1,5 +1,5 @@
 ---
-title: "Loopy for Loops, Crazy for Conditionals,  Silly for Samples - Hands-on!"
+title: "Loopy for Loops and  Silly for Samples - Hands-on!"
 author: "YOUR NAME"
 date: "`r Sys.Date()`"
 output: pdf_document
