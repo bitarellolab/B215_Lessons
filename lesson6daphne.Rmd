@@ -1,5 +1,5 @@
 ---
-title: "Loopy for Loops, Crazy for Conditionals,  Silly for Samples - Hands-on!"
+title: "Loopy for Loops and  Silly for Samples - Hands-on!"
 author: "YOUR NAME"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -119,7 +119,33 @@ print(divisor)
 
 
 ## Sampling
-There is a basic function in R for taking samples very appropriately named sample. You need three arguments for it to work (there is a 4th but don't worry about it yet). The first is the data set, the second is the number of samples, and the third is with or without replacement. 
+There is a basic function in R for taking samples very appropriately named sample. You need three arguments for it to work (there is a 4th also, probability). The first is the data set, the second is the number of samples, and the third is with or without replacement. 
+
+
+Let's with some basic sampling. Imagine you have a coin, equal chances of heads and tails. You want to flip it 10 times and see how many heads and how many tails. First make a vector called coin, with heads and tails. then sample it 10 times, with replacement
+
+```{r}
+coin<-c("heads", "tails")
+
+sample(coin<-c("heads", "tails"), 10, replace = TRUE)
+
+
+```
+
+
+Now lets try and do this same thing with a for loop. Make an empty vector called coin_tosses and use it to generate 10 coin tosses
+
+
+```{r}
+
+
+
+```
+
+
+
+
+
 
 Read in the human_genes.csv file and name it human_genes. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
 
@@ -127,7 +153,7 @@ Overall goal of this exercise is to compare sample means at different n to the p
 
 
 Its big right? So let's take some samples. 
-NOTE: Your output will look different to the pdf beacuse your samples will be different values. 
+NOTE: Your output will look different to the pdf because your samples will be different values. 
 
 1. First filter it to only keep the size and name column. 
 2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??)
