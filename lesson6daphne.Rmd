@@ -160,13 +160,38 @@ for (i in 1:10) {
 
 ```
 
-Now let's see what happens if we slip both coins even more times. Use your original loop with the fair coin and toss is 100 times. Then take the weighted coin, change the variable names to make them different (add the word weighted or rigged) and toss that 100 times. Then count how many heads and how many tails came from each coin.
+Now let's see what happens if we slip both coins even more times. Use your original loop with the fair coin and toss is 100 times. Then take the weighted coin, change the variable names to make them different (add the word weighted or rigged) and toss that 100 times. Then count how many heads and how many tails came from each coin. Make sure to make an empty vector for each loop. 
+hint: you can use the table function to get a count of heads and tails
+
+
+
+```{r}
+all_tosses <- c()
+
+for (i in 1:100) {
+  all_tosses[i] <- sample(c("Heads", "Tails"), 1)
+}
+
+
+
+all_tosses_weighted <- c()
+
+for (i in 1:100) {
+  all_tosses_weighted[i] <- sample(c("Heads", "Tails"), 1,  prob = c(0.6, 0.4))
+}
 
 
 
 
+toss_counts <- table(all_tosses)
+print(toss_counts)
 
 
+weighted_counts<-table(all_tosses_weighted)
+print(weighted_counts)
+```
+
+This is why you shouldn't play games with other peoples strange coins
 
 
 
@@ -286,6 +311,7 @@ print(plot)
 
 
 ```{r}
+library(ggplot2)
 plot<- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
   geom_histogram(position="identity", alpha=0.5, binwidth=5) +
   labs(x = "Mean Value", 
