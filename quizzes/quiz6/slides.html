@@ -9,7 +9,7 @@
 
 
 
-  <meta name="date" content="2023-10-10" />
+  <meta name="date" content="2023-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -3204,7 +3204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">2023-10-10</p>
+            <p style="margin-top: 6px; margin-left: -2px;">2023-10-11</p>
           </hgroup>
   </slide>
 
@@ -3214,7 +3214,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 <li><p>Quick recap</p>
 
 <pre >  - indexing elements (base R and dplyr)</pre></li>
-<li><p>Go over some of lab 4</p></li>
 <li><p>New stuff!</p>
 
 <pre >  - Loops
@@ -3355,6 +3354,41 @@ iris %&gt;% filter(Petal.Length&gt;2) %&gt;% head()</pre>
 ## 5          6.5         2.8          4.6         1.5 versicolor
 ## 6          5.7         2.8          4.5         1.3 versicolor</pre>
 
+</article></slide><slide class=""><hgroup><h2>Lab 4</h2></hgroup><article  id="lab-4">
+
+<p>Ex.20) Using <code>group_by</code>, <code>summarise</code>, <code>n()</code>, create an object containing the range of values for <code>length</code>, <code>width</code>, <code>height</code> and the number of rows per experiment.</p>
+
+<pre class = 'prettyprint lang-r'>shrubs&lt;-read_csv(&quot;shrub-volume-data.csv&quot;) %&gt;% 
+  mutate(site=factor(site), 
+         experiment=factor(experiment)) %&gt;% 
+  na.omit()</pre>
+
+<pre >## Rows: 12 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (5): site, experiment, length, width, height
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</pre>
+
+</article></slide><slide class=""><hgroup><h2>Lab 4</h2></hgroup><article  id="lab-4-1">
+
+<p>Using <code>group_by</code>, <code>summarise</code>, <code>n()</code>, create an object containing the range of values for <code>length</code>, <code>width</code>, <code>height</code> and the number of rows per experiment.</p>
+
+<pre class = 'prettyprint lang-r'>shrubs %&gt;% 
+  group_by(experiment) %&gt;% 
+  summarise(N=n(), 
+            Range_length=diff(range(length)), 
+            Range_width=diff(range(width), 
+            Range_height=diff(range(height))))</pre>
+
+<pre >## # A tibble: 3 × 4
+##   experiment     N Range_length Range_width
+##   &lt;fct&gt;      &lt;int&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+## 1 1              4          1.1         3.2
+## 2 2              4          3.4         4.3
+## 3 3              4          2.3         1.3</pre>
+
 </article></slide><slide class=""><hgroup><h2>Loops in computer programming</h2></hgroup><article  id="loops-in-computer-programming">
 
 <ul>
@@ -3394,6 +3428,11 @@ for (i in 1: 4){
   
 }</pre>
 
+<pre >## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8</pre>
+
 </article></slide><slide class=""><hgroup><h2>Loops in R: <code>for</code> loops</h2></hgroup><article  id="loops-in-r-for-loops-1">
 
 <pre class = 'prettyprint lang-r'>#iterate over elements of a vector
@@ -3402,6 +3441,11 @@ for (i in c(-8^2, 2*4, 239, 29321)){
     print(i)
   
 }</pre>
+
+<pre >## [1] -64
+## [1] 8
+## [1] 239
+## [1] 29321</pre>
 
 </article></slide><slide class=""><hgroup><h2>Loops in R: <code>for</code> loops</h2></hgroup><article  id="loops-in-r-for-loops-2">
 
@@ -3412,6 +3456,11 @@ for (i in x){
     print(i)
   
 }</pre>
+
+<pre >## [1] -64
+## [1] 8
+## [1] 239
+## [1] 29321</pre>
 
 </article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops">
 
@@ -3448,17 +3497,61 @@ while (y &lt;= 5){ #logical
 
 <pre class = 'prettyprint lang-r'># whose factorial will be calculated
 n &lt;- 5 
-factorial &lt;- 1 # assigning the factorial variable
+factorial &lt;- 1 # assigning the factorial variable to start with value 1
+i &lt;- 1 # and iteration variable to 1</pre>
+
+</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-2">
+
+<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
+
+<pre class = 'prettyprint lang-r'># whose factorial will be calculated
+n &lt;- 5 
+factorial &lt;- 1 # assigning the factorial variable to start with value 1
 i &lt;- 1 # and iteration variable to 1
 # using while loop
 while (i &lt;= n){
-    # multiplying the factorial variable
-    # with the iteration variable
+#do something
+}</pre>
+
+</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-3">
+
+<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
+
+<pre class = 'prettyprint lang-r'># whose factorial will be calculated
+n &lt;- 5 
+factorial &lt;- 1 # assigning the factorial variable to start with value 1
+i &lt;- 1 # and iteration variable to 1
+# using while loop
+while (i &lt;= n){
+    # multiplying the factorial variable by the iteration variable. 
+    #For the first iteration, 5*1, second iteration 5*2, etc
     factorial = factorial * i
-    # incrementing the iteration variable
+}</pre>
+
+</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-4">
+
+<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
+
+<pre class = 'prettyprint lang-r'># whose factorial will be calculated
+n &lt;- 5 
+factorial &lt;- 1 # assigning the factorial variable to start with value 1
+i &lt;- 1 # and iteration variable to 1
+# using while loop
+while (i &lt;= n){
+    # multiplying the factorial variable by the iteration variable. 
+    #For the first iteration, 5*1, second iteration 5*2, etc
+    factorial = factorial * i
+    # increment the iteration variable
     i = i + 1
-}
-print(factorial) # displaying the factorial</pre>
+}</pre>
+
+</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-5">
+
+<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
+
+<pre class = 'prettyprint lang-r'>print(factorial) # displaying the factorial</pre>
+
+<pre >## [1] 120</pre>
 
 </article></slide><slide class=""><hgroup><h2>Sampling</h2></hgroup><article  id="sampling">
 
@@ -3481,9 +3574,22 @@ print(factorial) # displaying the factorial</pre>
 <li><strong>prob</strong> - probability weights</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Taking samples with replacement</h2></hgroup><article  id="taking-samples-with-replacement">
+</article></slide><slide class=""><hgroup><h2>The <code>sample()</code> function</h2></hgroup><article  id="the-sample-function-1">
 
-</article></slide><slide class=""><hgroup><h2>Taking samples without replacement</h2></hgroup><article  id="taking-samples-without-replacement"></article></slide>
+<pre class = 'prettyprint lang-r'>LETTERS</pre>
+
+<pre >##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
+## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>#once
+sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
+
+<pre >## [1] &quot;F&quot; &quot;W&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>#again
+sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
+
+<pre >## [1] &quot;E&quot; &quot;L&quot;</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
