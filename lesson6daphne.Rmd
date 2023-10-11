@@ -125,22 +125,48 @@ There is a basic function in R for taking samples very appropriately named sampl
 Let's with some basic sampling. Imagine you have a coin, equal chances of heads and tails. You want to flip it 10 times and see how many heads and how many tails. First make a vector called coin, with heads and tails. then sample it 10 times, with replacement
 
 ```{r}
-coin<-c("heads", "tails")
+coin_toss<-c("heads", "tails")
 
-sample(coin<-c("heads", "tails"), 10, replace = TRUE)
+sample(coin_toss<-c("heads", "tails"), 10, replace = TRUE)
 
 
 ```
 
 
-Now lets try and do this same thing with a for loop. Make an empty vector called coin_tosses and use it to generate 10 coin tosses
+Now lets try and do this same thing with a for loop. Make an empty vector called all_tosses and use it to generate 10 coin tosses.
+Hint:Because you are looping over the sample you are only sampling one each time
+
+
+```{r}
+all_tosses <- c()
+
+for (i in 1:10) {
+  all_tosses[i] <- sample(c("Heads", "Tails"), 1)
+}
+```
+
+Now I'm being sneaky. I challenge you to flip a coin but its weighted. It lands on heads 60% of the time. Use the same loop and add the probabilities to the sample function.
+Hint: make them decimals in a vector. 
 
 
 ```{r}
 
+all_tosses <- c()
+
+for (i in 1:10) {
+  all_tosses[i] <- sample(c("Heads", "Tails"), 1, prob = c(0.6, 0.4))
+}
 
 
 ```
+
+Now let's see what happens if we slip both coins even more times. Use your original loop with the fair coin and toss is 100 times. Then take the weighted coin, change the variable names to make them different (add the word weighted or rigged) and toss that 100 times. Then count how many heads and how many tails came from each coin.
+
+
+
+
+
+
 
 
 
