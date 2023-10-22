@@ -4,7 +4,7 @@ author: "Bárbara Bitarello"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation: default
-subtitle: Data types and data structures
+subtitle: Loops and sampling
 ---
 
 ```{r setup, include=FALSE}
@@ -343,31 +343,3 @@ sample(LETTERS, size=2, replace = TRUE, prob = NULL)
 
 ```
 
-## The boostrap
-
-* The bootstrap is a tremendously useful tool for constructing confidence intervals and calculating
-standard errors for difficult statistics
-* For example, how would one derive a confidence interval for the median?
-* The bootstrap procedure follows from the so called bootstrap principle
-
-## The bootstrap principle
-
-* Suppose that I have a statistic that estimates some population parameter, but I don't know its
-sampling distribution
-* The bootstrap principle suggests using the distribution defined by the data to approximate its
-sampling distribution
-
-
-## The bootstrap in practice
-
-* In practice, the bootstrap principle is always carried out using simulation
-* We will cover only a few aspects of bootstrap resampling
-* The general procedure follows by first simulating complete data sets from the observed data with
-replacement
-
-        - This is approximately drawing from the sampling distribution of that statistic, at least as far as
-the data is able to approximate the true population distribution
-
-* Calculate the statistic for each simulated data set
-* Use the simulated statistics to either define a confidence interval or take the standard deviation to
-calculate a standard error
