@@ -253,10 +253,27 @@ mean1000<-mean(sample(human_genes$size, 1000, replace = TRUE))
 
 5.4. Compare these means to the population mean. Which is closest?
 ```{r ex5.4}
-#they will just write the values tthey got. should be the third one
+abs(c(mean10, mean100, mean1000)-human_genes_summ$MeanLength) #abs is equivalent to |x|
 
 ```
+Note: we should have gotten that mean1000 gives the smallest difference, but you probably found something different. That's because we did not filter this human_genes dataset to remove the few very long genes that exist. Remember we mentioned this in class. So when you take larger samples you're just more likely to get those values sampled. If we removed them first, we would find something different:
 
+```{r ex5.4b}
+human_genes2<-human_genes %>% filter(size<=15000) #filter long genes out
+human_genes_summ_v2 <- human_genes2 %>% #get summaries for the pop
+  summarise(
+    MeanLength = mean(size),
+    MedianLength = median(size),
+    SDLength = sd(size),
+)
+#get the three smaples
+mean10_v2<-mean(sample(human_genes2$size, 10, replace = TRUE))
+mean100_v2<-mean(sample(human_genes2$size, 100, replace = TRUE))
+mean1000_v2<-mean(sample(human_genes2$size, 1000, replace = TRUE))
+abs(c(mean10_v2, mean100_v2, mean1000_v2)-human_genes_summ_v2$MeanLength) #dabs is equivalent to |x|
+
+```
+There we go! As expected, the greater sample size led to a smaller difference to the real mean.
 
 **Ex.5)** Congrats you did sampling! Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
 
@@ -274,11 +291,11 @@ mean_values_1000 <- numeric(100)
 6.2 Now you write a for loop like you did before. Execept you can include all three of your new vectors in the same loop. 
 
 ```{r 6.2}
-
+#I will use human_genes2 from now on
 for (i in 1:100) {
-  mean_values_10[i] <- mean(sample(human_genes$size, 10, replace = TRUE))
-  mean_values_100[i] <- mean(sample(human_genes$size, 100, replace = TRUE))
-  mean_values_1000[i] <- mean(sample(human_genes$size, 1000, replace = TRUE))
+  mean_values_10[i] <- mean(sample(human_genes2$size, 10, replace = TRUE))
+  mean_values_100[i] <- mean(sample(human_genes2$size, 100, replace = TRUE))
+  mean_values_1000[i] <- mean(sample(human_genes2$size, 1000, replace = TRUE))
 }
 
 
@@ -286,7 +303,7 @@ for (i in 1:100) {
 
 ```
 
-You have now bootstrapped. Lets graph
+You have now bootstrapped. Lets graph!
 
 
 **Ex.7)**. We want to compare our samples to see which sample size got closest to our population mean. You are going to make a histogram of these means. 
@@ -310,7 +327,9 @@ sample_size = factor(rep(c(10, 100, 1000), each = 100)))
 
 ```{r 7.2}
 library(ggplot2)
-plot<-ggplot(mean_data, aes(x = mean, fill = sample_size)) + geom_histogram()
+plot<-ggplot(mean_data, 
+             aes(x = mean, fill = sample_size)) + 
+             geom_histogram()
 print(plot)
 
 
@@ -318,13 +337,14 @@ print(plot)
 ```
 
  
-7.3 This is a bit hard to read. Let's add some detail. inside geom_histogram, change position to "fill", and both alpha to 0.5 and binwidth to 5.
+7.3 This is a bit hard to read. Let's add some detail. inside geom_histogram, change position to "fill", and both alpha to 0.4 and binwidth to 30.
 
 
 
 ```{r 7.3}
-plot <- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
-  geom_histogram(position="identity", alpha=0.5, binwidth=5)
+plot <- ggplot(mean_data, 
+               aes(x = mean, fill = sample_size)) +
+               geom_histogram(position="identity", alpha=0.4, binwidth=30)
 print(plot)
 
 
@@ -336,7 +356,7 @@ print(plot)
 ```{r 7.4}
 library(ggplot2)
 plot<- ggplot(mean_data, aes(x = mean, fill = sample_size)) +
-  geom_histogram(position="identity", alpha=0.5, binwidth=5) +
+  geom_histogram(position="identity", alpha=0.4, binwidth=30) +
   labs(x = "Mean Value", 
        y = "Frequency", 
        title = "Distribution of Bootstrapped Mean Values",
@@ -348,6 +368,17 @@ print(plot)
 
 Are you tired of boring ggplot themes? Sick of theme_minimal? Run this code and go crazy
 devtools::install_github("https://github.com/MatthewBJane/ThemePark")
+------
+
+
+## Data Camp activities
+
+To strengthen the skills learned today:
+
+* Intermediate R: Loops
+* Sampling in R: Introduction to sampling
+* Sampling in R: Bootstrap distributions
+
 ------
 
 ## The end!
