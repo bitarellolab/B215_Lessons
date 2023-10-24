@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Learning goals
 
-* Using R's buil-in loop functions: `apply`, `lapply` and contrasting them with `for` loops
+* Using R's built-in loop functions: `apply`, `lapply` and contrasting them with `for` loops
 
 * Investigate sampling error; see that larger samples have less sampling error.
 
