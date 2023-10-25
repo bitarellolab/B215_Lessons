@@ -412,6 +412,6 @@ ggplot(df, aes(x = as.factor(SampleSize), y = MeanValues)) +
 
 ```
 
-Those are super different!
+Those are super different! As you can see, larger sample sizes create smaller errors. This is important for your own data analysis. 
 
 
