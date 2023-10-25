@@ -1,6 +1,6 @@
 ---
-title: "Lab 6"
-author: "Bárbara Bitarello"
+title: "Monty Hall sim"
+author: "Levi"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation: default
@@ -11,363 +11,74 @@ subtitle: Data types and data structures
 knitr::opts_chunk$set(echo = TRUE, eval=T)
 suppressMessages(library(dplyr))
 suppressMessages(library(readr))
-human_genes<-read_csv("human_genes.csv")
 ```
 
 
-## Today
+## Monty Hall
 
-* Quick recap
+Summary
 
-        - indexing elements (base R and dplyr)
-* Go over some of lab 4
-* New stuff!
+Three doors, one of which has a car and two have a goat
 
-        - Loops
-        - Sampling
+You pick one door and then the host reveals one of the two unpicked doors has a goat behind it and gives you an opportunity to swap
 
+Example: you choose door 1 and the host reveals that door 3 has a goat. Do you swap to door two?
 
-## Indexing elements: Base R
+This is hard and unintuitive. Not swapping gives you a 1 in 3 chance of being correct, but does swapping raise your chances?
 
-* Selecting a column (data.frame, tibble) or element (list) with `$`.
-E.g. `iris` dataset
+## Simulation as a way to solve unintuitive problems
 
+Simulating the above scenario using code provides an easy way for us to test this hypothesis
+
+For loops and sampling are particularly important and, using for loops, we will repeat the door picking 10,000 times. Unintuitive problems therefore can be solved by using code to simulate the situation over and over again.
+
+This method has real world application: it is a useful way to test evolutionary hypotheses. Since we cannot directly observe evolution happening, we must simulate it! Likewise here, since its hard to directly understand why swapping results in 2/3 success to failure, simulation provides a test.
+
+## Not swapping
 ```{r, eval=T}
-# select column containing petal lengths from iris
-petal_lengths<-iris$Petal.Length
-head(petal_lengths)
-```
-
-## Indexing elements: Base R
-
-* Selecting a column (data.frame, tibble) or element (list) with `$`.
-* E.g. a list containing `iris` and a vector containing all letters from the Roman alphabet
-
-```{r, eval=T}
-my_list<-list(iris=iris, letters=LETTERS)
-str(my_list)
-```
-
-## Indexing elements: Base R
-
-* Selecting a column (data.frame, tibble) or element (list) with `$`.
-* E.g. a list containing `iris` and a vector containing all letters from the Roman alphabet
-
-```{r, eval=T}
-#index the second element of the list, i.e, the letters
-#PS: $ only works if you name the elements
-my_list$letters
-```
-
-
-## Indexing elements: Base R
-
-Filtering elements with `[]`. E.g. data.frame
-
-```{r, eval=T}
-# Syntax: [row, col]
-head(iris[iris$Sepal.Length>2,])
-
-```
-
-## Indexing elements: Base R
-
-Filtering elements with `[]`. E.g. vector
-
-```{r, eval=T}
-# Syntax: [row, col]
-LETTERS[LETTERS=='A']
-
-LETTERS[3]
-
-```
-## Indexing elements: `dplyr`
-
-Select columns with `select`:
-
-```{r, eval=T}
-#option 1
-library(dplyr)
-head(select(iris, Petal.Length))
-```
-
-
-## Indexing elements: `dplyr`
-
-Select columns with `select`:
-
-```{r, eval=T}
-#option 2
-iris %>% select(Petal.Length) %>% head()
-```
-## Indexing elements: `dplyr`
-
-Filter rows with `filter`:
-
-```{r, eval=T}
-#option 1
-head(filter(iris, Sepal.Length>2))
-```
-
-## Indexing elements: `dplyr`
-
-Filter rows with `filter`:
-
-```{r, eval=T}
-#option 2
-iris %>% filter(Petal.Length>2) %>% head()
-```
-
-
-## Lab 4
-
-Ex.20) Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
-
-
-```{r,eval=T}
-shrubs<-read_csv("shrub-volume-data.csv") %>% 
-  mutate(site=factor(site), 
-         experiment=factor(experiment)) %>% 
-  na.omit()
-```
-
-## Lab 4
-
-Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
-
-
-```{r, eval=T}
-shrubs %>% 
-  group_by(experiment) %>% 
-  summarise(N=n(), 
-            Range_length=diff(range(length)), 
-            Range_width=diff(range(width), 
-            Range_height=diff(range(height))))
-```
-
-
-## Loops in computer programming
-
-
-* All programming languages have loops
-* Loops are among the most basic and powerful of programming concepts. 
-* A loop in a computer program is an instruction that repeats until a specified condition is reached. 
-* The loop asks a question. If the answer requires action, it is executed. 
-* The same question is asked again and again until no further action is required. 
-* Each time the question is asked is called an iteration. 
-
-## Loops in R
-
-Three kinds of loops:
-
-* `for` loop
-
-* `while` loop 
-
-* `repeat` loop [we won't discuss]
-
-## `for` loops
-
-Basic syntax
-
-```{r, eval=F}
-for (value in sequence){
-  
-  statement #DO SOMETHING
-}
-
-```
-
-## Loops in R: `for` loops
-
-```{r}
-# iterate over elements of a sequence
-for (i in 1: 4){
-  
-    print(i * 2)
-  
+#Defining the three doors as a new vector containing our choices, doors 1, 2, and 3.
+doors <- 1:3
+#an empty vector to store our results in
+results <- rep(NA, 10000)
+for(i in 1:10000){
+  #initial choice of which door (1, 2, 3)
+  choice <- sample(doors, 1)
+  #which door is correct? 1, 2, or 3
+  correct <- sample(doors, 1)
+  #is our choice the sample as the correct door?
+  results[i] <- choice==correct
 }
 ```
 
-## Loops in R: `for` loops
-
-```{r}
-#iterate over elements of a vector
-for (i in c(-8^2, 2*4, 239, 29321)){
-
-    print(i)
-  
-}
-```
-
-## Loops in R: `for` loops
-
-```{r}
-#create vector outside of loop and then use it to iterate
-x <- c(-8^2, 2*4, 239, 29321)
-for (i in x){
-  
-    print(i)
-  
-}
-```
-
-## `while` loops
-
-Basic syntax
-
-```{r, eval=F}
-while ( condition ) {
-  
-  statement #do something
-}
-
-```
-
-
-## Loops in R: `while` loops
-
-```{r}
-y<-0
-while (y <= 5){ #logical
-    # statements
-    print(y) # if y <=5, print it
-    y = y + 1 #if y <=5 add 1 to it
-}
-y #print y after the loop has concluded
-```
-
-## `while` loops
-
-A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
-
-```{r, eval=F}
-# whose factorial will be calculated
-n <- 5 
-factorial <- 1 # assigning the factorial variable to start with value 1
-i <- 1 # and iteration variable to 1
-
-```
-
-## `while` loops
-
-A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
-
-```{r, eval=F}
-# whose factorial will be calculated
-n <- 5 
-factorial <- 1 # assigning the factorial variable to start with value 1
-i <- 1 # and iteration variable to 1
-# using while loop
-while (i <= n){
-#do something
-}
-
-```
-
-## `while` loops
-
-A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
-
-```{r, eval=F}
-# whose factorial will be calculated
-n <- 5 
-factorial <- 1 # assigning the factorial variable to start with value 1
-i <- 1 # and iteration variable to 1
-# using while loop
-while (i <= n){
-    # multiplying the factorial variable by the iteration variable. 
-    #For the first iteration, 5*1, second iteration 5*2, etc
-    factorial = factorial * i
-}
-
-```
-
-## `while` loops
-A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
-
+## Results
+Proportion of correct doors:
 ```{r, eval=T}
-# whose factorial will be calculated
-n <- 5 
-factorial <- 1 # assigning the factorial variable to start with value 1
-i <- 1 # and iteration variable to 1
-# using while loop
-while (i <= n){
-    # multiplying the factorial variable by the iteration variable. 
-    #For the first iteration, 5*1, second iteration 5*2, etc
-    factorial = factorial * i
-    # increment the iteration variable
-    i = i + 1
+table(results)
+print(paste("Proportion correct:", table(results)[2]/sum(table(results))))
+```
+
+## Swapping
+```{r, eval=T}
+for(i in 1:10000){#initial random choice of which door (1, 2, 3)
+choice <- sample(doors, 1)
+#which door is correct; random and independent from the choice 
+correct <- sample(doors, 1)
+#which door host reveals (which has to have a goat)
+if(choice== correct){
+  #from the doors, remove both the choice and correct positions
+  wrongdoor <- sample(doors[-choice], size = 1)}
+else{wrongdoor <- doors[-c(choice,correct)]}
+#new choices not including the wrong door option
+newchoices <- doors[-wrongdoor]
+#here, we swap by removing our original choice from the new choices vector
+finalchoice <- newchoices[-which(newchoices==choice)]
+results[i] <- finalchoice==correct
 }
 ```
 
-## `while` loops
-A practical application: factorials. E.g. $5!$, which is $5\times 4\times 3\times 2\times 1$
-
+## Swapping results
+Proportion of correct doors:
 ```{r, eval=T}
-print(factorial) # displaying the factorial
+table(results)
+print(paste("Proportion correct:", table(results)[2]/sum(table(results))))
 ```
-
-## Sampling 
-
-* In data analysis, taking samples of the data is the most common process done by the analysts. 
-* To study and understand the data, sometimes taking a sample is the best way and it is mostly true in case of big data.
-* R offers the standard function `sample()` to take a sample from the datasets. 
-* Many business and data analysis problems will require taking samples from the data. 
-* The random data is generated in this process with or without replacement.
-
-## The `sample()` function
-
-```{r,eval=F}
-sample(x, size, replace = FALSE, prob = NULL)
-```
-
-
-* **x** - vector or a data set.
-* **size** - sample size.
-* **replace** - with or without replacement of values.
-* **prob** - probability weights
-
-
-
-## The `sample()` function
-
-
-
-```{r,eval=T}
-LETTERS
-#once
-sample(LETTERS, size=2, replace = TRUE, prob = NULL)
-#again
-sample(LETTERS, size=2, replace = TRUE, prob = NULL)
-
-```
-
-## The boostrap
-
-* The bootstrap is a tremendously useful tool for constructing confidence intervals and calculating
-standard errors for difficult statistics
-* For example, how would one derive a confidence interval for the median?
-* The bootstrap procedure follows from the so called bootstrap principle
-
-## The bootstrap principle
-
-* Suppose that I have a statistic that estimates some population parameter, but I don't know its
-sampling distribution
-* The bootstrap principle suggests using the distribution defined by the data to approximate its
-sampling distribution
-
-
-## The bootstrap in practice
-
-* In practice, the bootstrap principle is always carried out using simulation
-* We will cover only a few aspects of bootstrap resampling
-* The general procedure follows by first simulating complete data sets from the observed data with
-replacement
-
-        - This is approximately drawing from the sampling distribution of that statistic, at least as far as
-the data is able to approximate the true population distribution
-
-* Calculate the statistic for each simulated data set
-* Use the simulated statistics to either define a confidence interval or take the standard deviation to
-calculate a standard error

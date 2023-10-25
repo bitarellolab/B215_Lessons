@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lab 6</title>
+  <title>Monty Hall sim</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -9,7 +9,7 @@
 
 
 
-  <meta name="date" content="2023-10-11" />
+  <meta name="date" content="2023-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,7 +20,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Lab 6',
+                title: 'Monty Hall sim',
                         subtitle: 'Data types and data structures',
                 useBuilds: true,
         usePrettify: true,
@@ -31,7 +31,7 @@
       // Author information
       presenters: [
             {
-        name:  'Bárbara Bitarello' ,
+        name:  'Levi' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -3201,422 +3201,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">2023-10-11</p>
+            <p style="margin-top: 6px; margin-left: -2px;">2023-10-25</p>
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Today</h2></hgroup><article  id="today">
+<slide class=""><hgroup><h2>Monty Hall</h2></hgroup><article  id="monty-hall">
 
-<ul>
-<li><p>Quick recap</p>
+<p>Summary</p>
 
-<pre >  - indexing elements (base R and dplyr)</pre></li>
-<li><p>Go over some of lab 4</p></li>
-<li><p>New stuff!</p>
+<p>Three doors, one of which has a car and two have a goat</p>
 
-<pre >  - Loops
-  - Sampling</pre></li>
-</ul>
+<p>You pick one door and then the host reveals one of the two unpicked doors has a goat behind it and gives you an opportunity to swap</p>
 
-</article></slide><slide class=""><hgroup><h2>Indexing elements: Base R</h2></hgroup><article  id="indexing-elements-base-r">
+<p>Example: you choose door 1 and the host reveals that door 3 has a goat. Do you swap to door two?</p>
 
-<ul>
-<li>Selecting a column (data.frame, tibble) or element (list) with <code>$</code>. E.g. <code>iris</code> dataset</li>
-</ul>
+<p>This is hard and unintuitive. Not swapping gives you a 1 in 3 chance of being correct, but does swapping raise your chances?</p>
 
-<pre class = 'prettyprint lang-r'># select column containing petal lengths from iris
-petal_lengths&lt;-iris$Petal.Length
-head(petal_lengths)</pre>
+</article></slide><slide class=""><hgroup><h2>Simulation as a way to solve unintuitive problems</h2></hgroup><article  id="simulation-as-a-way-to-solve-unintuitive-problems">
 
-<pre >## [1] 1.4 1.4 1.3 1.5 1.4 1.7</pre>
+<p>Simulating the above scenario using code provides an easy way for us to test this hypothesis</p>
 
-</article></slide><slide class=""><hgroup><h2>Indexing elements: Base R</h2></hgroup><article  id="indexing-elements-base-r-1">
+<p>For loops and sampling are particularly important and, using for loops, we will repeat the door picking 10,000 times. Unintuitive problems therefore can be solved by using code to simulate the situation over and over again.</p>
 
-<ul>
-<li>Selecting a column (data.frame, tibble) or element (list) with <code>$</code>.</li>
-<li>E.g. a list containing <code>iris</code> and a vector containing all letters from the Roman alphabet</li>
-</ul>
+<p>This method has real world application: it is a useful way to test evolutionary hypotheses. Since we cannot directly observe evolution happening, we must simulate it! Likewise here, since its hard to directly understand why swapping results in 2/3 success to failure, simulation provides a test.</p>
 
-<pre class = 'prettyprint lang-r'>my_list&lt;-list(iris=iris, letters=LETTERS)
-str(my_list)</pre>
+</article></slide><slide class=""><hgroup><h2>Not swapping</h2></hgroup><article  id="not-swapping">
 
-<pre >## List of 2
-##  $ iris   :&#39;data.frame&#39;: 150 obs. of  5 variables:
-##   ..$ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##   ..$ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-##   ..$ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-##   ..$ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##   ..$ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ letters: chr [1:26] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; ...</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: Base R</h2></hgroup><article  id="indexing-elements-base-r-2">
-
-<ul>
-<li>Selecting a column (data.frame, tibble) or element (list) with <code>$</code>.</li>
-<li>E.g. a list containing <code>iris</code> and a vector containing all letters from the Roman alphabet</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>#index the second element of the list, i.e, the letters
-#PS: $ only works if you name the elements
-my_list$letters</pre>
-
-<pre >##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
-## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: Base R</h2></hgroup><article  id="indexing-elements-base-r-3">
-
-<p>Filtering elements with <code>[]</code>. E.g. data.frame</p>
-
-<pre class = 'prettyprint lang-r'># Syntax: [row, col]
-head(iris[iris$Sepal.Length&gt;2,])</pre>
-
-<pre >##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: Base R</h2></hgroup><article  id="indexing-elements-base-r-4">
-
-<p>Filtering elements with <code>[]</code>. E.g. vector</p>
-
-<pre class = 'prettyprint lang-r'># Syntax: [row, col]
-LETTERS[LETTERS==&#39;A&#39;]</pre>
-
-<pre >## [1] &quot;A&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>LETTERS[3]</pre>
-
-<pre >## [1] &quot;C&quot;</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: <code>dplyr</code></h2></hgroup><article  id="indexing-elements-dplyr">
-
-<p>Select columns with <code>select</code>:</p>
-
-<pre class = 'prettyprint lang-r'>#option 1
-library(dplyr)
-head(select(iris, Petal.Length))</pre>
-
-<pre >##   Petal.Length
-## 1          1.4
-## 2          1.4
-## 3          1.3
-## 4          1.5
-## 5          1.4
-## 6          1.7</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: <code>dplyr</code></h2></hgroup><article  id="indexing-elements-dplyr-1">
-
-<p>Select columns with <code>select</code>:</p>
-
-<pre class = 'prettyprint lang-r'>#option 2
-iris %&gt;% select(Petal.Length) %&gt;% head()</pre>
-
-<pre >##   Petal.Length
-## 1          1.4
-## 2          1.4
-## 3          1.3
-## 4          1.5
-## 5          1.4
-## 6          1.7</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: <code>dplyr</code></h2></hgroup><article  id="indexing-elements-dplyr-2">
-
-<p>Filter rows with <code>filter</code>:</p>
-
-<pre class = 'prettyprint lang-r'>#option 1
-head(filter(iris, Sepal.Length&gt;2))</pre>
-
-<pre >##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</pre>
-
-</article></slide><slide class=""><hgroup><h2>Indexing elements: <code>dplyr</code></h2></hgroup><article  id="indexing-elements-dplyr-3">
-
-<p>Filter rows with <code>filter</code>:</p>
-
-<pre class = 'prettyprint lang-r'>#option 2
-iris %&gt;% filter(Petal.Length&gt;2) %&gt;% head()</pre>
-
-<pre >##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 1          7.0         3.2          4.7         1.4 versicolor
-## 2          6.4         3.2          4.5         1.5 versicolor
-## 3          6.9         3.1          4.9         1.5 versicolor
-## 4          5.5         2.3          4.0         1.3 versicolor
-## 5          6.5         2.8          4.6         1.5 versicolor
-## 6          5.7         2.8          4.5         1.3 versicolor</pre>
-
-</article></slide><slide class=""><hgroup><h2>Lab 4</h2></hgroup><article  id="lab-4">
-
-<p>Ex.20) Using <code>group_by</code>, <code>summarise</code>, <code>n()</code>, create an object containing the range of values for <code>length</code>, <code>width</code>, <code>height</code> and the number of rows per experiment.</p>
-
-<pre class = 'prettyprint lang-r'>shrubs&lt;-read_csv(&quot;shrub-volume-data.csv&quot;) %&gt;% 
-  mutate(site=factor(site), 
-         experiment=factor(experiment)) %&gt;% 
-  na.omit()</pre>
-
-<pre >## Rows: 12 Columns: 5
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## dbl (5): site, experiment, length, width, height
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</pre>
-
-</article></slide><slide class=""><hgroup><h2>Lab 4</h2></hgroup><article  id="lab-4-1">
-
-<p>Using <code>group_by</code>, <code>summarise</code>, <code>n()</code>, create an object containing the range of values for <code>length</code>, <code>width</code>, <code>height</code> and the number of rows per experiment.</p>
-
-<pre class = 'prettyprint lang-r'>shrubs %&gt;% 
-  group_by(experiment) %&gt;% 
-  summarise(N=n(), 
-            Range_length=diff(range(length)), 
-            Range_width=diff(range(width), 
-            Range_height=diff(range(height))))</pre>
-
-<pre >## # A tibble: 3 × 4
-##   experiment     N Range_length Range_width
-##   &lt;fct&gt;      &lt;int&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-## 1 1              4          1.1         3.2
-## 2 2              4          3.4         4.3
-## 3 3              4          2.3         1.3</pre>
-
-</article></slide><slide class=""><hgroup><h2>Loops in computer programming</h2></hgroup><article  id="loops-in-computer-programming">
-
-<ul>
-<li>All programming languages have loops</li>
-<li>Loops are among the most basic and powerful of programming concepts.</li>
-<li>A loop in a computer program is an instruction that repeats until a specified condition is reached.</li>
-<li>The loop asks a question. If the answer requires action, it is executed.</li>
-<li>The same question is asked again and again until no further action is required.</li>
-<li>Each time the question is asked is called an iteration.</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Loops in R</h2></hgroup><article  id="loops-in-r">
-
-<p>Three kinds of loops:</p>
-
-<ul>
-<li><p><code>for</code> loop</p></li>
-<li><p><code>while</code> loop</p></li>
-<li><p><code>repeat</code> loop [we won’t discuss]</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2><code>for</code> loops</h2></hgroup><article  id="for-loops">
-
-<p>Basic syntax</p>
-
-<pre class = 'prettyprint lang-r'>for (value in sequence){
-  
-  statement #DO SOMETHING
+<pre class = 'prettyprint lang-r'>#Defining the three doors as a new vector containing our choices, doors 1, 2, and 3.
+doors &lt;- 1:3
+#an empty vector to store our results in
+results &lt;- rep(NA, 10000)
+for(i in 1:10000){
+  #initial choice of which door (1, 2, 3)
+  choice &lt;- sample(doors, 1)
+  #which door is correct? 1, 2, or 3
+  correct &lt;- sample(doors, 1)
+  #is our choice the sample as the correct door?
+  results[i] &lt;- choice==correct
 }</pre>
 
-</article></slide><slide class=""><hgroup><h2>Loops in R: <code>for</code> loops</h2></hgroup><article  id="loops-in-r-for-loops">
+</article></slide><slide class=""><hgroup><h2>Results</h2></hgroup><article  id="results">
 
-<pre class = 'prettyprint lang-r'># iterate over elements of a sequence
-for (i in 1: 4){
-  
-    print(i * 2)
-  
+<p>Proportion of correct doors:</p>
+
+<pre class = 'prettyprint lang-r'>table(results)</pre>
+
+<pre >## results
+## FALSE  TRUE 
+##  6751  3249</pre>
+
+<pre class = 'prettyprint lang-r'>print(paste(&quot;Proportion correct:&quot;, table(results)[2]/sum(table(results))))</pre>
+
+<pre >## [1] &quot;Proportion correct: 0.3249&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Swapping</h2></hgroup><article  id="swapping">
+
+<pre class = 'prettyprint lang-r'>for(i in 1:10000){#initial random choice of which door (1, 2, 3)
+choice &lt;- sample(doors, 1)
+#which door is correct; random and independent from the choice 
+correct &lt;- sample(doors, 1)
+#which door host reveals (which has to have a goat)
+if(choice== correct){
+  #from the doors, remove both the choice and correct positions
+  wrongdoor &lt;- sample(doors[-choice], size = 1)}
+else{wrongdoor &lt;- doors[-c(choice,correct)]}
+#new choices not including the wrong door option
+newchoices &lt;- doors[-wrongdoor]
+#here, we swap by removing our original choice from the new choices vector
+finalchoice &lt;- newchoices[-which(newchoices==choice)]
+results[i] &lt;- finalchoice==correct
 }</pre>
 
-<pre >## [1] 2
-## [1] 4
-## [1] 6
-## [1] 8</pre>
+</article></slide><slide class=""><hgroup><h2>Swapping results</h2></hgroup><article  id="swapping-results">
 
-</article></slide><slide class=""><hgroup><h2>Loops in R: <code>for</code> loops</h2></hgroup><article  id="loops-in-r-for-loops-1">
+<p>Proportion of correct doors:</p>
 
-<pre class = 'prettyprint lang-r'>#iterate over elements of a vector
-for (i in c(-8^2, 2*4, 239, 29321)){
+<pre class = 'prettyprint lang-r'>table(results)</pre>
 
-    print(i)
-  
-}</pre>
+<pre >## results
+## FALSE  TRUE 
+##  3345  6655</pre>
 
-<pre >## [1] -64
-## [1] 8
-## [1] 239
-## [1] 29321</pre>
+<pre class = 'prettyprint lang-r'>print(paste(&quot;Proportion correct:&quot;, table(results)[2]/sum(table(results))))</pre>
 
-</article></slide><slide class=""><hgroup><h2>Loops in R: <code>for</code> loops</h2></hgroup><article  id="loops-in-r-for-loops-2">
-
-<pre class = 'prettyprint lang-r'>#create vector outside of loop and then use it to iterate
-x &lt;- c(-8^2, 2*4, 239, 29321)
-for (i in x){
-  
-    print(i)
-  
-}</pre>
-
-<pre >## [1] -64
-## [1] 8
-## [1] 239
-## [1] 29321</pre>
-
-</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops">
-
-<p>Basic syntax</p>
-
-<pre class = 'prettyprint lang-r'>while ( condition ) {
-  
-  statement #do something
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2>Loops in R: <code>while</code> loops</h2></hgroup><article  id="loops-in-r-while-loops">
-
-<pre class = 'prettyprint lang-r'>y&lt;-0
-while (y &lt;= 5){ #logical
-    # statements
-    print(y) # if y &lt;=5, print it
-    y = y + 1 #if y &lt;=5 add 1 to it
-}</pre>
-
-<pre >## [1] 0
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5</pre>
-
-<pre class = 'prettyprint lang-r'>y #print y after the loop has concluded</pre>
-
-<pre >## [1] 6</pre>
-
-</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-1">
-
-<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
-
-<pre class = 'prettyprint lang-r'># whose factorial will be calculated
-n &lt;- 5 
-factorial &lt;- 1 # assigning the factorial variable to start with value 1
-i &lt;- 1 # and iteration variable to 1</pre>
-
-</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-2">
-
-<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
-
-<pre class = 'prettyprint lang-r'># whose factorial will be calculated
-n &lt;- 5 
-factorial &lt;- 1 # assigning the factorial variable to start with value 1
-i &lt;- 1 # and iteration variable to 1
-# using while loop
-while (i &lt;= n){
-#do something
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-3">
-
-<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
-
-<pre class = 'prettyprint lang-r'># whose factorial will be calculated
-n &lt;- 5 
-factorial &lt;- 1 # assigning the factorial variable to start with value 1
-i &lt;- 1 # and iteration variable to 1
-# using while loop
-while (i &lt;= n){
-    # multiplying the factorial variable by the iteration variable. 
-    #For the first iteration, 5*1, second iteration 5*2, etc
-    factorial = factorial * i
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-4">
-
-<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
-
-<pre class = 'prettyprint lang-r'># whose factorial will be calculated
-n &lt;- 5 
-factorial &lt;- 1 # assigning the factorial variable to start with value 1
-i &lt;- 1 # and iteration variable to 1
-# using while loop
-while (i &lt;= n){
-    # multiplying the factorial variable by the iteration variable. 
-    #For the first iteration, 5*1, second iteration 5*2, etc
-    factorial = factorial * i
-    # increment the iteration variable
-    i = i + 1
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2><code>while</code> loops</h2></hgroup><article  id="while-loops-5">
-
-<p>A practical application: factorials. E.g. \(5!\), which is \(5\times 4\times 3\times 2\times 1\)</p>
-
-<pre class = 'prettyprint lang-r'>print(factorial) # displaying the factorial</pre>
-
-<pre >## [1] 120</pre>
-
-</article></slide><slide class=""><hgroup><h2>Sampling</h2></hgroup><article  id="sampling">
-
-<ul>
-<li>In data analysis, taking samples of the data is the most common process done by the analysts.</li>
-<li>To study and understand the data, sometimes taking a sample is the best way and it is mostly true in case of big data.</li>
-<li>R offers the standard function <code>sample()</code> to take a sample from the datasets.</li>
-<li>Many business and data analysis problems will require taking samples from the data.</li>
-<li>The random data is generated in this process with or without replacement.</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>The <code>sample()</code> function</h2></hgroup><article  id="the-sample-function">
-
-<pre class = 'prettyprint lang-r'>sample(x, size, replace = FALSE, prob = NULL)</pre>
-
-<ul>
-<li><strong>x</strong> - vector or a data set.</li>
-<li><strong>size</strong> - sample size.</li>
-<li><strong>replace</strong> - with or without replacement of values.</li>
-<li><strong>prob</strong> - probability weights</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>The <code>sample()</code> function</h2></hgroup><article  id="the-sample-function-1">
-
-<pre class = 'prettyprint lang-r'>LETTERS</pre>
-
-<pre >##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
-## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>#once
-sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
-
-<pre >## [1] &quot;X&quot; &quot;A&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>#again
-sample(LETTERS, size=2, replace = TRUE, prob = NULL)</pre>
-
-<pre >## [1] &quot;W&quot; &quot;W&quot;</pre>
-
-</article></slide><slide class=""><hgroup><h2>The boostrap</h2></hgroup><article  id="the-boostrap">
-
-<ul>
-<li>The bootstrap is a tremendously useful tool for constructing confidence intervals and calculating standard errors for difficult statistics</li>
-<li>For example, how would one derive a confidence interval for the median?</li>
-<li>The bootstrap procedure follows from the so called bootstrap principle</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>The bootstrap principle</h2></hgroup><article  id="the-bootstrap-principle">
-
-<ul>
-<li>Suppose that I have a statistic that estimates some population parameter, but I don’t know its sampling distribution</li>
-<li>The bootstrap principle suggests using the distribution defined by the data to approximate its sampling distribution</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>The bootstrap in practice</h2></hgroup><article  id="the-bootstrap-in-practice">
-
-<ul>
-<li><p>In practice, the bootstrap principle is always carried out using simulation</p></li>
-<li><p>We will cover only a few aspects of bootstrap resampling</p></li>
-<li><p>The general procedure follows by first simulating complete data sets from the observed data with replacement</p>
-
-<pre >  - This is approximately drawing from the sampling distribution of that statistic, at least as far as</pre>
-
-<p>the data is able to approximate the true population distribution</p></li>
-<li><p>Calculate the statistic for each simulated data set</p></li>
-<li><p>Use the simulated statistics to either define a confidence interval or take the standard deviation to calculate a standard error</p></li>
-</ul></article></slide>
+<pre >## [1] &quot;Proportion correct: 0.6655&quot;</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
