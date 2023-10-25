@@ -18,15 +18,15 @@ suppressMessages(library(dplyr))
 
 * Using R's built-in loop functions: `apply`, `lapply` and contrasting them with `for` loops
 
+* Conditional statements
+
 * Investigate sampling error
 
 * Visualize confidence intervals.
 
 * Adding error bars to plots
 
-* Conditional statements
 
-* Functions
 
 
 
@@ -223,7 +223,95 @@ if (x > 10) {
 And so on and so on. This is really useful for making code do complicated things!
 
 ##### 4. 
-Write a basic if statement that prints "this number is positive" when that is true. 
+Write a basic if statement that prints "this number is positive" when that is true. Try some numbers!
+
+
+```{r ex4.1}
+number <-3
+
+if (number > 0) {
+  print("The number is positive.")
+}
+
+
+```
+
+
+
+Now add an else if statement that tells you if the number is negative, and an else that tells you if its 0.
+
+```{r ex4.2}
+
+number <-3
+
+
+if (number > 0) {
+  print("The number is positive.")
+} else if (number < 0) {
+  print("The number is negative.")
+} else {
+  print("The number is zero.")
+}
+
+```
+
+
+Amazing! You now understand basic conditionals! Let's combine this with loops. Here is an example of a loop that contains an if statement 
+Lets say you have a bunch of numbers and you want to know how many are positive. 
+
+
+```{r}
+numbers <- c(-5, 3, 8, -2, 0, 7, -9)
+
+positive_count <- 0
+for (num in numbers) {
+  if (num > 0) {
+    positive_count <- positive_count + 1
+  }
+}
+
+```
+
+This loop adds one to the count for each positive number.
+
+#### 5. Now I gave you a bunch of random numbers. Write a loop telling me the sum of all the even numbers.
+
+```{r ex5}
+
+numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+sum_even <- 0
+for (num in numbers) {
+  if (num %% 2 == 0) {
+    sum_even <- sum_even + num
+  }
+}
+
+
+```
+
+
+## More work in sampling
+Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. 
+
+
+#### 6. Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. For a real experiment you would just deal with that. For our purposes, you should filter the data set to only include genes smaller than 1500 base pairs. Load in your data and do this. You can keep it's name the same
+
+
+
+```{r ex6.1}
+
+library(readr)
+human_genes <- read_csv("Documents/GitHub/B215_Lessons/fall_2022_materials/lab7/human_genes.csv")
+
+human_genes <- human_genes %>% filter(size < 1500)
+
+
+
+```
+
+
+
 
 
 
