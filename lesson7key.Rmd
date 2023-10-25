@@ -295,7 +295,7 @@ for (num in numbers) {
 Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. 
 
 
-#### 6. Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. For a real experiment you would just deal with that. For our purposes, you should filter the data set to only include genes smaller than 1500 base pairs. Load in your data and do this. You can keep it's name the same
+#### 6. Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. For a real experiment you would just deal with that. For our purposes, you should filter the data set to only include genes smaller than 15000 base pairs. Load in your data and do this. You can keep it's name the same
 
 
 
@@ -304,18 +304,114 @@ Now we are going to return to our example from last class, the human genes data 
 library(readr)
 human_genes <- read_csv("Documents/GitHub/B215_Lessons/fall_2022_materials/lab7/human_genes.csv")
 
-human_genes <- human_genes %>% filter(size < 1500)
+human_genes <- human_genes %>% filter(size < 15000)
 
 
 
 ```
 
 
+Run the loop you wrote last week and invisigate the means now that we have filtered the data. What do you see?
+
+
+```{r ex6.1}
+mean_values_10 <- numeric(100)
+mean_values_100 <- numeric(100)
+mean_values_1000 <- numeric(100)
+
+for (i in 1:100) {
+  mean_values_10[i] <- mean(sample(human_genes$size, 10, replace = TRUE))
+  mean_values_100[i] <- mean(sample(human_genes$size, 100, replace = TRUE))
+  mean_values_1000[i] <- mean(sample(human_genes$size, 1000, replace = TRUE))
+}
+
+
+```
+
+#### 7. What's up with these samples?
+
+
+Start by finding the standard error of the mean, which is your sample standard deviation divided by the square root of your sample size. Do this for each sample size. 
+
+```{r ex7.1}
+
+sem_10<-sd(mean_values_10)/sqrt(length(mean_values_10))
+sem_100<-sd(mean_values_100)/sqrt(length(mean_values_100))
+sem_1000<-sd(mean_values_1000)/sqrt(length(mean_values_1000))
+
+
+```
+
+Now lets find the 95% confidence intervals. Type ?quantile into your console to learn how to use this neat function. 
+Hint: We want 95% of the data to be within the intervals, so what should the quantile be?
+
+```{r ex7.2}
+
+CI_10 <- quantile(mean_values_10, probs = c(0.025, 0.975))
+CI_100 <- quantile(mean_values_100, probs = c(0.025, 0.975))
+CI_1000 <- quantile(mean_values_1000, probs = c(0.025, 0.975))
+
+```
+
+
+Now we have these confidence intervals. Lets add them to a graph. 
 
 
 
+#### 8. Graph.
+
+Lets first make a data frame of all the information we will need for the chart. You need the following columns: SampleSize, MeanValues, UpperCI and LowerCI. You can use the ones you've calculated but don't rerun your code if you type the actual values unless you've set a seed!
 
 
+```{r ex8.1}
 
+
+data <- data.frame(
+  SampleSize = c(10, 100, 1000),
+  MeanValues = c(mean(mean_values_10), mean(mean_values_100), mean(mean_values_1000)),
+  CI_lower = c(CI_10[1], CI_100[1], CI_1000[1]),
+  CI_upper = c(CI_10[2], CI_100[2], CI_1000[2])
+)
+
+
+```
+
+
+Amazing! Now make a box plot using this data frame. Don't worry about CI yet. Just make a simple box plot. Add labels and colors though. 
+
+
+```{r ex8.2}
+ggplot(df, aes(x = as.factor(SampleSize), y = MeanValues)) +
+  geom_bar(stat = "summary", fun = "mean", fill = "skyblue", position = position_dodge(width = 0.9)) +
+  labs(
+    title = "Sampling Distributions of Different Sample Sizes",
+    x = "Sample Size",
+    y = "Mean Value",
+    fill = "Sample Size"
+  ) +
+  theme_minimal()
+
+
+```
+
+Gorgeous. Now add your error bars. Use geom_errorbar to see the difference in those sample sizes
+
+```{r ex8.3}
+
+ggplot(df, aes(x = as.factor(SampleSize), y = MeanValues)) +
+  geom_bar(stat = "summary", fun = "mean", fill = "skyblue", position = position_dodge(width = 0.9)) +
+  geom_errorbar(aes(ymin = CI_lower, ymax = CI_upper), width = 0.2, position = position_dodge(width = 0.9)) +
+  labs(
+    title = "Sampling Distributions of Different Sample Sizes",
+    x = "Sample Size",
+    y = "Mean Value",
+    fill = "Sample Size"
+  ) +
+  theme_minimal()
+
+
+```
+
+Those are super different!
 
 
