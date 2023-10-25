@@ -300,7 +300,6 @@ Now we are going to return to our example from last class, the human genes data 
 
 
 ```{r ex6.1}
-
 library(readr)
 human_genes <- read_csv("Documents/GitHub/B215_Lessons/fall_2022_materials/lab7/human_genes.csv")
 
@@ -314,7 +313,7 @@ human_genes <- human_genes %>% filter(size < 15000)
 Run the loop you wrote last week and invisigate the means now that we have filtered the data. What do you see?
 
 
-```{r ex6.1}
+```{r ex6.2}
 mean_values_10 <- numeric(100)
 mean_values_100 <- numeric(100)
 mean_values_1000 <- numeric(100)
@@ -414,4 +413,29 @@ ggplot(df, aes(x = as.factor(SampleSize), y = MeanValues)) +
 
 Those are super different! As you can see, larger sample sizes create smaller errors. This is important for your own data analysis. 
 
+
+#### 9. Another graph
+What do these samples look like compared to a normal distribution? R has a built in plot (gasp it's not ggplot2) called a density plot that will show us. 
+First, use the density function to find the density of each of your sample means. Name them something you'll remember.
+
+
+```{r 9.1}
+dense10<-density(mean_values_10)
+dense100<-density(mean_values_100)
+dense1000<-density(mean_values_1000)
+
+```
+
+Now use the R function "plot" to plot each of these. 
+
+```{r}
+
+plot10<-plot(dense10, main = "Density Plot of Sample Means, n=10", xlab = "Sample Mean")
+plot100<-plot(dense100, main = "Density Plot of Sample Means, n=100", xlab = "Sample Mean")
+plot1000<-plot(dense1000, main = "Density Plot of Sample Means, n=1000", xlab = "Sample Mean")
+
+
+```
+
+You see as the n increases they get more normal!
 
