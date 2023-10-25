@@ -57,6 +57,7 @@ I recommend typing ? apply and ?lapply into the console before starting. The sec
 
 
 ```{r ex1}
+#type your code here
 
 
 ```
@@ -69,7 +70,7 @@ Here are your names, get counting
 
 
 ```{r ex2}
-
+#type your code here
 
 ```
 What is different about this output? 
@@ -102,7 +103,7 @@ First use the new functions you learned to find the average test score for each 
 
 
 
-```{r. ex3.1 }
+```{r. ex3.1}
 #use apply
 
 
@@ -112,7 +113,7 @@ Now use a for loop. Remember to create blank variables first to store your infor
 
 
 
-```{r ex3.2 }
+```{r ex3.2}
 #first count the number of scores in scores and save it as num_students
 
 
@@ -136,7 +137,7 @@ Now use a for loop. Remember to create blank variables first to store your infor
 
 First use `apply` and save the results in an object called `class_averages_apply`:
 
-```{r. ex3.3 }
+```{r. ex3.3}
 #create object
 
 #print your object
@@ -231,7 +232,7 @@ Try some numbers!
 
 
 ```{r ex4.1}
-
+#type your code here
 
 
 ```
@@ -241,7 +242,7 @@ Try some numbers!
 Now add an `else if` statement that tells you if the number is negative, and an else that tells you if its 0.
 
 ```{r ex4.2}
-
+#type your code here
 
 
 ```
@@ -408,7 +409,7 @@ PS: ggplot also has an option for density plots.
 
 
 ```{r 9.1}
-
+#type your code here calling the function density on each of your mean_10, etc vectors and call them dense10, etcc\
 
 
 ```
