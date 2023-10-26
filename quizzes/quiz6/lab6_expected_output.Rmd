@@ -199,7 +199,7 @@ mean_values_1000 <- numeric(100)
 
 ```
 
-6.2 Now you write a for loop like you did before. Execept you can include all three of your new vectors in the same loop. 
+6.2 Now you write a for loop like you did before. Except you can include all three of your new vectors in the same loop. 
 
 ```{r 6.2}
 
