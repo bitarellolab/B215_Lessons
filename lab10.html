@@ -416,13 +416,110 @@ seem fairly useless, obviously R can add and multiply pretty easily. But
 lets say you’re a budding young biologist who has to work with Celsius
 in their lab but wants to know what the temperatures are in Fahrenheit.
 You are sick of constantly googling the conversion, so you decide to
-automate it in R. <span class="math display">\[F^0=(1.8\times
-C^0)+32\]</span></p>
-<pre class="r"><code>#function to convert Celsius to Fahrenheit
-CtoF&lt;-function(tc){ #one argument:t
-tf&lt;- (tc *1.8) + 32
-return(tf)
+automate it in R. <span class="math display">\[^0F=(1.8\times^0C)+32\]</span></p>
+<pre class="r"><code>#first write out the math of the conversion. Use the formula above and create variables for the temperatures
+
+#now name your function something like CtoF or anything you&#39;ll remember
+
+#Then combine this using the structure from above. Make sure you call return()         
+        
+CtoF&lt;-function(c){ 
+f&lt;- (c *1.8) + 32
+return(f)
 }</code></pre>
+<p>Now you can change your temperatures and convert them easily! Lets do
+the same for Fahrenheit to Celsius. <span class="math display">\[^0C=\frac{^0F-32}{1.8}\]</span></p>
+<pre class="r"><code>#first write out the math of the conversion. Use the formula above and create variables for the temperatures
+
+#now name your function something like FtoC or anything you&#39;ll remember
+
+#Then combine this using the structure from above. Make sure you call return()  
+FtoC&lt;-function(f){ 
+f&lt;- (c *1.8) + 32
+return(c)
+}</code></pre>
+<p>What if we wanted to combine these functions to make one big
+temperature conversion function? You’d have to know how to use
+conditional statements in a function</p>
+<p>##Conditional Statements in Functions It is useful to have functions
+that can do different things depending on the input. For example, if we
+had a big temperature conversion function you would want it to
+differentiate Fahrenheit from Celsius and do different math depending on
+which you gave it.</p>
+<p>For example this function tells you if a number is even. if the
+number is even, it returns TRUE. If it is odd, it returns FALSE.</p>
+<pre class="r"><code>isEven &lt;- function(number) {
+  if (number %% 2 == 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}</code></pre>
+<p>Run it and try some numbers.</p>
+<p>Now make the reverse of this function called isOdd. If the number is
+not divisble by 2 it should return TRUE, and if the number is divisible
+by 2 it should return FALSE</p>
+<pre class="r"><code>isOdd &lt;- function(number) {
+  if (number %% 2 == 0) {
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}</code></pre>
+<p>Run this one also.</p>
+<p>You can see how useful conditional statements are once you can
+automate them with functions! Remember how you would set your variable
+to a value, run the conditional then go back and change the original
+variable if you wanted to do it again? Like this example from lesson
+7:</p>
+<pre class="r"><code>number &lt;-3
+
+
+if (number &gt; 0) {
+  print(&quot;The number is positive.&quot;)
+} else if (number &lt; 0) {
+  print(&quot;The number is negative.&quot;)
+} else {
+  print(&quot;The number is zero.&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;The number is positive.&quot;</code></pre>
+<p>Try turning this into a function called classifyNumber that uses an
+input number and returns if it’s positive, negative or 0. Hint: You can
+copy and paste that code and just assign it to a function call</p>
+<pre class="r"><code>classifyNumber&lt;-function(number){
+if (number &gt; 0) {
+  print(&quot;The number is positive.&quot;)
+} else if (number &lt; 0) {
+  print(&quot;The number is negative.&quot;)
+} else {
+  print(&quot;The number is zero.&quot;)
+}
+}</code></pre>
+</div>
+<div id="mulitple-arguments" class="section level2">
+<h2>Mulitple Arguments</h2>
+<p>So far all of our functions have taken just one or two inputs. Try
+running one of them without an input. You’ll get an error that the
+argument is missing and has no default. Many of the functions you use
+regularly have a bunch of arguments that you could customize but don’t
+have to. They have default values that R uses unless you tell it to do
+something else. For example, type ?mean into your console. You probably
+only ever include the first argument, the values you want the mean of.
+But you have the option to exclude some percentage of the values or
+remove missing data.</p>
+<p>So if we wanted to write a function that raises numbers to the nth
+power but we think we will mostly use it for squaring numbers, we could
+write it with a default argument.</p>
+<pre class="r"><code>powerraiser&lt;-function(x, power = 2){
+        result&lt;-x^power
+        return(result)
+}</code></pre>
+<p>Try running it with only one number, then try adding a second
+argument (that isn’t 2).</p>
+<p>You can also have the default for an argument be
+<code>null</code></p>
+<p>##Combining everything! Now lets go back to our temperature functions
+from earlier.</p>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />

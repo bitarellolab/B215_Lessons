@@ -1,8 +1,19 @@
 ---
-title: "lab 10 full key"
-output: html_document
-date: "2023-11-09"
+title: "Lesson 10-Key!"
+author: "YOUR NAME"
+date: "`r Sys.Date()`"
+output: pdf_document
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
+```{r setup, echo=F}
+knitr::opts_chunk$set(echo=T, eval=T)
+options(tinytex.verbose = TRUE)
+suppressMessages(library(dplyr))
+#load ggplot package
+suppressMessages(library(ggplot2))
+```
 
 Notes for lesson:
 
@@ -31,6 +42,7 @@ Today we are going to learn about functions! I am going to quote directly from t
 
 All the fun stuff you do with the tidyverse packages are just functions someone else built and published as a package. And now you are going to learn to do exactly the same thing. So what is in a function? 
 Components:
+
 * Function Name: How we will refer to our function.
 
 * Arguments: Variables passed into the function.
@@ -57,7 +69,7 @@ addNumbers <- function(num1, num2) {
 }
 
 ```
-Run it in your consul then try this code
+Run it in your console then try this code
 
 ```{r}
 addNumbers(12, 865)
@@ -81,10 +93,8 @@ $$^0F=(1.8\times^0C)+32$$
 
 ```{r ex 2}
 #first write out the math of the conversion. Use the formula above and create variables for the temperatures
-f<- (c *1.8) + 32
 
 #now name your function something like CtoF or anything you'll remember
-CtoF<-function(c) 
 
 #Then combine this using the structure from above. Make sure you call return()         
         
@@ -97,14 +107,12 @@ return(f)
 Now you can change your temperatures and convert them easily! Lets do the same for Fahrenheit to Celsius. $$^0C=\frac{^0F-32}{1.8}$$
 ```{r ex 3}
 #first write out the math of the conversion. Use the formula above and create variables for the temperatures
-c<- (f-32)/1.8
 
 #now name your function something like FtoC or anything you'll remember
-FtoC<-function(f) 
 
 #Then combine this using the structure from above. Make sure you call return()  
 FtoC<-function(f){ 
-f<- (c *1.8) + 32
+c<- (f-32)/1.8
 return(c)
 }
 
@@ -117,7 +125,7 @@ What if we wanted to combine these functions to make one big temperature convers
 ##Conditional Statements in Functions
 It is useful to have functions that can do different things depending on the input. For example, if we had a big  temperature conversion function you would want it to differentiate Fahrenheit from Celsius and do different math depending on which you gave it. 
 
-For example this function tells you if a number is even. if the number is even, it returns TRUE. If it is odd, it returns FALSE.
+For example this function tells you if a number is even. if the number is even, it returns `TRUE`. If it is odd, it returns `FALSE`.
 
 ```{r}
 isEven <- function(number) {
@@ -131,7 +139,7 @@ isEven <- function(number) {
 ```
 Run it and try some numbers.
 
-Now make the reverse of this function called isOdd. If the number is not divisble by 2 it should return TRUE, and if the number is divisible by 2 it should return FALSE
+Now make the reverse of this function called isOdd. If the number is not divisble by 2 it should return `TRUE`, and if the number is divisible by 2 it should return `FALSE`
 
 
 
@@ -205,4 +213,63 @@ powerraiser<-function(x, power = 2){
 ```
 
 Try running it with only one number, then try adding a second argument (that isn't 2). 
+
+
+You can also have the default for an argument be `null`. If you set the default to null, your function will simply ignore that argument. Lets say you want to make a function that calculates the area of a rectangle. Your arguments would be length and width. But if you wanted to calculate the area of a square, you would only need to enter one value. Write such a function 
+```{r ex7}
+#first name your function and add two arguments. Set width equal to NUll
+calculate_area <- function(length, width = NULL) {
+#then add a conditional statement: If width is NUll, set width equal to length.       
+  if (is.null(width)) {
+    width <- length
+  }
+ #then calculate the area and don't forget to return your result
+ area <- length * width
+  return(area)
+}
+
+```
+
+
+
+
+## Combining everything!
+
+Now lets go back to our temperature functions from earlier. 
+```{r}
+CtoF<-function(c){ 
+f<- (c *1.8) + 32
+return(f)
+}
+
+FtoC<-function(f){ 
+c<- (f-32)/1.8
+return(c)
+}
+
+
+```
+
+We want to make our one big function. 
+
+
+```{r ex8}
+#first name it tempchange and set both c and f to NUll
+tempchange<-function(c = NULL, f = NULL){
+#if f is null that means you are converting from Celsius, so you should be returning Fahrenheit         
+if(is.null(f)){
+        tf<- (c *1.8) + 32
+        return(tf) 
+#otherwise, you are starting from Fahrenheit, so you should be returning Celsius     
+}else{   
+      c<- (f-32)/1.8
+        return(c)
+}
+}
+
+
+```
+
+
+
 
