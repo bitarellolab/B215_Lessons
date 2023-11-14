@@ -13,6 +13,7 @@ options(tinytex.verbose = TRUE)
 suppressMessages(library(dplyr))
 #load ggplot package
 suppressMessages(library(ggplot2))
+suppressMessages(library(datasets))
 ```
 
 Notes for lesson:
@@ -270,6 +271,15 @@ if(is.null(f)){
 
 ```
 
+Run this with some temperatures! 
 
+Now lets make this useful. Remember the datasets package? It has a data set called airquality that's in Fahrenheit. But we are scientists, so lets convert all those temps to Celsius using our fancy new function
+```{r ex 9}
+#first load the data and save it in a data frame
+airquality<-datasets::airquality
+# Apply your function to the temp column and save it as tempsC
+tempsC<-tempchange(f=airquality$Temp)
+
+```
 
 
