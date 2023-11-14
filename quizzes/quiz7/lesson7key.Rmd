@@ -152,7 +152,7 @@ class_averages_apply <- apply(scores, 2, mean)
 
 ```
 
-Then use a `for` loop and save the results in an onject called `class_averages_loop`:
+Then use a `for` loop and save the results in an object called `class_averages_loop`:
 
 ```{r ex3.4}
 

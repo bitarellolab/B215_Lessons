@@ -1,0 +1,208 @@
+---
+title: "lab 10 full key"
+output: html_document
+date: "2023-11-09"
+---
+
+Notes for lesson:
+
+
+* review loops (for and while)
+
+* functions
+
+* the bio stats 
+
+
+## Functions
+
+Today we are going to learn about functions! I am going to quote directly from the R god Hadley Wickham.
+
+"Functions allow you to automate common tasks in a more powerful and general way than copy-and-pasting. Writing a function has four big advantages over using copy-and-paste:
+
+1. You can give a function an evocative name that makes your code easier to understand.
+
+2. As requirements change, you only need to update code in one place, instead of many.
+
+3. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+
+4. It makes it easier to reuse work from project-to-project, increasing your productivity over time." ^[https://r4ds.hadley.nz/functions] If my tutorial makes no sense to you, you can go read his.
+
+
+All the fun stuff you do with the tidyverse packages are just functions someone else built and published as a package. And now you are going to learn to do exactly the same thing. So what is in a function? 
+Components:
+* Function Name: How we will refer to our function.
+
+* Arguments: Variables passed into the function.
+
+* Function Body: The code that performs the task.
+
+* Return Statement: The output of the function.
+
+```{r}
+
+functionName <- function(arg1, arg2, ...) {
+  # Function Body
+  # ...
+  return(result)
+}
+
+```
+The functions addNumbers adds 2 numbers together and returns the output. 
+
+```{r}
+addNumbers <- function(num1, num2) {
+  sum <- num1 + num2
+  return(sum)
+}
+
+```
+Run it in your consul then try this code
+
+```{r}
+addNumbers(12, 865)
+```
+
+Woah look at that! It added the numbers and printed the result. You could try again with other numbers but I think you get the idea. 
+
+Can you now make a basic function that mulitpies two numbers and returns the result? call it something  like mulitplyNumbers. 
+
+```{r ex1}
+
+mulitplyNumbers<- function(num1, num2) {
+  product <- num1 * num2
+  return(product)
+}
+
+```
+
+Try it with some numbers! You wrote your very first function. These seem fairly useless, obviously R can add and multiply pretty easily. But lets say you're a budding young biologist who has to work with Celsius in their lab but wants to know what the temperatures are in Fahrenheit. You are sick of constantly googling the conversion, so you decide to automate it in R.
+$$^0F=(1.8\times^0C)+32$$
+
+```{r ex 2}
+#first write out the math of the conversion. Use the formula above and create variables for the temperatures
+f<- (c *1.8) + 32
+
+#now name your function something like CtoF or anything you'll remember
+CtoF<-function(c) 
+
+#Then combine this using the structure from above. Make sure you call return()         
+        
+CtoF<-function(c){ 
+f<- (c *1.8) + 32
+return(f)
+}
+```
+
+Now you can change your temperatures and convert them easily! Lets do the same for Fahrenheit to Celsius. $$^0C=\frac{^0F-32}{1.8}$$
+```{r ex 3}
+#first write out the math of the conversion. Use the formula above and create variables for the temperatures
+c<- (f-32)/1.8
+
+#now name your function something like FtoC or anything you'll remember
+FtoC<-function(f) 
+
+#Then combine this using the structure from above. Make sure you call return()  
+FtoC<-function(f){ 
+f<- (c *1.8) + 32
+return(c)
+}
+
+
+```
+
+What if we wanted to combine these functions to make one big temperature conversion function? You'd have to know how to use conditional statements in a function
+
+
+##Conditional Statements in Functions
+It is useful to have functions that can do different things depending on the input. For example, if we had a big  temperature conversion function you would want it to differentiate Fahrenheit from Celsius and do different math depending on which you gave it. 
+
+For example this function tells you if a number is even. if the number is even, it returns TRUE. If it is odd, it returns FALSE.
+
+```{r}
+isEven <- function(number) {
+  if (number %% 2 == 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+```
+Run it and try some numbers.
+
+Now make the reverse of this function called isOdd. If the number is not divisble by 2 it should return TRUE, and if the number is divisible by 2 it should return FALSE
+
+
+
+```{r ex4}
+isOdd <- function(number) {
+  if (number %% 2 == 0) {
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
+
+```
+Run this one also. 
+
+
+You can see how useful conditional statements are once you can automate them with functions! Remember how you would set your variable to a value, run the conditional then go back and change the original variable if you wanted to do it again? Like this example from lesson 7: 
+
+
+
+
+```{r}
+
+number <-3
+
+
+if (number > 0) {
+  print("The number is positive.")
+} else if (number < 0) {
+  print("The number is negative.")
+} else {
+  print("The number is zero.")
+}
+
+
+
+
+```
+
+Try turning this into a function called classifyNumber that uses an input number and returns if it's positive, negative or 0. 
+Hint: You can copy and paste that code and just assign it to a function call
+
+```{r ex5}
+classifyNumber<-function(number){
+if (number > 0) {
+  print("The number is positive.")
+} else if (number < 0) {
+  print("The number is negative.")
+} else {
+  print("The number is zero.")
+}
+}
+
+```
+
+## Mulitple Arguments
+So far all of our functions have taken just one or two inputs. Try running one of them without an input. You'll get an error that the argument is missing and has no default. Many of the functions you use regularly have a bunch of arguments that you could customize but don't have to. They have default values that R uses unless you tell it to do something else. For example, type ?mean into your console. You probably only ever include the first argument, the values you want the mean of. But you have the option to exclude some percentage of the values or remove missing data. 
+
+So if we wanted to write a function that raises numbers to the nth power but we think we will mostly use it for squaring numbers, we could write it with a default argument.
+
+
+
+```{r ex6}
+
+powerraiser<-function(x, power = 2){
+        result<-x^power
+        return(result)
+}
+
+
+```
+
+Try running it with only one number, then try adding a second argument (that isn't 2). 
+

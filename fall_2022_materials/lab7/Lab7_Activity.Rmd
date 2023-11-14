@@ -235,9 +235,9 @@ return(tc)
 ```
 
 ```{r}
-#function to convert Fahrenheit to Celsius
+#function to convert Celsius to Fahrenheit
 CtoF<-function(tc){ #one argument:t
-tf<- (tc + 32)
+tf<- (tc *1.8) + 32
 return(tf)
 }
 ```
