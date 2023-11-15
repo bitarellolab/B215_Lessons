@@ -1,0 +1,929 @@
+---
+title: "Lesson 8 (week 10) - Functions and binomials!"
+author: "YOUR NAME"
+date: "`r Sys.Date()`"
+output: pdf_document
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r setup, echo=F}
+knitr::opts_chunk$set(echo=T, eval=F)
+options(tinytex.verbose = TRUE)
+suppressMessages(library(dplyr))
+#load ggplot package
+suppressMessages(library(ggplot2))
+```
+
+
+
+Overview: ^[Developed by Daphne Hansell ('24) and Dr. Bitarello]:
+
+
+* review loops  - for and while^[Previous two labs.] - before getting started
+
+* [Part 1: functions](#Part 1: Functions)
+
+
+* [Part 2: case study using the binomial distribution](#Part 2: Case study: Hospital readmission rates of acute ischemic stroke in California) 
+
+---
+
+# Part I: Functions
+
+Today we are going to learn about functions! I am going to quote directly from the R god Hadley Wickham:
+
+"Functions allow you to automate common tasks in a more powerful and general way than copy-and-pasting. Writing a function has four big advantages over using copy-and-paste:
+
+1. You can give a function an evocative name that makes your code easier to understand.
+
+2. As requirements change, you only need to update code in one place, instead of many.
+
+3. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+
+4. It makes it easier to reuse work from project-to-project, increasing your productivity over time." 
+
+If this tutorial makes no sense to you, you can go read his.^[https://r4ds.hadley.nz/functions] 
+
+
+All the fun stuff you do with the `tidyverse` packages are just functions **someone else** built and published as a package. And now you are going to learn to do exactly the same thing. 
+
+So what is in a function? 
+
+Components:
+
+* Function Name: How we will refer to our function.
+
+* Arguments: Variables passed into the function.
+
+* Function Body: The code that performs the task.
+
+* Return Statement: The output of the function.
+
+```{r}
+# skeleton of a function
+functionName <- #function name
+        function(arg1, arg2, ...) { #arguments
+         # Function Body
+         # ...
+        return(result) #return statement
+}
+
+```
+
+Example: The function `addNumbers` adds 2 numbers together and returns the output. 
+
+```{r}
+addNumbers <- function(num1, num2) { #function name and arguments
+  sum <- num1 + num2 #function body
+  return(sum) #return statement
+} #close the curly brackets!
+
+```
+Run it in your console and then try this code:
+
+```{r}
+addNumbers(12, 865)
+```
+
+Woah look at that! It added the numbers and printed the result. You could try again with other numbers but I think you get the idea. 
+
+Can you now make a basic function that multiplies two numbers and returns the result? Call it something like `multiplyNumbers`. 
+
+```{r ex1}
+
+# function name and arguments
+
+#function body
+
+#return statement
+
+```
+
+Try it with some numbers! You wrote your very first function!!!
+
+Ok, these seem fairly useless -- obviously R can add and multiply pretty easily without this. But lets say you're a budding young biologist who has to work with Celsius in their lab but wants to know what the temperatures are in Fahrenheit. You are sick of constantly googling the conversion, so you decide to automate it in R.
+
+Here's the equation to convert Celsius (centigrade) to Fahrenheit. 
+
+$^0F=(1.8\times^0C)+32$^[Note: we write these equations using a typesetting language called Latex. It's great and awesome but you don't need to know it, but now you know what this is.]
+
+Write a simple function that takes in a value in Celsius and converts it into Fahrenheit.
+
+```{r ex2}
+
+#call your function CtoF or anything meaningful to you
+#give it one argument called "c"
+
+
+#In the body of the function, write out the math of the conversion. 
+#Use the formula above to create a variable "f" to store the converted temperature.
+
+
+# in the return statement, return "f", your newly created variable. Note, this variable only exists inside your function.
+
+```
+
+Now you can change your temperatures and convert them easily! Test your function to do the following conversions from Celsius to Fahrenheit:
+
+* 0 degrees Celsius (water freezing point at sea level)
+* 100 degrees Celsius (water boiling point at sea level)
+* -273.15 degrees Celsius (absolute zero: the lowest limit of the thermodynamic temperature)
+
+
+```{r ex3}
+# 0 degrees Celsius (water freezing point at sea level)
+
+# 100 degrees Celsius (water boiling point at sea level)
+
+# - 273 degrees Celsius (absolute zero: the lowest limit of the thermodynamic temperature)
+
+```
+
+Let's try the same thing but the other way around.
+Here's the equation to convert Fahrenheit to Celsius. 
+
+$$^0C=\frac{^0F-32}{1.8}$$
+
+Write a simple function that takes in a value in Celsius and converts it into Fahrenheit.
+
+
+```{r ex4}
+
+#call your function FtoC or anything meaningful to you
+#give it one argument called "f"
+
+
+#In the body of the function, write out the math of the conversion. 
+#Use the formula above to create a variable "c" to store the converted temperature.
+
+
+# in the return statement, return "c", your newly created variable. Note, this variable only exists inside your function.
+
+
+
+# now test that running FtoC() on the temperatures you obtained with CtoF gives the expected outputs. Try these f values: 32, 212, 459.67
+
+
+```
+
+Great!
+
+What if we wanted to combine these functions to make _one big temperature conversion function_ that could go either way (Celsius-> Fahrenheit or Fahrenheit->Celsius)? For that, you'd have to know how to use conditional statements in a function. And you do! (sort of)
+
+
+## Conditional Statements in Functions
+It is useful to have functions that can do different things depending on the input. 
+
+For example, if we had a big temperature conversion function you would want it to differentiate Fahrenheit from Celsius and do different math depending on which you gave it. 
+
+For example the function below tells you if a number is even. If the number is even, it returns `TRUE`. If it is odd, it returns `FALSE`.
+
+```{r}
+isEven <- function(number) { #function name and arguments
+  if (number %% 2 == 0) { #body of the function. If remainder is zero when nr/2
+    return(TRUE) # then it is even
+  } else { #if remainder when nr/2 is NOT 0
+    return(FALSE) #nr is odd.
+  }
+}
+
+```
+Run the code above and try some numbers and see that it does what you think it does. For the following numbers, first think of what output you expect and then run the function with that value to confirm your prediction:
+
+```{r}
+#test the function on these values:
+
+# 242
+isEven(242)
+# -3
+isEven(-3)
+# 75
+isEven(-75)
+# 217/3
+isEven(217/3)
+```
+
+
+Now make the reverse of this function called `isOdd`. If the number is not divisble by 2 it should return `TRUE`, and if the number is divisible by 2 it should return `FALSE`
+
+
+
+```{r ex5}
+#function name and arguments
+#body of the function. If remainder is zero when nr/2 return FALSE
+#if remainder when nr/2 is NOT 0 return TRUE
+  
+
+
+```
+Run this one also on the same examples as above, but first predict what the function should return in each case. 
+
+```{r}
+#test the function on these values:
+
+# 242
+
+# -3
+
+# 75
+
+# 217/3
+
+```
+
+
+You can see how useful conditional statements are once you can automate them with functions! 
+
+Remember how you would set your variable to a value, run the conditional then go back and change the original variable if you wanted to do it again? Like in this example from lesson 7: 
+
+
+```{r}
+
+number <-3
+
+if (number > 0) {
+  print("The number is positive.")
+} else if (number < 0) {
+  print("The number is negative.")
+} else {
+  print("The number is zero.")
+}
+
+
+
+
+```
+
+Well, there's a better way! Instead of defining `number` above code each time you want to change `numeber`, just make `number` an argument of the function you are writing.
+
+Try using the `if/else if` logic to write a function called `classifyNumber` that uses an input number and returns a statatement (printed message) telling you whether: it's positive, negative or 0. 
+Hint: You can copy and paste the code above and just edit it. The main change here is that you want to turn it into a function that takes one single argument (`number`):
+
+
+```{r ex6}
+#call your function classifyNumber and give it one argument called "number"
+
+#function name and argument
+
+#if number is >0, print a statement saying that.E.g. "The number is positive".
+
+#otherwise, if number <0, print a statement saying that. E.g."The number is negative."
+
+#if neither of the above is true print a statement saying "The number is zero".
+ 
+#call your function classifyNumber and give it one argument called "number"
+
+#make sure you test your function (always). 
+#test it with these numbers, for example: 2, 213213, -100, 0.00000001
+
+
+```
+
+## Mulitple Arguments
+So far all of our functions have taken just one argument. What happensif we try to run our functions without passing any argument values to them?
+
+Try running `FtoC`, `CtoF`, and `classifyNumber`in two ways: a) without passing any arguments to the function; b) passing a value of `NULL` to the argument required by the function:
+
+```{r ex7}
+#`FtoC
+
+
+#CtoF
+
+
+#classifyNumber
+
+
+#`FtoC
+
+```
+
+
+* In the first case, you get an error that the argument is missing and has no default.
+
+* In the second case, you get an error saying the argument is of length zero (because you gave the argument the `NULL` value).
+
+Many of the functions you use regularly have a bunch of arguments that you could customize but don't have to. Why? They have default values that R uses unless you tell it to do something else. 
+
+For example, type `?mean` into your console and read the "arguments" portion of the help page. You probably only ever include the first argument, the values you want the mean of. But you have the option to exclude some percentage of the values or remove missing data (which we have done before). The values listed just above "arguments" in the help page indicate what the assumed default values are. For `mean`, these are: `x`, `trim=0`, `na.rm=FALSE`. If you run `mean(c(0,NA,3))` the function returns `NA` because `na.rm=FALSE` by default. But you can change this by setting it to true: `mean(c(0,NA,3), na.rm=TRUE)`, which returns the mean of 0 and 3, i.e., 1.5.
+
+Let's practice the concept of writing functions with more than one argumet.
+
+Below is a function that raises a number to the nth power.
+
+
+```{r}
+
+powerraiser<-function(x, power){ #x and power are the arguments
+        result<-x^power #body of the function
+        return(result) #what the function returns
+}
+
+
+```
+
+
+If we try to run this function without specifying the arguments, we will get errors:
+
+```{r}
+
+#try running these in your console
+
+#neither argument is defined with no default to revert to
+powerraiser()
+
+
+#only one argument is defined with no default to revert to
+powerraiser(x=2)
+
+#only one argument is defined with no default to revert to
+powerraiser(power=3)
+
+
+```
+
+If we wanted to write a function that raises numbers to the nth power but we think we will mostly use it for squaring numbers, we could write it with a default value for the power argument. Do that below:
+
+
+
+```{r ex8}
+#call your function powerraiser_v2 to differentiate it from the previous powerraiser function
+
+
+# try running it by passing a value to x but not to power
+
+
+
+# try running it by passing a value to x and a value that is not 2 to power
+
+
+
+#call your function powerraiser_v2 to differentiate it from the previous powerraiser function
+
+
+# try running it by passing a value to x but not to power
+
+
+
+# try running it by passing a value to x and a value that is not 2 to power
+
+
+```
+
+
+You can also have the default for an argument be `null`. If you set the default to null, your function will simply ignore that argument. 
+
+Example: Lets say you want to make a function that calculates the area of a rectangle. Your arguments would be `length` and `width`.
+
+```{r}
+
+area_function<-function(length, width){
+        area = length * width
+        return(area)
+}
+
+# test it. All the runs below mean the same thing:
+
+area_function(length = 2, width = 3)
+
+
+
+area_function(2, width = 3)
+
+area_function(length = 2, 3)
+
+area_function(2, 3)
+
+```
+
+Be careful, though, when you don't spell out the arguments as we did above: `area_function(2,3)` instead of `area_function(x = 2, power = 3)`. In those cases, R assumes you are passing arguments in the order in which they are defined in the function. 
+
+Below is an updated function of `area_function` which prints out what the `length` and `width` parameter values are, as well as the calculated `area`:
+
+```{r}
+
+area_function_v2<-function(length, width){
+        mess1<-paste("Length is:", length)
+        mess2<-paste("Width is:", width)
+        area = length * width
+        print(mess1)
+        print(mess2)
+        mess3<-paste("Area is:", area)
+        return(area)
+}
+
+#run the code above and test it:
+
+area_function_v2(length = 2, width = 3)
+```
+
+
+
+Think about what you think will happen if you run `area_function_v2` in the following ways, always with the goal of assigning the value 4 to width and the value 2 to length:
+
+* a. `(width = 4, length = 2)`
+* b. `(length = 2, width = 4)`
+* c. `(4,2)`
+* d. `(2,4)`
+
+What will be the area in each case? What will the different print messages print to your console? Now check that the results meet your expectations:
+
+
+```{r ex}
+#a
+
+#b
+
+#c
+
+#d
+
+
+```
+
+What did you observe? Are the areas always the same? Are the parameter values passed to the right parameter variables?
+
+**Answer:** 
+
+
+**Conclusion:** when you name arguments explicitly you have the flexibility of not needing to put them in a specific order inside the function command. Also, you make things more explicit to yourself and whoever is reading your code. 
+
+
+Let's build on top of this. If you wanted to calculate the area of a square using this same function, you would only need to enter one value, since for a square both dimensions are the same. Here is the list of steps we will need to write this function. 
+
+* Write a function that takes in both arguments (length and width) -- call it `calculate_area`
+* The default values for both arguments should be NULL -- `(width = NULL, length = NULL)`
+
+
+
+```{r}
+calculate_area<-function(width = NULL, length = NULL){
+        #body of the function
+        
+        
+}
+
+
+#try to run this function without specifying argument values.
+#you get something not very helpful: NULL. That's because you didn't actually do anything in the function yet.
+
+calculate_area()
+
+```
+
+
+* The body of the function checks whether both of them are null. That would be the case if the user did not specify either parameter when using the function -- a silly think to do!
+* we will use the `is.null()` function to check if both parameters are NULL. We will use \& to combine both statements since we are checking if both are NULL, not just one of them
+* If that is the case (that both are null), we want to tell the user they did something very wrong and that the function should just stop right there. We can do this using the `stop` command. 
+* Have a look at `?stop`. Look at the examples at the bottom. 
+
+
+
+```{r}
+
+calculate_area<-function(width = NULL, length = NULL){
+        #body of the function
+        #check if both parameters are null. If so, halt and print the error message.
+        if(is.null(width) & is.null(length)){
+                stop("Both width and length are undefined. Seriously, what do you hope will happen here?")
+        }
+               
+}
+
+#test that your function does what you think it does.
+#eg.
+
+calculate_area()
+```
+
+Great! Moving on. 
+
+* Otherwise (if it is NOT true that both parameters are null), we could ask if one of them is, but not both
+* the first `if` statement already checks if both of them are null. If that is true, the function prints the error message.
+* now we can add an `else if` statement that asks whether one of the two is null but not both.
+* if that is true, we want the area to be calculated as the square of the non-null parameter.
+
+
+```{r}
+calculate_area<-function(width = NULL, length = NULL){
+        #body of the function
+        #check if both parameters are null. If so, halt and print the error message.
+        if(is.null(width) & is.null(length)){
+                stop("Both width and length are undefined. Seriously, what do you hope will happen here?")
+        }else if (is.null(width)){
+               area <- length ^ 2 
+        }
+         
+        return(area) 
+}
+
+#test that your function does what you think it does.
+#eg.should give you 2^2=4 as an output
+
+calculate_area(length = 2)
+
+#should give an error sayign object area cannot be found. It can't! Because your script did not create the object area in this case.
+calculate_area(width = 2)
+```
+
+* Now let's add another code chunk for the case where width is not null, but length is. Since either dimension is sufficient for the area of a square, we can use that as well in the same way:
+
+```{r}
+calculate_area<-function(width = NULL, length = NULL){
+        #body of the function
+        #check if both parameters are null. If so, halt and print the error message.
+        if(is.null(width) & is.null(length)){
+                stop("Both width and length are undefined. Seriously, what do you hope will happen here?")
+        }else if (is.null(width)){
+               area <- length ^ 2 
+        }else if (is.null(length)){
+                area <- width ^ 2 
+        }
+         
+        return(area)      
+}
+
+#test that your function does what you think it does.
+#eg.this should give you 2^2=4 as an output
+
+calculate_area(length = 2)
+
+#eg. this should give you 2^2=4 as an output
+calculate_area(width = 2)
+```
+
+* Let's add a final chunk that produces the `area` in the case where both width and length are defined. 
+* We will add this as a final `else` statement.
+
+```{r}
+calculate_area<-function(width = NULL, length = NULL){
+        #body of the function
+        #check if both parameters are null. If so, halt and print the error message.
+        if(is.null(width) & is.null(length)){
+                stop("Both width and length are undefined. Seriously, what do you hope will happen here?")
+        }else if (is.null(width)){
+               area <- length ^ 2 
+        }else if (is.null(length)){
+                area <- width ^ 2 
+        }else{ #if all the previous statements are false, the only remaining possibility is that neither is null.
+                area <- width * length
+                
+        }
+         
+        return(area)      
+}
+
+#test that your function does what you think it does.
+#eg.this should give you 2*4=8 as an output
+
+calculate_area(length = 2, width = 4)
+
+```
+
+* lastly, we can add some nice messages telling the user what is going on:
+
+```{r}
+calculate_area_final<-function(width = NULL, length = NULL){
+        #body of the function
+        #check if both parameters are null. If so, halt and print the error message.
+        if(is.null(width) & is.null(length)){
+                stop("Both width and length are undefined. Seriously, what do you hope will happen here?")
+        }else if (is.null(width)){
+               area <- length ^ 2 
+               mess<-paste("Width wasn't defined. The area of the square is: ", area)
+               print(mess)
+        }else if (is.null(length)){
+                area <- width ^ 2 
+                mess<-paste("Width wasn't defined. The area of the square is: ", area)
+                 print(mess)
+        }else{ #if all the previous statements are false, only remaining possibility is that neither is null.
+                area <- width * length
+                mess<-paste("Both width and length were defined. The area of the rectangle is:", area)
+                
+        }
+         
+        return(area)      
+}
+
+#test that your function does what you think it does.
+
+test1<-calculate_area_final(width = 2)
+test2<-calculate_area_final(length = 2)
+test3<-calculate_area_final(length = 2, width = 4)
+
+print(test1)
+print(test2)
+print(test3)
+
+```
+
+
+## Combining everything!
+
+That was quite a ride!
+
+Now lets go back to our temperature functions from earlier. 
+```{r}
+CtoF<-function(c){ 
+f<- (c *1.8) + 32
+return(f)
+}
+
+FtoC<-function(f){ 
+c<- (f-32)/1.8
+return(c)
+}
+
+
+```
+
+We want to make our **ONE BIG FUNCTION**:
+
+* call it `temp_conv` and define two parameters: `c` (celsius) and `f` (fahrenheit)
+* set both default values for the parameters to be `NULL`
+* use conditional statements to define what happens next: if provided temperature is in Celsius, convert it to fahrenheit and return the temperature in fahrenheit; if provided temperature is in Fahrenheit, convert it to Celsius and return the temperature in Celsius
+* print helpful messages within each `if/else if` statement to help the user and yourself
+
+
+```{r ex12}
+# name function temp_conv 
+
+# define two arguments: c and f
+
+# set both to default values of NULL
+
+# check if both are null. If so, stop the function and print an error message
+
+#conditional statement: if f is null that means you are converting from Celsius, so you should be returning Fahrenheit. Save the new temperature as new_temp. Print a helpful message. 
+
+#otherwise, you are starting from Fahrenheit, so you should be returning Celsius. Save the new temperature as new_temp. Print a helpful message.
+
+# finally if both values are provided (neither is null) stop the function and print an error message saying there is nothing to convert.
+
+#lastly, return the value "new_temp"
+
+
+
+```
+
+Test your function here. Before you run each command, try to anticipate what the output should look like. Get in the habit of checking that your function does what you want it to do:
+
+```{r ex13}
+temp_conv(c = 100) #test 1: should return 212 Fahrenheit
+
+temp_conv(c = 0) # test2L should return 32 Fahrenheit
+
+temp_conv(c=9, f=20319139) #test 3: should return an error
+
+#try more values!
+
+```
+
+Congrats! you wrote a badass R function and you will never again need to goodle how to convert between Celsius and Fahrenheit!
+
+---
+
+# Part 2: Case study: Hospital readmission rates of acute ischemic stroke in California
+
+ 
+
+## Tools we will use
+
+* Chapters covered: This covers some concepts from chapters 3 and 7.
+
+* Calculating binomial probabilities with `dbinom()`
+
+* Finding p-value for a binomial problem using `pbinom()`
+
+* Performing a binomial test using `binom.test()`
+
+* Calculating proportion confidence intervals with the `binom` package functions.
+
+
+## Calculating binomial probabilities
+
+### Example 1 : what is the probability of six successes in 27 trials, where p of success is 0.25.
+
+
+```{r}
+dbinom(x = 6, size = 27, prob = 0.25)
+```
+
+
+Practice by finding these probabilities:
+
+* probability of sampling 5 female snakes from a population where 0.70 are female.
+
+```{r ex2.1}
+#use dbinom()
+
+
+
+```
+
+
+* probability of rolling a 7 out of 10 rolls during a game:
+
+```{r ex2.2}
+#use dbinom()
+
+
+
+```
+
+
+
+### Example 2 : finding the probability of 2 out of 3 children in a household being born in the same month.
+
+Remember the binomial coefficient:
+
+$$\binom{n}{X}=\frac{n!}{X!(n-X)!}$$, 
+where X is the number of successes and n is the number of trials.
+
+and then remember the full binomial equation:
+
+$$P[X]=\binom{n}{X}p^X(1-p)^{n-X}$$
+
+
+```{r}
+
+#manually
+#p of two children in one given month and 1 child not in the same month
+
+p<-1/12*1/12*11/12
+
+
+#but we need to take into account that there are different configurations that could lead to this. We can use choose() to give us the binomial coefficient
+
+binom_coef<-choose(n=3,k=2)
+
+#now multiply p and binom_coef to find that total probability
+
+print(p)
+print(binom_coef)
+print(p*binom_coef)
+
+# now try the much simpler method using dbinom()
+
+dbinom(x = 2, size = 3, prob = 1/12)
+```
+
+
+Now practice:
+
+* find the probability that 6 out of the 12 students in our class were born on the same season of the year.
+
+
+```{r ex2.3}
+#use dbinom()
+
+
+
+```
+
+
+## Binomial test:
+
+#### Example: is finding 10 successes out of 25 trials different from expected number of successes if p of success is 0.061?
+
+
+```{r}
+#null: p=0.061
+#alt: p != 0.061
+#define your alpha before hand: i will go with alpha=0.01 as my criterion for rejecting the null.Conf level is 1-alpha.
+
+binom.test(x = 10, n = 25, p = 0.061,alternative = "two.sided", conf.level=0.99)
+
+```
+
+Pratice:
+
+* I rolled my personal super special die 80 times during a boardgame and got a 6 in 19 of those. My buddies accuse me and say my die is perhaps too good to be true. I plead innocence and boast about my cosmic luck! What do you think?
+
+```{r ex2.4}
+#null: ?
+#alt: ?
+#define your alpha:
+
+
+```
+
+
+## Calculating confidence intervals of proportions
+
+The `binom` package has cool/useful functions related to the binomial distribution.
+
+Let's make sure it's loaded before moving on. If it is not installed, do so now and load it.
+
+```{r}
+library(binom)
+```
+
+### Example: What is the Agresti-Coull 95% confidence interval for a proportion based on 131 successes out of 169 trials?
+
+```{r}
+binom::binom.confint(131, n = 169, method = "ac")
+
+```
+
+
+## Motivation
+
+According to the Nationwide Readmissions Database of the Healthcare Cost and Utilization Project between 2010 and 2015, the 30-day hospital readmission rate for acute ischemic stroke patients on a national level is 12.4% (Bambhroliya et al. 2018). A researcher wants to test whether the proportion of 30-day hospital readmissions for a California hospital with an "as expected" hospital quality rating differs from the national 30-day readmission proportion.
+
+## Data
+
+CSV Data file: [*readmin.csv*](readmin.cvs)
+
+The data file contains ischemic stroke 30-day hospital readmission incidence data for a random sample of patients in a California hospital with an "as expected" quality rating obtained from a set of hospital records for 2014-2015. The 30-day readmission data from a sample of 50 patients was recorded.
+
+Read in the dataset (it's in the input_files folder) which we'll call *readmin*. Use `head` to check what it looks like:
+
+```{r ex2.5}
+
+# read dataset
+# use head()
+
+
+```
+
+The variable *ReadmissionStatus* is a binary variable which is equal to 1 if the patient was readmitted to the hospital within 30 days of discharge and equal to 0 if the patient was not readmitted to the hospital within 30 days of discharge.
+
+
+## Questions of interest
+
+Two questions of interest are:
+
+1.  Is the proportion of stroke patients readmitted within 30-days of discharge from CA hospital different from the nationwide proportion?
+
+2.  What is the 95% confidence interval for the proportion of acute ischemic stroke patients readmitted within 30 days of discharge?
+
+
+## Exploring the Data
+
+
+Let's begin by looking at the variable of interest, readmission. Use the `table()` function to answer: *How many peope are readmitted to the hospital within 30 days? How many are not?*
+
+
+```{r ex2.6}
+# Table of Readmission Status
+
+```
+
+
+
+## Data Analysis
+
+Determine the proportion of individuals readmitted in the sample. *Tip: check out the `prop.table()` function.*
+
+```{r ex2.7}
+# Proportion table of Readmission Status
+
+```
+
+**Answer:** 12\% (or p = 6/50 = 0.12) of the sample was readmitted within 30 days.
+
+#### The Binomial test
+
+Let's write the null and alternative hypotheses for this statistical test, comparing the proportion of readmission in our study, to the population proportion of 0.124.
+
+$H_0:$ The proportion of readmission in the population is 0.124
+
+$H_A:$ The proportion of readmission in the population is not 0.124_
+
+Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. 
+
+```{r ex2.8}
+# Binomial test of readmission status
+
+```
+
+*What is your decision based on the binomial test?*
+
+Answer:
+
+#### Agresti-Coull 95% Confidence Interval for the proportion
+
+Next, calculate the 95% CI for the proportion of stroke patients who were readmitted within 30 days of discharge using the Agresti-Coull method. *Tip: Some possibilities were covered in lectures. You can also just check out the `binom` package now.*
+
+```{r ex2.9}
+# 95% CI for binomial test
+
+```
+
+*What is the Agresti-Coull 95% CI?*
+Answer:
+
+
+
+## Conclusions
+
+Based on these results, do we find evidence that the population proportion is significantly different from 0.124? Use both the test and the CI to answer this.
+
+**Answer:** we find no evidence that the population proportion is significantly different from 0.124. The 95% CI interval ($0.0525 < p < 0.2417$) indicates medium level of precision, given that it covers nearly 20% of possible proportions.
+
+## References
+
+Bambhroliya AB, Donnelly JP, Thomas EJ, et al., "Estimates and Temporal Trend for US Nationwide 30-Day Hospital Readmission Among Patients With Ischemic and Hemorrhagic Stroke.", *JAMA Netw Open*, 1[2018]:e181190 <https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2696869>

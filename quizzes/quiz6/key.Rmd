@@ -249,14 +249,15 @@ human_genes_summ <- human_genes %>%
 mean10<-mean(sample(human_genes$size, 10, replace = TRUE))
 mean100<-mean(sample(human_genes$size, 100, replace = TRUE))
 mean1000<-mean(sample(human_genes$size, 1000, replace = TRUE))
+#
 ```
 
 5.4. Compare these means to the population mean. Which is closest?
 ```{r ex5.4}
 abs(c(mean10, mean100, mean1000)-human_genes_summ$MeanLength) #abs is equivalent to |x|
-
+#
 ```
-Note: we should have gotten that mean1000 gives the smallest difference, but you probably found something different. That's because we did not filter this human_genes dataset to remove the few very long genes that exist. Remember we mentioned this in class. So when you take larger samples you're just more likely to get those values sampled. If we removed them first, we would find something different:
+Note: we should have gotten that mean1000 gives the smallest difference, but you MAY have found something different. That's because we did not filter this human_genes dataset to remove the few very long genes that exist. Remember we mentioned this in class. So when you take larger samples you're just more likely to get those values sampled. So without removing them there is a chance that in your random samples the closest mean to the true mean was 100 instead of 1000 (though it is more likely the 1000 sample). Let's filter the long genes out to show this:
 
 ```{r ex5.4b}
 human_genes2<-human_genes %>% filter(size<=15000) #filter long genes out
@@ -273,7 +274,7 @@ mean1000_v2<-mean(sample(human_genes2$size, 1000, replace = TRUE))
 abs(c(mean10_v2, mean100_v2, mean1000_v2)-human_genes_summ_v2$MeanLength) #dabs is equivalent to |x|
 
 ```
-There we go! As expected, the greater sample size led to a smaller difference to the real mean.
+There we go! As expected, the greater sample size led to a smaller difference to the real mean. This may already have been true for you without the filtering, but with the filtering it is way less likely we might get a conflicting result here.
 
 **Ex.5)** Congrats you did sampling! Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
 

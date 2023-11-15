@@ -105,7 +105,7 @@ First use the new functions you learned to find the average test score for each 
 
 ```{r. ex3.1}
 #use apply
-
+apply(X=scores, MARGIN=1,)
 
 ```
 
@@ -116,8 +116,10 @@ Now use a for loop. Remember to create blank variables first to store your infor
 ```{r ex3.2}
 #first count the number of scores in scores and save it as num_students
 
-
+num_students<-nrow(scores)
 #create blank variable called averages. Make it numeric with as many elements as num_students
+
+averages<-c()
 
 #create your for loop to iteratively calculate the mean score for each student and store it in different positions of the object averages
 
@@ -137,7 +139,7 @@ Now use a for loop. Remember to create blank variables first to store your infor
 
 First use `apply` and save the results in an object called `class_averages_apply`:
 
-```{r. ex3.3}
+```{r ex3.3}
 #create object
 
 #print your object
