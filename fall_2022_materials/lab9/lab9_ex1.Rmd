@@ -19,7 +19,7 @@ According to the Nationwide Readmissions Database of the Healthcare Cost and Uti
 
 ## Data
 
-CSV Data file: [*readmin.csv*](input_files/readmin.cvs)
+CSV Data file: [*readmin.csv*](readmin.cvs)
 
 The data file contains ischemic stroke 30-day hospital readmission incidence data for a random sample of patients in a California hospital with an "as expected" quality rating obtained from a set of hospital records for 2014-2015. The 30-day readmission data from a sample of 50 patients was recorded.
 
@@ -46,10 +46,12 @@ Two questions of interest are:
 
 ```{r}
 # Install
-# load
+#install.packages("binom")
+# load package
+library(binom)
 ```
 
-## Exploring the Data
+### Exploring the Data
 
 Let's begin by looking at the variable of interest, readmission. Use the `table()` function.
 
@@ -60,7 +62,7 @@ Let's begin by looking at the variable of interest, readmission. Use the `table(
 
 *How many peope are readmitted to the hospital within 30 days? How many are not?*
 
-## Data Analysis
+### Data Analysis
 
 Determine the proportion of individuals readmitted in the sample. *Tip: check out the `prop.table()` function.*
 
@@ -75,9 +77,9 @@ Answer: of the sample was readmitted within 30 days.
 
 Write the null and alternative hypotheses for this statistical test, comparing the proportion of readmission in our study, to the population proportion of 0.124.
 
-$H_0: \text{The proportion of readmission in the population is }______$
+$H_0:$ The proportion of readmission in the population is ______
 
-$H_A: \text{The proportion of readmission in the population is not }_______$
+$H_A:$ The proportion of readmission in the population is not ______
 
 Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. *Tip: Some possibilities were covered in lectures. You can also just check out the `binom` package now.*
 
@@ -100,12 +102,15 @@ Next, calculate the 95% CI for the proportion of stroke patients who were readmi
 ```
 
 *What is the Agresti-Coull 95% CI?*
+Answer:
 
 Answer:
 
 ## Conclusions
 
-Based on these results, we find no evidence that the population proportion is significantly different from 0.124. The 95% CI interval ($0.0525 < p < 0.2417$) indicates medium level of precision, given that it covers nearly 20% of possible proportions.
+Based on these results, do we find evidence that the population proportion is significantly different from 0.124? Use both the test and the CI to answer this.
+
+Answer: we find no evidence that the population proportion is significantly different from 0.124. The 95% CI interval ($0.0525 < p < 0.2417$) indicates medium level of precision, given that it covers nearly 20% of possible proportions.
 
 ## References
 
