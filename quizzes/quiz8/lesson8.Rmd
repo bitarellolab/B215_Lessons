@@ -9,7 +9,7 @@ header-includes:
 ---
 
 ```{r setup, echo=F}
-knitr::opts_chunk$set(echo=T, eval=F)
+knitr::opts_chunk$set(echo=T, eval=T)
 options(tinytex.verbose = TRUE)
 suppressMessages(library(dplyr))
 #load ggplot package
@@ -28,6 +28,7 @@ Overview: ^[Developed by Daphne Hansell ('24) and Dr. Bitarello]:
 
 * [Part 2: case study using the binomial distribution](#Part 2: Case study: Hospital readmission rates of acute ischemic stroke in California) 
 
+* Don't forget to knit your document often and upload the completed lab to moodle!
 ---
 
 # Part I: Functions
@@ -332,17 +333,19 @@ If we try to run this function without specifying the arguments, we will get err
 #try running these in your console
 
 #neither argument is defined with no default to revert to
-powerraiser()
+#powerraiser()
 
 
 #only one argument is defined with no default to revert to
-powerraiser(x=2)
+#powerraiser(x=2)
 
 #only one argument is defined with no default to revert to
-powerraiser(power=3)
+#powerraiser(power=3)
 
 
 ```
+
+Note: to be able to knit your pdf you will have to comment ("#") the lines leading to errors.
 
 If we wanted to write a function that raises numbers to the nth power but we think we will mostly use it for squaring numbers, we could write it with a default value for the power argument. Do that below:
 
@@ -493,10 +496,11 @@ calculate_area<-function(width = NULL, length = NULL){
 }
 
 #test that your function does what you think it does.
-#eg.
+#eg.uncomment the line below and try it
 
-calculate_area()
+#calculate_area()
 ```
+Note: to be able to knit your pdf you will have to comment ("#") the lines leading to errors.
 
 Great! Moving on. 
 
@@ -520,13 +524,17 @@ calculate_area<-function(width = NULL, length = NULL){
 }
 
 #test that your function does what you think it does.
-#eg.should give you 2^2=4 as an output
 
-calculate_area(length = 2)
+#eg.should give you 2^2=4 as an output
+#uncomment the code lines below and try them
+
+#calculate_area(length = 2)
 
 #should give an error sayign object area cannot be found. It can't! Because your script did not create the object area in this case.
-calculate_area(width = 2)
+
+#calculate_area(width = 2)
 ```
+Note: to be able to knit your pdf you will have to comment ("#") the lines leading to errors.
 
 * Now let's add another code chunk for the case where width is not null, but length is. Since either dimension is sufficient for the area of a square, we can use that as well in the same way:
 
@@ -671,11 +679,13 @@ We want to make our **ONE BIG FUNCTION**:
 Test your function here. Before you run each command, try to anticipate what the output should look like. Get in the habit of checking that your function does what you want it to do:
 
 ```{r ex13}
-temp_conv(c = 100) #test 1: should return 212 Fahrenheit
+#uncomment the lines below to run some tests. Try more values as well!
 
-temp_conv(c = 0) # test2L should return 32 Fahrenheit
+#temp_conv(c = 100) #test 1: should return 212 Fahrenheit
 
-temp_conv(c=9, f=20319139) #test 3: should return an error
+#temp_conv(c = 0) # test2L should return 32 Fahrenheit
+
+#temp_conv(c=9, f=20319139) #test 3: should return an error
 
 #try more values!
 

@@ -28,6 +28,8 @@ Overview: ^[Developed by Daphne Hansell ('24) and Dr. Bitarello]:
 
 * [Part 2: case study using the binomial distribution](#Part 2: Case study: Hospital readmission rates of acute ischemic stroke in California) 
 
+* Don't forget to knit your document often and upload the completed lab to moodle!
+
 ---
 
 # Part I: Functions
@@ -380,6 +382,8 @@ powerraiser(power=3)
 
 
 ```
+
+Note: to be able to knit your pdf you will have to comment ("#") the lines leading to errors.
 
 If we wanted to write a function that raises numbers to the nth power but we think we will mostly use it for squaring numbers, we could write it with a default value for the power argument. Do that below:
 
