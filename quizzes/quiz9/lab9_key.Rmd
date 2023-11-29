@@ -49,9 +49,11 @@ For example, the file `MandMlist.csv` contains a list of all the colors of M&M c
 
 ```{r ex1.1}
 #read in the file and call is MMlist
+MMlist <- read_csv("MandMlist.csv")
 
 #use head and str to check it
-
+head(MMlist)
+str(MMlist)
 ```
 
 Notice that `MMlist$color` contains the color of each of 55 M&Ms
@@ -64,9 +66,9 @@ Summarizing frequency data in a table is useful to see the data more concisely, 
 
 ```{r ex1.2}
 #create MMtable
-
+MMtable <- table(MMlist$color)
 #look at it
-
+MMtable
 ```
 
 This shows you how many M&Ms were blue, brown etc
@@ -83,8 +85,9 @@ The company says that the percentages are 24% blue, 14% brown, 16% green, 20% or
 
 ```{r ex1.3}
 #create expected proportions
-
+expected_proportions <- c(0.24, 0.14, 0.16, 0.20, 0.13, 0.13)
 #check it
+expected_proportions
 
 ```
 
@@ -105,7 +108,8 @@ To obtain these expected counts, multiply the vector of the expected proportions
 
 ```{r ex1.4}
 #create n_total
-
+n_total<-sum(MMtable)
+n_total
 ```
 
 Now you can use the expected proportions and the total sample size to find the expected number (not proportion) of M&Ms of each color, given your sample size.
@@ -117,7 +121,8 @@ Now you can use the expected proportions and the total sample size to find the e
 
 ```{r ex1.5}
 #create expected counts
-
+expected_counts<-n_total * expected_proportions
+expected_counts
 ```
 
 If all looks good, go ahead and run a $\chi^2$ goodness of fit test.
@@ -128,7 +133,8 @@ If all looks good, go ahead and run a $\chi^2$ goodness of fit test.
 
 ```{r ex1.6}
 #your code here
-
+my_chisq_test<-chisq.test(MMtable, p = expected_proportions)
+my_chisq_test
 ```
 
 Now let's run the $\chi^2$ test manually for comparison!
@@ -145,16 +151,17 @@ Follow the following steps. Always check each intermediate value to make sure yo
 
 ```{r ex1.7}
 #step 1
-
+step1<-MMtable-expected_counts
+step1
 #step 2
-
-
+step2<-step1^2
+step2
 #step 3
-
-
+step3<-step2/expected_counts
+step3
 #step 4. This is your chi-square value
-
-
+step4<-sum(step3)
+step4
 ```
 
 Lastly, we need to find the p-value corresponding to this value, so:
@@ -168,11 +175,11 @@ Lastly, we need to find the p-value corresponding to this value, so:
 
 ```{r ex1.8}
 #calculate df
-
+my_df<-length(MMtable)-1
 
 #run pchisq using my_df and step4 as arguments. Set lower.tail to FALSE
-
-
+my_pchisq<-pchisq(q=step4, df=my_df, lower.tail=F)
+my_pchisq
 ```
 
 Now you can compare the results you saved as `my_chisq_test` to the ones you calculated manually:
@@ -182,11 +189,11 @@ Now you can compare the results you saved as `my_chisq_test` to the ones you cal
 
 ```{r ex1.9}
 #run names(my_chisq_test)
-
+names(my_chisq_test)
 #check that the `statistic` value within my_chisq_test has the same value as step4
-
+my_chisq_test$statistic==step4
 #check that the `p.value` value within my_chisq_test has the same value as my_pchisq
-
+my_chisq_test$p.value==my_pchisq
 ```
 
 Congrats! Now let's run a goodness of fit test where the null hypothesis is that data follow a Poisson distribution.
@@ -209,19 +216,21 @@ Background (from the textbook): Do extinctions occur randomly through the long f
 
 ```{r ex1.10}
 #read in the file as extinctData
-
+extinctData <- read.csv("MassExtinctions.csv", stringsAsFactors = TRUE)
 
 #use head understand the dataset
 
-
+head(extinctData)
 #use dim to get the dimensions
-
+dim(extinctData)
 
 #create number_of_extinctions
-
-
+number_of_extinctions <- extinctData$numberOfExtinctions
+number_of_extinctions
 #run `table()` on this object to get the absolute frequency of 1,2, etc extinction events across all blocks of time.
 
+table_extinctions<-table(number_of_extinctions)
+table_extinctions
 ```
 
 
@@ -237,11 +246,11 @@ Questions:
 
 ```{r ex1.11}
 # how many blocks of time are there?
-
+nrow(extinctData)
 # which frequency is most common across the time blocks?
-
+sort(table_extinctions)[length(table_extinctions)]
 #how many time periods had 2 or less extinctions? 
-
+length(number_of_extinctions[which(number_of_extinctions<=2)])
 ```
 
 
@@ -251,9 +260,9 @@ The mean number of extinctions per unit of time is not specified by the null hyp
 
 ```{r ex1.12}
 #get the mean
-
+mean_extinctions<-mean(number_of_extinctions)
 #print it
-
+mean_extinctions
 ```
 
 We can now use this mean to calculate the probability according to a Poisson distribution of getting each specific number of extinctions.
@@ -286,9 +295,10 @@ We’ll need the probabilities for all possible values of x from 0 to 20 (becaus
 
 ```{r ex1.13}
 # create vector
-
+vals<-0:20
 # run dpois to create expected_extinction_probabilities
-
+expected_extinction_probabilities<-dpois(x=vals, lambda=mean_extinctions)
+expected_extinction_probabilities
 
 
 ```
@@ -301,9 +311,9 @@ In order to convert these probabilities into expected values for a $\chi^2$ test
 
 ```{r ex1.14}
 #calculate expected_extinction_counts
-
+expected_extinction_counts<-length(number_of_extinctions)* expected_extinction_probabilities
 #print expected_extinction_counts
-
+expected_extinction_counts
 
 ```
 
@@ -322,13 +332,12 @@ Note that these expected values are large enough to match the conditions of the 
 * Make vectors (using `c()`) for the observed and expected values for these new groups. You can do this one manually by typing in the values shown above. 
 
 ```{r ex1.15}
-#create expected_combined. I did this one for you. Just uncomment it.
+#create expected_combined. I did this one for you
 
-#expected_combined <- c(5.878568, 9.999264, 14.032300, 14.768996, 12.435494,  8.725572, 5.247808, 4.911998)
+expected_combined <- c(5.878568, 9.999264, 14.032300, 14.768996, 12.435494,  8.725572, 5.247808, 4.911998)
+#create observed_combined
 
-#create observed_combined. You do this one
-
-
+observed_combined <- c(13, 15, 16, 7, 10, 4, 2, 9)
 ```
 
 * From these we can calculate the $\chi^2$ test statistic using `chisq.test()`.
@@ -338,7 +347,7 @@ Note that these expected values are large enough to match the conditions of the 
 ```{r ex1.16}
 #run chisq.test()$statistic using the appropriate parameters as listed above.
 
-
+chisq.test(x=observed_combined, p=expected_combined, rescale.p=TRUE)$statistic
 ```
 
 This correctly calculates our $\chi^2$ value as 23.939. The warning message in red is because one of the expected values is under 5, but because this occurred in less than 20% of the categories, it is fine to proceed.
@@ -351,7 +360,7 @@ To calculate the correct P-value, we need to know probability of getting a $\chi
 
 ```{r ex1.17}
 #run pchisq
-
+pchisq(q = 23.939, df = 6, lower.tail = FALSE)
 ```
 
 Thus, our P-value for this test of the fit of these data to a Poisson distribution is approximately 0.0005. We reject the null hypothesis that these extinction data follow a Poisson distribution.
@@ -360,7 +369,7 @@ Try re-running the code in rex1.16 without $statistic
 
 ```{r ex1.18}
 #code here
-
+chisq.test(x=observed_combined, p=expected_combined, rescale.p=TRUE)
 ```
 
 Notice that while the statistic value is correct, the p-value is different because it is using df=7, which is incorrect. 
@@ -445,7 +454,7 @@ We would also like the axes to have labels. We can specify these with xlab and y
 
 ```{r ex2.2}
 #make new mosaic plot with different colors and axis labels
-
+mosaicplot(sex_survive_table, color = c("darkred", "gold"), xlab ="Sex", ylab = "Survival")
 ```
 
 
@@ -462,9 +471,9 @@ In R, the simplest way to estimate an odds ratio is to use the command `fisher.t
 
 ```{r ex2.3}
 # run fisher's test and save results
-
+sex_survive_fisher <- fisher.test(sex_survive_table)
 #call names() on the object
-
+names(sex_survive_fisher)
 ```
 
 The output of this function has several parts, two of which we’ll want to look at now for estimating an odds ratio. We can see the specific elements of the output by using the $ notation.
@@ -473,7 +482,7 @@ Use $ to extract the `estimate` component from `sex_survive_fisher`. This will g
 
 ```{r ex2.4}
 #get odds ratio
-
+sex_survive_fisher$estimate
 ```
 
 Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This will give youu the 95% confidence interval for the odds ratio.
@@ -482,7 +491,7 @@ Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This wi
 ```{r ex2.5}
 #get the 95% confidence interval for the odds ratio
 
-
+sex_survive_fisher$conf.int
 ```
 
 ### Risk Ratio
@@ -510,16 +519,16 @@ Make a contingency table with the disease status first and the treatment second 
 
 ```{r ex2.6}
 #code here
-
-
+cancerTable <- table(cancer$cancer, cancer$aspirinTreatment)
+cancerTable
 ```
 
 Make a mosaic plot:
 
 ```{r ex2.7}
 #code here
-
-
+mosaicplot( t(cancerTable), col = c("firebrick", "goldenrod1"), cex.axis = 1, 
+    sub = "Aspirin treatment", ylab = "Relative frequency", main = "")
 
 ```
 
@@ -532,10 +541,10 @@ Our contingency table `cancerTable`, has the undesired outcome in the treatment 
 
 ```{r ex2.8}
 #make cancerTable2
-
+cancerTable2<-t(cancerTable)
 #run riskratio
-
-
+RR <- riskratio(t(cancerTable2), rev = "both", method = "wald")
+RR
 
 ```
 ### Chi-square contingency test
@@ -559,7 +568,7 @@ In this case all the expected values are greater than 5, so we have no problem m
 ```{r ex2.9}
 #run the chisq.test
 
-
+chisq.test(sex_survive_table, correct=FALSE)
 
 ```
 
@@ -577,7 +586,7 @@ To implement Fisher’s exact test in R, use fisher.test(). This function is eas
 ```{r ex2.10}
 #run fisher's test
 
-
+fisher.test(sex_survive_table)
 
 ```
 Here there is little uncertainty about the presence of an association between sex and survival; the P-value is less that 2.2 x 10-16. (This strange value is the smallest number that can be recorded using the default numerical precision in R.)
@@ -638,11 +647,11 @@ There were 229 individuals with SARS included in the retrospective study. Indivi
 
 ```{r ex3.1}
 #read in the dataset
-
+sars <- read_csv("sars.csv") 
 #do the basic checks
+head(sars) # Shows the first six rows of the data set
 
-
-
+str(sars)
 ```
 
 The variable *id* is an ID variable for each individual in the study. The variable *Ribavirin* is equal to *No Ribavirin* when an individual did not receive Ribavirin and equal to *Ribavirin* when an individual did received Ribavirin. The variable *Survival* is equal to *Died* when an individual died and equal to *Survived* when an individual survived.
@@ -663,14 +672,16 @@ Of the 229 individuals included in the study:
 
 ```{r ex3.2}
 # Table of Ribavirin use
-
+table(sars$Ribavirin)
 
 # Table of Survival
-
+table(sars$Survival)
 
 #check for NAs
+table(is.na(sars$Ribavirin))
+table(is.na(sars$Survival))
 
-#Answers:
+#Answers: Received ribavirin: 87, did not receive ribavirin: 132. 27 died, 202 survived. No NAs
 ```
 
 
@@ -682,16 +693,16 @@ How many individuals died/survived within each treatment group?
 
 ```{r ex3.3}
 #make a 2x2 table. Ribavirin should come first in the function
-
-
-
+sars_table<-table(sars$Ribavirin, sars$Survival)
+sars_table
 ```
 
 
 This table does not give a complete view of the relationship because it does not show proportions. Make a proportions table from the table you created above. Call it `sars_prop_table`.
 
 ```{r ex3.4}
-#your code
+
+sars_prop_table<-sars_table/sum(sars_table)
 
 
 ```
@@ -704,7 +715,7 @@ You could also make a plot. A mosaic plot shows probabilities associated with su
 ```{r ex3.5}
 
 #make new mosaic plot with different colors and axis labels
-
+mosaicplot(sars_table, color = c("darkred", "gold"), xlab ="Treatment Group", ylab = "Survival")
 
 ```
 *Describe what your mosaic plot is showing you: does there seem to be an asymmetric distribution of individuals who dies amongst the two treatments?*
@@ -726,7 +737,7 @@ If so, we can perform a $\chi^2$ contingency test to see if there is a statistic
 
 
 ```{r ex3.6}
-
+chisq.test(sars_table, p=sars_prop_table, correct=F)
 
 ```
 
@@ -751,10 +762,10 @@ Calculate the OR of survival using the `fisher.test` function and obtain the OR 
 ```{r}
 #Obtain the OR 
 
-
+fisher.test(sars_table)$estimate
 
 #obtain the 95% CI of the OR
-
+fisher.test(sars_table)$conf.int
 
 ```
 
