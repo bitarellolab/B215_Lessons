@@ -18,7 +18,7 @@ suppressMessages(library(ggplot2))
 
 
 
-Overview: ^[Developed by Daphne Hansell ('24) and Dr. Bitarello]:
+Overview: ^[Developed by Daphne Hansell ('24) and Dr. Bitarello]
 
 
 * review loops  - for and while^[Previous two labs.] - before getting started
@@ -736,7 +736,7 @@ temp_conv(c=9, f=20319139) #test 3: should return an error
 
 ```
 
-Congrats! you wrote a badass R function and you will never again need to goodle how to convert between Celsius and Fahrenheit!
+Congrats! you wrote a badass R function and you will never again need to google how to convert between Celsius and Fahrenheit!
 
 ---
 

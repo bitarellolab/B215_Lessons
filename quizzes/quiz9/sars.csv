@@ -1,0 +1,230 @@
+id,Ribavirin,Survival
+1,No Ribavirin,Died
+2,No Ribavirin,Died
+3,No Ribavirin,Died
+4,No Ribavirin,Died
+5,No Ribavirin,Died
+6,No Ribavirin,Died
+7,No Ribavirin,Died
+8,No Ribavirin,Died
+9,No Ribavirin,Died
+10,No Ribavirin,Died
+11,No Ribavirin,Died
+12,No Ribavirin,Died
+13,No Ribavirin,Died
+14,No Ribavirin,Died
+15,No Ribavirin,Died
+16,No Ribavirin,Died
+17,No Ribavirin,Died
+18,No Ribavirin,Survived
+19,No Ribavirin,Survived
+20,No Ribavirin,Survived
+21,No Ribavirin,Survived
+22,No Ribavirin,Survived
+23,No Ribavirin,Survived
+24,No Ribavirin,Survived
+25,No Ribavirin,Survived
+26,No Ribavirin,Survived
+27,No Ribavirin,Survived
+28,No Ribavirin,Survived
+29,No Ribavirin,Survived
+30,No Ribavirin,Survived
+31,No Ribavirin,Survived
+32,No Ribavirin,Survived
+33,No Ribavirin,Survived
+34,No Ribavirin,Survived
+35,No Ribavirin,Survived
+36,No Ribavirin,Survived
+37,No Ribavirin,Survived
+38,No Ribavirin,Survived
+39,No Ribavirin,Survived
+40,No Ribavirin,Survived
+41,No Ribavirin,Survived
+42,No Ribavirin,Survived
+43,No Ribavirin,Survived
+44,No Ribavirin,Survived
+45,No Ribavirin,Survived
+46,No Ribavirin,Survived
+47,No Ribavirin,Survived
+48,No Ribavirin,Survived
+49,No Ribavirin,Survived
+50,No Ribavirin,Survived
+51,No Ribavirin,Survived
+52,No Ribavirin,Survived
+53,No Ribavirin,Survived
+54,No Ribavirin,Survived
+55,No Ribavirin,Survived
+56,No Ribavirin,Survived
+57,No Ribavirin,Survived
+58,No Ribavirin,Survived
+59,No Ribavirin,Survived
+60,No Ribavirin,Survived
+61,No Ribavirin,Survived
+62,No Ribavirin,Survived
+63,No Ribavirin,Survived
+64,No Ribavirin,Survived
+65,No Ribavirin,Survived
+66,No Ribavirin,Survived
+67,No Ribavirin,Survived
+68,No Ribavirin,Survived
+69,No Ribavirin,Survived
+70,No Ribavirin,Survived
+71,No Ribavirin,Survived
+72,No Ribavirin,Survived
+73,No Ribavirin,Survived
+74,No Ribavirin,Survived
+75,No Ribavirin,Survived
+76,No Ribavirin,Survived
+77,No Ribavirin,Survived
+78,No Ribavirin,Survived
+79,No Ribavirin,Survived
+80,No Ribavirin,Survived
+81,No Ribavirin,Survived
+82,No Ribavirin,Survived
+83,No Ribavirin,Survived
+84,No Ribavirin,Survived
+85,No Ribavirin,Survived
+86,No Ribavirin,Survived
+87,No Ribavirin,Survived
+88,No Ribavirin,Survived
+89,No Ribavirin,Survived
+90,No Ribavirin,Survived
+91,No Ribavirin,Survived
+92,No Ribavirin,Survived
+93,No Ribavirin,Survived
+94,No Ribavirin,Survived
+95,No Ribavirin,Survived
+96,No Ribavirin,Survived
+97,No Ribavirin,Survived
+98,No Ribavirin,Survived
+99,No Ribavirin,Survived
+100,No Ribavirin,Survived
+101,No Ribavirin,Survived
+102,No Ribavirin,Survived
+103,No Ribavirin,Survived
+104,No Ribavirin,Survived
+105,No Ribavirin,Survived
+106,No Ribavirin,Survived
+107,No Ribavirin,Survived
+108,No Ribavirin,Survived
+109,No Ribavirin,Survived
+110,No Ribavirin,Survived
+111,No Ribavirin,Survived
+112,No Ribavirin,Survived
+113,No Ribavirin,Survived
+114,No Ribavirin,Survived
+115,No Ribavirin,Survived
+116,No Ribavirin,Survived
+117,No Ribavirin,Survived
+118,No Ribavirin,Survived
+119,No Ribavirin,Survived
+120,No Ribavirin,Survived
+121,No Ribavirin,Survived
+122,No Ribavirin,Survived
+123,No Ribavirin,Survived
+124,No Ribavirin,Survived
+125,No Ribavirin,Survived
+126,No Ribavirin,Survived
+127,No Ribavirin,Survived
+128,No Ribavirin,Survived
+129,No Ribavirin,Survived
+130,No Ribavirin,Survived
+131,No Ribavirin,Survived
+132,No Ribavirin,Survived
+133,Ribavirin,Died
+134,Ribavirin,Died
+135,Ribavirin,Died
+136,Ribavirin,Died
+137,Ribavirin,Died
+138,Ribavirin,Died
+139,Ribavirin,Died
+140,Ribavirin,Died
+141,Ribavirin,Died
+142,Ribavirin,Died
+143,Ribavirin,Survived
+144,Ribavirin,Survived
+145,Ribavirin,Survived
+146,Ribavirin,Survived
+147,Ribavirin,Survived
+148,Ribavirin,Survived
+149,Ribavirin,Survived
+150,Ribavirin,Survived
+151,Ribavirin,Survived
+152,Ribavirin,Survived
+153,Ribavirin,Survived
+154,Ribavirin,Survived
+155,Ribavirin,Survived
+156,Ribavirin,Survived
+157,Ribavirin,Survived
+158,Ribavirin,Survived
+159,Ribavirin,Survived
+160,Ribavirin,Survived
+161,Ribavirin,Survived
+162,Ribavirin,Survived
+163,Ribavirin,Survived
+164,Ribavirin,Survived
+165,Ribavirin,Survived
+166,Ribavirin,Survived
+167,Ribavirin,Survived
+168,Ribavirin,Survived
+169,Ribavirin,Survived
+170,Ribavirin,Survived
+171,Ribavirin,Survived
+172,Ribavirin,Survived
+173,Ribavirin,Survived
+174,Ribavirin,Survived
+175,Ribavirin,Survived
+176,Ribavirin,Survived
+177,Ribavirin,Survived
+178,Ribavirin,Survived
+179,Ribavirin,Survived
+180,Ribavirin,Survived
+181,Ribavirin,Survived
+182,Ribavirin,Survived
+183,Ribavirin,Survived
+184,Ribavirin,Survived
+185,Ribavirin,Survived
+186,Ribavirin,Survived
+187,Ribavirin,Survived
+188,Ribavirin,Survived
+189,Ribavirin,Survived
+190,Ribavirin,Survived
+191,Ribavirin,Survived
+192,Ribavirin,Survived
+193,Ribavirin,Survived
+194,Ribavirin,Survived
+195,Ribavirin,Survived
+196,Ribavirin,Survived
+197,Ribavirin,Survived
+198,Ribavirin,Survived
+199,Ribavirin,Survived
+200,Ribavirin,Survived
+201,Ribavirin,Survived
+202,Ribavirin,Survived
+203,Ribavirin,Survived
+204,Ribavirin,Survived
+205,Ribavirin,Survived
+206,Ribavirin,Survived
+207,Ribavirin,Survived
+208,Ribavirin,Survived
+209,Ribavirin,Survived
+210,Ribavirin,Survived
+211,Ribavirin,Survived
+212,Ribavirin,Survived
+213,Ribavirin,Survived
+214,Ribavirin,Survived
+215,Ribavirin,Survived
+216,Ribavirin,Survived
+217,Ribavirin,Survived
+218,Ribavirin,Survived
+219,Ribavirin,Survived
+220,Ribavirin,Survived
+221,Ribavirin,Survived
+222,Ribavirin,Survived
+223,Ribavirin,Survived
+224,Ribavirin,Survived
+225,Ribavirin,Survived
+226,Ribavirin,Survived
+227,Ribavirin,Survived
+228,Ribavirin,Survived
+229,Ribavirin,Survived
