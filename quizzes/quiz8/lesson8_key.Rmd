@@ -779,12 +779,12 @@ dbinom(x = 5, size = 5, prob = 0.70)
 ```
 
 
-* probability of rolling a 7 out of 10 rolls during a game:
+* probability of rolling a six in 7 out of 10 rolls during a game:
 
 ```{r ex2.2}
 #use dbinom()
 
-dbinom(x = 7, size = 10, prob = 0.50)
+dbinom(x = 7, size = 10, prob = 1/6)
 
 ```
 
