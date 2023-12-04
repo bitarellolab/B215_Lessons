@@ -1,0 +1,134 @@
+---
+title: "Lesson 10  - Normal Distribution!"
+author: "YOUR NAME"
+date: "`r Sys.Date()`"
+output: pdf_document
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r setup, echo=F}
+knitr::opts_chunk$set(echo=T, eval=T)
+options(tinytex.verbose = TRUE)
+suppressMessages(library(dplyr))
+#load ggplot package
+suppressMessages(library(ggplot2))
+#load readr package
+suppressMessages(library(readr))
+library(latex2exp)
+library(tinytex)
+library(knitr)
+```
+
+
+
+## Learning Goals
+
+* Visualize properties of the normal distribution.
+
+* Understand the Central Limit Theorem.
+
+* Calculate sampling properties of sample means.
+
+* Decide whether a data set likely comes from a normal distribution
+
+## Tutorial
+
+This lab mainly focuses on some exercises to better understand the nature of the normal distribution. We will also learn a couple of tools that help us decide whether a particular data set is likely to have come from population with an approximately normal distribution.
+
+Many statistical tests assume that the variable being analyzed has a normal distribution. Fortunately, many of these tests are fairly robust to this assumption—that is, they work reasonably well even when this assumption is not quite true, especially when sample size is large. Therefore it is often sufficient to be able to assess whether the data come from a distribution whose shape is even approximately normal (the bell curve).
+
+### Draw a histogram 
+
+A good way to start is to simply visualize the frequency distribution of the variable in the data set by drawing a histogram. Let’s use the age of passengers on the Titanic for our example.
+
+```{r}
+#read in titanic
+titanicData <- read.csv("input_files/titanic.csv", stringsAsFactors = TRUE)
+#have a look at the data
+head(titanicData)
+str(titanicData)
+```
+Remember we can use ggplot() to draw histograms.
+
+```{r}
+#use ggplot to make a histogram of age
+ggplot(titanicData, aes(x = age)) +   
+  geom_histogram(binwidth = 10) +
+  theme_classic()
+```
+
+If we are just drawing a histogram for ourselves to better understand the data, it is even easier to just use a function from base R, hist(). Give hist() a vector of data as input, and it will print a histogram in the plots window.
+
+```{r}
+hist(titanicData$age)
+```
+
+Looking at this histogram, we see that the frequency distribution of the variable is not exactly normal; it is slightly asymmetric and there seems to be a second mode near 0. On the other hand, like the normal distribution, the frequency distribution has a large mode near the center of the distribution, frequencies mainly fall off to either side, and there are no outliers. This is close enough to normal that most methods would work fine.
+
+
+
+### QQ plot
+Another graphical technique that can help us visualize whether a variable is approximately normal is called a quantile plot (or a QQ plot). The QQ plot shows the data on the vertical axis ranked in order from smallest to largest (“sample quantiles” in the figure below). On the horizontal axis, it shows the expected value of an individual with the same quantile if the distribution were normal (“theoretical quantiles” in the same figure). The QQ plot should follow more or less along a straight line if the data come from a normal distribution (with some tolerance for sampling variation).
+
+QQ plots can be made in R using a function called qqnorm(). Simply give the vector of data as input and it will draw a QQ plot for you. (qqline() will draw a line through that Q-Q plot to make the linear relationship easier to see.)
+
+```{r}
+qqnorm(titanicData$age)
+qqline(titanicData$age)
+```
+
+This is what the resulting graph looks like for the Titanic age data. The dots do not land along a perfectly straight line. In particular the graph curves at the upper and lower end. However, this distribution definitely would be close enough to normal to use most standard methods, such as the t-test.
+
+It is difficult to interpret QQ plots without experience. One of the goals of today’s exercises will be to develop some visual experience about what these graphs look like when the data is truly normal. To do that, we will take advantage of a function built into R to generate random numbers drawn from a normal distribution. This function is called rnorm().
+
+### rnorm()
+
+The function rnorm() will return a vector of numbers, all drawn randomly from a normal distribution. It takes three arguments:
+
+
+n: how many random numbers to generate (the length of the output vector)
+
+
+mean: the mean of the normal distribution to sample from
+
+
+sd: the standard deviation of the normal distribution
+
+For example, the following command will give a vector of 20 random numbers drawn from a normal distribution with mean 13 and standard deviation 4:
+
+```{r}
+rnorm(n = 20, mean = 13, sd = 4)
+```
+
+Let’s look at a QQ plot generated from 100 numbers randomly drawn from a normal distribution:
+
+```{r}
+normal_vector <- rnorm(n = 100, mean = 13, sd = 4)
+qqnorm(normal_vector)
+qqline(normal_vector)
+```
+
+These points fall mainly along a straight line, but there is some wobble around that line even though these points were in fact randomly sampled from a known normal distribution. With a QQ plot, we are looking for an overall pattern that is approximately a straight line, but **we do not expect a perfect line**. 
+
+In the exercises, we’ll simulate several samples from a normal distribution to try to build intuition about the kinds of results you might get.
+
+**When data are not normally distributed, the dots in the quantile plot will not follow a straight line, even approximately.** For example, here is a histogram and a QQ plot for the population size of various counties, from the data in countries.csv. These data are very skewed to the right, and do not follow a normal distribution at all.
+
+### Transformations
+
+When data are not normally distributed, we can try to use a simple mathematical transformation on each data point to create a list of numbers that still convey the information about the original question but that may be better matched to the assumptions of our statistical tests. Chapter 13 of Whitlock and Schluter has more info on this, but for now let’s learn how to do one of the most common data transformations, the log-transformation.
+
+With a transformation, we apply the same mathematical function to each value of a given numerical variable for individual in the data set. With a log-transformation, we take the logarithm of each individual’s value for a numerical variable.
+
+* We can only use the log-transformation if all values are greater than zero.
+* Also, it will only improve the fit of the normal distribution to the data in cases when the **frequency distribution of the data is right-skewed.**
+
+To take the log transformation for a variable in R is very simple. We simply use the function `log(`), and apply it to the vector of the numerical variable in question. For example, to calculate the log of age for all passengers on the Titanic, we use the command:
+
+```{r, eval=F}
+#eval=F so we don't print three pages of values in the pdf, but you should run it
+log(titanicData$age)
+```
+This will return a vector of values, each of which is the log of age of a passenger.
