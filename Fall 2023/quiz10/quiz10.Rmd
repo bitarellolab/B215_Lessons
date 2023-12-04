@@ -50,7 +50,7 @@ titanicData <- read.csv("input_files/titanic.csv", stringsAsFactors = TRUE)
 head(titanicData)
 str(titanicData)
 ```
-Remember we can use ggplot() to draw histograms.
+Remember we can use `ggplot()` to draw histograms.
 
 ```{r}
 #use ggplot to make a histogram of age
@@ -59,7 +59,7 @@ ggplot(titanicData, aes(x = age)) +
   theme_classic()
 ```
 
-If we are just drawing a histogram for ourselves to better understand the data, it is even easier to just use a function from base R, hist(). Give hist() a vector of data as input, and it will print a histogram in the plots window.
+If we are just drawing a histogram for ourselves to better understand the data, it is even easier to just use a function from base R, `hist()`. Give `hist()` a vector of data as input, and it will print a histogram in the plots window.
 
 ```{r}
 hist(titanicData$age)
@@ -72,7 +72,7 @@ Looking at this histogram, we see that the frequency distribution of the variabl
 ### QQ plot
 Another graphical technique that can help us visualize whether a variable is approximately normal is called a quantile plot (or a QQ plot). The QQ plot shows the data on the vertical axis ranked in order from smallest to largest (“sample quantiles” in the figure below). On the horizontal axis, it shows the expected value of an individual with the same quantile if the distribution were normal (“theoretical quantiles” in the same figure). The QQ plot should follow more or less along a straight line if the data come from a normal distribution (with some tolerance for sampling variation).
 
-QQ plots can be made in R using a function called qqnorm(). Simply give the vector of data as input and it will draw a QQ plot for you. (qqline() will draw a line through that Q-Q plot to make the linear relationship easier to see.)
+QQ plots can be made in R using a function called `qqnorm()`. Simply give the vector of data as input and it will draw a QQ plot for you. (`qqline()` will draw a line through that Q-Q plot to make the linear relationship easier to see.)
 
 ```{r}
 qqnorm(titanicData$age)
@@ -81,11 +81,11 @@ qqline(titanicData$age)
 
 This is what the resulting graph looks like for the Titanic age data. The dots do not land along a perfectly straight line. In particular the graph curves at the upper and lower end. However, this distribution definitely would be close enough to normal to use most standard methods, such as the t-test.
 
-It is difficult to interpret QQ plots without experience. One of the goals of today’s exercises will be to develop some visual experience about what these graphs look like when the data is truly normal. To do that, we will take advantage of a function built into R to generate random numbers drawn from a normal distribution. This function is called rnorm().
+It is difficult to interpret QQ plots without experience. One of the goals of today’s exercises will be to develop some visual experience about what these graphs look like when the data is truly normal. To do that, we will take advantage of a function built into R to generate random numbers drawn from a normal distribution. This function is called `rnorm()`.
 
-### rnorm()
+### `rnorm()`
 
-The function rnorm() will return a vector of numbers, all drawn randomly from a normal distribution. It takes three arguments:
+The function `rnorm()` will return a vector of numbers, all drawn randomly from a normal distribution. It takes three arguments:
 
 
 n: how many random numbers to generate (the length of the output vector)
@@ -125,7 +125,7 @@ With a transformation, we apply the same mathematical function to each value of 
 * We can only use the log-transformation if all values are greater than zero.
 * Also, it will only improve the fit of the normal distribution to the data in cases when the **frequency distribution of the data is right-skewed.**
 
-To take the log transformation for a variable in R is very simple. We simply use the function `log(`), and apply it to the vector of the numerical variable in question. For example, to calculate the log of age for all passengers on the Titanic, we use the command:
+To take the log transformation for a variable in R is very simple. We simply use the function `log()`, and apply it to the vector of the numerical variable in question. For example, to calculate the log of age for all passengers on the Titanic, we use the command:
 
 ```{r, eval=F}
 #eval=F so we don't print three pages of values in the pdf, but you should run it
