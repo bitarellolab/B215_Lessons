@@ -33,13 +33,13 @@ library(knitr)
 
 * Decide whether a data set likely comes from a normal distribution
 
-## Tutorial: Looking for normality in data: 
+# Tutorial: Looking for normality in data: 
 
 This lab mainly focuses on some exercises to better understand the nature of the normal distribution. We will also learn a couple of tools that help us decide whether a particular data set is likely to have come from population with an approximately normal distribution.
 
 Many statistical tests assume that the variable being analyzed has a normal distribution. Fortunately, many of these tests are fairly robust to this assumption—that is, they work reasonably well even when this assumption is not quite true, especially when sample size is large. Therefore it is often sufficient to be able to assess whether the data come from a distribution whose shape is even approximately normal (the bell curve).
 
-### Draw a histogram 
+## Start by drawing a histogram 
 
 A good way to start is to simply visualize the frequency distribution of the variable in the data set by drawing a histogram. Let’s use the age of passengers on the Titanic for our example.
 
@@ -68,9 +68,17 @@ hist(titanicData$age)
 Looking at this histogram, we see that the frequency distribution of the variable is not exactly normal; it is slightly asymmetric and there seems to be a second mode near 0. On the other hand, like the normal distribution, the frequency distribution has a large mode near the center of the distribution, frequencies mainly fall off to either side, and there are no outliers. This is close enough to normal that most methods would work fine.
 
 
+## QQ plot: a better way
 
-### QQ plot
-Another graphical technique that can help us visualize whether a variable is approximately normal is called a quantile plot (or a QQ plot). The QQ plot shows the data on the vertical axis ranked in order from smallest to largest (“sample quantiles” in the figure below). On the horizontal axis, it shows the expected value of an individual with the same quantile if the distribution were normal (“theoretical quantiles” in the same figure). The QQ plot should follow more or less along a straight line if the data come from a normal distribution (with some tolerance for sampling variation).
+I am always surprised about how easily I can convince myself that a sample does not come from a normal distribution. 
+
+While there are statistical procedures to test the null hypothesis that data come from a normal distribution, we almost never use these because a deviation from a normal distribution can be most important when we have the least power to detect it.
+
+For that reason,we usually use **our eyes** (believe it or not), rather than null hypothesis significance testing to see if data are approximately normal.
+
+Apart from a histogram (which we tend to overinterpret as not being "normal enough"), another graphical technique that can help us visualize whether a variable is approximately normal is called a quantile plot (or a QQ plot). 
+
+The QQ plot shows the data on the vertical axis ranked in order from smallest to largest (“sample quantiles” in the figure below). On the horizontal axis, it shows the expected value of an individual with the same quantile if the distribution were normal (“theoretical quantiles” in the same figure). The QQ plot should follow more or less along a straight line if the data come from a normal distribution (with some tolerance for sampling variation).
 
 QQ plots can be made in R using a function called `qqnorm()`. Simply give the vector of data as input and it will draw a QQ plot for you. (`qqline()` will draw a line through that Q-Q plot to make the linear relationship easier to see.)
 
