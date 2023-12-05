@@ -33,7 +33,7 @@ library(knitr)
 
 * Decide whether a data set likely comes from a normal distribution
 
-## Tutorial
+## Tutorial: Looking for normality in data: 
 
 This lab mainly focuses on some exercises to better understand the nature of the normal distribution. We will also learn a couple of tools that help us decide whether a particular data set is likely to have come from population with an approximately normal distribution.
 
@@ -176,7 +176,7 @@ D) Repeat a through c several times (at least a dozen times [write a loop or fun
 
 
 ## Air Quality Example
-The air quality data set from the Datasets package contains 4 measures of air quality over a year. Ozone level, solar radiation, wind speed and temperature. You are going to test the normality of each of these measures. But before you load the data guess which measure you think will look the most and least normal.
+The air quality data set from the Datasets package contains 4 measures of air quality over a year  (1973) in New York: Ozone level, solar radiation, wind speed and temperature. You are going to test the normality of each of these measures. But before you load the data guess which measure you think will look the most and least normal.
 
 ```{r}
 ## Most normal:
@@ -205,4 +205,34 @@ qqnorm(airquality$Temp)
 
 
 How Normal do they look? Were your guesses accurate?
+
+# Case study (log-transformation): body mass in mammals
+
+# Case Study: House sparrows
+
+In 1898, Hermon Bumpus collected house sparrows (*Passer domesticus*) that had been caught in a severe winter storm in Chicago. He made several measurements on these sparrows, and his data are in the file `input_files/bumpus.csv`.
+
+Bumpus used these data to observe differences between the birds that survived and those that died from the storm. This became one of the first direct and quantitative observations of natural selection on morphological traits. Here, let’s use these data to practice looking for fit of the normal distribution.
+
+A) Use ggplot() to plot the distribution of total length (this is the length of the bird from beak to tail). Does the data look as though it comes from distribution that is approximately normal?
+
+```{r}
+
+```
+Answer:
+B) Use qqnorm() to plot a QQ plot for total length. Does the data fall approximately along a straight line in the QQ plot? If so, what does this imply about the fit of these data to a normal distribution?
+
+```{r}
+
+```
+Answer: 
+C) Calculate the mean of total length and a 95% confidence interval for this mean. (You may want to refer back to Week 5 for the R commands to do this.)
+
+
+```{r}
+#your code
+
+```
+Answer:
+
 
