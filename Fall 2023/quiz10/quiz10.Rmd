@@ -124,7 +124,7 @@ In the exercises, we’ll simulate several samples from a normal distribution to
 
 **When data are not normally distributed, the dots in the quantile plot will not follow a straight line, even approximately.** For example, here is a histogram and a QQ plot for the population size of various counties, from the data in countries.csv. These data are very skewed to the right, and do not follow a normal distribution at all.
 
-### Transformations
+# Tutorial: Transformations
 
 When data are not normally distributed, we can try to use a simple mathematical transformation on each data point to create a list of numbers that still convey the information about the original question but that may be better matched to the assumptions of our statistical tests. Chapter 13 of Whitlock and Schluter has more info on this, but for now let’s learn how to do one of the most common data transformations, the log-transformation.
 
