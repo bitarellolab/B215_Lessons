@@ -335,6 +335,8 @@ These points fall mainly along a straight line, but there is some wobble around 
 In the exercises, we’ll simulate several samples from a normal distribution to try to build intuition about the kinds of results you might get.
 
 
+**When data are not normally distributed, the dots in the quantile plot will not follow a straight line, even approximately.**
+
 ### QQ-practice!
 
 
