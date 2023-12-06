@@ -79,9 +79,9 @@ Ex.1.1) Remember you can always set a seed to make your random sampling reproduc
 
 ```{r ex1.1}
 #set a seed with set.seed(). Use the numbers 123
-
+set.seed(123)
 #sample 3 values from a normal with mean 13 and sd 4
-
+rnorm(n = 3, mean = 13, sd = 4)
 ```
 
 If you set the seed 123 and then run the code multiple times (always set the seed again before runnign the random sampling again), then you should always get the same result: `[1] 10.75810 12.07929 19.23483`. Try it a few times in the code block above.
@@ -102,7 +102,7 @@ Ex.1.2) NASA also doesn't like men who are too tall (similar restrictins are app
 
 ```{r ex1.2}
 #your code here
-
+pnorm(q=190.5, mean = 177.6, sd = 9.7,lower.tail =F)
 ```
 
 ### `dnorm()`: Finding the probability density
@@ -175,11 +175,11 @@ Ex.1.3) The gestation period for cats has an approximate mean of 64 days and a s
 
 ```{r ex1.3}
 #your code
-
+qnorm(.25, mean=64, sd=3)
 ```
 
 
-Ex.1.4) The gestation period for cats has an approximate mean of 64 days and a standard deviation of 3 days, and the distribution of the gestation period is approximately Normal. What gestation period corresponds to the top 10% of gestation periods? 
+Ex.1.4) The gestation period for cats has an approximate mean of 64 days and a standard deviation of 3 days, and the distribution of the gestation period is approximately Normal. What gestation period corresponds to the top 10% of gestation periods?
 
 ```{r ex1.4}
 #your code
@@ -188,11 +188,11 @@ qnorm(.90, mean=64, sd=3)
 
 
 Ex.1.5) The gestation period for cats has an approximate mean of 64 days and a standard deviation of 3 days, and the distribution of the gestation period is approximately Normal.
-What proportion of kittens have a gestation period longer than 62 days? 
+What proportion of kittens have a gestation period longer than 62 days? Round your answer to two decimal places.
 
 ```{r ex1.5}
 #your code
-
+pnorm(q=62, mean=64, sd=3, lower.tail=FALSE)
 ```
 
 
@@ -202,7 +202,7 @@ Ex.1.6) The gestation period for cats has an approximate mean of 64 days and a s
 #your code
 #hint: first find the probability the proportion > 62 days
 #then subtract the proportion > 70 days
-
+pnorm(q=62, mean=64, sd=3, lower.tail=FALSE)-pnorm(q=70, mean=64, sd=3, lower.tail=FALSE)
 
 ```
 
@@ -215,11 +215,11 @@ According to this study, what is the range of body temperatures that can be foun
 #your code
 #first the upper range
 #Upper range: 1-(alpha/2)=0.975
-qnorm(p=0.975,mean=98.7, sd=0.6)
+
 #then the lower range
 #Lower range=alpha/2=0.025
-qnorm(p=0.025,mean=98.7, sd=0.6)
-#ANSWER: [97.52, 99.87]
+
+#ANSWER:
 ```
 
 ---
@@ -334,8 +334,6 @@ These points fall mainly along a straight line, but there is some wobble around 
 
 In the exercises, we’ll simulate several samples from a normal distribution to try to build intuition about the kinds of results you might get.
 
-**When data are not normally distributed, the dots in the quantile plot will not follow a straight line, even approximately.** 
-
 
 ### QQ-practice!
 
@@ -346,13 +344,19 @@ A) Generate a list of 10 random numbers from a normal distribution with mean 15 
 
 ```{r ex2.1.a}
 #your code
-
+normal_vector<-rnorm(n=10, mean=15, sd=3)
 ```
 
 B) Plot a histogram of these numbers from part a.
 ```{r ex2.1.b}
 #your code
-
+#make data.frame for ggplot
+normal_df<-as.data.frame(x=normal_vector)
+colnames(normal_df)<-"x" #change column name
+#plot
+ggplot(normal_df, aes(x = x)) +   
+  geom_histogram(bins=10,color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
 
 
 ```
@@ -361,7 +365,12 @@ C) Plot a QQ plot from the numbers in part a.
 ```{r ex2.1.c}
 #your code
 
-
+ggplot(normal_df, aes(sample=x)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
 ```
 
 D) Repeat steps A) through C) several times (at least a dozen times). For each, look at the histograms and QQ plots. Think about the ways in which these look different from the expectation of a normal distribution (but remember that each of these samples comes from a truly normal population).
@@ -370,22 +379,59 @@ D) Repeat steps A) through C) several times (at least a dozen times). For each, 
 
 ```{r CODE_OPTIONAL, eval=F}
 #your code (if you write any for this)
-#I set it to eval=F because it's a lot of plots to add to the PDF but feel free to change that.
+#I set it to eval=F because it's a lot of pltos to add to the PDF but feel free to change that.
+#create empty list with 12 spaces
+nreps=12
+empty_list1<-vector('list', nreps)
+empty_list2<-vector('list', nreps)
+for(i in 1:nreps){ #for loop
+        #step1: sample:
+        normal_vector<-rnorm(n=10, mean=15, sd=3)
+        normal_df<-as.data.frame(x=normal_vector)
+        colnames(normal_df)<-"x" #change column name
+        #step2: make histogram
+        p1<-ggplot(normal_df, aes(x = x)) +   
+        geom_histogram(bins=10,color="black") + #add black line around bars
+        bb_theme #here I am using my custom theme
+        p1<-print(p1)
+        #step3: make qqplot
+        p2<-ggplot(normal_df, aes(sample=x)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
+        p2<-print(p2)
+        empty_list1[[i]]<-p1
+        empty_list2[[i]]<-p2
+}
 
+#check each pair with 
+empty_list1[[1]]
+empty_list2[[2]]
+#etc
 ```
 
 
-Ex.2.2) Repeat the procedures of Question 1A-C, except this time have R sample 250 individuals for each sample. (You can use the same command as in Question 1, but now set n = 250.) Do the graphs and QQ plots from these larger samples look more like the normal expectations than the smaller sample you already did? Why do you think that this is?
+Ex2.2) Repeat the procedures of Question 1A-C, except this time have R sample 250 individuals for each sample. (You can use the same command as in Question 1, but now set n = 250.) Do the graphs and QQ plots from these larger samples look more like the normal expectations than the smaller sample you already did? Why do you think that this is?
 
 ```{r ex2.2}
 #your code
 #create normal_vector
-
+normal_vector<-rnorm(n=250, mean=15, sd=3)
 #plot histogram
-
-
+normal_df<-as.data.frame(x=normal_vector)
+colnames(normal_df)<-"x" #change column name
+ggplot(normal_df, aes(x = x)) +   
+  geom_histogram(bins=10,color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
 #plot qqplot
-
+ggplot(normal_df, aes(sample=x)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
 
 #now repeat this a few times to get a sense of how much it varies from time to time.
 ```
@@ -401,6 +447,47 @@ Load thn data and then make histograms and QQ plots for each of these variables!
 #code here
 #Load data from the datasets package
 airquality<-datasets::airquality
+#Ozone histogram and qqplot
+ggplot(airquality, aes(x = Ozone)) +   
+  geom_histogram(color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
+#plot qqplot
+ggplot(airquality, aes(sample=Ozone)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
+#Solar.R histogram and qqplot
+ggplot(airquality, aes(x = Solar.R)) +   
+  geom_histogram(color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
+ggplot(airquality, aes(sample=Solar.R)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
+#Wind histogram and qqplot
+ggplot(airquality, aes(x = Wind)) +   
+  geom_histogram(color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
+ggplot(airquality, aes(sample=Wind)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
+#Temp
+ggplot(airquality, aes(x = Temp)) +   
+  geom_histogram(color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
+ggplot(airquality, aes(sample=Temp)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
 
 ```
 
@@ -414,15 +501,19 @@ A) Plot the distribution of total length (this is the length of the bird from be
 
 ```{r ex3.1a}
 #read in input_files/bumpus.csv. Call it bumpus
-
+bumpus<-readr::read_csv("input_files/bumpus.csv")
 
 #have a look at the data
-
+head(bumpus)
 
 #check the structure. Make sure total_length_mm is numeric.
-
+str(bumpus)
 #make histogram
 
+ggplot(bumpus, aes(x =total_length_mm )) +   
+  geom_histogram(color="black") + #add black line around bars
+ 
+  bb_theme #here I am using my custom theme
 
 ```
 
@@ -430,6 +521,12 @@ B) Plot a QQ plot for total length. Does the data fall approximately along a str
 
 ```{r ex3.1b}
 #qqplot
+ggplot(bumpus, aes(sample=total_length_mm)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
 
 ```
 
@@ -481,8 +578,8 @@ To take the log transformation for a variable in R is very simple. We simply use
 #eval=F so we don't print three pages of values in the pdf, but you should run it
 log(titanicData$age)
 ```
-
 This will return a vector of values, each of which is the log of age of a passenger.
+
 
 
 ### Case study 2:Body mass in mammals
@@ -493,11 +590,11 @@ A) The file `MammalSizes.csv`”` in the `input_files/` folder contains informat
 ```{r ex4.1a}
 #code here
 #read it in. Call it mammal_sizes
-
+mammal_sizes<-readr::read_csv("input_files/MammalSizes.csv")
 #have a look
-
+head(mammal_sizes)
 #check the structure of the dataset. Make sure the BodyMass (given in kg) column is numeric.
-
+str(mammal_sizes)
 
 ```
 
@@ -505,8 +602,9 @@ B) Plot the distribution of body mass, and describe its shape. Does this look li
 
 ```{r ex4.2b}
 #code here
-
-
+ggplot(mammal_sizes, aes(x =BodyMass)) +   
+  geom_histogram(color="black") + #add black line around bars
+  bb_theme #here I am using my custom theme
 ```
 
 What a terrible plot! Does this seem normally distributed?
@@ -514,12 +612,17 @@ What a terrible plot! Does this seem normally distributed?
 C) Make a qqplot for the body mass.
 ```{r ex4.2c}
 #code here
-
-
+ggplot(mammal_sizes, aes(sample=BodyMass)) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
 ```
 Not very informative! But look at those points in the far right - not normal at all!
 
 D) If you think the distribution in C) is skewed, what is the direction of the skew? Consult the table above and decide whether a log-transformation is appropriate.
+
 
 If so, transform the body mass data with a log-transformation. Plot the distribution of log body mass (remember the difference between log and log10, but also know that either one is fine to use). Make sure to label the axes properly. 
 
@@ -527,7 +630,19 @@ Describe the new distribution. Does it seem normal?
 
 ```{r ex4.2d}
 #code here
+#option 1
+ggplot(mammal_sizes, aes(x =BodyMass)) +   
+  geom_histogram(color="black") + #add black line around bars
+         scale_x_continuous(trans='log10')+ #log10 scale
+        ggtitle("Here's one way")+
+        xlab("Body Mass in kg (log scale)")+
+  bb_theme #here I am using my custom theme
 
+#option 2
+ggplot(mammal_sizes, aes(x =log10(BodyMass))) +   
+  geom_histogram(color="black") + #add black line around bars
+        ggtitle("Another way")+
+  bb_theme #here I am using my custom theme
 
 ```
 
@@ -535,17 +650,21 @@ E) Make a qqplot for the body mass rescaled using log (or log10).
 
 ```{r ex4.2e}
 #code here
-
-
+ggplot(mammal_sizes, aes(sample=log10(BodyMass))) + # x is z transformed data, y is data
+        geom_qq() +
+        geom_qq_line(col="#C27D38") +
+        xlab("Theoretical Quantiles")+
+        ylab("Sample Quantiles")+
+        bb_theme #my custom ggplot theme
 ```
 
 And voilà!
 
 This was your last R lab for the course. I know - you miss us already!
 
+
+
 Don't stop practicing your coding skills!!!
-
-
 
 
 # References used in this activity
