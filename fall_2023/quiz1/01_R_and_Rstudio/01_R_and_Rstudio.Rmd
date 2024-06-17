@@ -236,7 +236,7 @@ can be calculated with:
 (1/(sqrt(2 * pi * (3.1)^2))) * exp(-(12-10.7)^2/(2*3.1))
 ```
 
-Try to run these yourself in the console:
+Try to run these yourself in the sandbox:
 
 ```{r sandbox1, exercise=TRUE, eval = FALSE}
 
