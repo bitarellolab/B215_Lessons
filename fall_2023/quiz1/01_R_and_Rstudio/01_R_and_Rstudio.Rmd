@@ -110,7 +110,7 @@ R and typically where you see R's answers to you. You can also expand a fourth s
 
 ![](images/image1.png){width="80%"}
 
-Another important corner of this window can show a variety of
+Another important corner of this window (located in the bottom left) can show a variety of
 information. Most importantly to us, this is where graphics will appear,
 under the tab marked "Plots".
 
@@ -121,7 +121,7 @@ computer programming, this means:
 
 -   Raw data is never modified; you read it as is, process it, and
     produce outputs
--   Outputs should be disposible; if your computer explodes, as long as
+-   Outputs should be disposble; if your computer explodes, as long as
     you backed up your code you should be able to reproduce your
     output/results
 -   Manual steps (i.e., these that cannot be automated) should be
