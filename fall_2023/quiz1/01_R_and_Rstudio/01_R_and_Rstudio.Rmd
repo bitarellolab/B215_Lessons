@@ -104,9 +104,9 @@ When you start RStudio, it will automatically start R as well. **You run
 R inside RStudio.**
 
 After you have started RStudio, you should see a new window with a menu
-bar at the top and three main sections. One of the sections is called
+bar at the top and three main sections. The righthand of the section is called
 the "Console" -- this is where you type commands to give instructions to
-R and typically where you see R's answers to you.
+R and typically where you see R's answers to you. You can also expand a fourth section above the console, which is labeled "Source", in this section you can create and save files. 
 
 ![](images/image1.png){width="80%"}
 
