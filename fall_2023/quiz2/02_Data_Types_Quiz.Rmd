@@ -212,7 +212,7 @@ Try these out here:
 
 ### Logical (T/F)
 
-Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like \<, \>, ==, etc. to generate logical values. For example, the operation 5 \> 3 will return TRUE because 5 is indeed greater than 3.
+Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like \<, \>, ==, etc. to generate logical values. For example, the operation 5 \> 3 will return TRUE because 5 is indeed greater than 3. You can also store TRUE or FALSE values in variables or vectors as you would with the numerical values we have already seen.
 
 ```{r, echo=T, eval=F}
 reality <- TRUE
