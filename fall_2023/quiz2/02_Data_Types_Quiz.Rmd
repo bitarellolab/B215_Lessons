@@ -157,7 +157,7 @@ This sounds boring and intimidating. Why do we need this? Well, these are fundam
 
 -   **Data structures** are ways to organize and store data in a structured and efficient manner within a computer program. They allow you to group and manage related pieces of data together. Think of data structures as containers that hold data in specific formats to make it easier to work with that data.
 
-## Data types: How many ways can data come
+## Data types: How many ways can data be formatted
 
 Data types help the computer interpret and manipulate the data correctly.
 
