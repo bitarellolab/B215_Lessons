@@ -105,7 +105,7 @@ grade_this_code()
 
 ### exercise 2
 ```{r sim2, exercise = TRUE, allow_skip = FALSE}
-b <- c()            # assign a vector with 2, 9 and 8, in that order, to b
+b <-             # assign a vector with 2, 9 and 8, in that order, to b
 ```
 
 
