@@ -69,8 +69,7 @@ full-fledged *computing language*. In this course, we will only scratch
 the surface of what R can do but hopefully it will be enough to give you
 a solid foundation and essential toolkit for any current-day biologist.
 
-Since R is an open source program and freely available, there can a
-large attraction for academics whose access to statistical programs are
+Since R is an open source program and freely available, it is very attractive for academics whose access to statistical programs is
 regulated through their association to various colleges or universities.
 
 ## What is RStudio?
@@ -277,7 +276,7 @@ Rstudio pane. This is an R help page.
 -   All pre-built functions in R have R pages that you can access in
     this way
 -   If you are trying to access the help function for a package that is
-    nto installed by default in R, you will need to add an extra "?"
+    not installed by default in R, you will need to add an extra "?"
 
 For example, try to find the help page for the function "tstrsplit":
 
@@ -322,7 +321,7 @@ numbers
 * spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether
 when naming things (variables, files, functions, etc.) because they are
 a no-no 
-* in stead of "my var", use "myvar", "myVar", "my_var", etc. 
+* instead of "my var", use "myvar", "myVar", "my_var", etc. 
 * choosing meaningful names makes your code easier to read - by you and
 others
 
@@ -389,9 +388,9 @@ There are three number types in R:
 
 -   numeric: the most common type in R; contains any number with or
     without a decimal
--   integer:numeric data without decimals. This is used when you are
+-   integer: numeric data without decimals. This is used when you are
     certain that you will never create a variable that should contain
-    decimals. Just add letter L after the number to create an integer.
+    decimals. Just add the letter L after the number to create an integer.
 -   complex: number is written with an "i" as the imaginary part. Less
     used.
 
