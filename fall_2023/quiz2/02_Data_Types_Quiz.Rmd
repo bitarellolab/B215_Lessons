@@ -280,7 +280,7 @@ Try these out here:
 
 You will notice that printing `mls_champions_factor` will spit out the vector, followed by `8 Levels: Atlanta United FC Columbus Crew Los Angeles FC Lost Angeles Galaxy New York City FC ... Toronto FC`.
 
-What this means is that the function `as.factor` converted our simple character vector into a data type that is better equipped at handling categorical variables. The "levels" are the different categories observed in the data. Same of the advantages of this will become clearer later on (next week) when we start plotting things and summarizing them.
+What this means is that the function `as.factor` converted our simple character vector into a data type that is better equipped at handling categorical variables. The "levels" are the different categories observed in the data. Same of the advantages of this will become clearer later on (next week) when we start plotting things and summarizing them. Although we used character data to make our categories here, you could also treat numerical or integer data as factors. For example, in biological testing, you might treat different numbered trials in an experiment as fcators.
 
 ## Why choose a certain data type?
 
