@@ -296,11 +296,13 @@ Actually, try that and see what happens. Use the function `mean` on the vector a
 
 As you can see, R will still try its best at guessing what you're up to. Unable to calculate the mean of such things, it will return a warning and `NA`. When you see NA in R, it means that the data at that point is missing or undefined.
 
-On the other hand, there are things that only make sense for characters. For example, the function.
+On the other hand, there are things that only make sense for characters. For example, the functions:
 
 -   Concatenation: combining two or more character strings using `paste`.
 -   Extracting substrings - e.g. `substr`
 -   Calculating string length - e.g. `nchar`
+
+Below is a series of examples that use these string manipulation functions on a line from Friends, "Joey doesn't share food!"
 
 ```{r, echo=T, eval=F}
 one_element <- "Joey"
