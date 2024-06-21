@@ -413,7 +413,7 @@ Hopefully you got the same results as you had when the `NA` element was not pres
 
 You are counting the number of cells in different samples under a microscope. This is where integers come into play, as you can't have a fraction of a cell.
 
-Suppose you are studying the growth rate of a fungal culture. With the microscope, you are able to actually count them over time. You have the sizes of the bacterial colonies at different time points and you want to calculate the average number of fungal colonies you find in your culture over the course of seven days.
+Suppose you are studying the growth rate of a fungal culture. With the microscope, you are able to actually count them over time. You have the sizes of the fungal colonies at different time points and you want to calculate the average number of cells you find in your culture over the course of seven days.
 
 ```{r, echo=T, eval=F}
 cell_counts <- c(100, 200, 150, 175, 225, 122, 270) # Number of cells in different time points (sequential)
