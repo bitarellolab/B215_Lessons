@@ -409,7 +409,7 @@ min(x, na.rm=TRUE) #min
 
 Hopefully you got the same results as you had when the `NA` element was not present!
 
-### Example 3: numeric
+### Example 3: integer
 
 You are counting the number of cells in different samples under a microscope. This is where integers come into play, as you can't have a fraction of a cell.
 
