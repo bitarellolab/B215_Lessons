@@ -646,18 +646,18 @@ d<-c(-1, 15000) #numeric
 f<-"AGCT" #character
 g<-2L #integer
 h<-FALSE #logical
-a_and_d<-c(a,d)  #no problems
-b_and_f<-c(b, f) #no problems
-a_and_g<-c(a,g)  #oops?
-a_and_b<-c(a,b) #oops
-d_and_f<-c(d,f) #oops
-d_and_g<-c(d, g) #oops?
-a_and_h<-c(a,h) #oops
-b_and_h<-c(b,h) # oops
+a_and_d<-c(a,d)  #numeric + numeric, no problems
+b_and_f<-c(b, f) #character + character, no problems
+a_and_g<-c(a,g)  # numeric + integer, oops?
+a_and_b<-c(a,b) # numeric + charcter, oops
+d_and_f<-c(d,f) #numeric + character, oops
+d_and_g<-c(d, g) #numeric + integer, oops?
+a_and_h<-c(a,h) # numeric + logical, oops
+b_and_h<-c(b,h) # character + logical, oops
 
 ```
 
-Try these for yourself before you move on. You can also try other combinations. Check the class of each of the objects created by concatenation.
+Try these for yourself  and observe the results before you move on. What type of data, if any, is provided with each combination. You can also try other combinations. Check the class of each of the objects created by concatenation.
 
 ```{r sandbox11, exercise=TRUE, eval = FALSE}
 
