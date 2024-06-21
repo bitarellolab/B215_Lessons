@@ -334,14 +334,13 @@ growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5) # Sizes of bacterial colonies
 
 ```{r setupnum}
 growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5)
-avg_growth<-mean(growth_data)
-med_growth<-median(growth_data)
 ```
 
-Suppose you want to take the mean and median of these values. Paste `avg_growth <- mean(growth_data)` and `med_growth <- median(growth_data)` and then print `avg_growth` and `med_growth`:
+Suppose you want to take the mean and median of these values. Create the variables `avg_growth` and `med_growth` and then print `avg_growth` and `med_growth`:
 
 ```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
-                    
+      avg_growth <-
+      med_growth <-
 ```
 
 ```{r examplenum-solution}
