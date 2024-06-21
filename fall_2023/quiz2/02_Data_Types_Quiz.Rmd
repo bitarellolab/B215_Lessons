@@ -326,7 +326,7 @@ As you can see, while pasting an integer and text together might make sense in s
 
 ### Example 2: numeric and/or integer
 
-Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate for different strains of bacteria in the same type of medium.
+Now let's take a look at some of the ways we might use numeric and integer data. Suppose you are studying the growth rate of a bacterial culture. You have the sizes of the bacterial colonies at different time points and you want to calculate the average growth rate for different strains of bacteria in the same type of medium.
 
 ```{r, echo=T, eval=F}
 growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5) # Sizes of bacterial colonies for different bacterial strains
