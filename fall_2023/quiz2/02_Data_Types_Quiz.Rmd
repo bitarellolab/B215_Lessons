@@ -245,30 +245,29 @@ Try these out here:
 
 ### Factor
 
-Factors are great for storing **categorical variables**. E.g. Champions of the American Major League Soccer (or, for the rest of the world, football) in the past 10 years.(Note, the MLS also includes Canadian and Mexican teams.)
+Factors are great for storing **categorical variables**. An example you might encounter in the world of bioinformatics is different species you want to compare. For this example, let's look at the different hominin (early human) genuses. 
 
-You could start off with a vector of which teams won each year.
+You could start off with a vector that lists each genus.
 
 ```{r, echo=T, eval=F}
-#first position is 2022, second is 2021 and so on
-mls_champions <- c("Los Angeles FC", "New York City FC", "Columbus Crew", "Seattle Sounders", "Atlanta United FC", "Toronto FC", "Seattle Sounders", "Portland Timbers", "Lost Angeles Galaxy")
-length(mls_champions) #check that there are 10 elements
-class(mls_champions) #check that class so far is character
+hominin_genus <- c("Ardipithecus", "Australopithecus", "Homo", "Paranthropus", "Sahelanthropus")
+length(hominin_genus) #check that there are 5 elements
+class(hominin_genus) #check that class so far is character
 
 ```
 
 And now you could convert this into a factor, since it is clearly a categorical variable.
 
 ```{r setupmls}
-mls_champions <- c("Los Angeles FC", "New York City FC", "Columbus Crew", "Seattle Sounders", "Atlanta United FC", "Toronto FC", "Seattle Sounders", "Portland Timbers", "Lost Angeles Galaxy")
-mls_champions_factor<-as.factor(mls_champions)
+hominin_genus <- c("Ardipithecus", "Australopithecus", "Homo", "Paranthropus", "Sahelanthropus")
+hominin_genus_factor<-as.factor(hominin_genus)
 
 ```
 
 ```{r echo=T, eval=F}
-mls_champions_factor<-as.factor(mls_champions)
-class(mls_champions_factor)
-print(mls_champions_factor)
+hominin_genus_factor<-as.factor(hominin_genus)
+class(hominin_genus_factor)
+print(hominin_genus_factor)
 ```
 
 Try these out here:
@@ -278,9 +277,9 @@ Try these out here:
 
 ```
 
-You will notice that printing `mls_champions_factor` will spit out the vector, followed by `8 Levels: Atlanta United FC Columbus Crew Los Angeles FC Lost Angeles Galaxy New York City FC ... Toronto FC`.
+You will notice that printing `hominin_genus_factor` will spit out the vector, followed by `5 Levels: Ardipithecus Australopithecus ... Sahelanthropus`.
 
-What this means is that the function `as.factor` converted our simple character vector into a data type that is better equipped at handling categorical variables. The "levels" are the different categories observed in the data. Same of the advantages of this will become clearer later on (next week) when we start plotting things and summarizing them. Although we used character data to make our categories here, you could also treat numerical or integer data as factors. For example, in biological testing, you might treat different numbered trials in an experiment as fcators.
+What this means is that the function `as.factor` converted our simple character vector into a data type that is better equipped at handling categorical variables. The "levels" are the different categories observed in the data. Same of the advantages of this will become clearer later on (next week) when we start plotting things and summarizing them. Although we used character data to make our categories here, you could also treat numerical or integer data as factors. For example, in biological testing, you might treat different numbered trials in an experiment as factors.
 
 ## Why choose a certain data type?
 
