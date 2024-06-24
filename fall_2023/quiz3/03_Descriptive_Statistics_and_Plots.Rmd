@@ -88,6 +88,10 @@ titanicdata2<-na.omit(titanicdata)
 
 ```
 
+Notice that we put quotation marks around the name of the csv file we're reading in. This is because it comes from outside of the environment, it is the same logic as when we use quotation marks for installing packages.
+
+
+
 Sometimes, real world data sucks. It's missing entries, or it mixes data class types (e.g., a column that appears to be numeric, but is actually a sneaky character vector). For that reason, you always should inspect your data before you do any stats. For small files, view("r object") can be used, but for larger files, opening an r object can be prohibitively slow. You have already learned a function to call the first six rows of a dataset: head. Call it here and inspect the object titanicdata. This data both refers to the titanic and is, itself, titanic and therefore head is appropriate.
 ```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
                     
