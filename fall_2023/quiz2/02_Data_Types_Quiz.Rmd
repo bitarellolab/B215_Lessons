@@ -786,13 +786,14 @@ result4 <- matrix4 + vector4
 
 ```
 
-Print the result
+Print matrix 4 and the result to see the before and after
 
 ```{r examplemat3, exercise = TRUE, exercise.setup = "setupmat3"}
                     
 ```
 
 ```{r examplemat3-solution}
+print(matrix4)
 print(result4)
 ```
 
