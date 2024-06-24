@@ -693,22 +693,23 @@ Everything we just said for vectors applies to matrices as well.
 E.g., if you try to make a matrix composed of mixed elements.
 
 ```{r, echo=T, eval=F}
-a<-c(0, -5) #numeric
-b<-c("ACGT", "TTGC") #character
-d<-c(-1, 15000) #numeric
-f<-"AGCT" #character
-g<-2L #integer
-h<-FALSE #logical
-mat1<-matrix(c(a, b))
-class(mat1) #this tells you the data structure type (matrix)
-typeof(mat1) #this tells you the the type of element the matrix contains. Note that this will result in coercion of numeric into character.
+a<-c(0, -5) #numeric vector
+b<-c("ACGT", "TTGC") #character vector
+d<-c(-1, 15000) #numeric vector
+f<-"AGCT" #character vector
+g<-2L #integer vector
+h<-FALSE #logical vector
+mat1<-matrix(c(a, b)) #combining vectors a and b into a matrix
 ```
 
-Try it!
+Now use the `class()` and `typeof()` functions, to confirm `mat1` is a matrix and determine the type of element the matrix contains. Try to predict what the result of `typeof()` will be before you run your code.
 
 ```{r sandbox13, exercise=TRUE, eval = FALSE}
-
+ #use class() to confirm it's a matrix
+ #use typeof() to see the type of element contains
 ```
+
+As you can see, the numeric data from `a` was coerced into character data to match `b`.
 
 ## Interaction between Vectors and Matrices:
 
