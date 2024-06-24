@@ -1230,7 +1230,7 @@ result<-rbind(chickID, dead) #this is a matrix
 learnr::quiz(caption="",
   question("Which of the following statements is correct?",
     answer("`result` has 10 rows and 2 columns."),
-    answer("Row 2 of `result` will be: `TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE`"),
+    answer("Column 2 of `result` will be: `TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE`"),
     answer("The output of `result[1,1]` is 4.", correct=TRUE),
    allow_retry = TRUE))
 ```
