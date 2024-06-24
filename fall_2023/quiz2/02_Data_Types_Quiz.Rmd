@@ -1120,7 +1120,8 @@ The datasets package already has the data stored as a data frame. If it wasn't y
 
 ```{r chicks1, exercise = TRUE}
 
-            # create chicks object
+         datasets::ChickWeight   # create chicks object
+                                 # use head on chicks
 ```
 
 ```{r chicks1-solution}
