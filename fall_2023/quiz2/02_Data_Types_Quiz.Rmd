@@ -964,7 +964,7 @@ Note: just like with dataframes, you can also use `$` to index a list based on t
 
 ### Arrays
 
-An array in R is a multi-dimensionaldata structure for storing homogeneous data (i.e., data of the same type: numeric, logical, character, etc). In that way, it is similar to a matrix. It can be viewed as a multi-dimensional version of matrices. You can think of an array as a multi-dimensional table of data, with each dimension being a different attribute.
+An array in R is a multi-dimensional data structure for storing homogeneous data (i.e., data of the same type: numeric, logical, character, etc). In that way, it is similar to a matrix. It can be viewed as a multi-dimensional version of matrices. You can think of an array as a multi-dimensional table of data, with each dimension being a different attribute. Below, the attributes are Gene, Sample, and Trial.
 
 ```{r array1, exercise = F}
 # Create an array that holds gene expression data for 3 genes across 4 samples
