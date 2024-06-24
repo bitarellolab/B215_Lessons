@@ -463,7 +463,7 @@ dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
 
 ```
 
-This example obviously uses justa few datapoints, but when processing DNA data, biologists may deal with hundreds of sequencing fragments at a time. The volume of data necessitates the use of a computer. Here we will practice working with this character data. Suppose you want to look at the first sequence from a long list. You can select an element from vectors (also called indexing) in R by using square brackets after the name of the list, with the number inside the brackets indicating the which number value you are interested in. Paste the following code to define a character variable containing the first sequence in the list and then print it. `first_sequence <- dna_sequences[1] # DNA sequence`:
+This example obviously uses justa few datapoints, but when processing DNA data, biologists may deal with hundreds of sequencing fragments at a time. The volume of data necessitates the use of a computer. Here we will practice working with this character data. Suppose you want to look at the first sequence from a long vector. You can select an element from vectors (also called indexing) in R by using square brackets after the name of the vector, with the number inside the brackets indicating the which number value you are interested in. Paste the following code to define a character variable containing the first sequence in the vector and then print it. `first_sequence <- dna_sequences[1] # DNA sequence`:
 
 ```{r setupchr}
 dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
