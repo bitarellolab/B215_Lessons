@@ -838,7 +838,7 @@ species_info <- data.frame(
 
 ```
 
-In the space below: a) Print the dataframe and b) on the next row practice using the structure `dataframe$columnname` to select the column named "Family" and save that as a vector called "family". You can also use square brackets as seen for vectors and matrices but \$ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe.
+In the space below: a) Print the dataframe and b) on the next row practice using the structure `dataframe$columnname` to select the column named "Family" and save that as a vector called "family". You can also use square brackets as seen for vectors and matrices but \$ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe (Tip: Make sure to type the name of the column you're trying to exactly, remember, R is case sensitive). 
 
 ```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
                     
