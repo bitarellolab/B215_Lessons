@@ -584,7 +584,7 @@ print(numeric_matrix)
 dim(numeric_matrix) #gives dimensions of matrix. First value is number of rows, second value is number of columns.
 ```
 
-Try these for yourself:
+Try these for yourself, play around with different numbers of rows and columns:
 
 ```{r sandbox9, exercise=TRUE, eval=F}
 
