@@ -855,7 +855,7 @@ grade_this_code()
 
 Dataframes are useful because they can combine multiple different types of data into a single object.
 
-This is a dataset showing the hominin (early human) species name and hypothetical genome sizes for these early hominins (which we have no way of knowing yet).
+To demonstrate the use of data frames for storing multifaceted information which may require multiple data types, let's return to our hominin example. Here, we are constructing a data frame which contains the genus names we saw earlier, and adding species names and hypothetical genome sizes for these early hominins (which we have no way of knowing yet).
 
 ```{r df2, exercise = F}
 ## Create a data frame that holds information about various species
