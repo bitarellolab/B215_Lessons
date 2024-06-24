@@ -666,7 +666,7 @@ What you saw above was R trying to make sense of your mess. It "coerces" some of
 
 **Character Coercion:** If you concatenate objects of different types and one of them is a character, R will try to convert the non-character objects to characters. This often results in the character type because character data can accommodate a wide range of values. That's the case for `d_and_f` and `b_and_h`.
 
-**Numeric Coercion:** If you concatenate objects of different types and one of them is numeric, R will try to convert the non-numeric objects to numeric. This is because numeric data can represent a broader range of values than other types. That's the case of `a_and_g` and `d_and_g`. The `integer` elements were coerced into numeric. If you try to coerce `numeric` and `logical`, the logical element becomes numeric. How? 0 is equivalent to `FALSE` and 1 is equivalent to `TRUE`. In fact, any number that is **not** zero will be considered `TRUE`. That's the case for `a_and_h`.
+**Numeric Coercion:** If you concatenate objects of different types and one of them is numeric, R will try to convert the non-numeric objects to numeric. This is because numeric data can represent a broader range of values than other types. That's the case of `a_and_g` and `d_and_g`. The `integer` elements were coerced into numeric. If you try to coerce `numeric` and `logical`, the logical element becomes numeric. How? 0 is equivalent to `FALSE` and 1 is equivalent to `TRUE`. In fact, any number that is **not** zero will be considered `TRUE`. That's the case for `a_and_h`. Let's look at some more of this relstionship between numeric and Boolean variables below:
 
 ```{r, echo=T, eval=F}
 #including only 0s and 1s
