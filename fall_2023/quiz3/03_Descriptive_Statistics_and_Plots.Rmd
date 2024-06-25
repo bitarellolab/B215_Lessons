@@ -154,7 +154,7 @@ Try this with the function for standard deviation: sd()
 
 
 ```{r examplenum2-solution}
-is.na(titanicdata$age)
+sd(titanicdata$age, na.rm = T)
 
 ```
 
@@ -215,7 +215,7 @@ Try testing whether there are any NAs in titanicdata$age (which, becuase we know
 
 
 ```{r examplenum4-solution}
-var(titanicdata$age, na.rm = T)
+is.na(titanicdata$age)
 
 ```
 
