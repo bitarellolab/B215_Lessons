@@ -253,7 +253,7 @@ length(which(is.na(titanicdata$age)))
 grade_this_code()
 ```
 
-
+You might be wondering why we took the time to check where precisely the the missing data is located, besides to check the accuracy of na.omit. It is important to know where your missing data is because if the missing data is particularly prevalent in one variable more than another, or severely limits the pool of usable data, it can impact the accuracy of the data analysis performed. There is not a hard and fast rule about what level of missing data is acceptable, but it is important to document the limitations of our data so we can account for those limitations in our analysis (whether it be choosing the most appropriate plot or statistical test or simply disclosing the limitations of your study upon publication). No data is ever going to be perfect, especially when working in biology, but is is important to know the flaws in your analyses intimately so you can mitigate them to the best of your ability.
 
 ## Exploring the data
 
