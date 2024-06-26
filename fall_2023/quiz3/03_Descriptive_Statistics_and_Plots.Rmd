@@ -181,7 +181,7 @@ grade_this_code()
 
 If you notice, variance is just SD squared. Or. SD is just variance square rooted.
 
-Other metrics of variation include the coefficient of variation. Surprisingly, there is no standard function in R to calculate the coefficient of variation. You can do this yourself, though, directly from the definition:
+Other metrics of variation include the coefficient of variation. Surprisingly, there is no standard function in R to calculate the coefficient of variation. You can do this yourself, though, directly from the definition: $CV=100\times \frac{S_{X}}{\bar{X}}$
 
 ```{r}
 100 * sd(titanicdata$age, na.rm = TRUE) / mean(titanicdata$age, na.rm = TRUE) 
@@ -190,7 +190,24 @@ Other metrics of variation include the coefficient of variation. Surprisingly, t
 
 Make sure you understand the command above before continuing!
 
-Other metrics include range and interquartile range which are the differnece between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as range() and IQR() in the exact same format as mean() and sd().
+Even more metrics include range and interquartile range which are the differnece between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as range() and IQR() in the exact same format as mean() and sd().
+
+Try running them below.
+
+```{r x-iqr, exercise = TRUE, exercise.setup = "setupnum"}
+                    
+```
+
+
+```{r x-iqr-solution}
+IQR(titanicdata$age, na.rm = TRUE)
+range(titanicdata$age, na.rm = TRUE)
+```
+
+```{r x-iqr-check}
+grade_this_code()
+```
+
 
 ### Missing data
 
@@ -220,6 +237,30 @@ is.na(titanicdata$age)
 ```
 
 ```{r examplenum4-check}
+grade_this_code()
+```
+
+This will return a logical vector of same length as `titanicdata$age` which tells you which rows have NA (TRUE) and which don't (FALSE).
+
+This turned out to be a very long vector! How can we simplify this output? 
+
+We could use the function `table` on the output of the command above. THis will give us two columns, one containing the number of results that are `TRUE` and anoter for `FALSE`.
+
+Try that here:
+
+```{r x8, exercise = TRUE, exercise.setup = "setupnum"}
+                    
+```
+
+
+```{r x8-solution}
+table(is.na(titanicdata$age))
+
+```
+
+
+
+```{r x8-check}
 grade_this_code()
 ```
 
@@ -357,7 +398,7 @@ head(bat.tongues)
 write.csv(x = bat.tongues, file = "my_bat_tongues.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
 ```
 
-The tidyr package includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between long and wide formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
+The tidyr package includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
 
 
 
