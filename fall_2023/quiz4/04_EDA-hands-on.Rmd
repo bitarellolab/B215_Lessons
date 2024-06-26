@@ -71,7 +71,7 @@ We will also be working directly within this R Markdown document to help you get
 
 ## Before we get started:
 
-* This is an R markdown file, so for each exercise, write your code inside a code chunk. I've set these up for you but, as a reminder, you can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface. Notice that I've given each chunk a label (something like `ex1`, etc) and set `echo=TRUE` (your code will appear in the PDF) and `eval=TRUE` (your code will be run when the PDF is compiled).
+* This is an R markdown file, so for each exercise, write your code inside a code chunk. I've set these up for you but, as a reminder, you can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface. Notice that I've given each chunk a label (something like `ex1`, etc) and set `echo=TRUE` (your code will appear in the PDF) and `eval=TRUE` (your code will be run when the PDF is compiled). You can also make a new chunk using the keyboard shortcut Ctrl + Alt + I (or if you use a Mac Cmd + Option + I). If you use these shortcuts, you will still have to add the aforementioned headers for customization and labeling purposes. 
 
 * Before you modify this file at all, go ahead and click "knit" in the button above and watch this file become a beautiful PDF! This is what you will do at the end when you're done, so make sure you knit this file often to pick up any errors as they come.
 
