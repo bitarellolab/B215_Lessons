@@ -261,7 +261,7 @@ You might be wondering why we took the time to check where precisely the the mis
 
 A great part about R is that many people have written packages to help with specific tasks.
 
-The tidyverse refers to both a set of packages, and a way to do things in R. The tidyverse packages we use the most in this course are:
+The tidyverse refers to both a set of packages, and a particular way to accomplish tasks in R. The tidyverse packages we use the most in this course are:
 
 `ggplot2`: For making plots.
 
@@ -281,9 +281,11 @@ One major reason for this is that the focus on a shared and coherent philosophy,
 
 1. It takes time to learn and appreciate the shared philosophy and data structure.
 
-2. Many people first learned R using base R, so it can be frustrating to start to learn again.
+2. Many people first learned R using base R, so it can be frustrating to start to learn a new method for doing things.
 
 Overcoming challenge 1 takes time but is helped by reflecting on why and how code works when it works, and fails when it fails (rather than copying and pasting code that works), and continually asking questions.
+
+This course is structured to mitigate challenge 2, as we begin using the tidyverse for more complex tasks early in the process of learning R
 
 ### Tidy data
 
