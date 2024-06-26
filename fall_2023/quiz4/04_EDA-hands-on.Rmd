@@ -104,7 +104,7 @@ Make the following manipulations and plots with appropriate axis labels, and ans
 
 ```
 
-**Ex.2)** Read in the dataset using the `read_csv` function. Assign the data into an object called `mass_metabolism`. Have a look at the first 6 rows of the data. What kind of data structure is this? How many columns are there?
+**Ex.2)** Read in the dataset using the `read_csv` function. Recall that `read_csv` is a readr function, distinct from base R's `read.csv` (permalink to 1). Assign the data into an object called `mass_metabolism`. Have a look at the first 6 rows of the data. What kind of data structure is this? How many columns are there?
 
 ```{r ex2echo=TRUE, eval=TRUE}
 # type your code here
