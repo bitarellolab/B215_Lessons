@@ -79,7 +79,7 @@ We will also be working directly within this R Markdown document to help you get
 
 * I suggest that, after you make a plot, you save it with a descriptive name as a `.png` using `ggsave`. This will not be required but it's a good practice for you. It will save your plots into this workspace.
 
-* Get in the habit of commenting your code.
+* Get in the habit of commenting your code. As we discussed in Lab 1, commenting your code makes your own life easier and makes it easier for others to read and interpret code that you've written. As you get more advanced in coding, commenting allows you and others to automatically understand the purpose of the code you've written.
 
 ----------------------
 
