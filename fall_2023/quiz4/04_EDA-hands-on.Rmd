@@ -88,7 +88,7 @@ We will also be working directly within this R Markdown document to help you get
 
 The relationship between the body size of an organism and its metabolic rate is one of the most well studied and still most controversial areas of organismal physiology. 
 
-We want to graph this relationship in the *Artiodactyla* using a subset of data from a large compilation of body size data (Savage et al. 2004). The data are in the `mass_metabolism.csv` file in your workspace.
+We want to graph this relationship in the *Artiodactyla* (an order of mammals including pigs, goats, deer, camels, and more) using a subset of data from a large compilation of body size data (Savage et al. 2004). The data are in the `mass_metabolism.csv` file in your workspace.
 
 Make the following manipulations and plots with appropriate axis labels, or answer the questions.
 
