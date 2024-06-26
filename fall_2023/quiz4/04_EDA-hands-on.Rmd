@@ -90,7 +90,7 @@ The relationship between the body size of an organism and its metabolic rate is 
 
 We want to graph this relationship in the *Artiodactyla* (an order of mammals including pigs, goats, deer, camels, and more) using a subset of data from a large compilation of body size data (Savage et al. 2004). The data are in the `mass_metabolism.csv` file in your workspace.
 
-Make the following manipulations and plots with appropriate axis labels, or answer the questions.
+Make the following manipulations and plots with appropriate axis labels, and answer the questions.
 
 **Ex.1)** Make sure `ggplot2` and `dplyr` are installed. The easiest way is to just use the `tidyverse` (add permalink here later) package, which installs those two and more for you:
 
