@@ -92,7 +92,7 @@ We want to graph this relationship in the *Artiodactyla* (an order of mammals in
 
 Make the following manipulations and plots with appropriate axis labels, or answer the questions.
 
-**Ex.1)** Make sure `ggplot2` and `dplyr` are installed. The easiest way is to just use the `tidyverse` package, which installs those two and more for you:
+**Ex.1)** Make sure `ggplot2` and `dplyr` are installed. The easiest way is to just use the `tidyverse` (add permalink here later) package, which installs those two and more for you:
 
 
 ```{r ex1echo=TRUE, eval=TRUE}
