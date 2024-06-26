@@ -257,6 +257,815 @@ You might be wondering why we took the time to check where precisely the the mis
 
 ## Soft Intro to the Tidyverse
 
+*Note: most of the material in this section comes from Y. Brandvain's Applied Biostatistics online book. *
+
+A great part about R is that many people have written packages to help with specific tasks.
+
+The tidyverse refers to both a set of packages, and a way to do things in R. The tidyverse packages we use the most in this course are:
+
+`ggplot2`: For making plots.
+
+`dplyr`: For summarizing and handling data.
+
+`tidyr`: For converting data from wide to long format (and vice versa).
+
+`readr`: For reading in data.
+
+We will use the `tibble`, `stringr`, `forcats`, and `purrr` packages less often if at all. But `ggplot2` and `dplyr` are crucial in this day and age.
+
+![](images/tidyverse.png){width=70%}
+
+**Why?**
+
+One major reason for this is that the focus on a shared and coherent philosophy, grammar and data structure makes the tidyverse **easier to teach and learn than base R**. However, there are still challenges to learning and teaching the tidyverse, the two major challenges are:
+
+1. It takes time to learn and appreciate the shared philosophy and data structure.
+
+2. Many people first learned R using base R, so it can be frustrating to start to learn again.
+
+Overcoming challenge 1 takes time but is helped by reflecting on why and how code works when it works, and fails when it fails (rather than copying and pasting code that works), and continually asking questions.
+
+### Tidy data
+
+Tidyverse tools can be useful and general because they rely on a certain and predictable data structure known as “tidy data.”
+
+Characteristics of tidy data:
+
+* Each variable must have its own column.
+* Each observation must have its own row.
+* Each value must have its own cell.
+
+
+![](images/Screen Shot 2022-09-14 at 11.10.55 AM.png){width=80%}
+
+
+
+![](images/Screen Shot 2022-09-14 at 11.11.04 AM.png){width=70%}
+
+
+A major benefit of the tidy data structure is that when data structure is reliable, we can deal with diverse data sets in a consistent way.
+
+
+![](images/Screen Shot 2022-09-14 at 11.27.11 AM.png){width=70%}
+
+
+### Structure of a good data file
+
+Data files appear in many formats, and different formats are sometimes preferable for different tasks. But there is one way to structure data—called “long” format—that is extremely useful for most things that you will want to do in statistics and R.
+
+Long format is actually very simple. Every row in the data set is a unique individual (see "tidy data", above). Every column is a variable being measured on those individuals.
+
+For example, here are some data about the tongue and palate lengths of several species of bats. There are three variables in that data set, the species name, tongue length, and palate length. Here each “individual” is a species. Here is that data in long format—each row is an individual. There are three columns, one for each variable:
+
+
+Use this link to read in a csv file into `bat_tongue` using the `read.csv` function. Next, call `str` and `head` on the object to have a first look at it.
+
+```{r bat1, echo=T, exercise=TRUE}
+link_to_file<-"https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv"
+        #use read.csv
+        #use str
+        #use head
+
+
+```
+
+
+```{r bat1-solution}
+link_to_file<-"https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/BatTongues.csv"
+bat_tongue<-read.csv(link_to_file)
+str(bat_tongue)
+head(bat_tongue)
+```
+
+```{r bat1-check}
+grade_code()
+```
+
+
+When handed data to analyze, it is good practice to ask yourself if it is tidy. If it isn't, you can modify it and save a new version after you've processed it. How?
+
+There are many ways but here is one. Let's say you wanted to change something about `bat.tongues` and then save that as a new file.
+
+```{r, eval=F}
+head(bat.tongues) #this you know
+# change colum name "species" to "Species"
+colnames(bat.tongues)[1]<-"Species" 
+head(bat.tongues)
+
+write.csv(x = bat.tongues, file = "my_bat_tongues.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
+```
+
+**Warning**: you can't actually write files while using this interactive activity, but within R, later, you can. When you do this, look at the `files` pane on the right and you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
+
+**NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!**
+
+
+### Creating a data file
+
+When you have new data that you want to get into the computer in a format that R can read, it is often easiest to do this outside of R. A spreadsheet program like Excel (or a freely available program like OpenOffice Calc, Google sheets, etc) is a straightforward way to create a .csv file that R can read.
+
+In your spreadsheet program, open a new window with New Workbook under the File menu. In the first row of your new spreadsheet, write your variable names, one for each column. (Be sure to give them good names that will work in R. Mainly, don’t have any spaces in a variable name and make sure that it doesn’t start with a number or contain punctuation marks. See Week 1 for more about naming variables.)
+
+On the rows immediately below that first row, enter the data for each individual, in the correct column. Here’s what the spreadsheet would look like for the bat data after they are entered:
+
+![](images/spreadsheet view.jpeg)
+
+
+### Saving as .csv
+
+Saving a spreadsheet in a format that R can read is very straightforward. In these labs, we are using `.csv` files (which stands for comma separated values). Once you have made your spreadsheet, under “File” click on “Save as…”. This will open a dialog box. First, give the file a name with the extension .csv at the end. We used `BatTongues.csv`. Then choose what folder you want to save the file in.
+
+Finally, choose the right format for the file. The right format is “Comma separated values” which you can choose from after Format: in the dialog box. It might look something like this:
+
+![](images/Screen Shot 2022-09-14 at 12.13.10 PM.png){width=50%}
+
+In the resulting file, the first line will be a header that lists the names of each column (variable). After that there will be one line for each individual. All the variable names in the first row and the variable values in the later rows will be separated by commas, hence the name of the format. If you opened the .csv file in a text editor, it would look like this:
+
+![](images/Screen Shot 2022-09-14 at 12.13.16 PM.png){width=60%}
+
+
+#### A note about tibbles
+
+“Tibbles” are a new modern data frame. THey keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
+
+
+If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble. Then, have a quick check to see what the file looks like.
+
+```{r flower, exercise=TRUE}
+library(readr)
+data_link <- "https://raw.githubusercontent.com/ybrandvain/datasets/master/FlowerColourVisits.csv"
+        # get the data into R and assign it to flower_visits. Use read_csv
+        # use dim 
+        # use str
+        # use head
+```
+
+```{r flower-solution}
+library(readr)
+data_link <- "https://raw.githubusercontent.com/ybrandvain/datasets/master/FlowerColourVisits.csv"
+flower_visits<-read_csv(data_link) # get the data into R and assign it to flower_visits. Use read_csv
+dim(flower_visits)        # use dim 
+str(flower_visits)        # use str
+head(flower_visits)        # use head
+```
+```{r flower-check}
+grade_this_code()
+```
+
+Compared to Data Frames:
+
+* A tibble never changes the input type.
+* No more worry of characters being automatically turned into strings.
+* A tibble can have columns that are lists.
+* A tibble can have non-standard variable names.
+* Can start with a number or contain spaces.
+* To use this refer to these in a backtick. E.g. `my_dataframe$``0 weird col name``
+* It never creates row names.
+
+
+## The dplyr package 
+
+
+![](images/Screen Shot 2022-09-14 at 11.02.46 AM.png){width=80%}
+
+(That's a buddy of mine on the tweet! And I agree)
+
+We will learn about several useful functions for data wrangling from the dplyr package, including: `filter`, `mutate`, `select`, `summarise`, and a few others.
+
+#### `filter()`
+
+![](images/Screen Shot 2022-09-14 at 11.49.02 AM.png){width=70%}
+
+
+`filter()` lets you use a logical test to extract specific rows from a data frame. To use `filter()`, pass it the data frame followed by one or more logical tests. `filter()` will return every row that passes each logical test.
+
+Let's use the `iris` dataset from the `datasets` package. 
+
+```{r iris-setup, echo = T}
+library(dplyr)
+data(datasets::iris)
+```
+
+Check the structure of the object with `str`, `head`, `summary`:
+
+```{r iris-1, exercise=TRUE, exercise.setup="iris-setup"}
+
+
+
+```
+
+```{r iris-1-solution, exercise=TRUE}
+str(iris)
+head(iris)
+summary(iris)
+
+```
+
+```{r iris-1-check}
+
+grade_this_code()
+```
+
+
+Here is a new function to have a glimpse of your data, from the dplyr package:
+
+```{r glimpse, exercise=TRUE}
+library(dplyr)
+
+glimpse(iris)
+```
+
+Check what are the levels for `Species` by selecting the column (use `$`) and the function `levels`:
+
+```{r levels, exercise=TRUE, exercise.setup="iris-setup"}
+ 
+
+```
+
+```{r levels-solution}
+ levels(iris$Species)
+```
+
+```{r levels-check}
+grade_this_code()
+```
+
+
+We can use `filter()` to select only the rows concerning "virginica".
+
+```{r filter, exercise=TRUE, exercise.setup="iris-setup"}
+library(dplyr) # you need to do this because there are other packages with functions called "filter" and R can get confused.
+filter(iris, Species == "virginica")
+#another way to avoid confusions for R is to call the package before the function name, like this:
+dplyr::filter(iris, Species == "virginica")
+```
+
+What if you only wanted to see rows where the Species is "virginica" AND the Petal.Width is lower than 2?
+
+You can combine filters with `&`:
+
+```{r filter2, exercise=TRUE, exercise.setup="iris-setup"}
+filter(iris, Species == "virginica", Petal.Width<2)
+#or
+filter(iris, Species == "virginica" & Petal.Width<2) #this is the equivalent to the line above. "&" signifies AND in the world of logical operators, whereas | signifies OR.
+```
+
+Like all dplyr functions, `filter()` returns a new data frame for you to save or use. It doesn't overwrite the old data frame.
+
+Caution! If you give `filter()` more than one logical test, `filter()` will combine the tests with an implied "and." In other words, `filter()` will return only the rows that return `TRUE` for every test. You can combine tests in other ways with Boolean operators...
+
+R uses boolean operators to combine multiple logical comparisons into a single logical test. These include `&` (_and_), `|` (_or_), `!` (_not_ or _negation_), and `xor()` (_exactly or_).
+
+Both `|` and `xor()` will return TRUE if one or the other logical comparison returns TRUE. `xor()` differs from `|` in that it will return FALSE if both logical comparisons return TRUE. The name _xor_ stands for _exactly or_.
+
+
+We saw this in Lab1, so if you need to recap that, it might be a good idea...
+
+
+If you want to save the output of `filter()`, you'll need to use the assignment operator, `<-` (or `=`).
+
+Rerun the previous command and save the output to an object called `virg_filt`:
+
+```{r iris-2, exercise=TRUE, exercise.setup="iris-setup"}
+
+
+```
+
+
+```{r iris-2-solution}
+virg_filt<-filter(iris, Species == "virginica", Petal.Width<2)
+```
+
+
+```{r iris-2-check}
+grade_this_code()
+```
+
+Good job! You can now see the results by running the name `virg_filt` by itself. Or you can pass `virg_filt` to a function that takes data frames as input.
+
+Did you notice that this code used the double equal operator, `==`? `==` is one of R's logical comparison operators. Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
+
+Suppose you watnted to filter the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
+
+```{r filter3,  exercise=TRUE, exercise.setup="iris-setup"}
+filter(iris, Species == "virginica" | Species == "setosa")
+```
+
+To check that this worked you could save the output into a variable and then `table()` the `Species` column:
+
+```{r filter4,  exercise=TRUE, exercise.setup="iris-setup"}
+virg_set_filt<-filter(iris, Species == "virginica" | Species == "setosa")
+table(virg_set_filt$Species)
+```
+
+
+**Common mistakes:**
+
+In R, the order of operations doesn't work like English. You can't write `filter(iris, Species == "setosa" | "virginica")`, even though you might say  "finds all measurements from I. setosa or I. virginica". Be sure to write out a _complete_ test on each side of a boolean operator.
+
+Here are two more tips to help you use logical tests and Boolean operators in R:
+
+
+1. A useful short-hand for this problem is `x %in% y`. This will select every row where `x` is one of the values in `y`. We could use it to rewrite the code in the question above:
+
+```{r filter8,  exercise=TRUE, exercise.setup="iris-setup"}
+set_or_virg <- filter(iris, Species %in% c("setosa", "virginica"))
+```
+
+2. As well as `&` and `|`, R also has `&&` and `||`. Don't use them with `filter()`! You'll learn when you should use them later.
+
+**`filter()` and NAs**
+
+`filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values. If you want to preserve missing values, ask for them explicitly:
+
+```{r filter5, exercise=TRUE}
+df <- data.frame(x = c(1, NA, 3))
+filter(df, x > 1)
+filter(df, is.na(x) | x > 1) #is.na(x) OR x >1
+```
+
+Another useful dplyr filtering helper is `between()`. What does it do?
+
+```{r filter6, exercise=TRUE}
+between(iris$Sepal.Length,5,6)
+```
+If you add the command `which`, you get the index of the positions in the vector that fullfill the requirement of being between 5 and 6.
+
+```{r which1, exercise= TRUE}
+which(between(iris$Sepal.Length,5,6))
+```
+
+
+
+### `select()`
+
+You can select a subset of variables by name with the `select()` function in `dplyr`. Run the code below to see the narrow data set that `select()` creates.
+
+```{r selectfun, exercise=TRUE, exercise.setup="iris-setup"}
+iris_sepal <- select(iris,
+  Sepal.Length,
+  Sepal.Width,
+  Species)
+```
+
+### `mutate()`
+
+
+A data set often contains information that you can use to compute new variables. `mutate()` helps you compute those variables. Since `mutate()` always adds new columns to the end of a dataset, we'll start by creating a narrow dataset which will let us see the new variables.
+The code below creates two new variables with dplyr's `mutate()` function. `mutate()` returns a new data frame that contains the new variables appended to a copy of the original data set. Take a moment to imagine what this will look like, and then click "Run Code" to find out.
+![](images/Screen Shot 2022-09-14 at 11.48.39 AM.png)
+
+
+The code below creates two new variables with dplyr's `mutate()` function. `mutate()` returns a new data frame that contains the new variables appended to a copy of the original data set. Take a moment to imagine what this will look like, and then click "Run Code" to find out.
+
+```{r mutatesetup, exercise=TRUE, exercise.setup="iris-setup"}
+iris_sepal <- select(iris,
+  Sepal.Length,
+  Sepal.Width,
+  Species)
+```
+
+```{r mutatefun, exercise=TRUE, exercise.setup="mutatesetup"}
+mutate(iris_sepal, leng_wid_ratio = Sepal.Length/Sepal.Width)
+```
+
+### `summarise()`
+
+`summarise()` collapses a data frame to a single row of summaries. You get to choose how many summaries appear in the row and how they are computed:
+
+```{r tit11, exercise=TRUE, exercise.setup="setupnum"}
+
+head(titanicdata,2)
+require(dplyr) #again, this makes R less confused about where the function "summarise" is coming from
+summarise(titanicdata, Nr_Female = sum(sex=="female" & survive == 'yes', na.rm = TRUE),
+                  Nr_total = sum(survive == 'yes', na.rm = TRUE) )
+```
+
+
+
+Notice that the syntax of `summarise()` is similar to `mutate()`. As with `mutate()`, you give summarise:
+
+* The name of a data frame to transform
+* One or more column names to appear in the transformed output. Each column name is set equal to the R expression that will generate the content of the column.
+
+The main difference between `summarise()` and `mutate()` is the type of function that you use to generate the new columns. `mutate()` takes functions that return an entire vector of output (to append to the original data frame). `summarise()` takes functions that return a single value (or summary). These values will appear in a new data frame that has only one row.
+
+`mutate()` will always return the new variables appended to a copy of the original data. If you want to return only the new variables, use `transmute()`. 
+
+### `group_by()`
+
+`summarise()` is not terribly useful unless you pair it with `group_by()`. `group_by()` changes the unit of analysis of the data frame: it assigns observations in the data frame to separate groups, and it instructs dplyr to apply functions separately to each group. `group_by()` assigns groups by grouping together observations that have the same combinations of values for the variables that you pass to `group_by()`.
+
+Example: if we group titanic passengers by sex, we can then look at the mean age for each group:
+
+
+```{r groupby, exercise = TRUE, exercise.setup="setupnum"}
+summarise(group_by(titanicdata, sex),Mean_age=mean(age, na.rm=TRUE))
+
+```
+### `arrange()`
+
+
+Arranging data in R can be quite cumbersome using base R functions like `ordert`. Let's look at `iris` again and try to rearrange the data.frame so that it's ordered by Petal.Length (smallest to highest value).
+
+One way to do this:
+
+```{r x13, exercise = TRUE,  exercise.setup="iris-setup"}
+order(iris$Petal.Length) #this gives you the index of the Petal.Length vector in the order they should be if the vector was ordered.
+
+iris$Petal.Length[order(iris$Petal.Length)] #this orders the column Petal.Length only
+
+iris[order(iris$Petal.Length),] #order the entire data.frame based on the column Petal.Length
+
+```
+
+Now the `arrange` way:
+
+```{r x14, exercise=TRUE, exercise.setup="iris-setup"}
+
+arrange(iris, Petal.Length) #that's all!
+
+arrange(iris, -Petal.Length) #this arranges it by descending petal length values
+
+```
+
+
+### Using the pipe `%>%` operator
+
+In the previous section we learned how to do a bunch of things to data. For example, in our toad dataset, below, we
+
+Use the mutate() function made a new column for BMI by dividing weight by height.
+Sort the data with the arrange() function.
+We also saw how we could select() columns, and filter() for rows based on logical statements.
+
+We did each of these things one at a time, often reassigning variables a bunch. Now, we see a better way, we combine operations with the pipe `%>%` operator.
+
+Say you want to string together a few things – like you want make a new tibble, called `sorted_titanic` by:
+
+* Only retaining people with age `>` 15
+* Calculating the proportion of females who survived
+* Sorting the data by age
+* Getting rid of the column with the home_destination
+
+The pipe operator, `%>%`, makes this pretty clean by allowing us to pass results from one operation to another.
+
+`%>%` basically tells R to take the data and keep going!
+
+```{r, eval=F}
+sorted_titanic <- titanicdata     %>% # initial data
+  na.omit()  %>% #omit rows containing NAs
+  filter(survive == "yes") %>% # sruvived
+  filter(age > 15)         %>% #age >15
+  mutate(PropF = sum(sex=='female')/length(sex))   %>% # calculate PropF
+  arrange(age)                    %>% # sort by age
+  select(-home_destination)             # remove home destination
+
+glimpse(sorted_titanic)
+
+dim(titanicData) #dimensions: # rows &  # cols
+
+dim(sorted_titanic)
+```
+
+Use a similar approach to the one above to produce an object called `sorted_titanic2` containing `PropM` (proportion of males) and `PropF`(proportion of females).
+
+
+```{r x15, exercise = TRUE, exercise.setup="setupnum"}
+#add your code here
+
+
+```
+
+```{r x15-solution}
+#add your code here
+sorted_titanic2 <- titanicdata     %>% # initial data
+  na.omit()  %>% #omit rows containing NAs
+  filter(survive == "yes") %>% # sruvived
+  filter(age > 15)         %>% #age >15
+  mutate(PropF = sum(sex=='female')/length(sex), PropM = sum(sex=='Male')/length(sex))   %>% 
+  arrange(age)                    %>% # sort by age
+  select(-home_destination)             # remove home destination
+
+
+```
+
+
+```{r x15-check}
+grade_this_code()
+```
+
+
+## Plots! The ggplot2 package
+
+
+We generally think of two extremes of the goals of data visualization
+
+In _exploratory_ visualizations we aim to identify any interesting patterns in the data, we also conduct quality control to see if there are patterns indicating mistakes or biases in our data, and to think about appropriate transformations of data. On the whole, our goal in exploratory data analysis is to understand the stories in the data.
+
+
+In _explanatory_ visualizations we aim to communicate our results to a broader audience. Here our goals are communication and persuasion. When developing explanatory plots we consider our audience (scientists? consumers? experts?) and how we are communicating (talk? website? paper?).
+
+The `ggplot2` package in R is well suited for both purposes of data visualization. Today we focus on exploratory visualization in `ggplot2` because:
+
+* They are the starting point of all statistical analyses.
+* You can do them with less `ggplot2` knowledge.
+* They take less time to make than explanatory plots.
+* Later in the term we will show how we can use `ggplot2` to make high quality explanatory plots.
+
+Whether developing an explanatory or exploratory plot, you should think hard about the biology you hope to convey before jumping into a plot. Ask yourself
+
+* What do you hope to learn from this plot?
+* Which is the response variable (we usually place that on the y-axis)?
+* Are data numeric or categorical?
+* If they are categorical are they ordinal, and if so what order should they be in?
+
+
+*_The answers to these questions should guide our data visualization strategy, as this is a key step in our statistical analysis of a dataset. The best plots should evoke an immediate understanding of the (potentially complex) data. Put another way, a plot should highlight both the biological question and its answer._*
+
+
+Before jumping into making a plot in R, it is often useful to take this step back, think about your main biological question, and take a pencil and paper to sketch some ideas and potential outcomes.
+
+### How ggplot thinks
+
+`ggplot2` is built on a framework for building plots called the grammar of graphics. A major idea here is that plots are made up of data that we map onto aesthetic attributes.
+
+Lets unpack this sentence, because there’s a lot there. 
+
+Say we wanted to make a very simple plot e.g. observations for categorical data, or a simple histogram for a single continuous variable. Here we are **mapping** this variable onto a single **aesthetic attribute** – the x-axis.
+
+
+- Takes arguments `data =` and `mapping =`.   
+- We usually leave these implied and type e.g. `ggplot(my.data, aes(...)`) rather than `ggplot(data = my.data, mapping = aes(...)`).      
+- We can pipe data into the `ggplot()` function, so `my.data %>% ggplot(aes(...))` does the same thing as `ggplot(my.data, aes(...))`.
+
+There is no need to memorize anything. Check out [this handy cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)!
+
+#####  Arguments for aes() function {-}  
+
+The [`aes()`](https://ggplot2.tidyverse.org/reference/aes.html) function takes many potential arguments each of which specifies the aesthetic we are mapping onto a variable:
+
+###### x, y, and label:      {-}  
+
+```{block2, type='rmdcode'}
+- x: What is shown on the x-axis.     
+
+- y: What is shown on the y-axis.    
+
+- label: What is show as text in plot (when using geom_text())  
+```
+
+###### Color related aesthetics:      {-}  
+
+```{block2, type='rmdcode'}
+
+- [`color =`](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html): What is shown by color, where color refers to the color of a point or a line (e.g. lines around a histogram).   
+
+- [`fill =`](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html): What is shown by fill, where fill refers to the color of an area (e.g. area inside a histogram).     
+
+- [`alpha =`](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html): What is shown by the transparency of a line or point or area.
+```
+
+
+###### Differentiation related aesthetics: linetype, size, shape   {-}
+
+```{block2, type='rmdcode'}   
+- [`shape =`](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html): What is shown by the shape of our points.  
+
+- [`linetype `](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html)=: What is shown by the linetype (e.g. dashed, dotted, etc…).   
+
+- [`size =`](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html): What is shown by the size of a line or point.  
+```
+
+
+#####  Commonly used geoms {-}  
+
+
+```{block2, type='rmdcode'}
+- [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html): Makes a histogram.     
+- [`geom_density()`](https://ggplot2.tidyverse.org/reference/geom_density.html): Makes a density plot.  
+- [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html): Makes points - ideal for a scatterplot.  
+- [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html): Makes jittered points - ideal for showing data when x is catgorical or discrete.    
+- [`geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html): or  [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html): Makes a barplot from count data `geom_col()`, or from all observations `geom_bar()`.    
+- [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html): Connect observations with a line.   
+```
+
+
+#####  Faceting {-}
+
+Faceting allows us to use the concept of small multiples [@tufte1983] to highlight patterns.
+
+```{block2, type='rmdcode'}
+For one facetted variable: `facet_wrap(~ <var>, nocl = )`  
+
+For two facetted variable: `facet_grid(<var1>~ <var2>)`, where one is shown by rows, and is shown by columns.  
+```
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+
+
+```{r, echo=FALSE}
+rm(list = ls())
+```
+
+The function `ggplot()` allows us to graph most kinds of data relatively simply. Its syntax is slightly odd but very flexible. We’ll show specific commands for several types of plots below.
+
+To make a graph with `ggplot()`, you need to specify at least two elements in your command:
+
+* The first uses the function `ggplot()` itself, to specify which data frame you want to use and also which variables are to be plotted. 
+* The second part tells R what kind of graph to make, using a `geom()` function. The odd part is that these two parts are put together with a + sign. It’s simplest to see this with an example. We’ll draw a histogram with `ggplot()` in the next section.
+
+
+### Histograms
+A histogram represents the frequency distribution of a numerical variable in a sample.
+
+Let’s see how to make a basic histogram using the age data from the Titanic data set.
+
+Here’s the code to make a simple histogram of age:
+
+```{r ggplot1, exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=age)) + geom_histogram()
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## Warning: Removed 680 rows containing non-finite values (stat_bin).
+```
+
+Notice that there are two functions called here, put together in a single command with a plus sign. The first function is `ggplot()`, and it has two input arguments. 
+
+* Listed first is `titanicdata`; this is the name of the data frame containing the variables that we want to graph. 
+* The second input to ggplot is an `aes()` function. In this case, the `aes()` function tells R that we want age to be the x-variable (i.e. the variable that is displayed along the x-axis). (The aes stands for “aesthetics”,” but if you’re like us this won’t help you remember it any better.)
+* The second function in this command is geom_histogram(). This is the part that tells R that the “geometry” of our plot should be a histogram.
+
+This is not the most beautiful graph in the world, but it conveys the information. At the end of this lab we’ll see a couple of options that can make a ggplot graph look a little better.
+
+
+### Bar graphs
+A bar graph plots the frequency distribution of a categorical variable.
+
+In `ggplot()`, the syntax for a bar graph is very similar to that for a histogram. For example, here is a bar graph for the categorical variable sex in the titanic data set. Aside from specifying a different variable for `x`, we use a different geom function here, geom_bar.
+
+```{r tita1,  exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex)) + geom_bar(stat="count")
+```
+
+
+
+### Boxplots
+
+A boxplot is a convenient way of showing the frequency distribution of a numerical variable in multiple groups (i.e., a categorical variable). Here’s the code to draw a boxplot for age in the titanic data set, separately for each sex:
+
+```{r tita2,  exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_boxplot()
+## Warning: Removed 680 rows containing non-finite values (stat_boxplot).
+```
+
+Notice that the `y` variable here is age, and `x` is the categorical variable sex that winds up on the x-axis. See the result below, and look at where the variables are. The other new feature here is the new geom function, `geom_boxplot()`.
+
+Here the thick bar in the middle of each boxplot is the median of that group. The upper and lower bounds of the box extend from the first to the third quartile. (The “first quartile” is the 25th percentile of the data–the value which is bigger than 25% of the other values. The “third quartile” is the 75th percentile– the value bigger than 3/4 of the other values.)
+
+The vertical lines are called whiskers, and they cover most of the range of the data (except when data points are pretty far from the median (see text), when they are plotted as individual dots, as on the male boxplot).
+
+### Violin plots
+
+They share many similarities with a boxplot, but unlike boxplots they show a mirrored image of the smoothed distribution of the numerical variable:
+```{r tita3,  exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin()
+```
+
+Violin plot with points (strip chart) overlaid:
+
+```{r tita4, exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin() + geom_point()
+```
+
+This is not great for seeing the points because they are on top of each other, so we could add some jitter:
+
+```{r tita5,exercise=TRUE, exercise.setup="setupnum"}
+ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin() + geom_jitter(width=0.2) #feel free to play with this width
+```
+### Scatterplots
+The last graphical style that we will cover here is the scatter plot, which shows the relationship between two numerical variables.
+
+The titanic data set does not have two numerical variables, so let’s use a different data set—the example from Figure 2.3-2 of Whitlock and Schluter, showing the relationship between the ornamentation of father guppies and the sexual attractiveness of their sons. You can load the data for that example with
+```{r, eval=F}
+guppyFatherSonData <-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/chap02e3bGuppyFatherSonAttractiveness.csv")
+```
+
+To make a scatter plot of the variables fatherOrnamentation and sonAttractiveness with ggplot, you need to specify the x and y variables, and use `geom_point()`:
+
+```{r, eval=F}
+ggplot(guppyFatherSonData,   
+  aes(x = fatherOrnamentation, 
+  y = sonAttractiveness)) +
+  geom_point()
+```
+
+
+### Better looking graphics
+The code we have listed here for graphics barely scratches the surface of what ggplot, and R as a whole, are capable of. Not only are there far more choices about the kinds of plots available, but there are many, many options for customizing the look and feel of each graph. You can choose the font, the font size, the colors, the style of the axes labels, etc., and you can customize the legends and axes legends nearly as much as you want.
+
+Let’s dig a little deeper into just a couple of options that you can add to any of the forgoing graphs to make them look a little better. For example, you can change the text of the x-axis label or the y-axis label by using xlab or ylab. Let’s do that for the scatterplot, to make the labels a little nicer to read for humans.
+
+```{r, eval=F}
+ggplot(guppyFatherSonData,   
+    aes(x = fatherOrnamentation, y = sonAttractiveness)) +
+    geom_point() +
+    xlab("Father's ornamentation") + 
+    ylab("Son’s attractiveness")
+```
+
+The labels that we want to add are included in quotes inside the `xlab` and `ylab` functions. Here is what appears:
+
+It can also be nice to remove the default gray background, to make what some feel is a cleaner graph. Try adding
+
+```{r, eval=F}
++ theme_classic()
+```
+to the end of one of your lines of code making a graph, to see whether you prefer the result to the default design.
+
+```{r guppy1,exercise=TRUE, exercise.setup="setupnum"}
+ggplot(guppyFatherSonData,   
+    aes(x = fatherOrnamentation, y = sonAttractiveness)) +
+    geom_point() +
+    xlab("Father's ornamentation") + 
+    ylab("Son’s attractiveness") + 
+    theme_classic()
+```
+
+
+## Test your knowledge!
+
+```{r titanicquiz, echo=F}
+quiz(caption="Titanic Quiz!",
+     question("How many rows in the titanicdata object are free of missing values?",
+                    answer(1314),
+                    answer(633, correct = TRUE),
+                    answer(681),
+                    allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+  question("Which dplyr 'verb' was used to make the tibble above?",
+           answer("dplyr::mutate"),
+           answer("dplyr::arrange"),
+           answer("dplyr::summarise", correct = TRUE),
+           answer("dplyr::filter"),
+           answer("dplyr::transform")
+)
+)
+```
+
+
+1. Earlier in this tutorial you ran the following command to group titanic passengers by sex and then calculate the mean age for each group:
+
+`summarise(group_by(titanicdata, sex),Mean_age=mean(age, na.rm =TRUE))`
+
+
+Challenge: produce the same output by using pipes instead of nesting the functions. Complete the code below.
+
+```{r cha1, exercise=TRUE, exercise.setup='setupnum'}
+library(dplyr)
+
+
+```
+
+
+```{r cha1-solution}
+library(dplyr)
+
+titanicdata %>% 
+        group_by(sex) %>% # sex
+        summarise(Mean_age = mean(age, na.rm=TRUE))
+
+```
+
+
+```{r cha1-check}
+
+grade_this_code()
+```
+![](images/Screenshot 2023-09-19 at 3.16.06 PM.png){width=80%}
+
+```{r quiz2, echo=F}
+quiz(caption="dplyr!",
+     question_radio("Data manipulation with dplyr in inherently dishonest and should never be done",
+                    answer(TRUE),
+                    answer(FALSE, correct = TRUE),
+                    allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+  question("Which dplyr 'verb' was used to make the tibble above?",
+           answer("dplyr::mutate"),
+           answer("dplyr::arrange"),
+           answer("dplyr::summarise", correct = TRUE),
+           answer("dplyr::filter"),
+           answer("dplyr::transform")
+)
+)
+```
+
 ## Exploring the data
 
 Now that we've familiarized ourselves with the tidyverse, let's return to the titanic data to try out our skills. The titanic data has age, sex, class of the passenger and whether or not they survived. The summarize function is super useful here for analyzing the different factors that are correlated with a passenger's chance of survival. In this example, we will explore age and survival rate. This is how you'd use summarize to group by if someone survived, and get the mean of their ages. Print the new data frame to see.
