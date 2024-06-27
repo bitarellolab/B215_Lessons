@@ -144,8 +144,11 @@ Answer:
 
 Answer: 
 
-
-**Ex.6)** Convert the `family` column into the `factor` data type and assign that new object to `mass_metabolism2`. Use the function `mutate` to accomplish this change. What are the levels of the variable `family?`. Save the levels into an object called `mass_metab_levels`
+**Ex.6)** 
+Convert the `family` column into the `factor` data type 
+and assign that new object to `mass_metabolism2`. 
+ 
+What are the levels of the variable `family?`. 
 
 ```{r ex6,echo=TRUE, eval=TRUE}
 # type your code here
