@@ -160,7 +160,7 @@ Answer:
 
 
 
-**Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the two and why?
+**Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the output provided for each variable and why?
 
 ```{r ex7,echo=TRUE, eval=TRUE}
 # type your code here
