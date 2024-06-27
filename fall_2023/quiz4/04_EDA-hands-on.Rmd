@@ -210,7 +210,7 @@ You may have noticed a message from R that asks you to adjust the bins. Feel fre
 
 Answer:
 
-**Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? 
+**Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? If you're feeling confident, try getting the data of interest and piping it right into ggplot, rather than making an intermediate variable!
 
 
 ```{r ex12,echo=TRUE, eval=TRUE}
