@@ -134,7 +134,7 @@ Answer:
 
 Answer: 
 
-**Ex.5)** What are the classes of each variable in `mass_metabolism`? 
+**Ex.5)** What are the classes of each variable in `mass_metabolism`?
 
 ```{r ex5,echo=TRUE, eval=TRUE}
 # type your code here
@@ -145,7 +145,7 @@ Answer:
 Answer: 
 
 
-**Ex.6)** Convert the `family` column into the `factor` data type and assign that new object to `mass_metabolism2`. Use the function `mutate` to accomplish this change. What are the levels of the variable `family?`. Hint, you can figure this out with the command `levels(your_object_name)`. Save the levels into an object called `mass_metab_levels`
+**Ex.6)** Convert the `family` column into the `factor` data type and assign that new object to `mass_metabolism2`. Use the function `mutate` to accomplish this change. What are the levels of the variable `family?`. Save the levels into an object called `mass_metab_levels`
 
 ```{r ex6,echo=TRUE, eval=TRUE}
 # type your code here
