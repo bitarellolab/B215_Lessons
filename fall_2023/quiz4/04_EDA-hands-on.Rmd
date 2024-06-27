@@ -181,7 +181,7 @@ Answer:
 Answer:
 
 
-**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge? (Insert hint)
+**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge? Tip: This is one of the first more complicated multi-step analyses you're completing, now would be a great time to practice those commenting skills! (Insert hint)
 
 
 ```{r ex9, echo=TRUE, eval=TRUE}
