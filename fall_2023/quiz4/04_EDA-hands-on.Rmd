@@ -317,7 +317,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex23)** Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3 (using `|` for `or`). Save the result into object `shrubs6`.
+**Ex23)** Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3. Save the result into object `shrubs6`. Hint/link
 
 
 ```{r ex23, echo=TRUE, eval=TRUE}
