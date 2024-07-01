@@ -102,10 +102,10 @@ You can also write loops with character vectors. Here's a character vector:
 
 Here's an example of a loop that prints x then multiplies it by two, as long as `x` is under `16`. 
 ```{r r4}
-x <- 2
-while (x < 16) {
-  print(x)
-  x <- x * 2
+x <- 2 #defining the starting value of the variable which the loop will iterate upon, this value can be changed, it would just mean the loop runs for a different number of times and prints different results
+while (x < 16) { #establishing that the stop condition here is x no longer being less than 16
+  print(x).      #printing the value of x that starts each loop
+  x <- x * 2.    #doubling x every iteration
 }
 
 ```
