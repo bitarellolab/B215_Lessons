@@ -300,7 +300,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.21)** Add a new column named `area` containing the area of the shrub, which is the `length` times the `width` (using `mutate`). Then, filter the data to include only plants with heights greater than 5 (using `filter`). Finally, sort the data by length (using `arrange`). Save the result into object `shrubs4`.
+**Ex.21)** Add a new column named `area` containing the area of the shrub, which is the `length` times the `width`. Then, filter the data to include only plants with heights greater than 5. Finally, sort the data by length. Save the result into object `shrubs4`. (insert hint)
 
 
 ```{r ex21,echo=TRUE, eval=TRUE}
