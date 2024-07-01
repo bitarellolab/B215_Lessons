@@ -246,7 +246,7 @@ Answer:
 
 ```
 
-**Ex.16)** Make the same plot as in Ex.14, but with the different families each in their own subplot. Hint: to achieve this, use `facet_wrap`.
+**Ex.16)** Make the same plot as in Ex.14, but with the different families each in their own subplot. 
 
 ```{r ex16,echo=TRUE, eval=TRUE}
 #type your code here
