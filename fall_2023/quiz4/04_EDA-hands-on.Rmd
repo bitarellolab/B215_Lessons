@@ -238,7 +238,7 @@ Answer:
 ```
 
 
-**Ex.15)** Make the same plot as in Ex. 14, but with the different families indicated using color.
+**Ex.15)** Make the same plot as in Ex. 14, but with the different families indicated using color. You might also try making the labels clearer or playing with the themes.
 
 
 ```{r ex15,echo=TRUE, eval=TRUE}
