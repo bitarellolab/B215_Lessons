@@ -98,7 +98,7 @@ You can also write loops with character vectors. Here's a character vector:
 ### `while` loops
 
 
-A `while` loop repeats code until a condition is met. It's really important to include the condition because the loop might continue forever if you don't. 
+ The main difference between a for and while loop is the way the loop gets its stop parameters. Rather than cycling through a set vector like in a for loop, a while loop establishes a condition for the variable which, when met, will trigger the stop of the loop. It's really important to include the condition because the loop might continue forever if you don't.
 
 Here's an example of a loop that prints x then multiplies it by two, as long as `x` is under `16`. 
 ```{r r4}
