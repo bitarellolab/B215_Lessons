@@ -293,7 +293,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.20)** Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
+**Ex.20)** Create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment. insert hint
 
 ```{r ex20,echo=TRUE, eval=TRUE}
 #type your code here
