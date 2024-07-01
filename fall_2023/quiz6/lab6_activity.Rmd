@@ -121,8 +121,8 @@ while (x < 16) { #establishing that the stop condition here is x no longer being
 Just for fun try running that loop without with `while(x)`. This will run forever. Make sure you remember to add the condition! To quit this infinite loop, type ctl+C or ESC (Posit Cloud).
 
 
- Say you have a number and you want to find the smallest divisor that isn't 1. You could use a while loop to do this.  
- Hint: remember the `%%` operator from week 1. It's called "modulo" operator.
+ Say you have a number and you want to find the smallest divisor that isn't 1. You could use a while loop to do this. Remember, the conditions of a while loop can be set by any logical expression, not just > or <. (insert hints)
+
  
 ```{r while2}
 #your code here
