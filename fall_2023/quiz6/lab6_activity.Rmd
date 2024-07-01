@@ -28,7 +28,7 @@ Hello R students! Your silly student coder has returned to make your assignments
 ---------------
 
 ## Part 1: Loops
-Loops are a programming element that repeat a portion of code a set number of times until the desired process is complete.^[See ref 1 at the end of this document.]
+Loops are a programming element that repeat a portion of code a set number of times until the desired process is complete. The parameters and conditions for the end of this process is included in the contents of the loop. ^[See ref 1 at the end of this document.]
 
 All programming languages have loops. Their syntax might differ, but they are always there, just like element types, data structures, etc.
 
