@@ -326,7 +326,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.24)** Filter the data in `shrubs` to remove rows with null values in the height column (using `!is.na`). 
+**Ex.24)** Filter the data in `shrubs` to remove rows with null values in the height column. Hint
 ```{r ex24,echo=TRUE, eval=TRUE}
 #type your code here
 
@@ -343,7 +343,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.26)** Save your new data frame as a cvs file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data! Remember: always keep the original raw data file unmodified. You can create as many modified files as you want, but don't mess with that one!
+**Ex.26)** Save your new data frame as a csv file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data! Remember: always keep the original raw data file unmodified. You can create as many modified files as you want, but don't mess with that one!
 
 
 
