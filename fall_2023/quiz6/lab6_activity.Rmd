@@ -111,7 +111,7 @@ while (x < 16) { #establishing that the stop condition here is x no longer being
 ```
 
 
-**Ex.3)** Now write a while loop that prints the value, then doubles it, starting at 1 and stopping at 100.
+**Ex.3)** Now write a while loop that prints the value, then doubles it, starting at 1 and stopping at 100. (hint)
 
 ```{r ex3}
 #your code here
