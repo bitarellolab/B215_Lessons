@@ -84,9 +84,7 @@ print(mean) #printing the result
 You can also write loops with character vectors. Here's a character vector:
 `days<-c("Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "Sun")` 
 
-**Ex.2)** Write a loop that adds day to each day of the week so that the output of `days` gives you "Monday", "Tuesday", etc, one in each line.
-
-Hint: if you add the argument `sep = ""` to the `paste` function you don't get a space in between the things being pasted.
+**Ex.2)** Write a loop that adds day to each day of the week so that the output of `days` gives you "Monday", "Tuesday", etc, one in each line. Recall the paste function from Lab 2 (link). If you add the argument `sep = ""` to the `paste` function you don't get a space in between the things being pasted. 
 
 ```{r ex 2}
 #First create the vector days as show above
