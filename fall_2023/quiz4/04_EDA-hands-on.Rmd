@@ -309,7 +309,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.22)** Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2 (using `,` or `&` to include two conditions). Save the result into object `shrubs5`.
+**Ex.22)** Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2. Save the result into object `shrubs5`. Hint/link
 
 ```{r ex 22,echo=TRUE, eval=TRUE}
 #type your code here
