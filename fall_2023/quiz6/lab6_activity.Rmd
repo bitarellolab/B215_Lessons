@@ -224,6 +224,24 @@ Its big right? So let's take some samples.
 
 Congrats, you did sampling! 
 
+Note: we should have gotten that mean1000 gives the smallest difference, because as a rule a larger sample size leaf to more accurate estimation, but you MAY have found something different. That's because we did not filter this human_genes dataset to remove the few very long genes that exist. So when you take larger samples you're just more likely to get those values sampled. So without removing them there is a chance that in your random samples the closest mean to the true mean was 100 instead of 1000 (though it is more likely the 1000 sample). This is a good demonstration of the reality of working with real data. It also demonstrates why it is important to choose the right measures for estimating the average of a dataset. Here there are two main ways to have achieved a more accurate estimation of the average length of the genes: used the median rather than the mean or filter out the outliers.Let's filter the long genes out to show this:
+
+```{r ex5.4b}
+human_genes2<-human_genes %>% filter(size<=15000) #filter long genes out
+human_genes_summ_v2 <- human_genes2 %>% #get summaries for the pop
+  summarise(
+    MeanLength = mean(size),
+    MedianLength = median(size),
+    SDLength = sd(size),
+)
+#get the three smaples
+mean10_v2<-mean(sample(human_genes2$size, 10, replace = TRUE))
+mean100_v2<-mean(sample(human_genes2$size, 100, replace = TRUE))
+mean1000_v2<-mean(sample(human_genes2$size, 1000, replace = TRUE))
+abs(c(mean10_v2, mean100_v2, mean1000_v2)-human_genes_summ_v2$MeanLength) #dabs is equivalent to |x|
+
+```
+There we go! As expected, the greater sample size led to a smaller difference to the real mean. This may already have been true for you without the filtering, but with the filtering it is way less likely we might get a conflicting result here.
 
 **Ex.6)** Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
 
