@@ -174,9 +174,8 @@ So far, we've been taking samples assuming that it's a fair toss, which has, so 
 
 ```
 
-Now let's see what happens if we flip both coins even more times. Use your original loop with the fair coin and toss is 100 times. Then take the weighted coin, change the variable names to make them different (add the word weighted or rigged) and toss that 100 times. Then count how many heads and how many tails came from each coin. Make sure to make an empty vector for each loop. 
-Hint: you can use the table function to get a count of heads and tails
 
+Now let's see what happens if we flip both coins even more times. Use your original loop with the fair coin and toss is 100 times. Then take the weighted coin, change the variable names to make them different (add the word weighted or rigged) and toss that 100 times. Then count how many heads and how many tails came from each coin. Make sure to make an empty vector for each loop. You can use the table function to get a count of heads and tails.
 
 
 ```{r ex4.4}
