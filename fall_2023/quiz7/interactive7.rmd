@@ -67,6 +67,7 @@ The apply function works with three main arguments: x, margin, and function. X s
 
 ##### 2. Use lapply to find how many characters are in each name. 
 
+`lapply` works much the same as `apply` except the `margin` argument is not included, as lists and vectors are one dimensional. 
 Save as an object and then print. To count characters, you can use the `nchar` function.
 Here are your names, get counting
 `names_list <- list("Alessandra", "Penelope", "Meigui", "Tatiana", "Keisuke", "Nadia", "Amy")`
