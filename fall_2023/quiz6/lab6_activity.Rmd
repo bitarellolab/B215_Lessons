@@ -163,9 +163,7 @@ Now lets try and do this same thing with a for loop. Make an empty vector called
 
 ```
 
-Now I'm being sneaky. I challenge you to flip a coin but its weighted. It lands on heads 60% of the time. Use the same loop and add the probabilities to the sample function.
-
-Hint: Use the  `prob` argument in the `sample` function.
+So far, we've been taking samples assuming that it's a fair toss, which has, so far, been true. But what if I wanted to be sneaky? Let's say I challenge you to flip a coin but its weighted. It lands on heads 60% of the time. We can add the `prob` argument to our call of sample function and, as you might expect from the name, control the probability of coin landing on heads. Try it out below: use the same loop and add the probabilities to the sample function.
 
 
 ```{r ex4.3}
