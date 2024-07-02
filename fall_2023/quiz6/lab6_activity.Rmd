@@ -145,10 +145,8 @@ There is a basic function in R for taking samples very appropriately named sampl
 **Ex.4)**Let's start with some basic sampling. Imagine you have a coin, equal chances of heads and tails. You want to flip it 10 times and see how many heads and how many tails. First make a vector called `coin_toss`, with "heads" and "tails" as elements. Then, sample it 10 times, with replacement:
 
 ```{r ex4.1}
-#your code here
-coin_toss<-c("heads","tails")
-sample(coin_toss, size=10, replace=TRUE)
-
+coin_toss<-  #create coin_toss vector
+sample(, size=, replace=) #conduct your sample
 ```
 
 
