@@ -50,8 +50,8 @@ Use Case:
 
 
 There are many other functions in the apply family but we are just focusing on these two.
-I recommend typing ? apply and ?lapply into the console before starting. The second argument, margin, can be tricky. 
-
+ 
+The apply function works with three main arguments: x, margin, and function. X simply determines which array, data frame, or matrix you will be manipulating, as it does in most functions. Function, also quite obviously, signifies which function you'd like to apply to the data. Margin, the second argument, is the most tricky. Margin tells apply which rows and columns to perform the function on. This can be in the normal indexing form, with 1 being rows in a matrix while 2 is columns and c(1,2) is rows and columns, or if the columns and rows are names, you can use a character vector indicating the names of the columns of interest.
 
 #### 1. Let's start super basic. Say you have a `matrix mat <- matrix(1:12, nrow=3)`. You want to find the sum of each column. paste the matrix first then use apply to find the sum. Name it something then print the result
 
