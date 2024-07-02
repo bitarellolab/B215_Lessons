@@ -252,7 +252,7 @@ There we go! As expected, the greater sample size led to a smaller difference to
 
 ```
 
-6.2 Now you write a for loop like you did before. Execept you can include all three of your new vectors in the same loop. 
+6.2 Now you write a for loop like you did before with `all_tosses`, including all three of your new vectors in the same loop. 
 
 ```{r 6.2}
 #your code here
@@ -261,7 +261,7 @@ There we go! As expected, the greater sample size led to a smaller difference to
 
 ```
 
-You have now bootstrapped. Lets graph
+This process of taking the mean of the samples, and generating a sample of these means allows us to generate a distribution that can be used for determining a number of statistical properties including confidence intervals (we will talk more about different ways R can be used to supply CIs in labs 7, 8, and 9). This is bootstrapping, you have now bootstrapped. For more information, see these slides on bootstrapping: (insert link). Let's graph
 
 
 **Ex.7)**. We want to compare our samples to see which sample size got closest to our population mean. You are going to make a histogram of these means. 
