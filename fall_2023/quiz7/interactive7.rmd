@@ -57,8 +57,11 @@ The apply function works with three main arguments: x, margin, and function. X s
 
 
 ```{r ex1}
-#type your code here
+#paste mat
 
+#use apply to take the sum of the columns 
+
+#print your results
 
 ```
 
