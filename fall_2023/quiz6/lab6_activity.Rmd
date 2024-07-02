@@ -150,23 +150,17 @@ sample(, size=, replace=) #conduct your sample
 ```
 
 
-Now lets try and do this same thing with a for loop. Make an empty vector called `all_tosses` and use it to generate 10 coin tosses.
-
-Hint:Because you are looping over the sample you are only sampling one each time
+Now lets try and do this same thing with a for loop. Make an empty vector called `all_tosses` and use the loop to generate 10 coin tosses within it. all_tosses will be indexed by the sequence in the for loop, filled by one number on each iteration. Also, keep in mind, because you are looping over the sample you are only sampling one toss each time. 
 
 
 ```{r ex4.2}
 # first create an empty vector called all_tosses
-all_tosses<-c()
+
 #now run the loop
 
-for(i in 1:10){
-        #print(i)  
-        all_tosses[i]<-sample(coin_toss, size=1, replace=F)
-        
-}
 
-print(all_tosses)
+#print your result
+
 ```
 
 Now I'm being sneaky. I challenge you to flip a coin but its weighted. It lands on heads 60% of the time. Use the same loop and add the probabilities to the sample function.
