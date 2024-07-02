@@ -185,6 +185,7 @@ Now let's see what happens if we flip both coins even more times. Use your origi
 
 This is why you shouldn't play games with other peoples strange coins!
 
+Thus far, we've used the coins example to demonstrate perhaps the most simple form of sampling, but we can also take samples from much larger pools than a simple head or tails. That more complex sampling is a kind often employed in biological testing. This next exercise, for example, contains the lengths of a large amount of different real human genes. In other instances, we might take samples from a population to obtain estimates for when it is impossible for humans (or just your study) to measure the true parameter of interest. Later, we will also delve a bit into using sampling from a group of samples in order to bootstrap, which is a statistical technique we will go over when we reach that part of the activity.
 
 **Ex.5)**
 Read in the `human_genes.csv` file and name it `human_genes`. Play around with it using your strong exploratory data analysis skills. Get a good feel for the data set. 
