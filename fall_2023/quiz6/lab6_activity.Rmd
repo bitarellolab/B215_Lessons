@@ -196,13 +196,14 @@ Its big right? So let's take some samples.
 
 **NOTE:** Your output will look different to the pdf because your samples will be different values. 
 
-5.1. First filter `human_genes` to only keep the size and name column. 
+5.1. First filter `human_genes` to only keep the size and name column.
 ```{r ex5.1}
 #your code here
 
 ```
 
-5.2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??). Hint: use the `summarize` function.
+5.2. create a second data frame with summary statistics mean, median and SD of length. (what is interesting about this data??). (insert hint)
+
 ```{r ex5.2}
 #your code here
 
