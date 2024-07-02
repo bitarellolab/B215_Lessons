@@ -65,16 +65,15 @@ The apply function works with three main arguments: x, margin, and function. X s
 
 ```
 
-##### 2. Use lapply to find how many characters are in each name. 
+##### 2. Use lapply to find how many characters are in each sequencing fragment. 
 
-`lapply` works much the same as `apply` except the `margin` argument is not included, as lists and vectors are one dimensional. 
-Save as an object and then print. To count characters, you can use the `nchar` function.
-Here are your names, get counting
-`names_list <- list("Alessandra", "Penelope", "Meigui", "Tatiana", "Keisuke", "Nadia", "Amy")`
-
+`lapply` works much the same as `apply` except the `margin` argument is not included, as lists and vectors are one dimensional. Here let's say you have a list of fragments from sequencing a genome you're interested in studying. You want to know how many base pairs long each fragment is. We can use `lapply` and the `nchar` function to determine this.
+Here are your fragments, get counting
+`fragments_list <- list("AGGCTATGACC", "TCCGAT", "TTTTAGATTCATGACCCAG", "GATCA", "AAGCTAGATCAA", "GCCCCAT", "CCCTAG")`
+Save your results as an object and then print.
 
 ```{r ex2}
-#type your code here
+#
 
 ```
 What is different about this output? 
