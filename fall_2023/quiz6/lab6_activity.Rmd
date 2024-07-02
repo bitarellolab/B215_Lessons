@@ -234,7 +234,7 @@ human_genes_summ_v2 <- human_genes2 %>% #get summaries for the pop
     MedianLength = median(size),
     SDLength = sd(size),
 )
-#get the three smaples
+#get the three samples
 mean10_v2<-mean(sample(human_genes2$size, 10, replace = TRUE))
 mean100_v2<-mean(sample(human_genes2$size, 100, replace = TRUE))
 mean1000_v2<-mean(sample(human_genes2$size, 1000, replace = TRUE))
