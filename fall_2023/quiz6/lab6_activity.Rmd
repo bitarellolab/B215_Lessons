@@ -267,7 +267,7 @@ This process of taking the mean of the samples, and generating a sample of these
 **Ex.7)**. We want to compare our samples to see which sample size got closest to our population mean. You are going to make a histogram of these means. 
 
 
-7.1 It's probably a good idea to start with making a data frame of our values. Take the vectors you just made and make one column called "mean" and another column with the corresponding sample size called "sample_size." You're going to have to make this a factor for the graphs to turn out right, this is because the 3 sample sizes are our different categories which we will compare.  You also need to nestle the functions `rep` inside your factor call, with the argument `each = 100`.
+7.1 It's probably a good idea to start with making a data frame of our values. Take the vectors you just made and make one column called "mean" and another column with the corresponding sample size called "sample_size." You're going to have to make this a factor for the graphs to turn out right, this is because the 3 sample sizes are our different categories which we will compare.  You also need to nestle the functions `rep` inside your factor call, with the argument `each = 100` so that each sample size is repeated 100 times to correspond to the 100 means we have for each sample size.
 Call your data frame `mean_data`. 
 
 
