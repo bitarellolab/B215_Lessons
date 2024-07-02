@@ -150,7 +150,7 @@ sample(, size=, replace=) #conduct your sample
 ```
 
 
-Now lets try and do this same thing with a for loop. Make an empty vector called `all_tosses` and use the loop to generate 10 coin tosses within it. all_tosses will be indexed by the sequence in the for loop, filled by one number on each iteration. Also, keep in mind, because you are looping over the sample you are only sampling one toss each time. 
+Now lets try and do this same thing with a for loop. Make an empty vector called `all_tosses` and use the loop to generate 10 coin tosses within it. all_tosses will be indexed by the sequence in the for loop, filled by one number on each iteration. Also, keep in mind, because you are looping over the sample you are only sampling one toss each time. (insert hint) 
 
 
 ```{r ex4.2}
