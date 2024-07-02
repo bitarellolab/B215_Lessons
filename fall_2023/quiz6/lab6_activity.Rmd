@@ -245,7 +245,7 @@ There we go! As expected, the greater sample size led to a smaller difference to
 
 **Ex.6)** Now let's combine this with the skills you learned in loops. You are going to take 100 samples of each of those sample sizes to compare
 
-6.1 First you want to create 3 vectors to store each of your results. Them mean_values_10 etc.
+6.1 First you want to create 3 vectors to store each of your results. You can use the function `numeric()` to generate vectors of the desired length, which will here be filled with 0s and after you perform your loop, the 0s will be replaced with samples. They act like the placeholder vectors we used earlier when exploring loops. Name them mean_values_10 etc.
 
 ```{r ex6.1}
 #your code here
