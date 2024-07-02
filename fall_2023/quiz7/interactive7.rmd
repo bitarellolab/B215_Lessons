@@ -73,7 +73,11 @@ Here are your fragments, get counting
 Save your results as an object and then print.
 
 ```{r ex2}
-#
+#paste fragments_list
+
+#use lapply and save the results
+
+#print your results
 
 ```
 What is different about this output? 
