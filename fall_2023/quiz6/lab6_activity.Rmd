@@ -288,7 +288,7 @@ Call your data frame `mean_data`.
 ```
 
  
-7.3 This is a bit hard to read. Let's add some detail. Inside geom_histogram, change position to "fill", and both alpha to 0.4 and binwidth to 30.
+7.3 This is a bit hard to read. Let's add some detail. Inside geom_histogram, change position to "identity", and both alpha to 0.4 and binwidth to 30.
 
 
 
