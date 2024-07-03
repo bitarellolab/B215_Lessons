@@ -398,14 +398,13 @@ head(bat_tongue)
 write.csv(x = bat_tongue, file = "my_bat_tongues.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
 ```
 
-The tidyr package includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
-
-Let's practice these functions on the 
-
 **Warning**: you can't actually write files while using this interactive activity, but within R, later, you can. When you do this, look at the `files` pane on the right and you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
 
 **NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!**
 
+You don't want to change raw data because it is important to conserve the original data that you input into R for both reproducibility and legal purposes.
+
+The tidyr package includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
 
 ### Creating a data file
 
