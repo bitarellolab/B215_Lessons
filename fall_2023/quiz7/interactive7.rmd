@@ -87,20 +87,19 @@ Correct, it's a list!
 
 #### 3. Comparing `apply` and `for` loops 
 
-
-You're a teacher and you've just given your students a test. The test scores are stored in a matrix where each row represents a student and each column represents a test question. Calculate the average score for each student using both apply and a for loop. 
-Your matrix is called scores and has all the information you need. 
+You're a researcher studying the effect of
+ 
 
 
 
 ```{r setupex3}
-scores <- matrix(c(85, 90, 78, 88, 
+cells <- matrix(c(85, 90, 78, 88, 
                    92, 80, 95, 90, 
                    60, 55, 78, 84), 
                  nrow=3, byrow=TRUE)
-colnames(scores) <- c("Math", "English", "Biology", "History")
-rownames(scores) <- c("Alice", "Bob", "Charlie")
-print(scores)
+colnames(cells) <- c("Math", "English", "Biology", "History")
+rownames(cells) <- c("Trial 1", "Trial 2", "Trial 3")
+print(cells)
 
 
 ```
