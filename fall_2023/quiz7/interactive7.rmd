@@ -111,7 +111,7 @@ First use the new functions you learned to find the average test score for each 
 
 ```{r. ex3.1}
 #use apply
-apply(X=scores, MARGIN=1,)
+
 
 ```
 
