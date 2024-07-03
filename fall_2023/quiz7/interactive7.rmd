@@ -87,7 +87,7 @@ Correct, it's a list!
 #### 3. Comparing `apply` and `for` loops 
 
 
-You're a researcher studying  Calculate the average score for each student using both apply and a for loop. 
+Calculate the average score for each student using both apply and a for loop. 
 Your matrix is called scores and has all the information you need. 
 
 
