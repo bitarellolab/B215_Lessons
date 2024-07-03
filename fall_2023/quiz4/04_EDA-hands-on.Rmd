@@ -134,7 +134,7 @@ Answer:
 
 Answer: 
 
-**Ex.5)** What are the classes of each variable in `mass_metabolism`? 
+**Ex.5)** What are the classes of each variable in `mass_metabolism`?
 
 ```{r ex5,echo=TRUE, eval=TRUE}
 # type your code here
@@ -144,8 +144,11 @@ Answer:
 
 Answer: 
 
-
-**Ex.6)** Convert the `family` column into the `factor` data type and assign that new object to `mass_metabolism2`. Use the function `mutate` to accomplish this change. What are the levels of the variable `family?`. Hint, you can figure this out with the command `levels(your_object_name)`. Save the levels into an object called `mass_metab_levels`
+**Ex.6)** 
+Convert the `family` column into the `factor` data type 
+and assign that new object to `mass_metabolism2`. 
+ 
+What are the levels of the variable `family?`. 
 
 ```{r ex6,echo=TRUE, eval=TRUE}
 # type your code here
@@ -157,7 +160,7 @@ Answer:
 
 
 
-**Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the two and why?
+**Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the output provided for each variable and why?
 
 ```{r ex7,echo=TRUE, eval=TRUE}
 # type your code here
@@ -178,7 +181,7 @@ Answer:
 Answer:
 
 
-**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
+**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge? Tip: This is one of the first more complicated multi-step analyses you're completing, now would be a great time to practice those commenting skills! (Insert hint)
 
 
 ```{r ex9, echo=TRUE, eval=TRUE}
@@ -187,13 +190,15 @@ Answer:
 ```
 
 
-**Ex.10)** Make a plot for body mass for members of the `Bovidae` family only. What does this distribution look like? Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+**Ex.10)** Make a plot for body mass for members of the `Bovidae` family only. What type of plot would work best for this data? What does this distribution look like?
 
 
 ```{r ex10,echo=TRUE, eval=TRUE}
 #type your code here
 
 ```
+
+You may have noticed a message from R that asks you to adjust the bins. Feel free use the `bins = ` parameter in your geom and see how that impacts the display of your data, 
 
 **Ex.11)** Explore the variable `metabolic_rate`. What is the range of the values? Save your answer into a variable called `range_metab`. Then, create a separate object called `range_metab_bovidae` containing the metabolic rate range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
 
@@ -205,7 +210,7 @@ Answer:
 
 Answer:
 
-**Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+**Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? If you're feeling confident, try getting the data of interest and piping it right into ggplot, rather than making an intermediate variable!
 
 
 ```{r ex12,echo=TRUE, eval=TRUE}
@@ -228,7 +233,9 @@ Answer:
 Answer:
 
 
-**Ex.14)** Make a plot of body mass vs. metabolic rate, with log10 scaled axes (this stretches the axis, but keeps the numbers on the original scale), and the point size set to 3. Hint: use `scale_y_continuous(trans='log10')` and `scale_x_continuous(trans='log10')`. You may need to read a little about what these do.
+
+
+**Ex.14)** Make a plot of body mass vs. metabolic rate, with log10 scaled axes (this stretches the axis, but keeps the numbers on the original scale), and the point size set to 3. Hint: use `scale_y_continuous(trans='log10')` and `scale_x_continuous(trans='log10')`. (permalink back to Lab 3)
 
 
 ```{r ex14,echo=TRUE, eval=TRUE}
