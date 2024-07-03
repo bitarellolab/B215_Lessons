@@ -245,7 +245,7 @@ Answer:
 ```
 
 
-**Ex.15)** Make the same plot as in Ex. 14, but with the different families indicated using color.
+**Ex.15)** Make the same plot as in Ex. 14, but with the different families indicated using color. You might also try making the labels clearer or playing with the themes.
 
 
 ```{r ex15,echo=TRUE, eval=TRUE}
@@ -253,14 +253,14 @@ Answer:
 
 ```
 
-**Ex.16)** Make the same plot as in Ex.14, but with the different families each in their own subplot. Hint: to achieve this, use `facet_wrap`.
+**Ex.16)** Make the same plot as in Ex.14, but with the different families each in their own subplot. 
 
 ```{r ex16,echo=TRUE, eval=TRUE}
 #type your code here
 
 ```
 
-**Ex.17)** Using `group_by`, `summarise`, and `group_by`, calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero?
+**Ex.17)** Using `group_by`, `summarise`, and `n()`, calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero?
 
 
 ```{r ex17,echo=TRUE, eval=TRUE}
@@ -275,7 +275,7 @@ Answer:
 Dr. Granger is interested in studying the factors controlling the size and carbon storage of shrubs. She has conducted an experiment looking at the effect of three different treatments on shrub volume at four different locations. The data are in the file `shrub-volume-data.csv` in your workspace files.
 
 
-**Ex.18)** Using the previous activity (Ex. 2-6) as guide, read in the data and assing it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make
+**Ex.18)** Using the previous activity (Ex. 2-6) as guide, read in the data and assign it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make
 sense and save the new object to `shrubs2`. Then, run summary on both `shrubs` and `shrubs2`
 
 ```{r ex18,echo=TRUE, eval=TRUE}
@@ -300,14 +300,14 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.20)** Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
+**Ex.20)** Create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment. insert hint
 
 ```{r ex20,echo=TRUE, eval=TRUE}
 #type your code here
 
 ```
 
-**Ex.21)** Add a new column named `area` containing the area of the shrub, which is the `length` times the `width` (using `mutate`). Then, filter the data to include only plants with heights greater than 5 (using `filter`). Finally, sort the data by length (using `arrange`). Save the result into object `shrubs4`.
+**Ex.21)** Add a new column named `area` containing the area of the shrub, which is the `length` times the `width`. Then, filter the data to include only plants with heights greater than 5. Finally, sort the data by length. Save the result into object `shrubs4`. (insert hint)
 
 
 ```{r ex21,echo=TRUE, eval=TRUE}
@@ -316,7 +316,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.22)** Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2 (using `,` or `&` to include two conditions). Save the result into object `shrubs5`.
+**Ex.22)** Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2. Save the result into object `shrubs5`. Hint/link
 
 ```{r ex 22,echo=TRUE, eval=TRUE}
 #type your code here
@@ -324,7 +324,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex23)** Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3 (using `|` for `or`). Save the result into object `shrubs6`.
+**Ex23)** Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3. Save the result into object `shrubs6`. Hint/link
 
 
 ```{r ex23, echo=TRUE, eval=TRUE}
@@ -333,7 +333,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.24)** Filter the data in `shrubs` to remove rows with null values in the height column (using `!is.na`). 
+**Ex.24)** Filter the data in `shrubs` to remove rows with null values in the height column. Hint
 ```{r ex24,echo=TRUE, eval=TRUE}
 #type your code here
 
@@ -350,7 +350,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.26)** Save your new data frame as a cvs file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data! Remember: always keep the original raw data file unmodified. You can create as many modified files as you want, but don't mess with that one!
+**Ex.26)** Save your new data frame as a csv file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data! Remember: always keep the original raw data file unmodified. You can create as many modified files as you want, but don't mess with that one!
 
 
 
