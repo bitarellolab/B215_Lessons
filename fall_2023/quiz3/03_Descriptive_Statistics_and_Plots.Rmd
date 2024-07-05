@@ -559,7 +559,7 @@ filter(iris, Species == "virginica", Petal.Width<2)
 filter(iris, Species == "virginica" & Petal.Width<2) #this is the equivalent to the line above. "&" signifies AND in the world of logical operators, whereas | signifies OR.
 ```
 
-When filtering for more than one variable, make sure to make two completely separate logical statements. In the example above, this is pretty obvious as Petal.Width and Species come from different columns, but even if you wanted to filter for multiple Species, say 
+When filtering for more than one variable, make sure to make two completely separate logical statements. In the example above, this is pretty obvious as Petal.Width and Species come from different columns, but even if you wanted to filter for multiple Species, say virginica and setosa, you would need two complete logical statements separated by an `&` or a `,`.
 
 Like all dplyr functions, `filter()` returns a new data frame for you to save or use. It doesn't overwrite the old data frame.
 
