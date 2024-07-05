@@ -490,7 +490,7 @@ Let's use the `iris` dataset from the `datasets` package.
 
 ```{r iris-setup, echo = T}
 library(dplyr)
-data(datasets::iris)
+data(iris)
 ```
 
 Check the structure of the object with `str`, `head`, `summary`:
@@ -558,6 +558,8 @@ filter(iris, Species == "virginica", Petal.Width<2)
 #or
 filter(iris, Species == "virginica" & Petal.Width<2) #this is the equivalent to the line above. "&" signifies AND in the world of logical operators, whereas | signifies OR.
 ```
+
+When filtering for more than one variable, make sure to make two completely separate logical statements. In the example above, this is pretty obvious as Petal.Width and Species come from different columns, but even if you wanted to filter for multiple Species, say 
 
 Like all dplyr functions, `filter()` returns a new data frame for you to save or use. It doesn't overwrite the old data frame.
 
