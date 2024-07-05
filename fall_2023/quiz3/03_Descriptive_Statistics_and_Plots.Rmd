@@ -547,8 +547,6 @@ filter(iris, Species == "virginica")
 dplyr::filter(iris, Species == "virginica")
 ```
 
-Note that we wrote `Species == "virginica"` rather than `Species = "virginica"`, this is because of the aforementioned logical statements that `filter` operates on. Keeping this in mind will help you iterate on the uses of filter you're comfortable with and will help you to differentiate its syntax from other dplyr functions which accomplish similar things (i.e. select).
-
 What if you only wanted to see rows where the Species is "virginica" AND the Petal.Width is lower than 2?
 
 You can combine filters with `&`:
@@ -594,7 +592,7 @@ grade_this_code()
 
 Good job! You can now see the results by running the name `virg_filt` by itself. Or you can pass `virg_filt` to a function that takes data frames as input.
 
-Did you notice that this code used the double equal operator, `==`? `==` is one of R's logical comparison operators. Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
+Note that we wrote `Species == "virginica"` rather than `Species = "virginica"`, this is because of the aforementioned logical comparison operators that `filter` employs. Keeping this in mind will help you iterate on the uses of filter you're comfortable with and will help you to differentiate its syntax from other dplyr functions which accomplish similar things (i.e. select). Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
 
 Suppose you watnted to filter the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
 
