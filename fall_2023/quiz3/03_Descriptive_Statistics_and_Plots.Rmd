@@ -593,18 +593,16 @@ grade_this_code()
 Good job! You can now see the results by running the name `virg_filt` by itself. Or you can pass `virg_filt` to a function that takes data frames as input.
 
 Note that we wrote `Species == "virginica"` rather than `Species = "virginica"`, this is because of the aforementioned logical comparison operators that `filter` employs. Keeping this in mind will help you iterate on the uses of filter you're comfortable with and will help you to differentiate its syntax from other dplyr functions which accomplish similar things (i.e. select). Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
-
-Suppose you watnted to filter the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
+Try filtering the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
 
 ```{r filter3,  exercise=TRUE, exercise.setup="iris-setup"}
-filter(iris, Species == "virginica" | Species == "setosa")
+                    #filter for virginica or setosa
 ```
 
 To check that this worked you could save the output into a variable and then `table()` the `Species` column:
 
 ```{r filter4,  exercise=TRUE, exercise.setup="iris-setup"}
-virg_set_filt<-filter(iris, Species == "virginica" | Species == "setosa")
-table(virg_set_filt$Species)
+                    #use `table()` on the Species column
 ```
 
 
