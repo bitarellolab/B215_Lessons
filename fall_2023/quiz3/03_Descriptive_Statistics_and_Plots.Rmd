@@ -404,8 +404,9 @@ write.csv(x = bat_tongue, file = "my_bat_tongues.csv", quote = F, sep = ",") #wr
 
 You don't want to change raw data because it is important to conserve the original data that you input into R for both reproducibility and legal purposes.
 
-The tidyr package includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
+The tidyr package also includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
 
+ 
 ### Creating a data file
 
 When you have new data that you want to get into the computer in a format that R can read, it is often easiest to do this outside of R. A spreadsheet program like Excel (or a freely available program like OpenOffice Calc, Google sheets, etc) is a straightforward way to create a .csv file that R can read.
@@ -432,7 +433,7 @@ In the resulting file, the first line will be a header that lists the names of e
 
 #### A note about tibbles
 
-“Tibbles” are a new modern data frame. THey keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
+“Tibbles” are a new modern data frame. They keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
 
 
 If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble. Then, have a quick check to see what the file looks like.
