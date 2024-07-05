@@ -570,7 +570,7 @@ R uses boolean operators to combine multiple logical comparisons into a single l
 Both `|` and `xor()` will return TRUE if one or the other logical comparison returns TRUE. `xor()` differs from `|` in that it will return FALSE if both logical comparisons return TRUE. The name _xor_ stands for _exactly or_.
 
 
-We saw this in Lab1, so if you need to recap that, it might be a good idea...
+We saw this in Lab1, so if you need to recap that, it might be a good idea... (link)
 
 
 If you want to save the output of `filter()`, you'll need to use the assignment operator, `<-` (or `=`).
