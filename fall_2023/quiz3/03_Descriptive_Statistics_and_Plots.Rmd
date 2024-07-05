@@ -557,7 +557,7 @@ filter(iris, Species == "virginica", Petal.Width<2)
 filter(iris, Species == "virginica" & Petal.Width<2) #this is the equivalent to the line above. "&" signifies AND in the world of logical operators, whereas | signifies OR.
 ```
 
-When filtering for more than one variable, make sure to make two completely separate logical statements. In the example above, this is pretty obvious as Petal.Width and Species come from different columns, but even if you wanted to filter for multiple Species, say virginica and setosa, you would need two complete logical statements separated by an `&` or a `,`.
+In R, the order of operations doesn't work like English. Be sure to write out a _complete_ test on each side of a boolean operator. In the example above, this is pretty obvious as Petal.Width and Species come from different columns, but even if you wanted to filter for multiple Species, say virginica and setosa, you would need two complete logical statements separated by an `&` or a `,`. You can't write `filter(iris, Species == "setosa" | "virginica")`, even though you might say "finds all measurements from I. setosa or I. virginica".
 
 Like all dplyr functions, `filter()` returns a new data frame for you to save or use. It doesn't overwrite the old data frame.
 
@@ -605,12 +605,7 @@ To check that this worked you could save the output into a variable and then `ta
                     #use `table()` on the Species column
 ```
 
-
-**Common mistakes:**
-
-In R, the order of operations doesn't work like English. You can't write `filter(iris, Species == "setosa" | "virginica")`, even though you might say  "finds all measurements from I. setosa or I. virginica". Be sure to write out a _complete_ test on each side of a boolean operator.
-
-Here are two more tips to help you use logical tests and Boolean operators in R:
+Here are two tips to help you use logical tests and Boolean operators in R:
 
 
 1. A useful short-hand for this problem is `x %in% y`. This will select every row where `x` is one of the values in `y`. We could use it to rewrite the code in the question above:
