@@ -547,6 +547,8 @@ filter(iris, Species == "virginica")
 dplyr::filter(iris, Species == "virginica")
 ```
 
+Note that we wrote `Species == "virginica"` rather than `Species = "virginica"`, this is because of the aforementioned logical statements that `filter` operates on. Keeping this in mind will help you iterate on the uses of filter you're comfortable with and will help you to differentiate its syntax from other dplyr functions which accomplish similar things (i.e. select).
+
 What if you only wanted to see rows where the Species is "virginica" AND the Petal.Width is lower than 2?
 
 You can combine filters with `&`:
