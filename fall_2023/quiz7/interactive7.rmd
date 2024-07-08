@@ -86,7 +86,6 @@ Correct, it's a list!
 
 #### 3. Comparing `apply` and `for` loops 
 
-<<<<<<< HEAD
 You're a researcher studying the effect of
  
 =======
