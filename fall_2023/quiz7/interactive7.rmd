@@ -93,7 +93,7 @@ You're a researcher studying the effect of
 
 Calculate the average score for each student using both apply and a for loop. 
 Your matrix is called scores and has all the information you need. 
->>>>>>> 4e52fed26af54e1fa5dbaae3f9dd6950ae59d903
+
 
 
 
