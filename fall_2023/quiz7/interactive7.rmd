@@ -84,11 +84,16 @@ What is different about this output?
 Correct, it's a list!
 
 
-
 #### 3. Comparing `apply` and `for` loops 
 
+<<<<<<< HEAD
 You're a researcher studying the effect of
  
+=======
+
+Calculate the average score for each student using both apply and a for loop. 
+Your matrix is called scores and has all the information you need. 
+>>>>>>> 4e52fed26af54e1fa5dbaae3f9dd6950ae59d903
 
 
 
@@ -266,6 +271,7 @@ numbers <- c(-5, 3, 8, -2, 0, 7, -9)
 
 # a counter variable that will change each time the loop cycles
 positive_count <- 0
+#the for loop
 for (num in numbers) {
   if (num > 0) {
     positive_count <- positive_count + 1 #add 1 to positve_count if number if positive. Otherwise do nothing

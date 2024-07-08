@@ -387,26 +387,26 @@ grade_code()
 
 When handed data to analyze, it is good practice to ask yourself if it is tidy. If it isn't, you can modify it and save a new version after you've processed it. How?
 
-There are many ways but here is one. Let's say you wanted to change something about `bat.tongues` and then save that as a new file.
+There are many ways but here is one. Let's say you wanted to change something about `bat_tongue` and then save that as a new file.
 
 ```{r, eval=F}
-head(bat.tongues) #this you know
+head(bat_tongue) #this you know
 # change column name "species" to "Species"
-colnames(bat.tongues)[1]<-"Species" 
-head(bat.tongues)
+colnames(bat_tongue)[1]<-"Species" 
+head(bat_tongue)
 
-write.csv(x = bat.tongues, file = "my_bat_tongues.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
+write.csv(x = bat_tongue, file = "my_bat_tongues.csv", quote = F, sep = ",") #write a file with comma separated columns and do not quote characters/strings
 ```
-
-The tidyr package includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
-
-
 
 **Warning**: you can't actually write files while using this interactive activity, but within R, later, you can. When you do this, look at the `files` pane on the right and you should now see your file there. Voilà! You changed a dataset to your liking without changing the raw data. 
 
 **NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!NEVER CHANGE RAW DATA!!!!!**
 
+You don't want to change raw data because it is important to conserve the original data that you input into R for both reproducibility and legal purposes.
 
+The tidyr package also includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
+
+ 
 ### Creating a data file
 
 When you have new data that you want to get into the computer in a format that R can read, it is often easiest to do this outside of R. A spreadsheet program like Excel (or a freely available program like OpenOffice Calc, Google sheets, etc) is a straightforward way to create a .csv file that R can read.
@@ -433,7 +433,7 @@ In the resulting file, the first line will be a header that lists the names of e
 
 #### A note about tibbles
 
-“Tibbles” are a new modern data frame. THey keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
+“Tibbles” are a new modern data frame. They keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
 
 
 If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble. Then, have a quick check to see what the file looks like.
@@ -490,7 +490,7 @@ Let's use the `iris` dataset from the `datasets` package.
 
 ```{r iris-setup, echo = T}
 library(dplyr)
-data(datasets::iris)
+data(iris)
 ```
 
 Check the structure of the object with `str`, `head`, `summary`:
@@ -557,6 +557,8 @@ filter(iris, Species == "virginica", Petal.Width<2)
 filter(iris, Species == "virginica" & Petal.Width<2) #this is the equivalent to the line above. "&" signifies AND in the world of logical operators, whereas | signifies OR.
 ```
 
+In R, the order of operations doesn't work like English. Be sure to write out a _complete_ test on each side of a boolean operator. In the example above, this is pretty obvious as Petal.Width and Species come from different columns, but even if you wanted to filter for multiple Species, say virginica and setosa, you would need two complete logical statements separated by an `&` or a `,`. You can't write `filter(iris, Species == "setosa" | "virginica")`, even though you might say "finds all measurements from I. setosa or I. virginica".
+
 Like all dplyr functions, `filter()` returns a new data frame for you to save or use. It doesn't overwrite the old data frame.
 
 Caution! If you give `filter()` more than one logical test, `filter()` will combine the tests with an implied "and." In other words, `filter()` will return only the rows that return `TRUE` for every test. You can combine tests in other ways with Boolean operators...
@@ -566,7 +568,7 @@ R uses boolean operators to combine multiple logical comparisons into a single l
 Both `|` and `xor()` will return TRUE if one or the other logical comparison returns TRUE. `xor()` differs from `|` in that it will return FALSE if both logical comparisons return TRUE. The name _xor_ stands for _exactly or_.
 
 
-We saw this in Lab1, so if you need to recap that, it might be a good idea...
+We saw this in Lab1, so if you need to recap that, it might be a good idea... (link)
 
 
 If you want to save the output of `filter()`, you'll need to use the assignment operator, `<-` (or `=`).
@@ -590,27 +592,20 @@ grade_this_code()
 
 Good job! You can now see the results by running the name `virg_filt` by itself. Or you can pass `virg_filt` to a function that takes data frames as input.
 
-Did you notice that this code used the double equal operator, `==`? `==` is one of R's logical comparison operators. Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
-
-Suppose you watnted to filter the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
+Note that we wrote `Species == "virginica"` rather than `Species = "virginica"`, this is because of the aforementioned logical comparison operators that `filter` employs. Keeping this in mind will help you iterate on the uses of filter you're comfortable with and will help you to differentiate its syntax from other dplyr functions which accomplish similar things (i.e. select). Comparison operators are key to using `filter()`. Let's look at an example using the OR operator.
+Try filtering the rows of `iris` that have either "virginica" OR "setosa" in the `Species` column:
 
 ```{r filter3,  exercise=TRUE, exercise.setup="iris-setup"}
-filter(iris, Species == "virginica" | Species == "setosa")
+                    #filter for virginica or setosa
 ```
 
 To check that this worked you could save the output into a variable and then `table()` the `Species` column:
 
 ```{r filter4,  exercise=TRUE, exercise.setup="iris-setup"}
-virg_set_filt<-filter(iris, Species == "virginica" | Species == "setosa")
-table(virg_set_filt$Species)
+                    #use `table()` on the Species column
 ```
 
-
-**Common mistakes:**
-
-In R, the order of operations doesn't work like English. You can't write `filter(iris, Species == "setosa" | "virginica")`, even though you might say  "finds all measurements from I. setosa or I. virginica". Be sure to write out a _complete_ test on each side of a boolean operator.
-
-Here are two more tips to help you use logical tests and Boolean operators in R:
+Here are two tips to help you use logical tests and Boolean operators in R:
 
 
 1. A useful short-hand for this problem is `x %in% y`. This will select every row where `x` is one of the values in `y`. We could use it to rewrite the code in the question above:
