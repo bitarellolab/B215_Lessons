@@ -109,7 +109,7 @@ First use the new functions you learned to find the average amount of cells eate
 
 ```
 
-Now use a for loop. Remember to create blank variables first to store your information. You can call this one `averages`.
+Now use a for loop. Remember to create blank variables first to store your information. You can call this one `averages`. Hint
 
 
 
