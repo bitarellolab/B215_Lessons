@@ -86,30 +86,20 @@ Correct, it's a list!
 
 #### 3. Comparing `apply` and `for` loops 
 
-You're a researcher studying the effect of 
- 
-
-
-Calculate the average score for each student using both apply and a for loop. 
-Your matrix is called scores and has all the information you need. 
-
-
-
+Let's compare using `apply` and `for` loops with an example adapted from real biological research. Recall the phagocyte data from Dr. Williamson's lab which we looked at in Lab Assignment 1. If you need a refresher, here is a link to a description of the project and original data. Below, is a model of that data on a much smaller and simplified scale. Imagine that you are a researcher working in Dr. Williamson's lab and you are tasked with observing a subset of the phagocyte replicates. The matrix below contains your sample with the three replicates and the amount of cells they ate at each level of surface stiffness (pmds).    
 
 ```{r setupex3}
-phagocite <- matrix(c(3, 9, 7, 8, 
+phagocyte <- matrix(c(3, 9, 7, 8, 
                       7, 2, 1, 1, 
                       6, 5, 8, 4), 
                  nrow=3, byrow=TRUE)
-colnames(cells_stiffness) <- c("15", "69", "300", "2280")
-rownames(replicate) <- c("1", "2", "3")
-print(phagocite)
-
-
+colnames(phagocyte) <- c("pmds_15", "pmds_69", "pmds_300", "pmds_2280")
+rownames(phagocyte) <- c("rep_1", "rep_2", "rep_3")
+print(phagocyte)
 ```
 
 
-First use the new functions you learned to find the average test score for each student. 
+First use the new functions you learned to find the average amount of cells eaten for each student. 
 
 
 
@@ -124,14 +114,14 @@ Now use a for loop. Remember to create blank variables first to store your infor
 
 
 ```{r ex3.2}
-#first count the number of scores in scores and save it as num_students
+#first count the number of cell counts in phagocytes and save it as num_cells
 
-num_students<-nrow(scores)
-#create blank variable called averages. Make it numeric with as many elements as num_students
+num_cells<-nrow(phagocytes)
+#create blank variable called averages. Make it numeric with as many elements as num_cells
 
 averages<-c()
 
-#create your for loop to iteratively calculate the mean score for each student and store it in different positions of the object averages
+#create your for loop to iteratively calculate the mean cells eaten for each replicate and store it in different positions of the object averages
 
 #name the object averages using the rownames of object scores
 
@@ -141,13 +131,13 @@ averages<-c()
 
 
 
-* Which of these was easier for you? Which student is doing the best?
+* Which of these was easier for you? Which replicate had the most cells eaten?
 
 
-* Which class do you think is hardest? Lets do the process again to find the average (mean) for each class
+* Does one level of surface stiffness allow more phagocytosis than others? Lets do the process again to find the average (mean) for each stiffness level
 
 
-First use `apply` and save the results in an object called `class_averages_apply`:
+First use `apply` and save the results in an object called `cell_averages_apply`:
 
 ```{r ex3.3}
 #create object
@@ -156,20 +146,20 @@ First use `apply` and save the results in an object called `class_averages_apply
 
 ```
 
-Then use a `for` loop and save the results in an onject called `class_averages_loop`:
+Then use a `for` loop and save the results in an object called `cell_averages_loop`:
 
 ```{r ex3.4}
 
-#first count the number of subjects in the scores matrix and save it as num_subjects:
+#first count the number of stiffness levels in the scores matrix and save it as num_stiffness:
 
-#create blank variable called class_averages_loop. Make it numeric with as many elements as num_subjects
+#create blank variable called cell_averages_loop. Make it numeric with as many elements as num_stiffness
 
-#create your for loop to iteratively calculate the mean score per subject
-
-
+#create your for loop to iteratively calculate the mean cells eaten per stiffness level
 
 
-#name the object class_averages_loop using the colnames of object scores
+
+
+#name the object cell_averages_loop using the colnames of object phagocyte
 
 #print your object
 ```
