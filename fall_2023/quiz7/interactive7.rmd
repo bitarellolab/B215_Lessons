@@ -375,8 +375,7 @@ Lets first make a data frame of all the information we will need for the chart. 
 ```
 
 
-Amazing! Now make a strip chart using this data frame. Don't worry about CI yet. Just make a simple plot using geom_point() for each of the means, grouped by sample size. Add labels though. See the expected output document for inspiration.
-
+Amazing! Now make a strip chart using this data frame. Don't worry about CI yet. Just make a simple plot using geom_point() for each of the means, grouped by sample size. Add accurate and descriptive labels. 
 
 ```{r ex8.2}
 #first, make sure SampleSize is treated as a factor
