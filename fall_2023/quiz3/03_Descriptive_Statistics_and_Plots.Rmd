@@ -696,7 +696,7 @@ The main difference between `summarise()` and `mutate()` is the type of function
 
 ### `group_by()`
 
-`summarise()` is even. more useful you pair it with `group_by()`. `group_by()` changes the unit of analysis of the data frame: it assigns observations in the data frame to separate groups, and it instructs dplyr to apply functions separately to each group. `group_by()` assigns groups by grouping together observations that have the same combinations of values for the variables that you pass to `group_by()`.
+`summarise()` is even more useful when you pair it with `group_by()`. `group_by()` changes the unit of analysis of the data frame: it assigns observations in the data frame to separate groups, and it instructs dplyr to apply functions separately to each group. `group_by()` assigns groups by grouping together observations that have the same combinations of values for the variables that you pass to `group_by()`.
 
 Example: if we group titanic passengers by sex, we can then look at the mean age for each group:
 
@@ -734,11 +734,7 @@ arrange(iris, -Petal.Length) #this arranges it by descending petal length values
 
 ### Using the pipe `%>%` operator
 
-In the previous section we learned how to do a bunch of things to data. For example, in our toad dataset, below, we
-
-Use the mutate() function made a new column for BMI by dividing weight by height.
-Sort the data with the arrange() function.
-We also saw how we could select() columns, and filter() for rows based on logical statements.
+In the previous section we learned how to do a bunch of things to data with tidyverse. 
 
 We did each of these things one at a time, often reassigning variables a bunch. Now, we see a better way, we combine operations with the pipe `%>%` operator.
 
