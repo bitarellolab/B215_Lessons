@@ -404,8 +404,8 @@ write.csv(x = bat_tongue, file = "my_bat_tongues.csv", quote = F, sep = ",") #wr
 
 You don't want to change raw data because it is important to conserve the original data that you input into R for both reproducibility and legal purposes.
 
-The tidyr package also includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer.
-
+The tidyr package also includes functions which we may use to manipulate structure of data. Particularly useful is the ability to change data between longer or wider formats using the functions `pivot_longer` and `pivot_wider`. We have discussed long format data above and `pivot-longer()` is the more typically used function, but certain instances of plotting and statistical testing may require you to widen your data (create more columns and less rows). There are other functions in R which can accomplish similar functions, but using the tidyr version is especially intuitive, `pivot_wider()` literally makes the table you're working with wider and `pivot_longer()` makes it longer. They function by pivoting around the values in either the names of columns or the data within.
+`pivot_longer()` employs the arguments `names_to` and `values_to`, while `pivot_wider()` uses `names_from()` and `values_from()`.
  
 ### Creating a data file
 
