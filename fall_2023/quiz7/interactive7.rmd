@@ -310,7 +310,7 @@ For a real experiment you would just deal with that. For our purposes, you shoul
 ```
 
 
-Run the loop you wrote last week and investigate the means now that we have filtered the data. This was the loop where you took 100 samples of three different sizes: 10, 100, 1000, with replacement, and calculated their means. Run that loop again here with this filtered dataset and look at sample sizes of 10, 50, and 500. What do you see?
+Run the loop you wrote last week and investigate the means now that we have filtered the data. This was the loop where you took 100 samples of three different sizes: 10, 100, 1000, with replacement, and calculated their means. Run that loop again here with this filtered dataset but take 1000 samples instead of 100. Look at sample sizes of 10, 50, and 500. What do you see?
 
 
 ```{r ex6.2}
