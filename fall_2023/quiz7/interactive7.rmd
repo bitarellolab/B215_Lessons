@@ -409,7 +409,7 @@ PS: ggplot also has an option for density plots.
 
 
 ```{r 9.1}
-#type your code here calling the function density on each of your mean_10, etc vectors and call them dense10, etcc\
+#type your code here calling the function density on each of your mean_10, etc vectors and call them dense10, etc
 
 
 ```
