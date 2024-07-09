@@ -285,7 +285,7 @@ numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 
 ## More work in sampling
-Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. 
+Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. The sampling distributions we created last week allow us to find the confidence interval for our means.
 
 
 #### 6. Revisiting human_genes
