@@ -360,16 +360,14 @@ Now, think about which one of them should have the lowest SEM? Now check if that
 Now we have these confidence intervals, and you didn't need a crazy formula or assumptions about the mean being normally distributed! You simply took samples with replacement and calculated your confidence intervals empirically - aka, you used bootstrapping! 
 
 
-
-
 #### 8. Lets add the CIs to a graph!
 
-Lets first make a data frame of all the information we will need for the chart. You need the following columns: SampleSize, MeanValues,  UpperCI and LowerCI. You can use the ones you've calculated above.
+Lets first make a data frame of all the information we will need for the chart. You need the following columns: SampleSize, MeanValues,  UpperCI and LowerCI. You can use the ones you've calculated above. (hint)
 
 
 ```{r ex8.1}
 
-#create a data.frame called df containing the columns listed above.
+#create a data frame called df containing the columns listed above.
 
 
 
