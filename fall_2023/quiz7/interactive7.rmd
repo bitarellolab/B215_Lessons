@@ -348,8 +348,7 @@ Congratulations! You just found the standard error by taking the standard deviat
 Now, think about which one of them should have the lowest SEM? Now check if that's true.  Does it match your expectations?
 
 
-2. Now lets find the 95% confidence intervals. Type ?quantile into your console to learn how to use this neat function. 
-Hint: We want 95% of the data to be within the intervals, so what should the quantiles be?
+2. Now lets find the 95% confidence intervals. (hint) Type ?quantile into your console to learn how to use this neat function. 
 
 ```{r ex7.2}
 #call them CI_10, CI_500, CI_500
