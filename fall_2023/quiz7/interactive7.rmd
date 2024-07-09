@@ -272,6 +272,7 @@ This loop adds one to the count for each positive number.
 
 #### 5. Write a loop telling me the sum of all the even numbers.
 
+Insert Hint
 ```{r ex5}
 # I gave you a bunch of random numbers. 
 numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
