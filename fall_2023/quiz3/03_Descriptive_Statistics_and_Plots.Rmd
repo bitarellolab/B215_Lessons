@@ -691,9 +691,8 @@ Notice that the syntax of `summarise()` is similar to `mutate()`. As with `mutat
 * The name of a data frame to transform
 * One or more column names to appear in the transformed output. Each column name is set equal to the R expression that will generate the content of the column.
 
-The main difference between `summarise()` and `mutate()` is the type of function that you use to generate the new columns. `mutate()` takes functions that return an entire vector of output (to append to the original data frame). `summarise()` takes functions that return a single value (or summary). These values will appear in a new data frame that has only one row.
+The main difference between `summarise()` and `mutate()` is the type of function that you use to generate the new columns. `mutate()` takes functions that return an entire vector of output which is appended to the original data frame (adding a new columns to the end). `summarise()` takes functions that return a single value (or summary). These values will appear in a new data frame that has as many rows as functions you perform on the original data. Unlike `mutate()` summarise will not add onto the old data set but create its own new data set with only the manipulated data you created within the function.
 
-`mutate()` will always return the new variables appended to a copy of the original data. If you want to return only the new variables, use `transmute()`. 
 
 ### `group_by()`
 
