@@ -736,7 +736,7 @@ arrange(iris, -Petal.Length) #this arranges it by descending petal length values
 
 In the previous section we learned how to do a bunch of things to data with tidyverse. 
 
-each of these manipulations were completed in isolation and if we wanted to save our changes to perform further manipulations we would have to create a bunch of new variables to save those changes in or nest functions in a complex manner.In this section, we will learn a better way, combining operations with the pipe `%>%` operator.
+each of these manipulations were completed in isolation and if we wanted to save our changes to perform further manipulations we would have to create a bunch of new variables to save those changes in or nest functions in a complex manner. In this section, we will learn a better way, combining operations with the pipe `%>%` operator.
 
 Say you want to string together a few things – like you want make a new tibble, called `sorted_titanic` by:
 
