@@ -295,8 +295,7 @@ Last class we compared the means of differently sized samples. Generally, the la
 The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. 
 
 For a real experiment you would just deal with that. For our purposes, you should filter the data set to only include genes smaller than 15000 base pairs. Load in your data and do this. You can keep it's name the same
-
-Note: This issue with the long genes is explained in the key for lab 6.
+.
 
 ```{r ex6.1}
 #load the readr library
