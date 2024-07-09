@@ -626,6 +626,8 @@ filter(df, x > 1)
 filter(df, is.na(x) | x > 1) #is.na(x) OR x >1
 ```
 
+You can also use the `!=` aka the "is not equal to" function to filter for all the rows in dataset without a specific value. This can be useful for when you move on to exploratory data analysis with real world data.
+
 Another useful dplyr filtering helper is `between()`. What does it do?
 
 ```{r filter6, exercise=TRUE}
