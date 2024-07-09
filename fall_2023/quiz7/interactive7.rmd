@@ -348,7 +348,7 @@ Congratulations! You just found the standard error by taking the standard deviat
 Now, think about which one of them should have the lowest SEM? Now check if that's true.  Does it match your expectations?
 
 
-2. Now lets find the 95% confidence intervals. To accomplish this, we will use the `quantile` function.  (hint) 
+2. Now lets find the 95% confidence intervals. To accomplish this, we will use the `quantile` function. The quantile function, as the name suggests, provides the numbers in a distribution which represent the bounds of a certain percentage of the data. For example, if you find the number which corresponds to a quantile of 0.3, all the numbers above that value in the distribution represent 70% of the data. Here, we will use it to find the middle 95% of the data, aka the 95% CI. `quantile` takes the arguments `x` and `probs = seq()`. `x`, as per usual, dictates the data the function will be performed on, in this case a sampling distribution. `probs = seq ()` takes the quantiles you want to find numbers for, if you put two in you can find upper and lower bounds for some middle percentage. (hint) 
 
 ```{r ex7.2}
 #call them CI_10, CI_500, CI_500
