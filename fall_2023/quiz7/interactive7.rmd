@@ -288,7 +288,9 @@ numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. 
 
 
-#### 6. Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. 
+#### 6. 
+
+Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. 
 
 The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. 
 
