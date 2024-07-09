@@ -654,9 +654,8 @@ iris_sepal <- select(iris,
 
 ### `mutate()`
 
-
 A data set often contains information that you can use to compute new variables. `mutate()` helps you compute those variables. Since `mutate()` always adds new columns to the end of a dataset, we'll start by creating a narrow dataset which will let us see the new variables.
-The code below creates two new variables with dplyr's `mutate()` function. `mutate()` returns a new data frame that contains the new variables appended to a copy of the original data set. Take a moment to imagine what this will look like, and then click "Run Code" to find out.
+
 ![](images/Screen Shot 2022-09-14 at 11.48.39 AM.png)
 
 
