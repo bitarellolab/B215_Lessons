@@ -260,7 +260,7 @@ numbers <- c(-5, 3, 8, -2, 0, 7, -9)
 # a counter variable that will change each time the loop cycles
 positive_count <- 0
 #the for loop
-for (num in numbers) {
+for (num in numbers) { #take note of the nested brackets!
   if (num > 0) {
     positive_count <- positive_count + 1 #add 1 to positve_count if number if positive. Otherwise do nothing
   }
