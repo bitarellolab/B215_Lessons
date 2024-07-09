@@ -388,7 +388,7 @@ Amazing! Now make a strip chart using this data frame. Don't worry about CI yet.
 
 ```
 
-Gorgeous. Now add your error bars. Use `geom_errorbar` to see the difference in those sample sizes. Add geom_errorbar after geom_point(). Inside aes(), use ymin and ymax with the lower and upper CIs, respectively.
+Gorgeous. Now add your error bars. Use `geom_errorbar` to see the difference in confidence interval of those sample sizes. Add geom_errorbar after geom_point(). Inside aes(), use ymin and ymax with the lower and upper CIs, respectively.
 
 ```{r ex8.3}
 #create your plot code here and save it as p2
