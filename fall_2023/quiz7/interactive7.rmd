@@ -285,7 +285,7 @@ numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 
 ## More work in sampling
-Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. The sampling distributions we created last week allow us to find the confidence interval for our means.
+Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. The sampling distributions we created last week allow us to find the confidence interval for our means. This section demonstrates using loops in R to find statictical meausres such as these, a more in depth explanation of these terms may be found here (insert link)
 
 
 #### 6. Revisiting human_genes
@@ -294,7 +294,7 @@ Last class we compared the means of differently sized samples. Generally, the la
 
 The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. 
 
-For a real experiment you would just deal with that, we touched on some of these options in the previous lab. For our purposes, you should filter the data set to only include genes smaller than 15000 base pairs. Load in your data and do this. You can keep it's name the same
+For a real experiment you would just deal with that, we touched on some of these options in the previous lab. For our purposes, you should filter the data set to only include genes smaller than 15000 base pairs. Load in your data and do this. You can keep it's name the same.
 .
 
 ```{r ex6.1}
