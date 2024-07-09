@@ -185,7 +185,7 @@ if (x > 5) {
 
 In the above code, since `x` is indeed greater than 5, the message "x is greater than 5" will be printed.
 
-Change `x` to a few different numbers to see how the output changes!
+The value of x doesn't chnage how the conditional statement works, just its output. Change `x` to a few different numbers to see how the output changes!
 
 ### 2. if-else Statement:
 There might be cases where you want to execute one set of instructions if the condition is `TRUE` and another set if it's `FALSE`. This is where the `if-else` statement comes in.
