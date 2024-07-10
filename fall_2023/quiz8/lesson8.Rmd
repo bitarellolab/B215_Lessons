@@ -470,7 +470,7 @@ calculate_area()
 * The body of the function checks whether both of them are null. That would be the case if the user did not specify either parameter when using the function -- a silly think to do!
 * we will use the `is.null()` function to check if both parameters are NULL. We will use \& to combine both statements since we are checking if both are NULL, not just one of them
 * If that is the case (that both are null), we want to tell the user they did something very wrong and that the function should just stop right there. We can do this using the `stop` command. 
-* Have a look at `?stop`. Look at the examples at the bottom. 
+* `stop` does just what you would think it does. When certain conditions are met `stop` makes the function abort what it would normally do and instead print a message to the user. We put the message as a character string inside the command. Take a look at the example below.
 
 
 
