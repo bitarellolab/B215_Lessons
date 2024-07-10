@@ -363,17 +363,6 @@ If we wanted to write a function that raises numbers to the nth power but we thi
 # try running it by passing a value to x and a value that is not 2 to power
 
 
-
-#call your function powerraiser_v2 to differentiate it from the previous powerraiser function
-
-
-# try running it by passing a value to x but not to power
-
-
-
-# try running it by passing a value to x and a value that is not 2 to power
-
-
 ```
 
 
