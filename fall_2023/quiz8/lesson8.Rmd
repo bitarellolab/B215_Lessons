@@ -284,7 +284,7 @@ Hint: You can copy and paste the code above and just edit it. The main change he
 ```
 
 ## Mulitple Arguments
-So far all of our functions have taken just one argument. What happens if we try to run our functions without passing any argument values to them?
+So far all of our functions have taken just one argument. But, in order to make a function which can convert both ways, we'll have to master multiple arguments. Before we jump right into that however, let's try to understand how R interprets arguments. What happens if we try to run our functions without passing any argument values to them?
 
 Try running `FtoC`, `CtoF`, and `classifyNumber`in two ways: a) without passing any arguments to the function; b) passing a value of `NULL` to the argument required by the function:
 
