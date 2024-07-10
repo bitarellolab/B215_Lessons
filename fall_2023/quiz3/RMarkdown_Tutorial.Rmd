@@ -14,4 +14,8 @@ header-includes:
 
 ```
  
- Welcome! This is a tutorial on R Markdown, which I've made in an R Markdown file! Now, as you're used to the tutorial format, you may be feeling a bit intimidated by this less structured mode of instruction, but I assure you, you will be doing the same coding you've always done, rmd files mostly change your formatting and the file is stored and exported. 
+ Welcome! This is a tutorial on R Markdown, which I've made in an R Markdown file! Now, as you're used to the tutorial format, you may be feeling a bit intimidated by this less structured mode of instruction, but I assure you, you will be doing the same coding you've done thus far, rmd files mostly change your formatting and the file is stored and exported. 
+ 
+## What is R Markdown?
+
+To start, let's talk about what an R Markdown file actually is. Markdown is a kind of file that exists beyond R itself, which allows you to integrate text with code.An Rmd is simply a markdown file made especially to work with R. In RStudio, you can create multiple rmds within a project, just like you can save multiple R scripts Right now, you are reading text which I have written in the text apparatus of R Markdown. 
