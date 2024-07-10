@@ -48,7 +48,7 @@ Today we are going to learn about functions! I am going to quote directly from t
 If this tutorial makes no sense to you, you can go read his.^[https://r4ds.hadley.nz/functions] 
 
 
-All the fun stuff you do with the `tidyverse` packages are just functions **someone else** built and published as a package. And now you are going to learn to do exactly the same thing. 
+All the fun stuff you do with the `tidyverse` packages are just functions **someone else** built and published as a package. And now you are going to learn to do exactly the same thing. (P.S. because of R's open source nature and the shared packages, you can look at the code that was used to make the tidyverse, and other R packages on the version-control/code publishing website Github. People are advanced coders can even make suggestions for improvements to the packages. If you're curious, go check it out!)
 
 So what is in a function? 
 
