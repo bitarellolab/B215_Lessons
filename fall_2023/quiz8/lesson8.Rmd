@@ -88,7 +88,7 @@ Run it in your console and then try this code:
 addNumbers(12, 865)
 ```
 
-Woah look at that! It added the numbers and printed the result. You could try again with other numbers but I think you get the idea. 
+Woah look at that! It added the numbers and printed the result. You could try again with other numbers but I think you get the idea. Notice that the syntax is similar to that of a loop, except obviously here we execute the action only once. Still, remembering the way you thought about constructing the body of a loop may be helpful as you learn to craft functions!
 
 Can you now make a basic function that multiplies two numbers and returns the result? Call it something like `multiplyNumbers`. 
 
