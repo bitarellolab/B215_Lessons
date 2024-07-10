@@ -473,7 +473,6 @@ calculate_area()
 * `stop` does just what you would think it does. When certain conditions are met `stop` makes the function abort what it would normally do and instead print a message to the user. We put the message as a character string inside the command. Take a look at the example below.
 
 
-
 ```{r}
 
 calculate_area<-function(width = NULL, length = NULL){
