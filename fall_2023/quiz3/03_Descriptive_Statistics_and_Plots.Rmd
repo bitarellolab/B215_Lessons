@@ -982,6 +982,8 @@ This is not great for seeing the points because they are on top of each other, s
 ```{r tita5,exercise=TRUE, exercise.setup="setupnum"}
 ggplot(titanicdata, aes(x=sex, y=age)) + geom_violin() + geom_jitter(width=0.2) #feel free to play with this width
 ```
+If there were even more data points than shown here, using `alpha` to make the points a bit transparent could also help legibility 
+
 ### Scatterplots
 The last graphical style that we will cover here is the scatter plot, which shows the relationship between two numerical variables.
 
