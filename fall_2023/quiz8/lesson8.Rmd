@@ -311,7 +311,7 @@ Many of the functions you use regularly have a bunch of arguments that you could
 
 For example, type `?mean` into your console and read the "arguments" portion of the help page. You probably only ever include the first argument, the values you want the mean of. But you have the option to exclude some percentage of the values or remove missing data (which we have done before). The values listed just above "arguments" in the help page indicate what the assumed default values are. For `mean`, these are: `x`, `trim=0`, `na.rm=FALSE`. If you run `mean(c(0,NA,3))` the function returns `NA` because `na.rm=FALSE` by default. But you can change this by setting it to true: `mean(c(0,NA,3), na.rm=TRUE)`, which returns the mean of 0 and 3, i.e., 1.5.
 
-Let's practice the concept of writing functions with more than one argument.
+Now that we know a bit more about how R sees arguments, let's practice the concept of writing functions with more than one argument.
 
 Below is a function that raises a number to the nth power.
 
