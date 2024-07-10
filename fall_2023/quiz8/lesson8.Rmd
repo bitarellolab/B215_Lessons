@@ -119,6 +119,7 @@ Write a simple function that takes in a value in Celsius and converts it into Fa
 
 
 #In the body of the function, write out the math of the conversion. 
+
 #Use the formula above to create a variable "f" to store the converted temperature.
 
 
