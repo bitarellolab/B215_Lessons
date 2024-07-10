@@ -1,0 +1,17 @@
+---
+title: "R Markdown Tutorial- In an R Markdown File!"
+author: "YOUR NAME"
+date: "`r Sys.Date()`"
+output: pdf_document
+#This code is from (jng, 2021) and is AMAZING! It automatically warps the text to fit the page
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r setup, echo=F}
+#knitr::opts_chunk(echo=T, eval=T)
+
+```
+ 
+ Welcome! This is a tutorial on R Markdown, which I've made in an R Markdown file! Now, as you're used to the tutorial format, you may be feeling a bit intimidated by this less structured mode of instruction, but I assure you, you will be doing the same coding you've always done, rmd files mostly change your formatting and the file is stored and exported. 
