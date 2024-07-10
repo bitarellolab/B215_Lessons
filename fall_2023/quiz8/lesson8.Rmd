@@ -391,7 +391,7 @@ area_function(2, 3)
 
 ```
 
-Be careful, though, when you don't spell out the arguments as we did above: `area_function(2,3)` instead of `area_function(x = 2, power = 3)`. In those cases, R assumes you are passing arguments in the order in which they are defined in the function. 
+Be careful, though, when you don't spell out the arguments as we did above: `area_function(2,3)` instead of `area_function(x = 2, power = 3)`. In those cases, R assumes you are passing arguments in the order in which they are defined in the function. Obviously that doesn't actually affect the result with something as simple as finding the area, but for more complex functions this order could be massively important for obtaining the results you're after.
 
 Below is an updated function of `area_function` which prints out what the `length` and `width` parameter values are, as well as the calculated `area`:
 
