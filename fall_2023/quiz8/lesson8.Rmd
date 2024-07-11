@@ -719,6 +719,31 @@ and then remember the full binomial equation:
 
 $$P[X]=\binom{n}{X}p^X(1-p)^{n-X}$$
 
+
+```{r}
+
+#manually
+#p of two children in one given month and 1 child not in the same month
+
+p<-1/12*1/12*11/12
+
+
+#but we need to take into account that there are different configurations that could lead to this. We can use choose() to give us the binomial coefficient
+
+binom_coef<-choose(n=3,k=2)
+
+#now multiply p and binom_coef to find that total probability
+
+print(p)
+print(binom_coef)
+print(p*binom_coef)
+
+# now try the much simpler method using dbinom()
+
+dbinom(x = 2, size = 3, prob = 1/12)
+```
+
+
 ### Example 2 with dbinom(): what is the probability of six successes in 27 trials, where p of success is 0.25.
 
 
@@ -748,30 +773,6 @@ Practice by finding these probabilities:
 ```
 
 
-
-
-```{r}
-
-#manually
-#p of two children in one given month and 1 child not in the same month
-
-p<-1/12*1/12*11/12
-
-
-#but we need to take into account that there are different configurations that could lead to this. We can use choose() to give us the binomial coefficient
-
-binom_coef<-choose(n=3,k=2)
-
-#now multiply p and binom_coef to find that total probability
-
-print(p)
-print(binom_coef)
-print(p*binom_coef)
-
-# now try the much simpler method using dbinom()
-
-dbinom(x = 2, size = 3, prob = 1/12)
-```
 
 
 Now practice:
