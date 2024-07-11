@@ -806,7 +806,7 @@ binom.test(x = 10, n = 25, p = 0.061,alternative = "two.sided", conf.level=0.99)
 
 Pratice:
 
-* I rolled my personal super special die 80 times during a boardgame and got a 6 in 19 of those. My buddies accuse me and say my die is perhaps too good to be true. I plead innocence and boast about my cosmic luck! What do you think?
+* I rolled my personal super special die 80 times during a boardgame and got a 6 in 19 of those. My buddies accuse me and say my die is perhaps too good to be true. I plead innocence and boast about my cosmic luck! What do you think? (hint)
 
 ```{r ex2.4}
 #null: ?
