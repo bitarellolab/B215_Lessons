@@ -623,12 +623,12 @@ That was quite a ride!
 
 Now lets go back to our temperature functions from earlier, having learned everything we need to make it two way. 
 ```{r}
-CtoF<-function(c){ 
+CtoF<-function(c){ #Celsius to Fahrenheit
 f<- (c *1.8) + 32
 return(f)
 }
 
-FtoC<-function(f){ 
+FtoC<-function(f){ #Fahrenheit to Celsius
 c<- (f-32)/1.8
 return(c)
 }
