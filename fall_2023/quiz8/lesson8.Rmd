@@ -900,7 +900,7 @@ $H_0:$ The proportion of readmission in the population is 0.124
 
 $H_A:$ The proportion of readmission in the population is not 0.124_
 
-Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. 
+Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. Remember to decide your alpha value before you run the test in order to make sure you're doing honest testing.
 
 ```{r ex2.8}
 # Binomial test of readmission status
