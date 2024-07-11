@@ -704,6 +704,7 @@ Congrats! you wrote a badass R function and you will never again need to google 
 
 
 ## Calculating binomial probabilities
+Before we dive into the case study, let's use some examples to familiarize ourselves with how the binomial functions in R work.
 
 ### Example 1 : what is the probability of six successes in 27 trials, where p of success is 0.25.
 
