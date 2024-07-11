@@ -109,7 +109,7 @@ To obtain these expected counts, multiply the vector of the expected proportions
 
 Now you can use the expected proportions and the total sample size to find the expected number (not proportion) of M&Ms of each color, given your sample size.
 
-* multiply your smaple size by the expected proportions to find the expected absolute values for each color
+* multiply your sample size by the expected proportions to find the expected absolute values for each color
 * save the output as `expected_counts`
 * look at the values
 * decide whether it's ok to proceed with a $\chi^2$ goodness-of-fit test or not, given the requirements above
