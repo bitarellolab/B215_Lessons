@@ -621,7 +621,7 @@ print(test3)
 
 That was quite a ride!
 
-Now lets go back to our temperature functions from earlier. 
+Now lets go back to our temperature functions from earlier, having learned everything we need to make it two way. 
 ```{r}
 CtoF<-function(c){ 
 f<- (c *1.8) + 32
