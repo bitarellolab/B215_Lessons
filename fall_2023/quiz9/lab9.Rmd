@@ -20,12 +20,11 @@ suppressMessages(library(readr))
 
 # Outline
 
-Today will be less about complicated coding and more about statistics. We will
-learn how to run:
+Today will be less about complicated coding and more about statistics. We will cover some brief statistical background for these tests but for a more in-depth overview and/or review, see these slides (link) 
 
+We will learn how to run:
 * One categorical variable: Chi-square goodness of fit tests
 * Two categorical variables: Risk ratio, Odds Ratio,Chi-square independence test; Fisher's test; G-test
-
 
 ---
 
