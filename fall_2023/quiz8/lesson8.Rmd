@@ -640,7 +640,7 @@ We want to make our **ONE BIG FUNCTION**:
 
 * call it `temp_conv` and define two parameters: `c` (celsius) and `f` (fahrenheit)
 * set both default values for the parameters to be `NULL`
-* use conditional statements to define what happens next: if provided temperature is in Celsius, convert it to fahrenheit and return the temperature in fahrenheit; if provided temperature is in Fahrenheit, convert it to Celsius and return the temperature in Celsius
+* use conditional statements to define what happens next: if provided temperature is in Celsius, convert it to Fahrenheit and return the temperature in fahrenheit; if provided temperature is in Fahrenheit, convert it to Celsius and return the temperature in Celsius
 * print helpful messages within each `if/else if` statement to help the user and yourself
 
 
