@@ -708,6 +708,8 @@ Before we dive into the case study, let's use some examples to familiarize ourse
 
 ### Example 1, by hand : finding the probability of 2 out of 3 children in a household being born in the same month.
 
+We'll start by using R to calculate binomial probabilities without the help of a function
+
 Remember the binomial coefficient:
 
 $$\binom{n}{X}=\frac{n!}{X!(n-X)!}$$, 
