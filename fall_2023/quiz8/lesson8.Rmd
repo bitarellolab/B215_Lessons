@@ -834,6 +834,7 @@ binom::binom.confint(131, n = 169, method = "ac")
 
 ```
 
+For more info or a refresher on Agresti-Coull and 95% CIs, check out this slideshow (link)
 
 ## Motivation
 
