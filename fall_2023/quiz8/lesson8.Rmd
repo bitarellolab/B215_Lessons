@@ -790,6 +790,8 @@ Now practice:
 
 ## Binomial test:
 
+Now we will move on to a different binomial function- `binom.test` used for conducting a binomial test. Instead of giving the probability that a certain number of successes will occur, it gives the probability that the number of successes provided came from a binomial distribution. The output of the function is. p-value from which we either accept or reject the null hypothesis. 
+
 #### Example: is finding 10 successes out of 25 trials different from expected number of successes if p of success is 0.061?
 
 
