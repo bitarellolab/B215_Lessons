@@ -700,6 +700,8 @@ Congrats! you wrote a badass R function and you will never again need to google 
 
 * Calculating proportion confidence intervals with the `binom` package functions.
 
+* If you need a refresher or are unfamiliar with the binomial test, these slides are a good explanation (link)
+
 
 ## Calculating binomial probabilities
 
