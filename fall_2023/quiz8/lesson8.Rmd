@@ -706,13 +706,23 @@ Congrats! you wrote a badass R function and you will never again need to google 
 ## Calculating binomial probabilities
 Before we dive into the case study, let's use some examples to familiarize ourselves with how the binomial functions in R work.
 
-### Example 1 : what is the probability of six successes in 27 trials, where p of success is 0.25.
+### Example 1, by hand : finding the probability of 2 out of 3 children in a household being born in the same month.
+
+Remember the binomial coefficient:
+
+$$\binom{n}{X}=\frac{n!}{X!(n-X)!}$$, 
+where X is the number of successes and n is the number of trials.
+
+and then remember the full binomial equation:
+
+$$P[X]=\binom{n}{X}p^X(1-p)^{n-X}$$
+
+### Example 2 with dbinom(): what is the probability of six successes in 27 trials, where p of success is 0.25.
 
 
 ```{r}
 dbinom(x = 6, size = 27, prob = 0.25)
 ```
-
 
 Practice by finding these probabilities:
 
@@ -736,17 +746,6 @@ Practice by finding these probabilities:
 ```
 
 
-
-### Example 2 : finding the probability of 2 out of 3 children in a household being born in the same month.
-
-Remember the binomial coefficient:
-
-$$\binom{n}{X}=\frac{n!}{X!(n-X)!}$$, 
-where X is the number of successes and n is the number of trials.
-
-and then remember the full binomial equation:
-
-$$P[X]=\binom{n}{X}p^X(1-p)^{n-X}$$
 
 
 ```{r}
