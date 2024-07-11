@@ -598,7 +598,7 @@ calculate_area_final<-function(width = NULL, length = NULL){
         }else{ #if all the previous statements are false, only remaining possibility is that neither is null.
                 area <- width * length
                 mess<-paste("Both width and length were defined. The area of the rectangle is:", area)
-                
+                print(mess)   
         }
          
         return(area)      
