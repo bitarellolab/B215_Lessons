@@ -65,9 +65,9 @@ Summarizing frequency data in a table is useful to see the data more concisely, 
 
 ```{r ex1.2}
 #create MMtable
-MMtable <- table(MMlist$color)
+
 #look at it
-MMtable
+
 ```
 
 This shows you how many M&Ms were blue, brown etc
