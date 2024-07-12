@@ -368,10 +368,10 @@ Notice that while the statistic value is correct, the p-value is different becau
 ---
 # Two categorical variables
 
-Here, we will learn how to look at, and test for, the association between two categorical variables. We’ll use the Titanic data set as an example, looking at the association between the sex of passengers and whether they survived the accident. Let’s read the data from the .csv file:
+Here, we will learn how to look at, and test for, the association between two categorical variables. Let's use an example from a cool 
 
 ```{r}
-titanicData <- read.csv("titanic.csv", stringsAsFactors = TRUE)
+brainData <- read.csv("titanic.csv", stringsAsFactors = TRUE)
 
 ```
 
