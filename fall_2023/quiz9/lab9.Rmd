@@ -162,7 +162,7 @@ Lastly, we need to find the p-value corresponding to this value, so:
 
 * define the degrees of freedom. Remember that for goodness of fit tests this is number of categories - 0 - 1. Use `length()` to find the number of categories in MMtable instead of manually typing that in. Save the degrees of freedom as `my_df`.
 
-* run the `pchisq` function and save the output as `my_pchisq`. Make sure you change the argument `lower.tail` to `FALSE`. Then print `my_pchisq`.
+* run the `pchisq` function and save the output as `my_pchisq`. Make sure you change the argument `lower.tail` to `FALSE`. This has to do with the chi squared distribution that we get these probabilities come from. We want to look at the upper tail of the distribution because we want the probability that we got the calculated chi squared value or greater. If we did not include this argument, then `pchisq` would return the probability that the chi squared statistic is the one we calculated or less. After running `pchisq`, print `my_pchisq`.
 
 
 ```{r ex1.8}
