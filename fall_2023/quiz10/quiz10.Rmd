@@ -49,6 +49,8 @@ bb_theme <-  theme_minimal()+
 * Decide whether a data set likely comes from a normal distribution
 * Transform non-normal data to become normal
 
+Relevant Slides: (Link)
+
 ---
 
 # Tutorial 
