@@ -718,7 +718,7 @@ First, do we meet the $\chi^2$ requirements?
 * no cell can have an expected frequency less than one
 
 
-If so, we can perform a $\chi^2$ contingency test to see if there is a statistically significant association between Ribavirin and survival. Set `correct=FALSE`.
+If so, we can perform a $\chi^2$ contingency test to see if there is a statistically significant association between Ribavirin and survival. For this analysis, lets say that our alpha value is 0.05. Set `correct=FALSE`.
 
 
 *Describe the result of your hypothesis test: what is the p-value? Is it statistically significant? What do you conclude about the evidence of an association between Ribavirin use and death?*
