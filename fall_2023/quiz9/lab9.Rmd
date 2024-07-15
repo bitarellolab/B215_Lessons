@@ -77,7 +77,7 @@ We can use a $\chi^2$ goodness-of-fit test to compare the frequencies in a set o
 
 The company says that the percentages are 24% blue, 14% brown, 16% green, 20% orange, 13% red and 13% yellow. This is our null hypothesis. Let’s test whether these proportions are consistent with the frequencies of the colors in this bag. R wants the proportions expected by the null hypothesis in a vector
 
-* create a vector containing the expected proportions of each color of M&Ms according to the null hypothesis, in the following order: blue, brown, green orange, red, yello
+* create a vector containing the expected proportions of each color of M&Ms according to the null hypothesis, in the following order: blue, brown, green orange, red, yellow
 * name this vector `expected_proportions`
 
 ```{r ex1.3}
@@ -160,7 +160,7 @@ Lastly, we need to find the p-value corresponding to this value, so:
 
 * now use the `pchisq` function to get the p-value. This function requires two arguments: the chi-square value ($q$) and the degrees of freedom ($df$). We have $q$ but we need to calculate $df$.
 
-* define the degrees of freedom. Remember that for goodness of fit tests this is nr of categories - 0 - 1. Use `length()` to find the number of categories in MMtable instead of manually typing that in. Save the degrees of freedom as `my_df`.
+* define the degrees of freedom. Remember that for goodness of fit tests this is number of categories - 0 - 1. Use `length()` to find the number of categories in MMtable instead of manually typing that in. Save the degrees of freedom as `my_df`.
 
 * run the `pchisq` function and save the output as `my_pchisq`. Make sure you change the argument `lower.tail` to `FALSE`. Then print `my_pchisq`.
 
