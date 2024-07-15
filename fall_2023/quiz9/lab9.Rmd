@@ -278,7 +278,7 @@ dpois(x = 3, lambda = 4.21)
 0:20
 ```
 
-We’ll need the probabilities for all possible values of x from 0 to 20 (because this was the largest value observed in the data, for more on why this is neccesary, reference the poisson distribution section of the slides). `dpois` rquires two arguments: a vector with the number of successes (0,1, and so on) and the lambda value, which we calculated above (it's the mean).
+We’ll need the probabilities for all possible values of x from 0 to 20 (because this was the largest value observed in the data, for more on why this is necessary, reference the poisson distribution section of the slides). `dpois` requires two arguments: a vector with the number of successes (0,1, and so on) and the lambda value, which we calculated above (it's the mean).
 
 * Create a vector containing numbers 0:20 and save it in an object `vals`
 * use the `dpois` function using as the `x` argument the vector you just created and the lambda value you calculated above to get the expected probabilities. Save this as `expected_extinction_probabilities`. Print it.
