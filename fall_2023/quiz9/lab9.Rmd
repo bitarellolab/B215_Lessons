@@ -452,7 +452,7 @@ It is much easier now to see in the graph that the majority of females survived 
 
 ### Odds ratios {-}
 
-One of the ways to measure the strength of the association between two categorical variables is an odds ratio.
+One of the ways to measure the strength of the association between two categorical variables is an odds ratio. This next section is going to cover a few ways to find odds ratio and relative risk. This in particular is a more tricky concept to grasp, so if you're not familiar I really recommend checking out the slides. 
 
 In R, the simplest way to estimate an odds ratio is to use the command `fisher.test()`. This function will also perform a Fisher’s exact test (more on that later and in slides). The input to this function is a contingency table like the one we calculated above. 
 * We’ll use the results in a couple of ways, so let’s save the results in an object. Call it `sex_survive_fisher`.
