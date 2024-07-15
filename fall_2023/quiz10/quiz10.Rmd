@@ -91,7 +91,7 @@ If you set the seed 123 and then run the code multiple times (always set the see
 
 ### `pnorm()`: Probabilities under the normal curve
 
-Often, we are interested in finding probabilities under the normal curve. The command `pnorm(Y)` gives the probability of obtaining a value less than Y under the normal distribution. Set the arguments `mean =` and `sd = `to the mean and standard deviate of the desired normal distribution. 
+Often, we are interested in finding probabilities under the normal curve. The command `pnorm(Y)` gives the probability of obtaining a value less than Y under the normal distribution. This works similarly to the `pchisq` function from Lab 9, except of course it takes from a normal rather than a chi squared distribution. This includes the specifications of the `lower.tail =` arguments. If yiu need to, return to Lab 9, or the slides for a refresher (link)Set the arguments `mean =` and `sd = `to the mean and standard deviate of the desired normal distribution. 
 
 E.g. NASA is obsessed with heights and deems men shorter than 157.5cm tall unfit to be pilots. Assuming NASA only recruits from the U.S. population and that the mean height of U.S. mean follows an approximately normal distribution with mean=177.6cm and standard deviation 9.7, what is the probability that a randomly selected man will be too short to be a pilot?
 
