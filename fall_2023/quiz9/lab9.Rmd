@@ -437,7 +437,7 @@ mosaicplot(sex_survive_table)
 ```
 
 
-This shows the basic pattern. However, this plot can be greatly improved by adding a couple of extra options, to specify color and axes labels. We can add the option color = c(“darkred”, “gold”) to tell R which colors to use for the different response variables. This is a vector of color names that R assigns in the same order as the order of the categories of the variable plotted on the vertical axis (the response variable) starting with the topmost. (R has many named colors, including all the basics like “red”, “orange”, “blue”, etc.)
+This shows the basic pattern. However, this plot can be greatly improved by adding a couple of extra options, to specify color and axes labels. We can add the option `color = c(“darkred”, “gold”)` to tell R which colors to use for the different response variables. This is a vector of color names that R assigns in the same order as the order of the categories of the variable plotted on the vertical axis (the response variable) starting with the topmost. (R has many named colors, including all the basics like “red”, “orange”, “blue”, etc.)
 
 We would also like the axes to have labels. We can specify these with xlab and ylab as options. Let’s simply call the x-axis “Sex” and the y-axis “Survival”.
 
