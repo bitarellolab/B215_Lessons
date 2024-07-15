@@ -86,7 +86,7 @@ Ex.1.1) Remember you can always set a seed to make your random sampling reproduc
 
 ```
 
-If you set the seed 123 and then run the code multiple times (always set the seed again before runnign the random sampling again), then you should always get the same result: `[1] 10.75810 12.07929 19.23483`. Try it a few times in the code block above.
+If you set the seed 123 and then run the code multiple times (always set the seed again before running the random sampling again), then you should always get the same result: `[1] 10.75810 12.07929 19.23483`. Try it a few times in the code block above.
 
 
 ### `pnorm()`: Probabilities under the normal curve
