@@ -475,7 +475,7 @@ Use $ to extract the `estimate` component from `sex_survive_fisher`. This will g
 
 ```
 
-Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This will give youu the 95% confidence interval for the odds ratio.
+Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This will give you the 95% confidence interval for the odds ratio.
 
 
 ```{r ex2.5}
