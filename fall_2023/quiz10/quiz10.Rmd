@@ -77,7 +77,7 @@ For example, the following command will give a vector of 20 random numbers drawn
 rnorm(n = 20, mean = 13, sd = 4)
 ```
 
-Ex.1.1) Remember you can always set a seed to make your random sampling reproducible:
+Ex.1.1) Remember you can always set a seed to make your random sampling reproducible (if you want a sampling and seed setting refresher you can go back to Lab 6!: Link)
 
 ```{r ex1.1}
 #set a seed with set.seed(). Use the numbers 123
