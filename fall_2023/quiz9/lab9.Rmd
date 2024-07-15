@@ -342,7 +342,7 @@ Note that these expected values are large enough to match the conditions of the 
 
 This correctly calculates our $\chi^2$ value as 23.939. The warning message in red is because one of the expected values is under 5, but because this occurred in less than 20% of the categories, it is fine to proceed.
 
-The degrees of freedom for this test are the number of categories minus the number of parameters estimated from the data minus one. We ended up using 8 categories and estimated one parameter from the data, so we have df = 8 – 1 – 1 = 6.
+The degrees of freedom for this test are the number of categories minus the number of parameters estimated from the data minus one. We ended up using 8 categories and estimated one parameter from the data (mean/lambda), so we have df = 8 – 1 – 1 = 6.
 
 ### pchisq() {-}
 
