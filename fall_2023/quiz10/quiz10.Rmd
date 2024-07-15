@@ -100,7 +100,7 @@ E.g. NASA is obsessed with heights and deems men shorter than 157.5cm tall unfit
 pnorm(q=157.5, mean = 177.6, sd = 9.7,lower.tail =T )
 ```
 
-Ex.1.2) NASA also doesn't like men who are too tall (similar restrictins are applied to women, by the way), and considers men above 190.5cm in height to be too tall. What is the probability that a randomly sampled U.S. man is too tall to be a pilot?
+Ex.1.2) NASA also doesn't like men who are too tall (similar restrictions are applied to women, by the way), and considers men above 190.5cm in height to be too tall. What is the probability that a randomly sampled U.S. man is too tall to be a pilot?
 
 ```{r ex1.2}
 #your code here
