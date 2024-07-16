@@ -30,6 +30,6 @@ a<- c(2, 5, 7, 6) #creating a vector called a
 print(a) #printing it
 ```
 
-Observe that the code chunks are grey and bounded by a sequence of 3 back ticks at the top and bottom of the chunk. The top boundary also has curly brackets, which in its most basic form contain just r, but you can add additional conditions which impact how the chunk functions, which we will get to later. To see how the chunks output our code, let's run our chunk. There are few ways to do that. We can use the the "Run" button at the top of the 
+Observe that the code chunks are grey and bounded by a sequence of 3 back ticks at the top and bottom of the chunk. The top boundary also has curly brackets, which in its most basic form contain just r, but you can add additional conditions which impact how the chunk functions, which we will get to later. To see how the chunks output our code, let's run our chunk. There are few ways to do that. We can use the "Run" button at the top of the 
 
 
