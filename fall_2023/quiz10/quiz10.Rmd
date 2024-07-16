@@ -200,12 +200,11 @@ What proportion of kittens have a gestation period longer than 62 days?
 ```
 
 
-Ex.1.6) The gestation period for cats has an approximate mean of 64 days and a standard deviation of 3 days, and the distribution of the gestation period is approximately Normal. What proportion of kittens have a gestation period between 62 days and 70 days? Round to two decimal places.
+Ex.1.6) The gestation period for cats has an approximate mean of 64 days and a standard deviation of 3 days, and the distribution of the gestation period is approximately Normal. What proportion of kittens have a gestation period between 62 days and 70 days? Round to two decimal places. (insert hint)
 
 ```{r ex1.6}
 #your code
-#hint: first find the probability the proportion > 62 days
-#then subtract the proportion > 70 days
+
 
 
 ```
