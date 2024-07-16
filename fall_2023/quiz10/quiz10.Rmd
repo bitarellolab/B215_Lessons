@@ -173,6 +173,8 @@ qnorm(.10)
 
 ### Practicing the basics!
 
+Let's try some examples of problems you might solve using the `_norm()` family. Try to determine which function is appropriate for obtaining the value of interest in each example.
+
 Ex.1.3) The gestation period for cats has an approximate mean of 64 days and a standard deviation of 3 days, and the distribution of the gestation period is approximately Normal. What gestation period best corresponds to the 25th percentile?
 
 ```{r ex1.3}
