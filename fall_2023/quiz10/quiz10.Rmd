@@ -274,7 +274,7 @@ Looking at this histogram, we see that the frequency distribution of the variabl
 
 * Is this a big deal? Is this deviation surprising? 
 * To find out we need to get a sense of the variability we expect from a normal distribution.
-* Note that, like the normal distribution, the frequency distribution has a large mode near the center of the distribution, frequencies mainly fall off to either side, and there are no outliers. This is close enough to normal that most methods would work fine.
+* Note that, like the normal distribution, the frequency distribution has a large mode near the center of the distribution, frequencies mainly fall off to either side, and there are no outliers. 
 
 
 ### QQ plot: a better way
