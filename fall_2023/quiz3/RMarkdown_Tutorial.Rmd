@@ -22,7 +22,10 @@ To start, let's talk about what an R Markdown file actually is. Markdown is a ki
 
 ```{r}
 #within the chunks, we can write and comment code as normal, let's use a very simple example to demonstrate how running code in the chunks works
-a<- c(2, 5, 7, 6)
+a<- c(2, 5, 7, 6) #creating a vector called a
+print(a) #printing it
 ```
+
+Observe that the code chunks are grey and bounded by a sequence of 3 back ticks at the top and bottom of the chunk. The top boundary also has curly brackets
 
 
