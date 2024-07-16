@@ -399,7 +399,7 @@ and least normal.
 * Most normal:
 * Least normal:
 
-Load thn data and then make histograms and QQ plots for each of these variables!
+Load the data and then make histograms and QQ plots for each of these variables!
 ```{r ex2.3}
 #code here
 #Load data from the datasets package
