@@ -123,7 +123,7 @@ dnorm(0) #gives you the same result
 
 $$f[x]=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 
-Typically when you’re trying to solve questions about probability using the normal distribution, you’ll often use `pnorm` instead of `dnorm`. One useful application of `dnorm`, however, is in creating a normal distribution plot in R. The following code illustrates how to do so:
+Typically when you’re trying to solve questions about probability using the normal distribution, you’ll often use `pnorm` instead of `dnorm` (link to slides about density plots). One useful application of `dnorm`, however, is in creating a normal distribution plot in R. The following code illustrates how to do so:
 
 ```{r}
 #Create a sequence of 100 equally spaced numbers between -4 and 4
