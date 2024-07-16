@@ -212,17 +212,11 @@ Ex.1.6) The gestation period for cats has an approximate mean of 64 days and a s
 Ex.1.7) An 1868 paper by German physician Carl Wunderlich reported, based on over a million body temperature readings, that healthy‑adult body temperatures are approximately Normal with mean $\mu=98.6$ degrees Fahrenheit (F) and standard deviation $\sigma=0.6$ F . This is still the most widely quoted result for human temperature.
 
 
-According to this study, what is the range of body temperatures that can be found in 95% of healthy adults? (We are looking for the middle 95% of the adult population.)
+According to this study, what is the range of body temperatures that can be found in 95% of healthy adults? (We are looking for the middle 95% of the adult population.) (Insert hint)
 
 ```{r ex1.7}
 #your code
-#first the upper range
-#Upper range: 1-(alpha/2)=0.975
-qnorm(p=0.975,mean=98.7, sd=0.6)
-#then the lower range
-#Lower range=alpha/2=0.025
-qnorm(p=0.025,mean=98.7, sd=0.6)
-#ANSWER: [97.52, 99.87]
+
 ```
 
 ---
