@@ -283,7 +283,7 @@ I am always surprised about how easily I can convince myself that a sample does 
 
 * While there are statistical procedures to test the null hypothesis that data come from a normal distribution, we almost never use these because a deviation from a normal distribution can be most important when we have the least power to detect it.
 * For that reason,we usually use **our eyes** (believe it or not), rather than null hypothesis significance testing to see if data are approximately normal.
-* Apart from a histogram (which we tend to overinterpret as not being "normal enough"), another graphical technique that can help us visualize whether a variable is approximately normal is called a quantile plot (or a **QQ plot**). 
+* Apart from a histogram (which we tend to over interpret as not being "normal enough"), another graphical technique that can help us visualize whether a variable is approximately normal is called a quantile plot (or a **QQ plot**). 
 
 The **QQ plot** shows the data on the vertical axis ranked in order from smallest to largest (“sample quantiles” in the figure below). On the horizontal axis, it shows the expected value of an individual with the same quantile if the distribution were normal (“theoretical quantiles” in the same figure). The QQ plot should follow more or less along a straight line if the data come from a normal distribution (with some tolerance for sampling variation).
 
