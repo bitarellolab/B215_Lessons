@@ -146,7 +146,7 @@ ggplot(df,aes(x=x, y=y)) +
 
 The function qnorm returns the value of the inverse cumulative density function (cdf) of the normal distribution given a certain random variable p, a population mean $\mu$ and population standard deviation $\sigma$. The syntax for using qnorm is as follows: `qnorm(p, mean, sd)` 
 
-Put simply, you can use qnorm to find out what the Z-score is of the pth quantile of the normal distribution.
+Put simply, you can use qnorm to find out what the Z-score is of the pth quantile of the normal distribution (z-score slides).
 
 E.g.:
 
