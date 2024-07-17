@@ -3,7 +3,7 @@ title: "R Markdown Tutorial- In an R Markdown File!"
 author: "YOUR NAME"
 date: "`r Sys.Date()`"
 output: pdf_document
-#This code is from (jng, 2021) and is AMAZING! It automatically warps the text to fit the page
+#This code is from (jng, 2021) and is AMAZING! It automatically wraps the text to fit the page
 header-includes:
   \usepackage{fvextra}
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
@@ -14,7 +14,7 @@ header-includes:
 
 ```
  
- Welcome! This is a tutorial on R Markdown, which I've made in an R Markdown file! Now, as you're used to the tutorial format, you may be feeling a bit intimidated by this less structured mode of instruction, but I assure you, you will be doing the same coding you've done thus far, rmd files mostly change your formatting and the file is stored and exported. (Fun fact, the tutorial based labs you're used to were actually still made using an R Markdown file, it was just modified with a package called learnr. We won't cover how to accomplish that in this course but that's just one example of all the cools things you can do with a mastery of R Markdown.) So, without further ado, let's dive in.
+Welcome! This is a tutorial on R Markdown, which I've made in an R Markdown file! Now, as you're used to the tutorial format, you may be feeling a bit intimidated by this less structured mode of instruction, but I assure you, you will be doing the same coding you've done thus far, rmd files mostly change your formatting and the way in which your file is stored and exported. (Fun fact, the tutorial based labs you're used to were actually still made using an R Markdown file, it was just modified with a package called learnr. We won't cover how to accomplish that in this course but that's just one example of all the cools things you can do with a mastery of R Markdown.) So, without further ado, let's dive in.
  
 ## What is R Markdown?
 
@@ -30,7 +30,9 @@ a<- c(2, 5, 7, 6) #creating a vector called a
 print(a) #printing it
 ```
 
-  Observe that the code chunks are grey and bounded by a sequence of 3 back ticks at the top and bottom of the chunk. The top boundary also has curly brackets, which in its most basic form contain just r, but you can add additional conditions which impact how the chunk functions, which we will get to later. 
-  To see how the chunks output our code, let's run our chunk. There are few ways to do that. We can use the "Run" button at the top right of the panel we have the Rmd file in. If you click the drop down arrow on the "Run" button you will see there's quite a few options for running chunks, along with keyboard shortcuts for each associated action, in case you get tired of using the buttons. Take a minute now to play around with those buttons, selecting certain lines of code in your chunk to run or running the code in its entirety.     
+Observe that the code chunks are grey and bounded by a sequence of 3 back ticks at the top and bottom of the chunk. The top boundary also has curly brackets, which in its most basic form contain just r, but you can add additional conditions which impact how the chunk functions, which we will get to later. 
 
+To see how the chunks output our code, let's run our chunk. There are few ways to do that. We can use the "Run" button at the top right of the panel we have the Rmd file in. If you click the drop down arrow on the "Run" button you will see there's quite a few options for running chunks, along with keyboard shortcuts for each associated action, in case you get tired of using the buttons. Take a minute now to play around with those buttons, selecting certain lines of code in your chunk to run or running the code in its entirety. There is also a simple way to run the code in the chunk within the chunk itself. The rightmost symbol on the topmost line of the chunk is a green triangle, which when pressed will run the chunk in its entirety. This is the most common way that I run code when I use RMD files, but feel free to try out the different methods and decide which one works best for you. 
+  
+Now that we've gone over how to run our code chunk, let us turn to the output of running said chunk. In the example above, I created a vector which I named `a` and then printed it. Recall Lab 1 and instructions on the layout of R Studio. Because we're working in an RMD you can actually see the Console, Environment, and available files as you work. When you run the line creating the vector, it copies the code down into the console and adds the variable `a` into your environment. When you run the line which prints `a` the vector appears in the RMD, in a box just below the chunk itself. Certain functions (especially in dplyr, which we will get to in the rest of Lab 3 today), display results directly in the file without the use of `print()`. This output is relevant because the aforementioned chunk customization has to do with 
 
