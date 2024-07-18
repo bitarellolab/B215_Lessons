@@ -48,7 +48,7 @@ Today we are going to learn about functions! I am going to quote directly from t
 If this tutorial makes no sense to you, you can go read his.^[https://r4ds.hadley.nz/functions] 
 
 
-All the fun stuff you do with the `tidyverse` packages are just functions **someone else** built and published as a package. And now you are going to learn to do exactly the same thing. 
+All the fun stuff you do with the `tidyverse` packages are just functions **someone else** built and published as a package. And now you are going to learn to do exactly the same thing. (P.S. because of R's open source nature and the shared packages, you can look at the code that was used to make the tidyverse, and other R packages on the version-control/code publishing website Github. People are advanced coders can even make suggestions for improvements to the packages. If you're curious, go check it out!)
 
 So what is in a function? 
 
@@ -88,7 +88,7 @@ Run it in your console and then try this code:
 addNumbers(12, 865)
 ```
 
-Woah look at that! It added the numbers and printed the result. You could try again with other numbers but I think you get the idea. 
+Woah look at that! It added the numbers and printed the result. You could try again with other numbers but I think you get the idea. Notice that the syntax is similar to that of a loop, except obviously here we execute the action only once. Still, remembering the way you thought about constructing the body of a loop may be helpful as you learn to craft functions!
 
 Can you now make a basic function that multiplies two numbers and returns the result? Call it something like `multiplyNumbers`. 
 
@@ -108,7 +108,7 @@ Ok, these seem fairly useless -- obviously R can add and multiply pretty easily 
 
 Here's the equation to convert Celsius (centigrade) to Fahrenheit. 
 
-$^0F=(1.8\times^0C)+32$^[Note: we write these equations using a typesetting language called Latex. It's great and awesome but you don't need to know it, but now you know what this is.]
+$^0F=(1.8\times^0C)+32$ ^[Note: we write these equations using a typesetting language called Latex. It's great and awesome but you don't need to know it, but now you know what this is.]
 
 Write a simple function that takes in a value in Celsius and converts it into Fahrenheit.
 
@@ -119,6 +119,7 @@ Write a simple function that takes in a value in Celsius and converts it into Fa
 
 
 #In the body of the function, write out the math of the conversion. 
+
 #Use the formula above to create a variable "f" to store the converted temperature.
 
 
@@ -283,7 +284,7 @@ Hint: You can copy and paste the code above and just edit it. The main change he
 ```
 
 ## Mulitple Arguments
-So far all of our functions have taken just one argument. What happensif we try to run our functions without passing any argument values to them?
+So far all of our functions have taken just one argument. But, in order to make a function which can convert both ways, we'll have to master multiple arguments. Before we jump right into that though, let's try to understand how R interprets arguments. What happens if we try to run our functions without passing any argument values to them?
 
 Try running `FtoC`, `CtoF`, and `classifyNumber`in two ways: a) without passing any arguments to the function; b) passing a value of `NULL` to the argument required by the function:
 
@@ -310,7 +311,7 @@ Many of the functions you use regularly have a bunch of arguments that you could
 
 For example, type `?mean` into your console and read the "arguments" portion of the help page. You probably only ever include the first argument, the values you want the mean of. But you have the option to exclude some percentage of the values or remove missing data (which we have done before). The values listed just above "arguments" in the help page indicate what the assumed default values are. For `mean`, these are: `x`, `trim=0`, `na.rm=FALSE`. If you run `mean(c(0,NA,3))` the function returns `NA` because `na.rm=FALSE` by default. But you can change this by setting it to true: `mean(c(0,NA,3), na.rm=TRUE)`, which returns the mean of 0 and 3, i.e., 1.5.
 
-Let's practice the concept of writing functions with more than one argumet.
+Now that we know a bit more about how R sees arguments, let's practice the concept of writing functions with more than one argument.
 
 Below is a function that raises a number to the nth power.
 
@@ -362,17 +363,6 @@ If we wanted to write a function that raises numbers to the nth power but we thi
 # try running it by passing a value to x and a value that is not 2 to power
 
 
-
-#call your function powerraiser_v2 to differentiate it from the previous powerraiser function
-
-
-# try running it by passing a value to x but not to power
-
-
-
-# try running it by passing a value to x and a value that is not 2 to power
-
-
 ```
 
 
@@ -401,7 +391,7 @@ area_function(2, 3)
 
 ```
 
-Be careful, though, when you don't spell out the arguments as we did above: `area_function(2,3)` instead of `area_function(x = 2, power = 3)`. In those cases, R assumes you are passing arguments in the order in which they are defined in the function. 
+Be careful, though, when you don't spell out the arguments as we did above: `area_function(2,3)` instead of `area_function(x = 2, power = 3)`. In those cases, R assumes you are passing arguments in the order in which they are defined in the function. Obviously that doesn't actually affect the result with something as simple as finding the area, but for more complex functions this order could be massively important for obtaining the results you're after.
 
 Below is an updated function of `area_function` which prints out what the `length` and `width` parameter values are, as well as the calculated `area`:
 
@@ -480,8 +470,7 @@ calculate_area()
 * The body of the function checks whether both of them are null. That would be the case if the user did not specify either parameter when using the function -- a silly think to do!
 * we will use the `is.null()` function to check if both parameters are NULL. We will use \& to combine both statements since we are checking if both are NULL, not just one of them
 * If that is the case (that both are null), we want to tell the user they did something very wrong and that the function should just stop right there. We can do this using the `stop` command. 
-* Have a look at `?stop`. Look at the examples at the bottom. 
-
+* `stop` does just what you would think it does. When certain conditions are met `stop` makes the function abort what it would normally do and instead print a message to the user. We put the message as a character string inside the command. Take a look at the example below.
 
 
 ```{r}
@@ -609,7 +598,7 @@ calculate_area_final<-function(width = NULL, length = NULL){
         }else{ #if all the previous statements are false, only remaining possibility is that neither is null.
                 area <- width * length
                 mess<-paste("Both width and length were defined. The area of the rectangle is:", area)
-                
+                print(mess)   
         }
          
         return(area)      
@@ -632,14 +621,14 @@ print(test3)
 
 That was quite a ride!
 
-Now lets go back to our temperature functions from earlier. 
+Now lets go back to our temperature functions from earlier, having learned everything we need to make it two way. 
 ```{r}
-CtoF<-function(c){ 
+CtoF<-function(c){ #Celsius to Fahrenheit
 f<- (c *1.8) + 32
 return(f)
 }
 
-FtoC<-function(f){ 
+FtoC<-function(f){ #Fahrenheit to Celsius
 c<- (f-32)/1.8
 return(c)
 }
@@ -651,7 +640,7 @@ We want to make our **ONE BIG FUNCTION**:
 
 * call it `temp_conv` and define two parameters: `c` (celsius) and `f` (fahrenheit)
 * set both default values for the parameters to be `NULL`
-* use conditional statements to define what happens next: if provided temperature is in Celsius, convert it to fahrenheit and return the temperature in fahrenheit; if provided temperature is in Fahrenheit, convert it to Celsius and return the temperature in Celsius
+* use conditional statements to define what happens next: if provided temperature is in Celsius, convert it to Fahrenheit and return the temperature in Fahrenheit; if provided temperature is in Fahrenheit, convert it to Celsius and return the temperature in Celsius
 * print helpful messages within each `if/else if` statement to help the user and yourself
 
 
@@ -691,7 +680,7 @@ Test your function here. Before you run each command, try to anticipate what the
 
 ```
 
-Congrats! you wrote a badass R function and you will never again need to goodle how to convert between Celsius and Fahrenheit!
+Congrats! you wrote a badass R function and you will never again need to google how to convert between Celsius and Fahrenheit!
 
 ---
 
@@ -711,41 +700,15 @@ Congrats! you wrote a badass R function and you will never again need to goodle 
 
 * Calculating proportion confidence intervals with the `binom` package functions.
 
+* If you need a refresher or are unfamiliar with the binomial test, these slides are a good explanation (link)
+
 
 ## Calculating binomial probabilities
+Before we dive into the case study, let's use some examples to familiarize ourselves with how the binomial functions in R work.
 
-### Example 1 : what is the probability of six successes in 27 trials, where p of success is 0.25.
+### Example 1, by hand : finding the probability of 2 out of 3 children in a household being born in the same month.
 
-
-```{r}
-dbinom(x = 6, size = 27, prob = 0.25)
-```
-
-
-Practice by finding these probabilities:
-
-* probability of sampling 5 female snakes from a population where 0.70 are female.
-
-```{r ex2.1}
-#use dbinom()
-
-
-
-```
-
-
-* probability of rolling a 7 out of 10 rolls during a game:
-
-```{r ex2.2}
-#use dbinom()
-
-
-
-```
-
-
-
-### Example 2 : finding the probability of 2 out of 3 children in a household being born in the same month.
+We'll start by using R to calculate binomial probabilities without the help of a function
 
 Remember the binomial coefficient:
 
@@ -781,6 +744,37 @@ dbinom(x = 2, size = 3, prob = 1/12)
 ```
 
 
+### Example 2 with dbinom(): what is the probability of six successes in 27 trials, where p of success is 0.25.
+
+
+```{r}
+dbinom(x = 6, size = 27, prob = 0.25)
+```
+
+Practice by finding these probabilities:
+
+* probability of sampling 5 female snakes from a population where 0.70 are female.
+
+```{r ex2.1}
+#use dbinom()
+
+
+
+```
+
+
+* probability of rolling a 7 out of 10 rolls during a game:
+
+```{r ex2.2}
+#use dbinom()
+
+
+
+```
+
+
+
+
 Now practice:
 
 * find the probability that 6 out of the 12 students in our class were born on the same season of the year.
@@ -796,6 +790,8 @@ Now practice:
 
 ## Binomial test:
 
+Now we will move on to a different binomial function- `binom.test` used for conducting a binomial test. Instead of giving the probability that a certain number of successes will occur, it gives the probability that the number of successes provided came from a binomial distribution. The output of the function is. p-value from which we either accept or reject the null hypothesis. 
+
 #### Example: is finding 10 successes out of 25 trials different from expected number of successes if p of success is 0.061?
 
 
@@ -810,7 +806,7 @@ binom.test(x = 10, n = 25, p = 0.061,alternative = "two.sided", conf.level=0.99)
 
 Pratice:
 
-* I rolled my personal super special die 80 times during a boardgame and got a 6 in 19 of those. My buddies accuse me and say my die is perhaps too good to be true. I plead innocence and boast about my cosmic luck! What do you think?
+* I rolled my personal super special die 80 times during a boardgame and got a 6 in 19 of those. My buddies accuse me and say my die is perhaps too good to be true. I plead innocence and boast about my cosmic luck! What do you think? (hint)
 
 ```{r ex2.4}
 #null: ?
@@ -838,6 +834,7 @@ binom::binom.confint(131, n = 169, method = "ac")
 
 ```
 
+For more info or a refresher on Agresti-Coull and 95% CIs, check out this slideshow (link)
 
 ## Motivation
 
@@ -903,7 +900,7 @@ $H_0:$ The proportion of readmission in the population is 0.124
 
 $H_A:$ The proportion of readmission in the population is not 0.124_
 
-Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. 
+Run a two-sided binomial test to see if the sample proportion differs significantly from the population proportion. Remember to decide your alpha value before you run the test in order to make sure you're doing honest testing.
 
 ```{r ex2.8}
 # Binomial test of readmission status

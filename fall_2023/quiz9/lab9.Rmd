@@ -20,12 +20,11 @@ suppressMessages(library(readr))
 
 # Outline
 
-Today will be less about complicated coding and more about statistics. We will
-learn how to run:
+Today will be less about complicated coding and more about statistics. We will cover some brief statistical background for these tests but for a more in-depth overview and/or review, see these slides (link) 
 
+We will learn how to run:
 * One categorical variable: Chi-square goodness of fit tests
 * Two categorical variables: Risk ratio, Odds Ratio,Chi-square independence test; Fisher's test; G-test
-
 
 ---
 
@@ -78,7 +77,7 @@ We can use a $\chi^2$ goodness-of-fit test to compare the frequencies in a set o
 
 The company says that the percentages are 24% blue, 14% brown, 16% green, 20% orange, 13% red and 13% yellow. This is our null hypothesis. Let’s test whether these proportions are consistent with the frequencies of the colors in this bag. R wants the proportions expected by the null hypothesis in a vector
 
-* create a vector containing the expected proportions of each color of M&Ms according to the null hypothesis, in the following order: blue, brown, green orange, red, yello
+* create a vector containing the expected proportions of each color of M&Ms according to the null hypothesis, in the following order: blue, brown, green orange, red, yellow
 * name this vector `expected_proportions`
 
 ```{r ex1.3}
@@ -110,7 +109,7 @@ To obtain these expected counts, multiply the vector of the expected proportions
 
 Now you can use the expected proportions and the total sample size to find the expected number (not proportion) of M&Ms of each color, given your sample size.
 
-* multiply your smaple size by the expected proportions to find the expected absolute values for each color
+* multiply your sample size by the expected proportions to find the expected absolute values for each color
 * save the output as `expected_counts`
 * look at the values
 * decide whether it's ok to proceed with a $\chi^2$ goodness-of-fit test or not, given the requirements above
@@ -161,9 +160,9 @@ Lastly, we need to find the p-value corresponding to this value, so:
 
 * now use the `pchisq` function to get the p-value. This function requires two arguments: the chi-square value ($q$) and the degrees of freedom ($df$). We have $q$ but we need to calculate $df$.
 
-* define the degrees of freedom. Remember that for goodness of fit tests this is nr of categories - 0 - 1. Use `length()` to find the number of categories in MMtable instead of manually typing that in. Save the degrees of freedom as `my_df`.
+* define the degrees of freedom. Remember that for goodness of fit tests this is number of categories - 0 - 1. Use `length()` to find the number of categories in MMtable instead of manually typing that in. Save the degrees of freedom as `my_df`.
 
-* run the `pchisq` function and save the output as `my_pchisq`. Make sure you change the argument `lower.tail` to `FALSE`. Then print `my_pchisq`.
+* run the `pchisq` function and save the output as `my_pchisq`. Make sure you change the argument `lower.tail` to `FALSE`. This has to do with the chi squared distribution that we get these probabilities come from. We want to look at the upper tail of the distribution because we want the probability that we got the calculated chi squared value or greater. If we did not include this argument, then `pchisq` would return the probability that the chi squared statistic is the one we calculated or less. After running `pchisq`, print `my_pchisq`.
 
 
 ```{r ex1.8}
@@ -279,7 +278,7 @@ dpois(x = 3, lambda = 4.21)
 0:20
 ```
 
-We’ll need the probabilities for all possible values of x from 0 to 20 (because this was the largest value observed in the data). `dpois` rquires two arguments: a vector with the number of successes (0,1, and so on) and the lambda value, which we calculated above (it's the mean).
+We’ll need the probabilities for all possible values of x from 0 to 20 (because this was the largest value observed in the data, for more on why this is necessary, reference the poisson distribution section of the slides). `dpois` requires two arguments: a vector with the number of successes (0,1, and so on) and the lambda value, which we calculated above (it's the mean).
 
 * Create a vector containing numbers 0:20 and save it in an object `vals`
 * use the `dpois` function using as the `x` argument the vector you just created and the lambda value you calculated above to get the expected probabilities. Save this as `expected_extinction_probabilities`. Print it.
@@ -343,7 +342,7 @@ Note that these expected values are large enough to match the conditions of the 
 
 This correctly calculates our $\chi^2$ value as 23.939. The warning message in red is because one of the expected values is under 5, but because this occurred in less than 20% of the categories, it is fine to proceed.
 
-The degrees of freedom for this test are the number of categories minus the number of parameters estimated from the data minus one. We ended up using 8 categories and estimated one parameter from the data, so we have df = 8 – 1 – 1 = 6.
+The degrees of freedom for this test are the number of categories minus the number of parameters estimated from the data minus one. We ended up using 8 categories and estimated one parameter from the data (mean/lambda), so we have df = 8 – 1 – 1 = 6.
 
 ### pchisq() {-}
 
@@ -369,10 +368,10 @@ Notice that while the statistic value is correct, the p-value is different becau
 ---
 # Two categorical variables
 
-Here, we will learn how to look at, and test for, the association between two categorical variables. We’ll use the Titanic data set as an example, looking at the association between the sex of passengers and whether they survived the accident. Let’s read the data from the .csv file:
+Here, we will learn how to look at, and test for, the association between two categorical variables. Let's use an example from a cool 
 
 ```{r}
-titanicData <- read.csv("titanic.csv", stringsAsFactors = TRUE)
+brainData <- read.csv("titanic.csv", stringsAsFactors = TRUE)
 
 ```
 
@@ -438,7 +437,7 @@ mosaicplot(sex_survive_table)
 ```
 
 
-This shows the basic pattern. However, this plot can be greatly improved by adding a couple of extra options, to specify color and axes labels. We can add the option color = c(“darkred”, “gold”) to tell R which colors to use for the different response variables. This is a vector of color names that R assigns in the same order as the order of the categories of the variable plotted on the vertical axis (the response variable) starting with the topmost. (R has many named colors, including all the basics like “red”, “orange”, “blue”, etc.)
+This shows the basic pattern. However, this plot can be greatly improved by adding a couple of extra options, to specify color and axes labels. We can add the option `color = c(“darkred”, “gold”)` to tell R which colors to use for the different response variables. This is a vector of color names that R assigns in the same order as the order of the categories of the variable plotted on the vertical axis (the response variable) starting with the topmost. (R has many named colors, including all the basics like “red”, “orange”, “blue”, etc.)
 
 We would also like the axes to have labels. We can specify these with xlab and ylab as options. Let’s simply call the x-axis “Sex” and the y-axis “Survival”.
 
@@ -453,9 +452,9 @@ It is much easier now to see in the graph that the majority of females survived 
 
 ### Odds ratios {-}
 
-One of the ways to measure the strength of the association between two categorical variables is an odds ratio.
+One of the ways to measure the strength of the association between two categorical variables is an odds ratio. This next section is going to cover a how to find odds ratio and relative risk. This in particular is a more tricky concept to grasp, so if you're not familiar I really recommend checking out the slides. 
 
-In R, the simplest way to estimate an odds ratio is to use the command `fisher.test()`. This function will also perform a Fisher’s exact test (more on that later). The input to this function is a contingency table like the one we calculated above. 
+In R, the simplest way to estimate an odds ratio is to use the command `fisher.test()`. This function will also perform a Fisher’s exact test (more on that later and in slides). The input to this function is a contingency table like the one we calculated above. 
 * We’ll use the results in a couple of ways, so let’s save the results in an object. Call it `sex_survive_fisher`.
 * then, call `names()` on this object to see what has been stored.
 
@@ -476,7 +475,7 @@ Use $ to extract the `estimate` component from `sex_survive_fisher`. This will g
 
 ```
 
-Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This will give youu the 95% confidence interval for the odds ratio.
+Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This will give you the 95% confidence interval for the odds ratio.
 
 
 ```{r ex2.5}
@@ -487,7 +486,7 @@ Now use $ to extract the `conf.int` component from `sex_survive_fisher`. This wi
 
 ### Risk Ratio
 
-We’ll use the epitools add on package to calculate relative risk and odds ratio. You might need to install it first if you have not already done so.
+We’ll use the epitools add on package to calculate relative risk. You might need to install it first if you have not already done so.
 
 ```{r}
 
@@ -719,7 +718,7 @@ First, do we meet the $\chi^2$ requirements?
 * no cell can have an expected frequency less than one
 
 
-If so, we can perform a $\chi^2$ contingency test to see if there is a statistically significant association between Ribavirin and survival. Set `correct=FALSE`.
+If so, we can perform a $\chi^2$ contingency test to see if there is a statistically significant association between Ribavirin and survival. For this analysis, lets say that our alpha value is 0.05. Set `correct=FALSE`.
 
 
 *Describe the result of your hypothesis test: what is the p-value? Is it statistically significant? What do you conclude about the evidence of an association between Ribavirin use and death?*
