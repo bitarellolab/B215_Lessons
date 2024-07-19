@@ -318,10 +318,9 @@ Variable names should:
 * they can include letters and
 numbers
 * NOT begin with a number 
-* spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether (use underscores, periods, or capitilization if you want to separate words)
-when naming things (variables, files, functions, etc.) because they are
-a no-no 
-* instead of "my var", use "myvar", "myVar", "my_var", etc. 
+* spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether when naming things (variables, files, functions, etc.) because they are a no-no 
+*use underscores, periods, capitalization, etc. if you want to separate words
+* Example: instead of "my var", use "myvar", "myVar", "my_var", etc. 
 * choosing meaningful names makes your code easier to read - by you and
 others
 
