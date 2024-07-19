@@ -276,21 +276,3 @@ Create a variable called `my_name` with your last name spelled backwards followe
 ```{r sandbox1, exercise=TRUE, eval = FALSE}
 ```
 
-## Record your work
-
-READ FIRST:
-
-* as before, go to your browser and select "print" to keep a pdf copy of your work.
-* use your username from your institutional email as your username
-* use b215f23 as password
-* this will close the quiz and take you back to Posit cloud. Click on the little red "stop" icon in the console to stop the quiz for good.
-* in the files pane, you will see a file called "quiz1_record.txt". Select it and then go to the little wheel and click "export". 
-* upload that file and your PDF copy into the lab1-quiz on Moodle!
-* you're done!
-
-```{r, echo=F}
-submitr::login_controls()
-```
-
-
-
