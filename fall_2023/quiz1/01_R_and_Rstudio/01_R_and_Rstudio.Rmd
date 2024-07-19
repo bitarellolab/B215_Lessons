@@ -120,7 +120,7 @@ computer programming, this means:
 
 -   Raw data is never modified; you read it as is, process it, and
     produce outputs
--   Outputs should be disposble; if your computer explodes, as long as
+-   Outputs should be disposable; if your computer explodes, as long as
     you backed up your code you should be able to reproduce your
     output/results
 -   Manual steps (i.e., these that cannot be automated) should be
