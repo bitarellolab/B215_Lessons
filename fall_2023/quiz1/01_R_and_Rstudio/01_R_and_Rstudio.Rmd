@@ -339,7 +339,7 @@ You should get an error for an "unexpected symbol", that's the space.
 
 ## Data types in R
 
-These things that change (variables) can be numeric, text, or Boolean
+Variables in R can be numeric, text, or Boolean
 (true/false).Text variables are referred to as strings in R (and many
 other programming languages).
 
