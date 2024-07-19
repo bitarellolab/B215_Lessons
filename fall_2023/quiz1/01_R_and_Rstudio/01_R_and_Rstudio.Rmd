@@ -127,7 +127,7 @@ computer programming, this means:
     avoided or otherwise minimized
 -   Ideally, one software package (in our case, R) should be enough to
     run your code; if other software is needed, ideally you would make
-    the integration between them work seemlessly and in an automated way
+    the integration between them work seamlessly and in an automated way
     [this is beyond the scope of our course]
 
 So how do you save your code?
