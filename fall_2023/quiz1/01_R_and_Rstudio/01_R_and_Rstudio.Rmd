@@ -156,7 +156,7 @@ sign) are read as comments.
     in the form of a comment
 -   Later we will see how to turn this into an R markdown file
 
-## The command line
+## The Console
 
 When you start RStudio, you'll see a corner of the window called the
 "Console." By default the console window is in the bottom left of the
