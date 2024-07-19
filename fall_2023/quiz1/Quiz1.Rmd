@@ -83,8 +83,7 @@ submitr::shiny_logic(input, output, session, vfun,
 ## Vectors
 
 ### Exercise 1
-1. Below, assign the number 9 to the variable `a`, and a vector with numbers, 2, 9, and 8, in that order, to the variable  `b`. Then, ask if `a` is equal to `b` and then multiply `a` and `b`.
-
+1. Below, assign the number 9 to the variable `a`
 
 ```{r sim1, exercise=TRUE, allow_skip = FALSE}
                # assign 9 to a
@@ -104,6 +103,8 @@ grade_this_code()
 ```
 
 ### exercise 2
+Now create another vector, b, containing the numbers 2,9, and 8 in that order
+
 ```{r sim2, exercise = TRUE, allow_skip = FALSE}
         # assign a vector with 2, 9 and 8, in that order, to b
 ```
@@ -120,6 +121,7 @@ grade_this_code()
 
 ## Vector functions
 
+Now, test if vector a is equal to vector b
 
 ### ex3 
 ```{r ex2setup}
@@ -141,6 +143,9 @@ grade_this_code()
 
 
 ### exercise 4
+
+Finally, multiply vectors a and b
+
 ```{r sim4, exercise = TRUE, exercise.setup = "ex2setup"}
                     # multiply a and b
 ```
