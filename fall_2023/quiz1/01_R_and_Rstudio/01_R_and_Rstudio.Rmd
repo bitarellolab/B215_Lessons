@@ -450,7 +450,7 @@ To combine the list of items to a vector, use the c() function and
 separate the items by a comma.
 
 In the example below, we create a vector variable called planets, that
-combine strings:
+combines strings:
 
 ```{r, echo = T, eval=F}
 #vector of strings
