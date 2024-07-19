@@ -437,7 +437,7 @@ Sandbox: Use the area below for any R practice
 
 ## R Data Structure
 
-R has several data strcutures: vectors, lists, matrices, arrays,
+R has several data structures: vectors, lists, matrices, arrays,
 data.frames, factors.
 
 Today we will see vectors and factors:
