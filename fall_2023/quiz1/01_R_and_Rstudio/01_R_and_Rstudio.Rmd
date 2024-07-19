@@ -380,8 +380,9 @@ class(x) # this command tells you the class of a given variable or R object.
 2 < 0 #Try this and see what happens
 
 ```
-Learn more at  [Data types in R. W3schools.com.
-    https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp)
+
+We'll cover these data types and their uses in depth in Lab 2, but for now if you want a head start you can learn more at  [Data types in R. W3schools.com.
+    https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp) .
     
 ### Numbers
 
