@@ -320,7 +320,7 @@ numbers
 * NOT begin with a number 
 * spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether when naming things (variables, files, functions, etc.) because they are a no-no 
 *use underscores, periods, capitalization, etc. if you want to separate words
-* Example: instead of "my var", use "myvar", "myVar", "my_var", etc. 
+*Example: instead of "my var", use "myvar", "myVar", "my_var", etc. 
 * choosing meaningful names makes your code easier to read - by you and
 others
 
@@ -334,6 +334,8 @@ Now try to recreate the variables above but call them `x var` and `y var` instea
 ```{r sandbox3, exercise=TRUE, eval = FALSE}
 
 ```
+
+You should get an error for an "unexpected symbol", that's the space. 
 
 ## Data types in R
 
