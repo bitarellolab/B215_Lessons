@@ -431,7 +431,7 @@ print(total_cells)
 grade_this_code()
 ```
 
-Once again, if your data are plagged with NAs (which is usually the case with real data), you will need to be explicit with R. Below is a version of `cell_counts` that is reflective of the typical missing data we have to deal with. Using the code provided as a model, deal with the NAs properly in the sandbox and find the mean by hand. You'll know you've done it correctly if R returns a number, rather than NA.
+Once again, if your data are plagued with NAs (which is usually the case with real data), you will need to be explicit with R. Below is a version of `cell_counts` that is reflective of the typical missing data we have to deal with. Using the code provided as a model, deal with the NAs properly in the sandbox and find the mean by hand. You'll know you've done it correctly if R returns a number, rather than NA.
 
 ```{r, echo=T, eval=F}
 cell_counts_withNA<-c(100, 200, 150, 175, NA, 122, 270) #the data with NAs, which you will use below
