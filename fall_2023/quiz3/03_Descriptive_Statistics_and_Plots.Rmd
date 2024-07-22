@@ -190,7 +190,7 @@ Other metrics of variation include the coefficient of variation. Surprisingly, t
 
 Make sure you understand the command above before continuing!
 
-Even more metrics include range and interquartile range which are the differnece between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as range() and IQR() in the exact same format as mean() and sd().
+Even more metrics include range and interquartile range which are the difference between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as range() and IQR() in the exact same format as mean() and sd().
 
 Try running them below.
 
