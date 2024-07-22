@@ -279,7 +279,7 @@ which(is.na(titanicdata$age))
 grade_this_code()
 ```
 
-This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that na.omit worked:
+This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that `na.omit` worked:
 ```{r examplenum6, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
