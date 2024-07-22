@@ -939,7 +939,7 @@ species_info <- list(
 
 ```
 
-Print the result and use double square brackets -`[[]]` -to select the third item from the list
+Print the result and use double square brackets -`[[]]` -to select the third item from the list. We use double brackets to index a list, similar to indexing vectors or data frames with single brackets.
 
 ```{r list1ex, exercise = TRUE, exercise.setup = "setuplist1"}
                     #print the object
