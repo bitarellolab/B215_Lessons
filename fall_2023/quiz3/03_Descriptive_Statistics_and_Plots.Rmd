@@ -433,7 +433,7 @@ In the resulting file, the first line will be a header that lists the names of e
 
 #### A note about tibbles
 
-“Tibbles” are a new modern data frame. They keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
+“Tibbles” are a new modern data frame. They keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated data frame that we just learned about.
 
 
 If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble. Then, have a quick check to see what the file looks like.
