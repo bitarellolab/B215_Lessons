@@ -353,11 +353,11 @@ Here are a few more operations that are appropriate for `numeric` and `integer` 
 x<-c(5.2,-7.3, 9.8) #numeric
 y<-2L #integer
 print(abs(x)) #absolute values
-print(median(x)) #median of all values in x
+print(sum(x)) #sum of all values in x
 print(x>y)
 ```
 
-Practice these a bit here:
+Practice these a bit here, you might even try making your own new numeric or integer vectors:
 
 ```{r sandbox5, exercise=TRUE, eval = FALSE}
 
