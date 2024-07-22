@@ -728,10 +728,10 @@ vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
 
 # Combine vectors as columns to create a matrix
-matrix1 <- cbind(vector1, vector2)
+matrix1 <- cbind(vector1, vector2) #vector1 becomes column 1, vector 2 becomes column 2
 
 # Combine vectors as rows to create a matrix
-matrix2 <- rbind(vector1, vector2)
+matrix2 <- rbind(vector1, vector2) #vector 1 becomes row 1, vector 2 becomes row 2
 
 ```
 
