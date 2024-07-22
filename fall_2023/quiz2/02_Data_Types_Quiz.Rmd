@@ -261,7 +261,7 @@ hominin_genus_factor<-as.factor(hominin_genus)
 
 ```
 
-Try converting `hominin_genus` into a factor, using the earlier `as.integer()` and `as.numeric()` examples as a model. Then, run `class()` on your converted variable to check your work and print itß
+Try converting `hominin_genus` into a factor, using the earlier `as.integer()` and `as.numeric()` examples as a model. Then, run `class()` on your converted variable to check your work and print it
 
 ```{r sandboxfact, exercise=TRUE, eval = FALSE, , exercise.setup="setupmls"}
 
