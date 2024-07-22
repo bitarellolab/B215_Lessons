@@ -1130,7 +1130,7 @@ grade_this_code()
 
 ### Analyzing the data
 
-Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the `dplyr` package's `filter` function to select only chicks with time 21 from the `chicks` object. name this resulting dataframe `FinalChicks`. Then print it.
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the `dplyr` package's `filter` function to select only chicks with time 21 from the `chicks` object. Name this resulting data frame `FinalChicks`. Then print it.
 
 ```{r setupchicks}
 chicks<-datasets::ChickWeight
