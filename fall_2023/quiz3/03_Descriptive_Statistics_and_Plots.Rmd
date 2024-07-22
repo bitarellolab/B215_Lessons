@@ -223,7 +223,7 @@ nrow(titanicdata)-nrow(titanicdata2)
 
 680 rows with missing data! But did this function actually remove all the rows with missing data or did it mess up? 
 
-Well, three functions are useful for us to decide. `length()`, which returns the number of entries, `which()`, which gives the location of data the vector that corresponds to the logical statement inside the function, and is.na, which returns a logical statement stating whether any entry in the input is NA.
+Well, three functions are useful for us to decide. `length()`, which returns the number of entries, `which()`, which gives the location of data the vector that corresponds to the logical statement inside the function, and `is.na()`, which returns a logical statement stating whether any entry in the input is NA.
 
 Try testing whether there are any NAs in titanicdata$age (which, becuase we know there are, should return TRUE)
 ```{r examplenum4, exercise = TRUE, exercise.setup = "setupnum"}
