@@ -215,7 +215,12 @@ isTRUE(reality)
 isFALSE(reality2)
 ```
 
-Try these out here:
+```{r, echo=FALSE, eval=FALSE}
+true_or_false<-FALSE
+```
+
+
+Try out `isTrue` and `isFalse` on a variable which I have made and provided in your environment, `true_or_false` :
 
 ```{r sandbox3, exercise=TRUE, eval = FALSE}
 
