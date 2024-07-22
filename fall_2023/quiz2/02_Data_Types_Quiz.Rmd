@@ -329,8 +329,10 @@ growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5)
 Suppose you want to take the mean and median of these values. Create the variables `avg_growth` and `med_growth` and then print `avg_growth` and `med_growth`:
 
 ```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
-      avg_growth <-
-      med_growth <-
+      avg_growth <- #mean of growth_data
+      med_growth <- #median of growth_data
+                    #print avg_growth
+                    #print med_growth
 ```
 
 ```{r examplenum-solution}
