@@ -507,7 +507,7 @@ grade_this_code()
 
 ### Example 5: Logical (also called boolean)
 
-If you ask R is one object is the same as another, it will typically return a logical (boolean) object.
+If you ask R is one object is the same as another, it will typically return a logical (Boolean) object.
 
 ```{r, echo=T, eval=F}
 a <- c(1,2,3) #suppose this is your data and you misenter the first number
