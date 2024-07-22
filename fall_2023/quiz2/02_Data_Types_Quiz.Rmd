@@ -192,16 +192,13 @@ is.integer(class_number)
 is.numeric(class_number)
 ```
 
-Sometimes you can convert one type into another. Say numeric to integer or vice-versa:
+Sometimes you can convert one type into another. Let's use the example variable `class_number` I've created below. 
 
 ```{r, echo=T, eval=F}
 class_number <- 215
-class(class_number)
-new_class_number<-as.integer(class_number)
-class(new_class_number)
 ```
 
-Try these out here:
+Sometimes, we want to convert data from one type to another, say numeric to integer or vice-versa. These functions will usually take the form as.(insert data type you want to convert to). For example to convert something into an integer you'd use the function `as.integer()` and to convert to numeric you'd use `as.numeric()`. Try this out below: run the `class()` function on `class_number` to determine if it is numeric or integer data, then use the appropriate function to convert it.
 
 ```{r sandbox2, exercise=TRUE, eval = FALSE}
 
