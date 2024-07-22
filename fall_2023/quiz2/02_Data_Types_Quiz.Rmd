@@ -232,11 +232,9 @@ Character data type in R is used to hold strings of text. You can create a chara
 
 ```{r, echo=T, eval=F}
 types_of_data <- c("Numeric", "Interger","Logical", "Complex", "Character", "Raw") 
-class(types_of_data)
-is.character(types_of_data)
 ```
 
-Try these out here:
+Try `class()` and `is.character()` out on this string!:
 
 ```{r sandboxchar, exercise=TRUE, eval = FALSE}
 
