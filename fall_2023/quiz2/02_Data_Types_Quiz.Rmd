@@ -207,7 +207,7 @@ There are a few functions in R which allow you to convert data. These functions 
 ### Logical (T/F)
 
 Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like \<, \>, ==, etc. to generate logical values. For example, the operation 5 \> 3 will return TRUE because 5 is indeed greater than 3. You can also store TRUE or FALSE values in variables or vectors as you would with the numerical values we have already seen.
-
+ 
 ```{r, echo=T, eval=F}
 reality <- TRUE
 reality2 <- T #also works
@@ -261,13 +261,7 @@ hominin_genus_factor<-as.factor(hominin_genus)
 
 ```
 
-```{r echo=T, eval=F}
-hominin_genus_factor<-as.factor(hominin_genus)
-class(hominin_genus_factor)
-print(hominin_genus_factor)
-```
-
-Try these out here:
+Try converting `hominin_genus` into a factor, using the earlier `as.integer()` and `as.numeric()` examples as a model. Then, run `class()` on your converted variable to check your work and print itß
 
 ```{r sandboxfact, exercise=TRUE, eval = FALSE, , exercise.setup="setupmls"}
 
