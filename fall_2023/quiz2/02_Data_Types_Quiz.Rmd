@@ -198,7 +198,7 @@ Sometimes you can convert one type into another. Let's use the example variable 
 class_number <- 215
 ```
 
-Sometimes, we want to convert data from one type to another, say numeric to integer or vice-versa. These functions will usually take the form as.(insert data type you want to convert to). For example to convert something into an integer you'd use the function `as.integer()` and to convert to numeric you'd use `as.numeric()`. Try this out below: run the `class()` function on `class_number` to determine if it is numeric or integer data, then use the appropriate function to convert it.
+There are a few functions in R which allow you to convert data. These functions will usually take the form as.(insert data type you want to convert to). For example to convert something into an integer you'd use the function `as.integer()` and to convert to numeric you'd use `as.numeric()`. Try this out below: run the `class()` function on `class_number` to determine if it is numeric or integer data, then use the appropriate function to convert it.
 
 ```{r sandbox2, exercise=TRUE, eval = FALSE}
 
