@@ -543,7 +543,7 @@ grade_this_code()
 
 You already learned about vectors in the last lesson. They are a sequence of data elements of the same basic type. They can be numeric, integer, complex, character, or logical. They are **one-dimensional.**
 
-R loves vectors and tends to treat everything like a vector: an object with only one element is a vector. E.g., `a<-9` is simply a vector of length `1`.
+R loves vectors and tends to treat everything like a vector: even an object with only one element is a vector. E.g., `a<-9` is simply a vector of length `1`.
 
 Check this is true by asserting object `a` is a vector using the function `is.vector`. Next, check its length with the function `length()`:
 
