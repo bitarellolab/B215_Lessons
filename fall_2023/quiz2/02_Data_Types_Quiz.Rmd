@@ -681,6 +681,8 @@ Try it!
 
 ```
 
+Coercing from Boolean to numeric means we can easily count the number of TRUEs and FALSES by summing the dating.
+
 Everything we just said for vectors applies to matrices as well.
 
 E.g., if you try to make a matrix composed of mixed elements.
