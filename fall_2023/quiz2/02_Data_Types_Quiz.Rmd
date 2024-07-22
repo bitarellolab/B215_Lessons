@@ -893,7 +893,7 @@ australopithecus_genome_size<-filter(species_info, Genus == "Australopithecus")
 grade_this_code()
 ```
 
-Now, using the dataframe you made (`australopithecus_genome_size`), use the function `summary` on the column of that dataframe which contains the genome information to calculate how variable hominin genomes are. Save that result into the object `summary_results` and print out that object.
+Now, using the data frame you made (`australopithecus_genome_size`), use the function `summary` on the column of that data frame which contains the genome information to calculate how variable hominin genomes are. Save that result into the object `summary_results` and print out that object.
 
 ```{r dfex3, exercise = TRUE, exercise.setup = "setupdfex2"}
                     
