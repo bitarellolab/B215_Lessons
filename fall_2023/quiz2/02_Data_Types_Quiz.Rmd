@@ -515,7 +515,7 @@ b <- c(2,2,3) #and you want to make sure your data matches a previous result
 
 ```
 
-In the space below, create an object called `which_entries_match` which contains the result of your asking if `a` is the same as `b`. In the second line, print the object your created remember from Lab 1 how we ask this in R. (Tip, it's not simply `a=b` because that will try to assign obect `b` to obkect `a`.)
+In the space below, create an object called `which_entries_match` which contains the result of your asking if `a` is the same as `b`. In the second line, print the object your created remember from Lab 1 how we ask this in R. (Tip, it's not simply `a=b` because that will try to assign object `b` to object `a`.)
 
 ```{r setupbool}
 a <- c(1,2,3) 
