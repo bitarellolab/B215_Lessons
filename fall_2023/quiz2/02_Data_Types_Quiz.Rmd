@@ -336,10 +336,10 @@ Suppose you want to take the mean and median of these values. Create the variabl
 ```
 
 ```{r examplenum-solution}
-avg_growth <- mean(growth_data) 
-med_growth<- median(growth_data)
-print(avg_growth)
-print(med_growth)
+     avg_growth <- mean(growth_data) #mean of growth_data
+     med_growth <- median(growth_data) #median of growth_data
+     print(avg_growth) #print avg_growth
+     print(med_growth) #print med_growth
 
 ```
 
