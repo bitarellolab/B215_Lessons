@@ -1107,7 +1107,7 @@ grade_this_code()
 
 ## Quiz Part 2: Working with real data
 
-Now we are going to practice working with an actual data set. We will be using one from the `datasets` package called `chickweights`. It's from an experiment on the effect of diet on early growth of chicks. If you want to learn more about the dataset type ??chickweights into your console (later, now while you are taking this quiz!)
+Now we are going to practice working with an actual data set. We will be using one from the `datasets` package called `chickweights`. It's from an experiment on the effect of diet on early growth of chicks. If you want to learn more about the data set type ??chickweights into your console (later, not while you are taking this quiz!)
 
 ### Lets look at the data
 
