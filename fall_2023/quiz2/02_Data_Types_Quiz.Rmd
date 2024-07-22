@@ -877,7 +877,7 @@ australopithecus_genome_size<-dplyr::filter(species_info, Genus == "Australopith
 
 ```
 
-In the following box, seperate all the rows with "Australopithecus" in the `Genus` column using the function `filter` from the dplyr package. `dplyr` has a whole host of useful functions that make working with dataframes convenient. We will learn a lot more about the `dplyr` package in future lessons. Filter is just the tip of the iceberg.
+In the following box, separate all the rows with "Australopithecus" in the `Genus` column using the function `filter` from the dplyr package, `dplyr` has a whole host of useful functions that make working with data frames convenient. We will learn a lot more about the `dplyr` package in future lessons. Filter is just the tip of the iceberg.
 
 Follow the format: `filter(dataframe_name, columnname == "Australopithecus")` and save the results as `australopithecus_genome_length`. Then, print `australopithecus_genome_length`. Notice that the column name you are filtering from is not in quotes, but the row data you are filtering for is. This is because R is sorting through all the character data in your column of interest to pull out the ones which contain the word Australopithecus, so you refer to what you're filtering for in the character data format.  
 
