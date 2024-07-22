@@ -368,9 +368,9 @@ Practice these a bit here, you might even try making your own new numeric or int
 ```{r, echo=T, eval=F}
 x<-c(5.2,-7.3, 9.8, NA)
 median(x) #median of all values in x
-mean(x)
-max(x)
-min(x)
+mean(x) #mean of all values in x  
+max(x)  #largest number in x
+min(x)  #smallest number in x
 ```
 
 Try these out here:
