@@ -416,7 +416,7 @@ cell_counts <- c(100, 200, 150, 175, 225, 122, 270) # Number of cells in differe
 cell_counts <- c(100, 200, 150, 175, 225,  122, 270)
 ```
 
-Besides using the `mean()` function you can also find the mean in R by hand. To do this, you might start by adding up your total number of cells. You could define a variable `total_cells` where you put in the result of the function `sum` on the vector `cell_counts`. Do that and then print the `total_counts` object:
+Besides using the `mean()` function you can also find the mean in R by hand. To do this, you might start by adding up your total number of cells. You could define a variable `total_cells` where you put in the result of running the function `sum` on the vector `cell_counts`. Do that and then print the `total_counts` object:
 
 ```{r exampleinteger, exercise = TRUE, exercise.setup = "setupint"}
  
