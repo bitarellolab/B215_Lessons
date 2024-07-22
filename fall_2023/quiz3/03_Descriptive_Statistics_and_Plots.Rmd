@@ -130,7 +130,7 @@ By the way, the `titanic.csv` file simply has nothing in the places where there 
 
 We have already seen in lab 2 how to calculate the mean of a vector of data using `mean()`. Unfortunately, if there are missing data we need to tell R how to deal with it.
 
-A (somewhat annoying) quirk of R is that if we try to take the mean of a list of numbers that include missing data, we get an NA for the result!
+A (somewhat annoying) quirk of R is that if we try to take the mean of a list of numbers that include missing data, we get an NA for the result! We began to cover dealing with missing data in Lab 2, while looking at the variable age, let's return to `na.rm =` in greater depth. 
 
 
 ```{r}
