@@ -173,12 +173,9 @@ This is the default computational data type in R. If you enter a number without 
 ```{r, echo=T, eval=F}
 pi <- 3.14
 print(pi)
-class(pi)
-is.numeric(pi)
-is.integer(pi)
 ```
 
-Try these out here:
+There are a few functions in R we can use to test the data type of the `pi` variable we just made. `is.numeric()` and `is.integer()` return a simple TRUE or FALSE in answer to the prompt. `class()`, on the other hand, is more general and will provide which data type the variable or object is. Try these out here:
 
 ```{r sandbox, exercise=TRUE, eval = FALSE}
 
