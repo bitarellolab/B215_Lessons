@@ -449,7 +449,7 @@ Try these for yourself:
 
 ### Example 4: characters (again)
 
-In bioinformatics, character strings are often used to represent DNA sequences.
+Let's return to character data with a more practical example. In bioinformatics, character strings are often used to represent DNA sequences.
 
 ```{r, echo=T, eval=F}
 dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
