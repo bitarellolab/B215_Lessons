@@ -244,7 +244,7 @@ This will return a logical vector of same length as `titanicdata$age` which tell
 
 This turned out to be a very long vector! How can we simplify this output? 
 
-We could use the function `table` on the output of the command above. THis will give us two columns, one containing the number of results that are `TRUE` and anoter for `FALSE`.
+We could use the function `table` on the output of the command above. This will give us two columns, one containing the number of results that are `TRUE` and another for `FALSE`.
 
 Try that here:
 
