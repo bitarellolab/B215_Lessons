@@ -1186,7 +1186,7 @@ quiz(caption="dplyr!",
 
 ## Exploring the data
 
-Now that we've familiarized ourselves with the tidyverse, let's return to the titanic data to try out our skills. The titanic data has age, sex, class of the passenger and whether or not they survived. The summarize function is super useful here for analyzing the different factors that are correlated with a passenger's chance of survival. In this example, we will explore age and survival rate. This is how you'd use summarize to group by if someone survived, and get the mean of their ages. Print the new data frame to see.
+Now that we've tested our tidyverse knowledge, let's return to the titanic data to test out our skills with piping and using tidyverse functions in conjuction with one another for more complex analysis. The titanic data has age, sex, class of the passenger and whether or not they survived. The summarize function is super useful here for analyzing the different factors that are correlated with a passenger's chance of survival. In this example, we will explore age and survival rate. This is how you'd use summarize to group by if someone survived, and get the mean of their ages. Print the new data frame to see.
 
 
 ```{r examplenum7, exercise = TRUE, exercise.setup = "setupnum"}
