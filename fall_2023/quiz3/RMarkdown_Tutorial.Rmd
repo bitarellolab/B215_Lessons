@@ -38,4 +38,14 @@ Now that we've gone over how to run our code chunk, let us turn to the output of
 
 ## Creating Code Chunks
 
-There are 3 main ways to create a new code chunk. First and most direct is manually typing the back ticks and curly brackets, however, this method is also the most tedious. Second is to use the green C button directly to the left of the "Run" button. If you click the button's drop down arrow, you'll see that it can actually generate chunks for coding languages beyond just R, including Python and Bash. The only coding this class will cover is in R, but if you know or want to learn these other languages you can use RMD to interact with them! Finally, you can use a key board shortcut to generate an R coding chunk: Ctrl + Alt + I (or Cmd + Option + I if you're using a Mac). Try now to create a chunk of code using one of these methods.    
+There are 3 main ways to create a new code chunk. First and most direct is manually typing the back ticks and curly brackets, however, this method is also the most tedious. Second is to use the green C button directly to the left of the "Run" button. If you click the button's drop down arrow, you'll see that it can actually generate chunks for coding languages beyond just R, including Python and Bash. The only coding this class will cover is in R, but if you know or want to learn these other languages you can use RMD to interact with them! Finally, you can use a key board shortcut to generate an R coding chunk: Ctrl + Alt + I (or Cmd + Option + I if you're using a Mac). Try now to create a chunk of code using one of these methods.
+
+
+
+## Chunk Customization and  Output Formatting
+
+Let's now look at a few of the options we have for controlling 
+
+
+
+
