@@ -1259,71 +1259,17 @@ grade_this_code()
 ```
 
 ### Analyzing the data
-Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the dplyr filter function to select only chicks with time 21.
-name this resulting dataframe FinalChicks. Then print it. 
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the dplyr filter function to select only chicks with time 21. Then, using the pipe operator instead of saving a new version of the dataframe, group the chicks by diet and find the mean weight at time 21 for the chicks on each of the four diets. Name this resulting data frame avg_chick_wgts. Then print it. 
+
 ```{r setupchicks}
 chicks<-datasets::ChickWeight
-FinalChicks<-filter(chicks, Time == "21")
-
-
 ```
-
-
 
 ```{r chicks2, exercise = TRUE, exercise.setup = "setupchicks"}
 
 ```
 
-
 ```{r chicks2-solution}
-FinalChicks<-filter(chicks, Time == "21")
-print(FinalChicks)
-```
-
-```{r chicks2-check}
-grade_this_code()
-```
-
-
-Now lets get the mean for each diet. Use the pattern below calculate the mean weight for the chicks in each of the 4 diets. 
-
-```{r chicks3, exercise = TRUE, exercise.setup = "setupchicks"}
-diet1<-filter(FinalChicks, Diet == "1")
-mean(diet1$weight)
-
-```
-
-
-```{r chicks3-solution}
-diet1<-filter(FinalChicks, Diet == "1")
-mean(diet1$weight)
-
-diet2<-filter(FinalChicks, Diet == "2")
-mean(diet2$weight)
-
-diet3<-filter(FinalChicks, Diet == "3")
-mean(diet3$weight)
-
-diet4<-filter(FinalChicks, Diet == "4")
-mean(diet4$weight)
-
-```
-
-```{r chicks3-check}
-grade_this_code()
-```
-
-
-
-Isn't that a lot of work to get 4 simple means? Let's go over how to do this with dyplr. First group by diet, then summarise to find the mean weight. Then print the result
-
-```{r chicks4, exercise = TRUE, exercise.setup = "setupchicks"}
-
-
-```
-
-
-```{r chicks4-solution}
 avg_chick_wgts<- FinalChicks %>%
 group_by(Diet) %>%
 summarise(mean_weight = mean(weight))
@@ -1331,14 +1277,11 @@ summarise(mean_weight = mean(weight))
 print(avg_chick_wgts)
 ```
 
-```{r chicks4-check}
+```{r chicks2-check}
 grade_this_code()
 ```
 
-
 There are other dplyr commands that are very useful, and they follow the same basic structure. 
-
-
 
 Now let's graph the chicks. We are going to make a basic ggplot, using geom_jitter. We don't just want to use our means because that tells us less than our original data. so using FinalChicks, graph diet on the x axis and weight on the y axis. 
 
