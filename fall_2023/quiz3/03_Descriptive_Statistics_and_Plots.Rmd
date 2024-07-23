@@ -470,7 +470,6 @@ Compared to Data Frames:
 *in general however, you should still use tidy format for naming vraiables, it makes working with the tibble after it is imported easier, and gtes you in the habit of naming this correctly for coding
 * It never creates row names.
 
-
 ## The dplyr package 
 
 
@@ -487,7 +486,7 @@ We will learn about several useful functions for data wrangling from the dplyr p
 
 `filter()` lets you use a logical test to extract specific rows from a data frame. To use `filter()`, pass it the data frame followed by one or more logical tests. `filter()` will return every row that passes each logical test.
 
-Let's use the `iris` dataset from the `datasets` package. 
+Let's use the `iris` data set from the `datasets` package. This data set contains anatomical measurements of three species of iris. Specifically, the data lists the petal and sepal lengths and widths in centimeters.
 
 ```{r iris-setup, echo = T}
 library(dplyr)
