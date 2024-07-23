@@ -1226,7 +1226,7 @@ Lets compare survival odds between classes. Use the group_by() function to group
 
 ```{r examplenum8-solution}
 
-class_survive <- titanic %>%
+class_survive <- titanicdata2 %>%
   group_by(passenger_class) %>%
   summarise(
     survived = sum(survive == "yes"),
@@ -1368,81 +1368,6 @@ grade_this_code()
 
 
 
-## The quiz
-
-Let us analyze some beautiful black cherry trees. Load the dataset trees from the package datasets, name it trees, and call head on it
-
-
-```{r trees1, exercise = TRUE}
-trees<-datasets::trees
-
-```
-
-
-```{r trees1-solution}
-trees<-datasets::trees
-head(trees)
-```
-
-```{r trees1-check}
-grade_this_code()
-```
-
-lets make a new column called "ratio" where we divide the girth of the tree by its height. We will use the mutate function. Use mutate like summarise, and create the new column in a data frame called tree_ratios. Then print it.
-
-
-```{r trees2, exercise = TRUE}
-
-
-```
-
-
-```{r trees2-solution}
-tree_ratios <- trees %>% 
-  mutate(ratio = Girth / Height)
-print(tree_ratios)
-```
-
-```{r trees2-check}
-grade_this_code()
-```
-
-
-Now that we have our ratios, we can see that they range from 0.118 to 0.236. Lets sort these trees into 2 types of tree. any tree under or equal to 0.17 is to be called "skinny legeand" and anytree over is to be call "thicc". Call this data frame tree_types and the new column tree_judgement You're going to use the case_when function inside the mutate function.  
-
-```{r setuptrees}
-
-trees<-datasets::trees
-tree_ratios <- trees %>% 
-  mutate(ratio = Girth / Height)
-
-```
-
-
-
-```{r trees3, exercise = TRUE, setup="setuptrees"}
-
-
-
-```
-
-
-```{r trees3-solution}
-trees_types <- trees_with_type_and_ratio %>%
-  mutate(tree_judgement = case_when(
-    ratio <= 0.17 ~ "skinny legend",
-    ratio > 0.17 ~ "thicc"
-  ))
-
-```
-
-```{r tree3-check}
-grade_this_code()
-```
-
-
-
-I have typed the word tree so many times while making this that it doesn't seem like a word anymore. tree. tree. silly word right? seems like its missing something. 
 
 
 
