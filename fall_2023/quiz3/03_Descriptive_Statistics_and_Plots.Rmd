@@ -754,7 +754,7 @@ The pipe operator, `%>%`, makes this pretty clean by allowing us to pass results
 ```{r, eval=F}
 sorted_titanic <- titanicdata     %>% # initial data
   na.omit()  %>% #omit rows containing NAs
-  filter(survive == "yes") %>% # sruvived
+  filter(survive == "yes") %>% # survived
   filter(age > 15)         %>% #age >15
   mutate(PropF = sum(sex=='female')/length(sex))   %>% # calculate PropF
   arrange(age)                    %>% # sort by age
