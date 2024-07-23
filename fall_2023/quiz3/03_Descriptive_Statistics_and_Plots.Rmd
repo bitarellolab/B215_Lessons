@@ -656,7 +656,7 @@ iris_sepal <- select(iris,
 
 ### `mutate()`
 
-A data set often contains information that you can use to compute new variables. `mutate()` helps you compute those variables. Since `mutate()` always adds new columns to the end of a dataset, we'll start by creating a narrow dataset which will let us see the new variables.
+A data set often contains information that you can use to compute new variables. `mutate()` helps you compute those variables. Since `mutate()` always adds new columns to the end of a data set, we'll start by creating a narrow data set which will let us see the new variables.
 
 ![](images/Screen Shot 2022-09-14 at 11.48.39 AM.png)
 
@@ -693,7 +693,7 @@ Notice that the syntax of `summarise()` is similar to `mutate()`. As with `mutat
 * The name of a data frame to transform
 * One or more column names to appear in the transformed output. Each column name is set equal to the R expression that will generate the content of the column.
 
-The main difference between `summarise()` and `mutate()` is the type of function that you use to generate the new columns. `mutate()` takes functions that return an entire vector of output which is appended to the original data frame (adding a new columns to the end). `summarise()` takes functions that return a single value (or summary). These values will appear in a new data frame that has as many rows as functions you perform on the original data. Unlike `mutate()` summarise will not add onto the old data set but create its own new data set with only the manipulated data you created within the function.
+The main difference between `summarise()` and `mutate()` is the type of function that you use to generate the new columns. `mutate()` takes functions that return an entire vector of output which is appended to the original data frame (adding a new column to the end). `summarise()` takes functions that return a single value (or summary). These values will appear in a new data frame that has as many rows as functions you perform on the original data. Unlike `mutate()` summarise will not add onto the old data set but create its own new data set with only the manipulated data you created within the function.
 
 
 ### `group_by()`
