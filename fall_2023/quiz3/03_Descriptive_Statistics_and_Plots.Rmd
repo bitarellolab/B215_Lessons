@@ -1202,14 +1202,12 @@ Now that we've tested our tidyverse knowledge, let's return to the titanic data 
 
 ```{r examplenum7-solution}
 
-class_survive <- titanic %>%
-  group_by(passenger_class) %>%
+mean_ages <- titanicdata2 %>%
+  group_by(survive) %>%
   summarise(
-    survived = sum(survive == "yes"),
-    died = sum(survive == "no")
+    mean_age = mean(age)
   )
-
-
+print(mean_ages)
 
 ```
 
