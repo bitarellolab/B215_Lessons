@@ -1365,12 +1365,7 @@ ggplot(FinalChicks, aes(x=Diet, y=weight))+geom_jitter()
 grade_this_code()
 ```
 
-
-
-
-
-
-
+Congrats! You've now had an intro to the tidyverse, plotting, and data analysis. Next week, we'll take these skills to the next level with actual Exploratory Data Analysis, but for now, be proud of how much you've learned in just three weeks!
 
 
 READ FIRST:
