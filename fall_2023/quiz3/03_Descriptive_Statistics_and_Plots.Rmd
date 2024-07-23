@@ -989,7 +989,7 @@ If there were even more data points than shown here, using `alpha` as an argumen
 ### Scatterplots
 The last graphical style that we will cover here is the scatter plot, which shows the relationship between two numerical variables.
 
-The titanic data set does not have two numerical variables, so let’s use a different data set—the example from Figure 2.3-2 of Whitlock and Schluter, showing the relationship between the ornamentation of father guppies and the sexual attractiveness of their sons. You can load the data for that example with
+The titanic data set does not have two numerical variables, so let’s use a different data set— KAMILAR AND COOP
 ```{r, eval=F}
 guppyFatherSonData <-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/chap02e3bGuppyFatherSonAttractiveness.csv")
 ```
