@@ -645,7 +645,7 @@ which(between(iris$Sepal.Length,5,6))
 
 ### `select()`
 
-You can select a subset of variables by name with the `select()` function in `dplyr`. In more practical terms, `select()` pulls rows out of the data frame, while `filter()` pulls out rows. Run the code below to see the narrow data set that `select()` creates.
+You can select a subset of variables by name with the `select()` function in `dplyr`. In more practical terms, `select()` pulls columns out of the data frame, while `filter()` pulls out rows. Run the code below to see the narrow data set that `select()` creates.
 
 ```{r selectfun, exercise=TRUE, exercise.setup="iris-setup"}
 iris_sepal <- select(iris,
