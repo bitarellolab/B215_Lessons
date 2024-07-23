@@ -467,6 +467,7 @@ Compared to Data Frames:
 * A tibble can have non-standard variable names.
 * Can start with a number or contain spaces.
 * To use this refer to these in a backtick. E.g. `my_dataframe$``0 weird col name``
+*in general however, you should still use tidy format for naming vraiables, it makes working with the tibble after it is imported easier, and gtes you in the habit of naming this correctly for coding
 * It never creates row names.
 
 
