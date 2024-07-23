@@ -522,6 +522,8 @@ library(dplyr)
 glimpse(iris)
 ```
 
+`glimpse()` is different than `head()` in that it gives the dimensions of the data, and as much data as is in the columns that it can fit
+
 Check what are the levels for `Species` by selecting the column (use `$`) and the function `levels`:
 
 ```{r levels, exercise=TRUE, exercise.setup="iris-setup"}
