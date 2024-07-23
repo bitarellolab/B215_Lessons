@@ -1082,12 +1082,87 @@ titanicdata %>%
 
 ```
 
+```{r quiz1, echo=FALSE}
 
-```{r cha1-check}
-
-grade_this_code()
+quiz(caption="ggquiz!",
+  question("ggplot2 thinks about plots in layers. Which of the following is **not** a layer",
+    answer("geom"),
+    answer("data"),
+    answer("color", correct = TRUE),
+    answer("aesthetics"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+   question("We map variables onto aesthetics. Which of the following is **not** an aesthetic?",
+    answer("barplot", correct = TRUE),
+    answer("color"),
+    answer("x"),
+    answer("y"),
+    answer("shape"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+   question("Circumference",
+    answer("x"),
+    answer("shape"),
+    answer("color"),
+    answer("y", correct = TRUE),
+    answer("line"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ),
+   question("Tree",
+    answer("x"),
+    answer("shape"),
+    answer("color",correct = TRUE),
+    answer("y"),
+    answer("line"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+   ),
+  question("Age",
+    answer("x",correct = TRUE),
+    answer("shape"),
+    answer("color"),
+    answer("y"),
+    answer("line"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+   ),
+   question_checkbox("The code that generated the figure above uses two geom layers. What are they? (select all that apply)",
+    answer("point",correct = TRUE),
+    answer("shape"),
+    answer("color"),
+    answer("y"),
+    answer("line", correct = TRUE),
+    answer("size"),
+    answer("density"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  ), 
+  question_checkbox("Why is a jitterplot (stripchart) often better than a boxplot? (select all that apply)",
+  answer("A jitterplot shows all the data points, while a boxplot only shows high level summaries", correct = TRUE),
+  answer("Interpreting boxplots requires some statistical knowledge on the part of the readers", correct = TRUE),
+  answer("They usually are NOT - long live the boxplots!"),
+   allow_retry = TRUE,
+   correct = random_praise(),
+    incorrect = random_encouragement(), random_answer_order = TRUE
+  )
+)
 ```
-![](images/Screenshot 2023-09-19 at 3.16.06 PM.png){width=80%}
+
+
+
+```{r iris-cha, echo=F, eval=T}
+iris %>% group_by(Species) %>% summarise(mean_sepal_length=mean(Sepal.Length))
+
+```
 
 ```{r quiz2, echo=F}
 quiz(caption="dplyr!",
@@ -1107,6 +1182,7 @@ quiz(caption="dplyr!",
 )
 )
 ```
+
 
 ## Exploring the data
 
