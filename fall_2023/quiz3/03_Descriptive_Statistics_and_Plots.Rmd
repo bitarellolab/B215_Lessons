@@ -17,12 +17,11 @@ library(praise)
 library(utils)
 library(datasets)
 library(dplyr)
-tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
-gradethis::gradethis_setup(
-  pass.praise = TRUE,
-  fail.encourage = TRUE,
-  fail.hint = TRUE
-)
+#tutorial_options(exercise.eval = TRUE, exercise.reveal_solution = FALSE)
+#gradethis::gradethis_setup(
+  #pass.praise = TRUE,
+ #fail.encourage = TRUE,
+  #fail.hint = TRUE)
 
 ```
 
@@ -1214,7 +1213,7 @@ grade_this_code()
 
 
 
-Let's return to the iris data set for our next example. We have the length and width of the petals, but let's say we wanted to add a row with a (very) rough approximation of the petal area for each of the iris species. 
+Let's return to the iris data set for our next example. We have the length and width of the petals, but let's say we wanted to add a row with a (very) rough approximation of the petal area for each of the iris species. Use the mutate, summarise, and group_by functions to accomplish this. 
 
 ```{r examplenum8, exercise = TRUE, exercise.setup = "setupnum"}
                
@@ -1223,10 +1222,10 @@ Let's return to the iris data set for our next example. We have the length and w
 
 
 ```{r examplenum8-solution}
-
-
-
-
+iris %>% 
+  mutate(Petal.Area = Petal.Length * Petal.Width) %>% 
+  group_by(Species) %>% 
+  summarise(Mean.Petal.Area = mean(Petal.Area))
 ```
 
 ```{r examplenum8-check}
