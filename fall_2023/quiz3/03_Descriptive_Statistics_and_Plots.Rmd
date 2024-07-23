@@ -1214,24 +1214,16 @@ grade_this_code()
 
 
 
-Lets compare survival odds between classes. Use the group_by() function to group the passengers by class. The summarize() function lets you create a new data frame to look at summary statistics from your original dataset. Dplyr lets you chain commands together using  %>%. Let's use the filtered data that doesn't have any missing values. 
-(you'll have two arguments inside the summarise function)
-
+Let's return to the iris data set for our next example. We have the length and width of the petals, but let's say we wanted to add a row with a (very) rough approximation of the petal area for each of the iris species. 
 
 ```{r examplenum8, exercise = TRUE, exercise.setup = "setupnum"}
-                    
+               
 ```
 
 
 
 ```{r examplenum8-solution}
 
-class_survive <- titanicdata2 %>%
-  group_by(passenger_class) %>%
-  summarise(
-    survived = sum(survive == "yes"),
-    died = sum(survive == "no")
-  )
 
 
 
@@ -1335,7 +1327,7 @@ Isn't that a lot of work to get 4 simple means? Let's go over how to do this wit
 ```{r chicks4-solution}
 avg_chick_wgts<- FinalChicks %>%
 group_by(Diet) %>%
-summarize(mean_weight = mean(weight))
+summarise(mean_weight = mean(weight))
 
 print(avg_chick_wgts)
 ```
