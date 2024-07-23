@@ -74,8 +74,6 @@ You can import many types of data in R. If you want to see which file types are 
 Here, we'll be using read.csv which reads... csv files.
 
 ```{r, echo=T, eval=F}
-<<<<<<< Updated upstream
-
 titanicdata <- read.csv("~/Documents/GitHub/B215_Lessons/fall_2022_materials/lab3/data/titanic.csv", stringsAsFactors = TRUE)
 ```
 
@@ -1186,15 +1184,14 @@ quiz(caption="dplyr!",
 
 ## Exploring the data
 
-Now that we've tested our tidyverse knowledge, let's return to the titanic data to test out our skills with piping and using tidyverse functions in conjunction with one another for more complex analysis. The titanic data has age, sex, class of the passenger and whether or not they survived. The summarize function is super useful here for analyzing the different factors that are correlated with a passenger's chance of survival. In this example, we will explore age and survival rate. This is how you'd use summarize to group by if someone survived, and get the mean of their ages. Print the new data frame to see.
+Now that we've tested our tidyverse knowledge, let's return to the titanic data to test out our skills with piping and using tidyverse functions in conjunction with one another for more complex analysis. The titanic data has age, sex, class of the passenger and whether or not they survived. The summarize function is super useful here for analyzing the different factors that are correlated with a passenger's chance of survival. In this example, we will explore age and survival rate. Try using `summarise()` and `group_by` to make a table showing the mean age of those who survived versus those who did not. Print the new data frame to see.
 
 
 ```{r examplenum7, exercise = TRUE, exercise.setup = "setupnum"}
- mean_ages <- titanicdata2 %>%
-  group_by(survive) %>%
-  summarise(
-    mean_age = mean(age)
-  )
+ mean_ages <- titanicdata2 %>% #creating variable mean_ages
+                               #group by survival
+                               #summarize for mean age
+                               #print
                    
 ```
 
