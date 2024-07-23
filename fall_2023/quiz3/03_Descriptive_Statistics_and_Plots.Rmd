@@ -522,7 +522,7 @@ library(dplyr)
 glimpse(iris)
 ```
 
-`glimpse()` is different than `head()` in that it gives the dimensions of the data, and as much data as is in the columns that it can fit
+`glimpse()` is different than `head()` in that it gives the dimensions of the data, and as much data as is in the columns that it can fit.
 
 Check what are the levels for `Species` by selecting the column (use `$`) and the function `levels`:
 
@@ -628,7 +628,7 @@ filter(df, x > 1)
 filter(df, is.na(x) | x > 1) #is.na(x) OR x >1
 ```
 
-You can also use the `!=` aka the "is not equal to" function to filter for all the rows in dataset without a specific value. This can be useful for when you move on to exploratory data analysis with real world data.
+You can also use the `!=` aka the "is not equal to" function to filter for all the rows in data set without a specific value. This can be useful for when you move on to exploratory data analysis with real world data.
 
 Another useful dplyr filtering helper is `between()`. Run the code below to see its use. What does it do?
 
