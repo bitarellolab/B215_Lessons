@@ -892,7 +892,7 @@ The [`aes()`](https://ggplot2.tidyverse.org/reference/aes.html) function takes m
 
 #####  Faceting {-}
 
-Faceting allows us to use the concept of small multiples [@tufte1983] to highlight patterns. In other words, faceting will take your plot and make smaller connected subplots, divided by a category. It works in a similar way to `fill` or `color` but completely separates the data rather than just making the ctaegories distinct from one another on a single plot.
+Faceting allows us to use the concept of small multiples [@tufte1983] to highlight patterns. In other words, faceting will take your plot and make smaller connected subplots, divided by a category. It works in a similar way to `fill` or `color` but completely separates the data rather than just making the categories distinct from one another on a single plot.
 
 ```{block2, type='rmdcode'}
 For one facetted variable: `facet_wrap(~ <var>, nocl = )`  
