@@ -130,7 +130,7 @@ By the way, the `titanic.csv` file simply has nothing in the places where there 
 
 We have already seen in lab 2 how to calculate the mean of a vector of data using `mean()`. Unfortunately, if there are missing data we need to tell R how to deal with it.
 
-A (somewhat annoying) quirk of R is that if we try to take the mean of a list of numbers that include missing data, we get an NA for the result!
+A (somewhat annoying) quirk of R is that if we try to take the mean of a list of numbers that include missing data, we get an NA for the result! We began to cover dealing with missing data in Lab 2, while looking at the variable age, let's return to `na.rm =` in greater depth. 
 
 
 ```{r}
@@ -190,7 +190,7 @@ Other metrics of variation include the coefficient of variation. Surprisingly, t
 
 Make sure you understand the command above before continuing!
 
-Even more metrics include range and interquartile range which are the differnece between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as range() and IQR() in the exact same format as mean() and sd().
+Even more metrics include range and interquartile range which are the difference between the max and the min points in the data and the third quartile and first quartile in the data respectively. You can call these functions as range() and IQR() in the exact same format as mean() and sd().
 
 Try running them below.
 
@@ -223,7 +223,7 @@ nrow(titanicdata)-nrow(titanicdata2)
 
 680 rows with missing data! But did this function actually remove all the rows with missing data or did it mess up? 
 
-Well, three functions are useful for us to decide. `length()`, which returns the number of entries, `which()`, which gives the location of data the vector that corresponds to the logical statement inside the function, and is.na, which returns a logical statement stating whether any entry in the input is NA.
+Well, three functions are useful for us to decide. `length()`, which returns the number of entries, `which()`, which gives the location of data the vector that corresponds to the logical statement inside the function, and `is.na()`, which returns a logical statement stating whether any entry in the input is NA.
 
 Try testing whether there are any NAs in titanicdata$age (which, becuase we know there are, should return TRUE)
 ```{r examplenum4, exercise = TRUE, exercise.setup = "setupnum"}
@@ -244,7 +244,7 @@ This will return a logical vector of same length as `titanicdata$age` which tell
 
 This turned out to be a very long vector! How can we simplify this output? 
 
-We could use the function `table` on the output of the command above. THis will give us two columns, one containing the number of results that are `TRUE` and anoter for `FALSE`.
+We could use the function `table` on the output of the command above. This will give us two columns, one containing the number of results that are `TRUE` and another for `FALSE`.
 
 Try that here:
 
@@ -279,7 +279,7 @@ which(is.na(titanicdata$age))
 grade_this_code()
 ```
 
-This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that na.omit worked:
+This should return a big list of row numbers and, finally, we can take the length of this result and if it equals 680, we will know that `na.omit` worked:
 ```{r examplenum6, exercise = TRUE, exercise.setup = "setupnum"}
                     
 ```
@@ -433,7 +433,7 @@ In the resulting file, the first line will be a header that lists the names of e
 
 #### A note about tibbles
 
-“Tibbles” are a new modern data frame. They keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated dataframe that we just learned about.
+“Tibbles” are a new modern data frame. They keep many important features of the original data frame. They remove many of the outdated features. They are another amazing feature added to R by Hadley Wickham. We will use them in the tidyverse to replace the older outdated data frame that we just learned about.
 
 
 If you use `readr::read_csv` to read in a .csv file, instead of the default base R `read.csv`, your data will be imported as a tibble. Then, have a quick check to see what the file looks like.

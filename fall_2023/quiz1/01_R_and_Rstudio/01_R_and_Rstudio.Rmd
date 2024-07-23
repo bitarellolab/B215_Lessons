@@ -120,14 +120,14 @@ computer programming, this means:
 
 -   Raw data is never modified; you read it as is, process it, and
     produce outputs
--   Outputs should be disposble; if your computer explodes, as long as
+-   Outputs should be disposable; if your computer explodes, as long as
     you backed up your code you should be able to reproduce your
     output/results
 -   Manual steps (i.e., these that cannot be automated) should be
     avoided or otherwise minimized
 -   Ideally, one software package (in our case, R) should be enough to
     run your code; if other software is needed, ideally you would make
-    the integration between them work seemlessly and in an automated way
+    the integration between them work seamlessly and in an automated way
     [this is beyond the scope of our course]
 
 So how do you save your code?
@@ -156,7 +156,7 @@ sign) are read as comments.
     in the form of a comment
 -   Later we will see how to turn this into an R markdown file
 
-## The command line
+## The Console
 
 When you start RStudio, you'll see a corner of the window called the
 "Console." By default the console window is in the bottom left of the
@@ -318,10 +318,9 @@ Variable names should:
 * they can include letters and
 numbers
 * NOT begin with a number 
-* spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether
-when naming things (variables, files, functions, etc.) because they are
-a no-no 
-* instead of "my var", use "myvar", "myVar", "my_var", etc. 
+* spaces are not tolerated -- In fact, in the world of programming you should forget spaces altogether when naming things (variables, files, functions, etc.) because they are a no-no 
+*use underscores, periods, capitalization, etc. if you want to separate words
+*Example: instead of "my var", use "myvar", "myVar", "my_var", etc. 
 * choosing meaningful names makes your code easier to read - by you and
 others
 
@@ -336,9 +335,11 @@ Now try to recreate the variables above but call them `x var` and `y var` instea
 
 ```
 
+You should get an error for an "unexpected symbol", that's the space. 
+
 ## Data types in R
 
-These things that change (variables) can be numeric, text, or Boolean
+Variables in R can be numeric, text, or Boolean
 (true/false).Text variables are referred to as strings in R (and many
 other programming languages).
 
@@ -379,8 +380,9 @@ class(x) # this command tells you the class of a given variable or R object.
 2 < 0 #Try this and see what happens
 
 ```
-Learn more at  [Data types in R. W3schools.com.
-    https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp)
+
+We'll cover these data types and their uses in depth in Lab 2, but for now if you want a head start you can learn more at  [Data types in R. W3schools.com.
+    https://www.w3schools.com/r/r_data_types.asp](https://www.w3schools.com/r/r_data_types.asp) .
     
 ### Numbers
 
@@ -435,7 +437,7 @@ Sandbox: Use the area below for any R practice
 
 ## R Data Structure
 
-R has several data strcutures: vectors, lists, matrices, arrays,
+R has several data structures: vectors, lists, matrices, arrays,
 data.frames, factors.
 
 Today we will see vectors and factors:
@@ -448,7 +450,7 @@ To combine the list of items to a vector, use the c() function and
 separate the items by a comma.
 
 In the example below, we create a vector variable called planets, that
-combine strings:
+combines strings:
 
 ```{r, echo = T, eval=F}
 #vector of strings

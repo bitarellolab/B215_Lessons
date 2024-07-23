@@ -173,12 +173,9 @@ This is the default computational data type in R. If you enter a number without 
 ```{r, echo=T, eval=F}
 pi <- 3.14
 print(pi)
-class(pi)
-is.numeric(pi)
-is.integer(pi)
 ```
 
-Try these out here:
+There are a few functions in R we can use to test the data type of the `pi` variable we just made. `is.numeric()` and `is.integer()` return a simple TRUE or FALSE in answer to the prompt. `class()`, on the other hand, is more general and will provide which data type the variable or object is. Try these out here:
 
 ```{r sandbox, exercise=TRUE, eval = FALSE}
 
@@ -195,16 +192,13 @@ is.integer(class_number)
 is.numeric(class_number)
 ```
 
-Sometimes you can convert one type into another. Say numeric to integer or vice-versa:
+Sometimes you can convert one type into another. Let's use the example variable `class_number` I've created below. 
 
 ```{r, echo=T, eval=F}
 class_number <- 215
-class(class_number)
-new_class_number<-as.integer(class_number)
-class(new_class_number)
 ```
 
-Try these out here:
+There are a few functions in R which allow you to convert data. These functions will usually take the form as.(insert data type you want to convert to). For example to convert something into an integer you'd use the function `as.integer()` and to convert to numeric you'd use `as.numeric()`. Try this out below: run the `class()` function on `class_number` to determine if it is numeric or integer data, then use the appropriate function to convert it.
 
 ```{r sandbox2, exercise=TRUE, eval = FALSE}
 
@@ -213,7 +207,7 @@ Try these out here:
 ### Logical (T/F)
 
 Logical data type in R is used to hold Boolean values: TRUE or FALSE. You can use logical operators like \<, \>, ==, etc. to generate logical values. For example, the operation 5 \> 3 will return TRUE because 5 is indeed greater than 3. You can also store TRUE or FALSE values in variables or vectors as you would with the numerical values we have already seen.
-
+ 
 ```{r, echo=T, eval=F}
 reality <- TRUE
 reality2 <- T #also works
@@ -221,7 +215,12 @@ isTRUE(reality)
 isFALSE(reality2)
 ```
 
-Try these out here:
+```{r, echo=FALSE, eval=FALSE}
+true_or_false<-FALSE
+```
+
+
+Try out `isTrue` and `isFalse` on a variable which I have made and provided in your environment, `true_or_false` :
 
 ```{r sandbox3, exercise=TRUE, eval = FALSE}
 
@@ -233,11 +232,9 @@ Character data type in R is used to hold strings of text. You can create a chara
 
 ```{r, echo=T, eval=F}
 types_of_data <- c("Numeric", "Interger","Logical", "Complex", "Character", "Raw") 
-class(types_of_data)
-is.character(types_of_data)
 ```
 
-Try these out here:
+Try `class()` and `is.character()` out on this string!:
 
 ```{r sandboxchar, exercise=TRUE, eval = FALSE}
 
@@ -264,13 +261,7 @@ hominin_genus_factor<-as.factor(hominin_genus)
 
 ```
 
-```{r echo=T, eval=F}
-hominin_genus_factor<-as.factor(hominin_genus)
-class(hominin_genus_factor)
-print(hominin_genus_factor)
-```
-
-Try these out here:
+Try converting `hominin_genus` into a factor, using the earlier `as.integer()` and `as.numeric()` examples as a model. Then, run `class()` on your converted variable to check your work and print it
 
 ```{r sandboxfact, exercise=TRUE, eval = FALSE, , exercise.setup="setupmls"}
 
@@ -338,15 +329,17 @@ growth_data <- c(0.05,2, 1.5, 1.2, 0.08, 2.5, 0.5)
 Suppose you want to take the mean and median of these values. Create the variables `avg_growth` and `med_growth` and then print `avg_growth` and `med_growth`:
 
 ```{r examplenum, exercise = TRUE, exercise.setup = "setupnum"}
-      avg_growth <-
-      med_growth <-
+      avg_growth <- #mean of growth_data
+      med_growth <- #median of growth_data
+                    #print avg_growth
+                    #print med_growth
 ```
 
 ```{r examplenum-solution}
-avg_growth <- mean(growth_data) 
-med_growth<- median(growth_data)
-print(avg_growth)
-print(med_growth)
+     avg_growth <- mean(growth_data) #mean of growth_data
+     med_growth <- median(growth_data) #median of growth_data
+     print(avg_growth) #print avg_growth
+     print(med_growth) #print med_growth
 
 ```
 
@@ -360,11 +353,11 @@ Here are a few more operations that are appropriate for `numeric` and `integer` 
 x<-c(5.2,-7.3, 9.8) #numeric
 y<-2L #integer
 print(abs(x)) #absolute values
-print(median(x)) #median of all values in x
+print(sum(x)) #sum of all values in x
 print(x>y)
 ```
 
-Practice these a bit here:
+Practice these a bit here, you might even try making your own new numeric or integer vectors:
 
 ```{r sandbox5, exercise=TRUE, eval = FALSE}
 
@@ -375,9 +368,9 @@ Practice these a bit here:
 ```{r, echo=T, eval=F}
 x<-c(5.2,-7.3, 9.8, NA)
 median(x) #median of all values in x
-mean(x)
-max(x)
-min(x)
+mean(x) #mean of all values in x  
+max(x)  #largest number in x
+min(x)  #smallest number in x
 ```
 
 Try these out here:
@@ -423,7 +416,7 @@ cell_counts <- c(100, 200, 150, 175, 225, 122, 270) # Number of cells in differe
 cell_counts <- c(100, 200, 150, 175, 225,  122, 270)
 ```
 
-Besides using the `mean()` function you can also find the mean in R by hand. To do this, you might start by adding up your total number of cells. You could define a variable `total_cells` where you put in the result of the function `sum` on the vector `cell_counts`. Do that and then print the `total_counts` object:
+Besides using the `mean()` function you can also find the mean in R by hand. To do this, you might start by adding up your total number of cells. You could define a variable `total_cells` where you put in the result of running the function `sum` on the vector `cell_counts`. Do that and then print the `total_counts` object:
 
 ```{r exampleinteger, exercise = TRUE, exercise.setup = "setupint"}
  
@@ -440,7 +433,7 @@ print(total_cells)
 grade_this_code()
 ```
 
-Once again, if your data are plagged with NAs (which is usually the case with real data), you will need to be explicit with R. Below is a version of `cell_counts` that is reflective of the typical missing data we have to deal with. Using the code provided as a model, deal with the NAs properly in the sandbox and find the mean by hand. You'll know you've done it correctly if R returns a number, rather than NA.
+Once again, if your data are plagued with NAs (which is usually the case with real data), you will need to be explicit with R. Below is a version of `cell_counts` that is reflective of the typical missing data we have to deal with. Using the code provided as a model, deal with the NAs properly in the sandbox and find the mean by hand. You'll know you've done it correctly if R returns a number, rather than NA.
 
 ```{r, echo=T, eval=F}
 cell_counts_withNA<-c(100, 200, 150, 175, NA, 122, 270) #the data with NAs, which you will use below
@@ -456,14 +449,14 @@ Try these for yourself:
 
 ### Example 4: characters (again)
 
-In bioinformatics, character strings are often used to represent DNA sequences.
+Let's return to character data with a more practical example. In bioinformatics, character strings are often used to represent DNA sequences.
 
 ```{r, echo=T, eval=F}
 dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
 
 ```
 
-This example obviously uses justa few datapoints, but when processing DNA data, biologists may deal with hundreds of sequencing fragments at a time. The volume of data necessitates the use of a computer. Here we will practice working with this character data. Suppose you want to look at the first sequence from a long vector. You can select an element from vectors (also called indexing) in R by using square brackets after the name of the vector, with the number inside the brackets indicating the which number value you are interested in. Paste the following code to define a character variable containing the first sequence in the vector and then print it. `first_sequence <- dna_sequences[1] # DNA sequence`:
+This example obviously uses just a few data points, but when processing DNA data, biologists may deal with hundreds of sequencing fragments at a time. The volume of data necessitates the use of a computer. Here we will practice working with this character data. Suppose you want to look at the first sequence from a long vector. You can select an element from vectors (also called indexing) in R by using square brackets after the name of the vector, with the number inside the brackets indicating the which number value you are interested in. Paste the following code to define a character variable containing the first sequence in the vector and then print it. `first_sequence <- dna_sequences[1] # DNA sequence`:
 
 ```{r setupchr}
 dna_sequences <- c("ATGC", "CGTA", "GATC", "TACG") # DNA sequences
@@ -514,7 +507,7 @@ grade_this_code()
 
 ### Example 5: Logical (also called boolean)
 
-If you ask R is one object is the same as another, it will typically return a logical (boolean) object.
+If you ask R is one object is the same as another, it will typically return a logical (Boolean) object.
 
 ```{r, echo=T, eval=F}
 a <- c(1,2,3) #suppose this is your data and you misenter the first number
@@ -522,7 +515,7 @@ b <- c(2,2,3) #and you want to make sure your data matches a previous result
 
 ```
 
-In the space below, create an object called `which_entries_match` which contains the result of your asking if `a` is the same as `b`. In the second line, print the object your created remember from Lab 1 how we ask this in R. (Tip, it's not simply `a=b` because that will try to assign obect `b` to obkect `a`.)
+In the space below, create an object called `which_entries_match` which contains the result of your asking if `a` is the same as `b`. In the second line, print the object you created. Recall from Lab 1 how to ask this in R. (Hint/lab 1 link)
 
 ```{r setupbool}
 a <- c(1,2,3) 
@@ -550,7 +543,7 @@ grade_this_code()
 
 You already learned about vectors in the last lesson. They are a sequence of data elements of the same basic type. They can be numeric, integer, complex, character, or logical. They are **one-dimensional.**
 
-R loves vectors and tends to treat everything like a vector: an object with only one element is a vector. E.g., `a<-9` is simply a vector of length `1`.
+R loves vectors and tends to treat everything like a vector: even an object with only one element is a vector. E.g., `a<-9` is simply a vector of length `1`.
 
 Check this is true by asserting object `a` is a vector using the function `is.vector`. Next, check its length with the function `length()`:
 
@@ -666,7 +659,7 @@ What you saw above was R trying to make sense of your mess. It "coerces" some of
 
 **Character Coercion:** If you concatenate objects of different types and one of them is a character, R will try to convert the non-character objects to characters. This often results in the character type because character data can accommodate a wide range of values. That's the case for `d_and_f` and `b_and_h`.
 
-**Numeric Coercion:** If you concatenate objects of different types and one of them is numeric, R will try to convert the non-numeric objects to numeric. This is because numeric data can represent a broader range of values than other types. That's the case of `a_and_g` and `d_and_g`. The `integer` elements were coerced into numeric. If you try to coerce `numeric` and `logical`, the logical element becomes numeric. How? 0 is equivalent to `FALSE` and 1 is equivalent to `TRUE`. In fact, any number that is **not** zero will be considered `TRUE`. That's the case for `a_and_h`. Let's look at some more of this relstionship between numeric and Boolean variables below:
+**Numeric Coercion:** If you concatenate objects of different types and one of them is numeric, R will try to convert the non-numeric objects to numeric. This is because numeric data can represent a broader range of values than other types. That's the case of `a_and_g` and `d_and_g`. The `integer` elements were coerced into numeric. If you try to coerce `numeric` and `logical`, the logical element becomes numeric. How? 0 is equivalent to `FALSE` and 1 is equivalent to `TRUE`. In fact, any number that is **not** zero will be considered `TRUE`. That's the case for `a_and_h`. Let's look at some more of this relationship between numeric and Boolean variables below:
 
 ```{r, echo=T, eval=F}
 #including only 0s and 1s
@@ -687,6 +680,8 @@ Try it!
 ```{r sandbox12, exercise=TRUE, eval = FALSE}
 
 ```
+
+Coercing from Boolean to numeric means we can easily count the number of TRUEs and FALSES by summing the dating.
 
 Everything we just said for vectors applies to matrices as well.
 
@@ -733,10 +728,10 @@ vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
 
 # Combine vectors as columns to create a matrix
-matrix1 <- cbind(vector1, vector2)
+matrix1 <- cbind(vector1, vector2) #vector1 becomes column 1, vector 2 becomes column 2
 
 # Combine vectors as rows to create a matrix
-matrix2 <- rbind(vector1, vector2)
+matrix2 <- rbind(vector1, vector2) #vector 1 becomes row 1, vector 2 becomes row 2
 
 ```
 
@@ -838,7 +833,7 @@ species_info <- data.frame(
 
 ```
 
-In the space below: a) Print the dataframe and b) on the next row practice using the structure `dataframe$columnname` to select the column named "Family" and save that as a vector called "family". You can also use square brackets as seen for vectors and matrices but \$ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe (Tip: Make sure to type the name of the column you're trying to exactly, remember, R is case sensitive). 
+In the space below: a) Print the dataframe and b) on the next row practice using the structure `dataframe$columnname` to select the column named "Family" and save that as a vector called "family". You can also use square brackets as seen for vectors and matrices but \$ allows you to see the name of the column you are extracting without counting which column you're interested in in the original dataframe (Tip: Make sure to type the name of the column you're trying to select exactly, remember, R is case sensitive). 
 
 ```{r dfex1, exercise = TRUE, exercise.setup = "setupdfex1"}
                     
@@ -882,7 +877,7 @@ australopithecus_genome_size<-dplyr::filter(species_info, Genus == "Australopith
 
 ```
 
-In the following box, seperate all the rows with "Australopithecus" in the `Genus` column using the function `filter` from the dplyr package. `dplyr` has a whole host of useful functions that make working with dataframes convenient. We will learn a lot more about the `dplyr` package in future lessons. Filter is just the tip of the iceberg.
+In the following box, separate all the rows with "Australopithecus" in the `Genus` column using the function `filter` from the dplyr package, `dplyr` has a whole host of useful functions that make working with data frames convenient. We will learn a lot more about the `dplyr` package in future lessons. Filter is just the tip of the iceberg.
 
 Follow the format: `filter(dataframe_name, columnname == "Australopithecus")` and save the results as `australopithecus_genome_length`. Then, print `australopithecus_genome_length`. Notice that the column name you are filtering from is not in quotes, but the row data you are filtering for is. This is because R is sorting through all the character data in your column of interest to pull out the ones which contain the word Australopithecus, so you refer to what you're filtering for in the character data format.  
 
@@ -898,7 +893,7 @@ australopithecus_genome_size<-filter(species_info, Genus == "Australopithecus")
 grade_this_code()
 ```
 
-Now, using the dataframe you made (`australopithecus_genome_size`), use the function `summary` on the column of that dataframe which contains the genome information to calculate how variable hominin genomes are. Save that result into the object `summary_results` and print out that object.
+Now, using the data frame you made (`australopithecus_genome_size`), use the function `summary` on the column of that data frame which contains the genome information to calculate how variable hominin genomes are. Save that result into the object `summary_results` and print out that object.
 
 ```{r dfex3, exercise = TRUE, exercise.setup = "setupdfex2"}
                     
@@ -944,7 +939,7 @@ species_info <- list(
 
 ```
 
-Print the result and use double square brackets -`[[]]` -to select the third item from the list
+Print the result and use double square brackets -`[[]]` -to select the third item from the list. We use double brackets to index a list, similar to indexing vectors or data frames with single brackets.
 
 ```{r list1ex, exercise = TRUE, exercise.setup = "setuplist1"}
                     #print the object
@@ -1112,7 +1107,7 @@ grade_this_code()
 
 ## Quiz Part 2: Working with real data
 
-Now we are going to practice working with an actual data set. We will be using one from the `datasets` package called `chickweights`. It's from an experiment on the effect of diet on early growth of chicks. If you want to learn more about the dataset type ??chickweights into your console (later, now while you are taking this quiz!)
+Now we are going to practice working with an actual data set. We will be using one from the `datasets` package called `chickweights`. It's from an experiment on the effect of diet on early growth of chicks. If you want to learn more about the data set type ??chickweights into your console (later, not while you are taking this quiz!)
 
 ### Lets look at the data
 
@@ -1135,7 +1130,7 @@ grade_this_code()
 
 ### Analyzing the data
 
-Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the `dplyr` package's `filter` function to select only chicks with time 21 from the `chicks` object. name this resulting dataframe `FinalChicks`. Then print it.
+Lets see which diet worked best! This data shows us the same chicken at multiple times. If we only want to see the final outcome, we can filter for the final weight. Using the `dplyr` package's `filter` function to select only chicks with time 21 from the `chicks` object. Name this resulting data frame `FinalChicks`. Then print it.
 
 ```{r setupchicks}
 chicks<-datasets::ChickWeight
