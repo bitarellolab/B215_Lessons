@@ -165,7 +165,7 @@ Answer:
 
 Answer: 
 
-**Ex.8)** Check whether the data set has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` if there are missing values and `FALSE` if not. What do you think about the amount and location of missing data? How would you handle it in a real data analysis situation
+**Ex.8)** Check whether the data set has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` if there are missing values and `FALSE` if not. What do you think about the amount and location of missing data? How would you handle it in a real data analysis situation?
 
 ```{r ex8, echo=TRUE, eval=TRUE}
 # type your code here
@@ -192,7 +192,7 @@ Answer:
 
 ```
 
-You may have noticed a message from R that asks you to adjust the bins. Feel free use the `bins = ` parameter in your geom and see how that impacts the display of your data, and its legibility. This kind of adjustment is a preview into making figures for display rather than just exploration, which is what we're focusing on today.
+You may have noticed a message from R that asks you to adjust the bins. Feel free use the `bins = ` parameter in your geom and see how that impacts the display of your data, and its legibility. This kind of adjustment is a preview into making explanatory figures rather than just exploraty figures, which is what we're focusing on today.
 
 **Ex.11)** Explore the variable `metabolic_rate`. What is the range of the values? Save your answer into a variable called `range_metab`. Then, create a separate object called `range_metab_bovidae` containing the metabolic rate range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
 
