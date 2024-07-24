@@ -265,8 +265,7 @@ Answer:
 Dr. Granger is interested in studying the factors controlling the size and carbon storage of shrubs. She has conducted an experiment looking at the effect of three different treatments on shrub volume at four different locations. The data are in the file `shrub-volume-data.csv` in your workspace files.
 
 
-**Ex.18)** Using the previous activity (Ex. 2-6) as guide, read in the data and assign it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make
-sense and save the new object to `shrubs2`. Then, run summary on both `shrubs` and `shrubs2`
+**Ex.18)** Using the previous activity (Ex. 2-6) as guide, read in the data and assign it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make sense and save the new object to `shrubs2`. Then, run summary on both `shrubs` and `shrubs2`
 
 ```{r ex18,echo=TRUE, eval=TRUE}
 #type your code here
