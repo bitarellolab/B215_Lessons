@@ -705,7 +705,15 @@ summarise(group_by(titanicdata, sex),Mean_age=mean(age, na.rm=TRUE))
 
 ```
 
-Another super useful function to use alongside `summarise()` and `group_by()` is `n()`. `n()` counts the number of rows 
+Another super useful function to use alongside `summarise()` and `group_by()` is `n()`. `n()` counts the number of rows, you can use it to create a column in a summarized data frame that lists the number of data points in each group. 
+
+Example: We can make a count of how many people departed from each place in our titanic data:
+
+```{r n(), exercise = TRUE, exercise.setup="setupnum"}
+summarise(group_by(titanicdata, embarked), count = n())
+
+```
+
 
 ### `arrange()`
 
