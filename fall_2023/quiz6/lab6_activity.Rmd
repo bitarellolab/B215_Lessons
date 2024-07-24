@@ -45,7 +45,7 @@ for (i in 1:5) {
 }
 ```
 
-The first line in the loop indicates the conditions under which the loop runs and when it stops. This loop will 5 times, once for each value in the sequence 1:5. The second line (contained in squiggly brackets) indicates the action which will be performed for each iteration. Here, that action is printing the number that i is indexing on that particular cycle. Recall indexing from Lab 2 (permalink)
+The first line in the loop indicates the conditions under which the loop runs and when it stops. This loop will repeat 5 times, once for each value in the sequence 1:5. The second line (contained in squiggly brackets) indicates the action which will be performed for each iteration. Here, that action is printing the number that i is indexing on that particular cycle. Recall indexing from Lab 2 (permalink)
 
 * You don't actually have to use i for the value there but most people do. `i` is presumably short for "index", which makes sense. But you could just as well call it `banana`.
 
