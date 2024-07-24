@@ -192,7 +192,7 @@ Answer:
 
 ```
 
-You may have noticed a message from R that asks you to adjust the bins. Feel free use the `bins = ` parameter in your geom and see how that impacts the display of your data, 
+You may have noticed a message from R that asks you to adjust the bins. Feel free use the `bins = ` parameter in your geom and see how that impacts the display of your data, and its legibility. This kind of adjustment is a preview into making figures for display rather than just exploration, which is what we're focusing on today.
 
 **Ex.11)** Explore the variable `metabolic_rate`. What is the range of the values? Save your answer into a variable called `range_metab`. Then, create a separate object called `range_metab_bovidae` containing the metabolic rate range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
 
