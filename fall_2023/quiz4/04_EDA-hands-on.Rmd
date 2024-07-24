@@ -113,9 +113,6 @@ Make the following manipulations and plots with appropriate axis labels, and ans
 
 Answer: 
 
-
-
-
 **Ex.3)** What are the dimensions (# rows, # columns)
 ```{r ex3echo=TRUE, eval=TRUE}
 # type your code here
@@ -124,7 +121,7 @@ Answer:
 
 Answer: 
 
-**Ex.4)** Check whether `mass_metabolism` is a tibble. Hint: you can use the `is_tibble` function. Hint: you will need to install and load the `tibble` package first.
+**Ex.4)** Check whether `mass_metabolism` is a tibble. Try to predict this based on what you know about the way ypu've just read in the data. Hint: you can use the `is_tibble` function, you will need to install and load the `tibble` package first. Does your prediction match the result of `is_tibble`? How did you know? 
 
 ```{r ex4,echo=TRUE, eval=TRUE}
 # type your code here
