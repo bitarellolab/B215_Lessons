@@ -155,8 +155,6 @@ What are the levels of the variable `family?`.
 
 Answer: 
 
-
-
 **Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the output provided for each variable and why?
 
 ```{r ex7,echo=TRUE, eval=TRUE}
@@ -167,7 +165,7 @@ Answer:
 
 Answer: 
 
-**Ex.8)** Check whether the dataset has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` is there are missing values and `FALSE` if not.
+**Ex.8)** Check whether the data set has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` if there are missing values and `FALSE` if not.
 
 ```{r ex8, echo=TRUE, eval=TRUE}
 # type your code here
@@ -177,8 +175,7 @@ Answer:
 
 Answer:
 
-
-**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge? Tip: This is one of the first more complicated multi-step analyses you're completing, now would be a great time to practice those commenting skills! (Insert hint)
+**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. Remember, the range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge? Tip: This is one of the first more complicated multi-step analyses you're completing, now would be a great time to practice those commenting skills! (Insert hint)
 
 
 ```{r ex9, echo=TRUE, eval=TRUE}
