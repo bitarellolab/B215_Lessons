@@ -121,7 +121,7 @@ Answer:
 
 Answer: 
 
-**Ex.4)** Check whether `mass_metabolism` is a tibble. Try to predict this based on what you know about the way you've just read in the data. Hint: you can use the `is_tibble` function, you will need to install and load the `tibble` package first. Does your prediction match the result of `is_tibble`? How did you know? 
+**Ex.4)** Check whether `mass_metabolism` is a tibble. Try to predict this based on what you know about the way you've just read in the data. Hint: you can use the `is_tibble` function, you will need to install and load the `tibble` package first. Does your prediction match the result of `is_tibble`? What did you base your prediction on? 
 
 ```{r ex4,echo=TRUE, eval=TRUE}
 # type your code here
