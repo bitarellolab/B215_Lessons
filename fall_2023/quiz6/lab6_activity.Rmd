@@ -67,7 +67,7 @@ So this loop printed each value for `i` (or `banana`). How would you write code 
 
 ```
 
-It's often useful to define a placeholder variable before running your loop. This variable just gives the loop a place to start from when the operation performed includes a variable besides the sequence. Below, for example, this loop calculates the mean of a given data set, and sum serves to store the sum of all the numbers previously added together as the next value in numbers is added on. 
+It's often useful to define a placeholder variable before running your loop. This variable just gives the loop a place to start from when the operation performed includes a variable besides the sequence. Below, for example, the placeholder variable is sum. This loop calculates the mean of a given data set, and sum serves to store the sum of all the numbers previously added together as the next value in numbers is added on. Instead of applying a single action to all the values in the sequence, this loop has a second step it iterates upon, namely adding together all the values in numbers, it needs someplace to store the total value of the previous iterations, which is what sum does.
 
 ```{r r3}
 numbers <- c(4, 22, 6, 13, 19, 2, 11) #sequence the loop will be applied to
