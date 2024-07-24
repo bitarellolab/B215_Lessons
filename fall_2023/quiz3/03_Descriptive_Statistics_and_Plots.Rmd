@@ -704,8 +704,10 @@ Example: if we group titanic passengers by sex, we can then look at the mean age
 summarise(group_by(titanicdata, sex),Mean_age=mean(age, na.rm=TRUE))
 
 ```
-### `arrange()`
 
+Another super useful function to use alongside `summarise()` and `group_by()` is `n()`. `n()` counts the number of rows 
+
+### `arrange()`
 
 Arranging data in R can be quite cumbersome using base R functions like `ordert`. Let's look at `iris` again and try to rearrange the data.frame so that it's ordered by Petal.Length (smallest to highest value).
 
@@ -1228,7 +1230,7 @@ iris %>%
   summarise(Mean.Petal.Area = mean(Petal.Area))
 ```
 
-```{r examplenum8-check}
+```{r examplenum9-check}
 grade_this_code()
 ```
 
