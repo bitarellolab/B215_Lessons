@@ -250,7 +250,7 @@ Answer:
 
 ```
 
-**Ex.17)** Using `group_by`, `summarise`, and `n()`, calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero?
+**Ex.17)** Calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero? (hint)
 
 
 ```{r ex17,echo=TRUE, eval=TRUE}
