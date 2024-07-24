@@ -23,7 +23,7 @@ Hello R students! Your silly student coder has returned to make your assignments
 
 * a soft intro intro to sampling using mostly base R.
 
-* as much dplyr as I can include to drive Levi crazy^[Ask Levi about his beef with `tidyverse` if you are unaware.].
+* as much dplyr as I can include to drive Levi crazy^[Ask Levi about his beef with `tidyverse` if you are unaware.]. (unfortunately Levi has since graduated but your current student coder loves dplyr so it will still be here)
 
 ---------------
 
