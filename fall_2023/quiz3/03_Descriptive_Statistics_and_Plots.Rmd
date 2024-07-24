@@ -22,7 +22,10 @@ library(dplyr)
   #pass.praise = TRUE,
  #fail.encourage = TRUE,
   #fail.hint = TRUE)
-
+#dr b suggestion- did not work
+install.packages("remotes")
+remotes::install_github("rstudio/gradethis")
+library(gradethis)
 ```
 
 ## Overview
