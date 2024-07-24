@@ -206,7 +206,6 @@ Answer:
 
 **Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? If you're feeling confident, try getting the data of interest and piping it right into ggplot, rather than making an intermediate variable!
 
-
 ```{r ex12,echo=TRUE, eval=TRUE}
 #type your code here
 
@@ -215,7 +214,7 @@ Answer:
 
 Answer:
 
-**Ex.13)** Using the entire dataset, make a plot of metabolic rate vs. body mass: which variable should be the response variable and which should be the explanatory variable?
+**Ex.13)** Using the entire data set, make a plot of metabolic rate vs. body mass. Which variable should be the response variable and which should be the explanatory variable?
 
 
 ```{r ex13,echo=TRUE, eval=TRUE}
