@@ -50,22 +50,7 @@ Learning outcomes:
 
 ## What is rmarkdown
 
-1. Take this [short tutorial](https://rmarkdown.rstudio.com/lesson-1.html) from Rstudio about the basics of R markdown (you can go up until "Notebooks" but no need to work through the final 4 steps starting at ("slide presentations").
-
-2. Here is a very useful [R Markdown cheatsheet](https://rmarkdown.rstudio.com/lesson-15.html).
-
-No need to watch these now, but try to watch them before you start working on LA1.
-(these are also posted in the assignment instructions)
-
-* [What is R Markdown](https://capture.dropbox.com/8iVT7yksrItSTpkW)
-* [Using R markdown in Rstudio](https://www.youtube.com/watch?v=DNS7i2m4sB0&feature=youtu.be)
-* [Overview of R markdown](https://www.youtube.com/watch?v=mcTB7h9lpCg&feature=youtu.be)
-
-
-
-
-
-
+1. Take the tutorial which is located in the files for this project and named RMarkdown_Tutorial.
 
 ## Reading in data and dealing with missing data
 
