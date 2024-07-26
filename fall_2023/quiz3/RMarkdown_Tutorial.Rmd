@@ -3,9 +3,9 @@ title: "R Markdown Tutorial- In an R Markdown File!"
 author: "YOUR NAME"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 header-includes: \usepackage{fvextra} \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
 
@@ -68,9 +68,26 @@ As you can see, they take logical variables as their input, which tells R what q
 
 ```{r, eval=FALSE}
 seals<-read.csv("AllSealCounts.csv") #reading in seal data
-
+hist(seals$Harbour) #making a histogram with the count of the Harbour Seals in the data
 ```
 
+The last thing I'll touch on is how to add images to an RMD file. In order to do this, you need to first upload your photo into your files, making sure if you're working with multiple folders, it's in the same one as your RMD. You should be able to upload it through the square with a yellow arrow button (aka the upload button). Once it's in your files, you need to provide a path for it into the environment, similar to reading in a csv. The syntax is as follows:
+
+![My dog Cody](images/IMG_3554.PNG)
+
+In the square brackets is a caption for the picture, in the parentheses is the name of the folder that the picture is in (images) and the exact name of the file as it appears in the images folder of this project broken up by a slash, this tells R to look in that folder for the picture. (feel free to go look in that folder). This is a picture of my dog, Cody, which I hope you enjoy :)
+
+Alright, that's all for now! There's much more you can do with RMD, feel free to look through the references to find out more of the exciting things you can do with R Markdown!
+
+References:
+
+https://rmarkdown.rstudio.com/lesson-1.html
+
+https://rmarkdown.rstudio.com/lesson-3.html
+
+https://bookdown.org/yihui/rmarkdown/basics.html
+
+https://www.earthdatascience.org/courses/earth-analytics/document-your-science/add-images-to-rmarkdown-report/
 
 
 
