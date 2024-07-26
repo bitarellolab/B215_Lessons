@@ -984,19 +984,22 @@ If there were even more data points than shown here, using `alpha` as an argumen
 ### Scatterplots
 The last graphical style that we will cover here is the scatter plot, which shows the relationship between two numerical variables.
 
-The titanic data set does not have two numerical variables, so let’s use a different data set— KAMILAR AND COOP
+The titanic data set does not have two numerical variables, so let’s use a different data set— This comes from a paper by Kamilar, J. M., & Cooper, N. from 2013, entitled "Phylogenetic signal in primate behaviour, ecology and life history". It uses a few different traits such as brain size and body mass to construct a phylogenetic tree for different primates. We'll make a scatter plot with the variables between the mean female brain size and the mean female body mass for each of the species.
+
 ```{r, eval=F}
-guppyFatherSonData <-read.csv("https://raw.githubusercontent.com/bitarellolab/Teaching/main/B215/data/chap02e3bGuppyFatherSonAttractiveness.csv")
+primates <-read.csv("Kamilar_and_Cooper_supp2(Sheet1).csv")
 ```
 
-To make a scatter plot of the variables fatherOrnamentation and sonAttractiveness with ggplot, you need to specify the x and y variables, and use `geom_point()`:
+To make a scatter plot of the variables Body.mass.female.mean and Brain.size.female.mean with ggplot, you need to specify the x and y variables, and use `geom_point()`:
 
 ```{r, eval=F}
-ggplot(guppyFatherSonData,   
-  aes(x = fatherOrnamentation, 
-  y = sonAttractiveness)) +
+ggplot(brains,   
+  aes(x = Body.mass.female.mean,
+  y = Brain.size.female.mean)) +
   geom_point()
 ```
+
+Notice that this plot has 
 
 
 ### Better looking graphics
@@ -1005,11 +1008,12 @@ The code we have listed here for graphics barely scratches the surface of what g
 Let’s dig a little deeper into just a couple of options that you can add to any of the forgoing graphs to make them look a little better. For example, you can change the text of the x-axis label or the y-axis label by using xlab or ylab. Let’s do that for the scatterplot, to make the labels a little nicer to read for humans.
 
 ```{r, eval=F}
-ggplot(guppyFatherSonData,   
-    aes(x = fatherOrnamentation, y = sonAttractiveness)) +
+ggplot(brains,   
+  aes(x = Body.mass.female.mean,
+  y = Brain.size.female.mean)) +
     geom_point() +
-    xlab("Father's ornamentation") + 
-    ylab("Son’s attractiveness")
+    xlab("Mean Female Body Size") + 
+    ylab("Mean Female Brain Size")
 ```
 
 The labels that we want to add are included in quotes inside the `xlab` and `ylab` functions. Here is what appears:
@@ -1021,12 +1025,13 @@ It can also be nice to remove the default gray background, to make what some fee
 ```
 to the end of one of your lines of code making a graph, to see whether you prefer the result to the default design.
 
-```{r guppy1,exercise=TRUE, exercise.setup="setupnum"}
-ggplot(guppyFatherSonData,   
-    aes(x = fatherOrnamentation, y = sonAttractiveness)) +
+```{r primates1,exercise=TRUE, exercise.setup="setupnum"}
+ggplot(brains,   
+  aes(x = Body.mass.female.mean,
+  y = Brain.size.female.mean)) +
     geom_point() +
-    xlab("Father's ornamentation") + 
-    ylab("Son’s attractiveness") + 
+    xlab("Mean Female Body Size") + 
+    ylab("Mean Female Brain Size")
     theme_classic()
 ```
 
