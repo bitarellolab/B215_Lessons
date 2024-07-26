@@ -11,7 +11,7 @@
 
 <meta name="author" content="YOUR NAME" />
 
-<meta name="date" content="2024-07-25" />
+<meta name="date" content="2024-07-26" />
 
 <title>R Markdown Tutorial- In an R Markdown File!</title>
 
@@ -1624,22 +1624,22 @@ display: none;
 <h1 class="title toc-ignore">R Markdown Tutorial- In an R Markdown
 File!</h1>
 <h4 class="author">YOUR NAME</h4>
-<h4 class="date">2024-07-25</h4>
+<h4 class="date">2024-07-26</h4>
 
 </div>
 
 
-<p>Welcome! This is a tutorial on R Markdown, which I’ve made in an R
-Markdown file! Now, as you’re used to the tutorial format, you may be
-feeling a bit intimidated by this less structured mode of instruction,
-but I assure you, you will be doing the same coding you’ve done thus
-far, rmd files mostly change your formatting and the way in which your
-file is stored and exported. (Fun fact, the tutorial based labs you’re
-used to were actually still made using an R Markdown file, it was just
-modified with a package called learnr. We won’t cover how to accomplish
-that in this course but that’s just one example of all the cools things
-you can do with a mastery of R Markdown.) So, without further ado, let’s
-dive in.</p>
+<p>Welcome! This is a brief tutorial on R Markdown, which I’ve made in
+an R Markdown file! Now, as you’re used to the tutorial format, you may
+be feeling a bit intimidated by this less structured mode of
+instruction, but I assure you, you will be doing the same coding you’ve
+done thus far, rmd files mostly change your formatting and the way in
+which your file is stored and exported. (Fun fact, the tutorial based
+labs you’re used to were actually still made using an R Markdown file,
+it was just modified with a package called learnr. We won’t cover how to
+accomplish that in this course but that’s just one example of all the
+cools things you can do with a mastery of R Markdown.) So, without
+further ado, let’s dive in.</p>
 <div id="what-is-r-markdown" class="section level3">
 <h3>What is R Markdown?</h3>
 <p>To start, let’s talk about what an R Markdown file actually is.
@@ -1727,7 +1727,7 @@ in. When you look at the knit file, notice the appearance of the header
 and the subheadings I’ve made for each section.</p>
 <p>The header includes the information one fills in when prompted to
 provide a title, author, and date. Under date is a neat bit of code,
-2024-07-25 which automatically fills in the current date! Very cool and
+2024-07-26 which automatically fills in the current date! Very cool and
 streamlined if you ask me.</p>
 <p>Moving onto the subheadings, in the file itself you may notice the
 presence of two hashtags preceding the title and the blue color. These
@@ -1738,13 +1738,50 @@ the start of the words in your heading. Try a few below, and feel free
 to play around with the sizes:</p>
 <p>Another cool effect you can add to a knit rmd is the inclusion of
 code in the text portion of your file. If you enclose a piece of code
-(most often a function) in backticks, it will appear formatted as code
+(most often a function) in back ticks, it will appear formatted as code
 in the knit file. For example, I might want to say that in the following
 chunk I will be using the function head to look at some data. I can
 write it like <code>head()</code> and have it appear as the function
 would in the knit file.</p>
 <p>Let’s now look at a few of the options we have for controlling what
-an R markdown file looks like when it’s knit.</p>
+an R markdown file looks like when it’s knit. The two main options we’ll
+cover here are <code>echo =</code> and <code>eval =</code> . We
+incorporate them in the top line of the chunk like this:</p>
+<p>As you can see, they take logical variables as their input, which
+tells R what qualities are true or false about the given chunk.
+<code>echo</code> pertains to the chunk’s appearance in the knitted
+file. When <code>echo = false</code> the chunk will essentially be made
+invisible, the code will still be there and be executed when the
+document is run, but you won’t see the code in the knitted file. If you
+have code that you want to run in the background but not appear in the
+final, shareable file, you can use <code>echo= FALSE</code>. Create a
+chunk with some code (perhaps creating a simple vector like earlier),
+include <code>echo=FALSE</code> and knit the file to see the result</p>
+<p><code>eval =</code> determines whether the output of a code chunk is
+included in the knitted file. This is especially useful if you need to
+look at a large data set or iterate on a graph but don’t want these
+large outputs to clog your final file. To demonstrate, I’m going to put
+a simple plot with data from a data set about seals! It’s a count of the
+amount of two different species of seal in different locations over
+time, as a part of environmental/conservation efforts. (your student
+coder was going through a seal phase when they wrote this lesson, get
+excited!) Knit this file once with eval equal to false as I have it set
+up, then make eval equal to true and knit again.</p>
+<pre class="r"><code>seals&lt;-read.csv(&quot;AllSealCounts.csv&quot;) #reading in seal data
+hist(seals$Harbour) #making a histogram with the count of the Harbour Seals in the data</code></pre>
+<p>The last thing I’ll touch on is how to add images to an RMD file. In
+order to do this, you need to first upload your photo into your files,
+making sure if you’re working with multiple folders, it’s in the same
+one as your RMD. You should be able to upload it through the square with
+a yellow arrow button (aka the upload button). Once it’s in your files,
+you need to provide a path for it into the environment, similar to
+reading in a csv. The syntax is as follows:</p>
+<p><img src="IMG_3554.PNG" /></p>
+<p>In the square brackets is a caption for the picture, in the
+parentheses is the exact name of the file as it appears in the images
+folder of this project. (feel free to go look in that folder). In the
+squiggly brackets is an optional argument which specifies the percent of
+the page width I’d like the image to take up.</p>
 </div>
 
 
