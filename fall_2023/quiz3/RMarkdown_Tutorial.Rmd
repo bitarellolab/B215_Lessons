@@ -64,7 +64,13 @@ As you can see, they take logical variables as their input, which tells R what q
 
 
 
-`eval =` detrmines whether the output of a code chunk is included in the knitted file. This is 
+`eval =` determines whether the output of a code chunk is included in the knitted file. This is especially useful if you need to look at a large data set or iterate on a graph but don't want these large outputs to clog your final file. To demonstrate, I'm going to put a simple plot with data from a data set about seals! It's a count of the amount of two different species of seal in different locations over time, as a part of environmental/conservation efforts. (your student coder was going through a seal phase when they wrote this lesson, get excited!) Knit this file once with eval equal to false as I have it set up, then make eval equal to true and knit again.
+
+```{r, eval=FALSE}
+seals<-read.csv("AllSealCounts.csv") #reading in seal data
+
+```
+
 
 
 
