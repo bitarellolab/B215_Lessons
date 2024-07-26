@@ -993,13 +993,22 @@ primates <-read.csv("Kamilar_and_Cooper_supp2(Sheet1).csv")
 To make a scatter plot of the variables Body.mass.female.mean and Brain.size.female.mean with ggplot, you need to specify the x and y variables, and use `geom_point()`:
 
 ```{r, eval=F}
-ggplot(brains,   
+ggplot(primates,   
   aes(x = Body.mass.female.mean,
   y = Brain.size.female.mean)) +
   geom_point()
 ```
 
-Notice that this plot has 
+Notice that this plot has quite a bit of data clustered in the bottom left, if we wanted to see the data more spread out, we could use a log transformation. In general, log transformation can be used to mitigate a skew in the data, making it easier to visualize without destroying the initial relationship demonstrated. This stretches the axis, but keeps the numbers on the original scale. Let's give this a try with our primates plot. In order to accomplish a log transformation in ggplot, we can use the arguments `scale_y_continuous(trans='log10')` and `scale_x_continuous(trans='log10')`. 
+
+```{r}
+ggplot(primates,   
+  aes(x = Body.mass.female.mean,
+  y = Brain.size.female.mean)) +
+  geom_point()+
+  scale_y_continuous(trans='log10') + 
+  scale_x_continuous(trans='log10')
+```
 
 
 ### Better looking graphics
@@ -1008,7 +1017,7 @@ The code we have listed here for graphics barely scratches the surface of what g
 Let’s dig a little deeper into just a couple of options that you can add to any of the forgoing graphs to make them look a little better. For example, you can change the text of the x-axis label or the y-axis label by using xlab or ylab. Let’s do that for the scatterplot, to make the labels a little nicer to read for humans.
 
 ```{r, eval=F}
-ggplot(brains,   
+ggplot(primates,   
   aes(x = Body.mass.female.mean,
   y = Brain.size.female.mean)) +
     geom_point() +
@@ -1026,7 +1035,7 @@ It can also be nice to remove the default gray background, to make what some fee
 to the end of one of your lines of code making a graph, to see whether you prefer the result to the default design.
 
 ```{r primates1,exercise=TRUE, exercise.setup="setupnum"}
-ggplot(brains,   
+ggplot(primates,   
   aes(x = Body.mass.female.mean,
   y = Brain.size.female.mean)) +
     geom_point() +
