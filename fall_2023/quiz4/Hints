@@ -24,7 +24,9 @@ Ex. 13: Hint: Use `filter` to obtain the data points of interest and then use `g
 
 
 
+
 Ex. 16: Hint: to achieve this, use `facet_wrap`. (link in hint?)
+
 
 
 
@@ -33,7 +35,9 @@ Ex. 20: Hint: Use Ex.17 as your model
 
 
 
+
 Ex. 21: Hint: You can accomplish this with the functions mutate(), filter(), and `arrange()`
+
 
 
 
