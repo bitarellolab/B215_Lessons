@@ -1,0 +1,14 @@
+Lab 6
+
+Ex.3: Hint: the start of your loop depends on how you initially set the variable, the end depends on the logical condition you define within the first line.
+
+
+While 2: Hint 1: remember the `%%` operator from week 1. It's called the "modulo" operator.
+Hint 2: use the != function to define your stop condition
+ 
+
+
+Sampling 4.2: Use square brackets to index all_tosses with the variable you name in the first line of your loop
+
+
+Ex 5.2: Hint: use the `summarize` function.
