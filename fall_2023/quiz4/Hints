@@ -1,0 +1,41 @@
+
+Ex. 6: Hint, you can figure this out with the command `levels(your_object_name)`
+
+
+
+
+
+Ex. 6: Use the function `mutate()` to accomplish this change. 
+
+
+
+
+
+Ex. 9: Hint, range returns two numbers, the highest and lowest- to obtain the range value you can use the function diff() which returns the difference between two numbers
+
+
+
+
+Ex. 10: Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+
+
+
+Ex. 13: Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+
+
+
+Ex. 16: Hint: to achieve this, use `facet_wrap`. (link in hint?)
+
+
+
+
+Ex. 20: Hint: Use Ex.17 as your model
+
+
+
+Ex. 21: Hint: You can accomplish this with the functions mutate(), filter(), and `arrange()`
+
+
+
+Ex. 24: Hint: you can use the !is.na() function, the exclamation point indicates negation, so this function will return the rows that do not have NAs
+
