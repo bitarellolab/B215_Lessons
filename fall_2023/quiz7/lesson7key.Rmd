@@ -177,7 +177,6 @@ Conditional Statements are a key part of any programming language.
 
 ### 1. if Statement:
 The `if` statement evaluates a condition, and if that condition is `TRUE`, it executes the code inside the statement.
-Change `x` to a few different numbers to see how the output changes!
 
 ```{r }
 x <- 10

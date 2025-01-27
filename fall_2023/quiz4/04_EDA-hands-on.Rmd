@@ -71,15 +71,15 @@ We will also be working directly within this R Markdown document to help you get
 
 ## Before we get started:
 
-* This is an R markdown file, so for each exercise, write your code inside a code chunk. I've set these up for you but, as a reminder, you can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface. Notice that I've given each chunk a label (something like `ex1`, etc) and set `echo=TRUE` (your code will appear in the PDF) and `eval=TRUE` (your code will be run when the PDF is compiled).
+* This is an R markdown file, so for each exercise, write your code inside a code chunk. I've set these up for you but, as a reminder, you can create a code chunk by clicking at the "+C" green rectangle just above this area of your interface. Notice that I've given each chunk a label (something like `ex1`, etc) and set `echo=TRUE` (your code will appear in the PDF) and `eval=TRUE` (your code will be run when the PDF is compiled). You can also make a new chunk using the keyboard shortcut Ctrl + Alt + I (or if you use a Mac Cmd + Option + I). If you use these shortcuts, you will still have to add the aforementioned headers for customization and labeling purposes. 
 
-* Before you modify this file at all, go ahead and click "knit" in the button above and watch this file become a beautiful PDF! This is what you will do at the end when you're done, so make sure you knit this file often to pick up any errors as they come.
+* Before you modify this file at all, go ahead and click "knit" in the button above and watch this file become a beautiful PDF! This is what you will do at the end when you're done, so make sure you knit this file often to pick up any errors as they come. (If you attempt to knit initially and have errors, make sure that all the necessary packages have been installed)
 
 * Replace `YOUR NAME` in the header of this file with your actual name. Then knit the file again and see your name appear!
 
 * I suggest that, after you make a plot, you save it with a descriptive name as a `.png` using `ggsave`. This will not be required but it's a good practice for you. It will save your plots into this workspace.
 
-* Get in the habit of commenting your code.
+* Get in the habit of commenting your code. As we discussed in Lab 1, commenting your code makes your own life easier and makes it easier for others to read and interpret code that you've written. As you get more advanced in coding, commenting allows you and others to automatically understand the purpose of the code you've written.
 
 ----------------------
 
@@ -88,11 +88,11 @@ We will also be working directly within this R Markdown document to help you get
 
 The relationship between the body size of an organism and its metabolic rate is one of the most well studied and still most controversial areas of organismal physiology. 
 
-We want to graph this relationship in the *Artiodactyla* using a subset of data from a large compilation of body size data (Savage et al. 2004). The data are in the `mass_metabolism.csv` file in your workspace.
+We want to graph this relationship in the *Artiodactyla* (an order of mammals including pigs, goats, deer, camels, and more) using a subset of data from a large compilation of body size data (Savage et al. 2004). The data are in the `mass_metabolism.csv` file in your workspace.
 
-Make the following manipulations and plots with appropriate axis labels, or answer the questions.
+Make the following manipulations and plots with appropriate axis labels, and answer the questions.
 
-**Ex.1)** Make sure `ggplot2` and `dplyr` are installed. The easiest way is to just use the `tidyverse` package, which installs those two and more for you:
+**Ex.1)** Make sure `ggplot2` and `dplyr` are installed. The easiest way is to just use the `tidyverse` (add permalink here later) package, which installs those two and more for you:
 
 
 ```{r ex1echo=TRUE, eval=TRUE}
@@ -104,7 +104,7 @@ Make the following manipulations and plots with appropriate axis labels, or answ
 
 ```
 
-**Ex.2)** Read in the dataset using the `read_csv` function. Assign the data into an object called `mass_metabolism`. Have a look at the first 6 rows of the data. What kind of data structure is this? How many columns are there?
+**Ex.2)** Read in the dataset using the `read_csv` function. Recall that `read_csv` is a readr function, distinct from base R's `read.csv` (permalink to 1). Assign the data into an object called `mass_metabolism`. Have a look at the first 6 rows of the data. What kind of data structure is this? How many columns are there?
 
 ```{r ex2echo=TRUE, eval=TRUE}
 # type your code here
@@ -112,9 +112,6 @@ Make the following manipulations and plots with appropriate axis labels, or answ
 ```
 
 Answer: 
-
-
-
 
 **Ex.3)** What are the dimensions (# rows, # columns)
 ```{r ex3echo=TRUE, eval=TRUE}
@@ -124,7 +121,7 @@ Answer:
 
 Answer: 
 
-**Ex.4)** Check whether `mass_metabolism` is a tibble. Hint: you can use the `is_tibble` function. Hint: you will need to install and load the `tibble` package first.
+**Ex.4)** Check whether `mass_metabolism` is a tibble. Try to predict this based on what you know about the way you've just read in the data. Hint: you can use the `is_tibble` function, you will need to install and load the `tibble` package first. Does your prediction match the result of `is_tibble`? What did you base your prediction on? 
 
 ```{r ex4,echo=TRUE, eval=TRUE}
 # type your code here
@@ -134,7 +131,7 @@ Answer:
 
 Answer: 
 
-**Ex.5)** What are the classes of each variable in `mass_metabolism`? 
+**Ex.5)** What are the classes of each variable in `mass_metabolism`?
 
 ```{r ex5,echo=TRUE, eval=TRUE}
 # type your code here
@@ -144,8 +141,11 @@ Answer:
 
 Answer: 
 
-
-**Ex.6)** Convert the `family` column into the `factor` data type and assign that new object to `mass_metabolism2`. Use the function `mutate` to accomplish this change. What are the levels of the variable `family?`. Hint, you can figure this out with the command `levels(your_object_name)`. Save the levels into an object called `mass_metab_levels`
+**Ex.6)** 
+Convert the `family` column into the `factor` data type 
+and assign that new object to `mass_metabolism2`. 
+ 
+What are the levels of the variable `family?`. 
 
 ```{r ex6,echo=TRUE, eval=TRUE}
 # type your code here
@@ -155,9 +155,7 @@ Answer:
 
 Answer: 
 
-
-
-**Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the two and why?
+**Ex.7)** Obtain a summary of each variable (column) in `mass_metabolism` and `mass_metabolism2`. What is the main difference between the output provided for each variable and why?
 
 ```{r ex7,echo=TRUE, eval=TRUE}
 # type your code here
@@ -167,7 +165,7 @@ Answer:
 
 Answer: 
 
-**Ex.8)** Check whether the dataset has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` is there are missing values and `FALSE` if not.
+**Ex.8)** Check whether the data set has any missing data. Are there missing data? Save your answer into a variable called `mass_metab_na`, assigning the value `TRUE` if there are missing values and `FALSE` if not. What do you think about the amount and location of missing data? How would you handle it in a real data analysis situation?
 
 ```{r ex8, echo=TRUE, eval=TRUE}
 # type your code here
@@ -177,8 +175,7 @@ Answer:
 
 Answer:
 
-
-**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. The range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
+**Ex.9)** Explore the variable body_mass: what is the range of the values? Save your answer into a variable called `range_mass`. Remember, the range is the difference between maximum and minimum values. Then, create a separate object called `range_mass_bovidae` containing the body mass range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge? Tip: This is one of the first more complicated multi-step analyses you're completing, now would be a great time to practice those commenting skills! (Insert hint)
 
 
 ```{r ex9, echo=TRUE, eval=TRUE}
@@ -187,13 +184,15 @@ Answer:
 ```
 
 
-**Ex.10)** Make a plot for body mass for members of the `Bovidae` family only. What does this distribution look like? Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
+**Ex.10)** Make a plot for body mass for members of the `Bovidae` family only. What type of plot would work best for this data? What does this distribution look like?
 
 
 ```{r ex10,echo=TRUE, eval=TRUE}
 #type your code here
 
 ```
+
+You may have noticed a message from R that asks you to adjust the bins. Feel free use the `bins = ` parameter in your geom and see how that impacts the display of your data, and its legibility. This kind of adjustment is a preview into making explanatory figures rather than just exploratory figures, which is what we're focusing on today.
 
 **Ex.11)** Explore the variable `metabolic_rate`. What is the range of the values? Save your answer into a variable called `range_metab`. Then, create a separate object called `range_metab_bovidae` containing the metabolic rate range only for members of the Bovidae family. Look at both summaries and answer this: does it look like the Bovidae individuals are the ones making the range in body mass so huge?
 
@@ -205,8 +204,7 @@ Answer:
 
 Answer:
 
-**Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? Hint: Use `filter` to obtain the data points of interest and then use `ggplot` to plot the distribution.
-
+**Ex.12)** Make a plot for metabolic rate for members of the `Bovidae` family only. What does this distribution look like? If you're feeling confident, try getting the data of interest and piping it right into ggplot, rather than making an intermediate variable!
 
 ```{r ex12,echo=TRUE, eval=TRUE}
 #type your code here
@@ -216,7 +214,7 @@ Answer:
 
 Answer:
 
-**Ex.13)** Using the entire dataset, make a plot of metabolic rate vs. body mass: which variable should be the response variable and which should be the explanatory variable?
+**Ex.13)** Using the entire data set, make a plot of metabolic rate vs. body mass. Which variable should be the response variable and which should be the explanatory variable?
 
 
 ```{r ex13,echo=TRUE, eval=TRUE}
@@ -227,8 +225,7 @@ Answer:
 
 Answer:
 
-
-**Ex.14)** Make a plot of body mass vs. metabolic rate, with log10 scaled axes (this stretches the axis, but keeps the numbers on the original scale), and the point size set to 3. Hint: use `scale_y_continuous(trans='log10')` and `scale_x_continuous(trans='log10')`. You may need to read a little about what these do.
+**Ex.14)** Make a plot of body mass vs. metabolic rate, with log10 scaled axes, and the point size set to 3. Hint: use `scale_y_continuous(trans='log10')` and `scale_x_continuous(trans='log10')`. (permalink back to Lab 3)
 
 
 ```{r ex14,echo=TRUE, eval=TRUE}
@@ -238,7 +235,7 @@ Answer:
 ```
 
 
-**Ex.15)** Make the same plot as in Ex. 14, but with the different families indicated using color.
+**Ex.15)** Make the same plot as in Ex. 14, but with the different families indicated using color. You might also try making the labels clearer or playing with the themes.
 
 
 ```{r ex15,echo=TRUE, eval=TRUE}
@@ -246,14 +243,14 @@ Answer:
 
 ```
 
-**Ex.16)** Make the same plot as in Ex.14, but with the different families each in their own subplot. Hint: to achieve this, use `facet_wrap`.
+**Ex.16)** Make the same plot as in Ex.14, but with the different families each in their own subplot. 
 
 ```{r ex16,echo=TRUE, eval=TRUE}
 #type your code here
 
 ```
 
-**Ex.17)** Using `group_by`, `summarise`, and `group_by`, calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero?
+**Ex.17)** Calculate the range of body mass for each family as well as the number of rows for each family. Save the output to an object called `body_mass_summary`. Why do you think some ranges are zero? (hint)
 
 
 ```{r ex17,echo=TRUE, eval=TRUE}
@@ -268,8 +265,7 @@ Answer:
 Dr. Granger is interested in studying the factors controlling the size and carbon storage of shrubs. She has conducted an experiment looking at the effect of three different treatments on shrub volume at four different locations. The data are in the file `shrub-volume-data.csv` in your workspace files.
 
 
-**Ex.18)** Using the previous activity (Ex. 2-6) as guide, read in the data and assing it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make
-sense and save the new object to `shrubs2`. Then, run summary on both `shrubs` and `shrubs2`
+**Ex.18)** Using the previous activity (Ex. 2-6) as guide, read in the data and assign it to an object called `shrubs`. Have a first look at the data, look at it's class, dimensions, structure (class of each column), etc. Do the data types for `site` and `experiment` make sense to you? If not, change them to something that does make sense and save the new object to `shrubs2`. Then, run summary on both `shrubs` and `shrubs2`
 
 ```{r ex18,echo=TRUE, eval=TRUE}
 #type your code here
@@ -293,14 +289,14 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.20)** Using `group_by`, `summarise`, `n()`, create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment.
+**Ex.20)** Create an object containing the range of values for `length`, `width`, `height` and the number of rows per experiment. insert hint
 
 ```{r ex20,echo=TRUE, eval=TRUE}
 #type your code here
 
 ```
 
-**Ex.21)** Add a new column named `area` containing the area of the shrub, which is the `length` times the `width` (using `mutate`). Then, filter the data to include only plants with heights greater than 5 (using `filter`). Finally, sort the data by length (using `arrange`). Save the result into object `shrubs4`.
+**Ex.21)** Add a new column named `area` containing the area of the shrub, which is the `length` times the `width`. Then, filter the data to include only plants with heights greater than 5. Finally, sort the data by length. Save the result into object `shrubs4`. (insert hint)
 
 
 ```{r ex21,echo=TRUE, eval=TRUE}
@@ -309,7 +305,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.22)** Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2 (using `,` or `&` to include two conditions). Save the result into object `shrubs5`.
+**Ex.22)** Filter the data in `shrubs3` to include only plants with heights greater than 4 and widths greater than 2. Save the result into object `shrubs5`. Hint/link
 
 ```{r ex 22,echo=TRUE, eval=TRUE}
 #type your code here
@@ -317,7 +313,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex23)** Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3 (using `|` for `or`). Save the result into object `shrubs6`.
+**Ex23)** Filter the data in `shrubs2` to include only plants from experiment 1 or experiment 3. Save the result into object `shrubs6`. Hint/link
 
 
 ```{r ex23, echo=TRUE, eval=TRUE}
@@ -326,7 +322,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.24)** Filter the data in `shrubs` to remove rows with null values in the height column (using `!is.na`). 
+**Ex.24)** Filter the data in `shrubs` to remove rows with null values in the height column. Hint
 ```{r ex24,echo=TRUE, eval=TRUE}
 #type your code here
 
@@ -343,7 +339,7 @@ Next, explore the variables `length`, `width`, `height` one at a time. Make a hi
 
 ```
 
-**Ex.26)** Save your new data frame as a cvs file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data! Remember: always keep the original raw data file unmodified. You can create as many modified files as you want, but don't mess with that one!
+**Ex.26)** Save your new data frame as a csv file called `shrub_volumes.csv`. Now you have a modified data file without having modified the raw data! Remember: always keep the original raw data file unmodified. You can create as many modified files as you want, but don't mess with that one!
 
 
 

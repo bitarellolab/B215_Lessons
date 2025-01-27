@@ -20,9 +20,9 @@ suppressMessages(library(readr))
 
 # Outline
 
-Today will be less about complicated coding and more about statistics. We will
-learn how to run:
+Today will be less about complicated coding and more about statistics. We will cover some brief statistical background for these tests but for a more in-depth overview and/or review, see these slides (link) 
 
+We will learn how to run:
 * One categorical variable: Chi-square goodness of fit tests
 * Two categorical variables: Risk ratio, Odds Ratio,Chi-square independence test; Fisher's test; G-test
 
@@ -49,11 +49,10 @@ For example, the file `MandMlist.csv` contains a list of all the colors of M&M c
 
 ```{r ex1.1}
 #read in the file and call is MMlist
-MMlist <- read_csv("MandMlist.csv")
+
 
 #use head and str to check it
-head(MMlist)
-str(MMlist)
+
 ```
 
 Notice that `MMlist$color` contains the color of each of 55 M&Ms
@@ -66,9 +65,9 @@ Summarizing frequency data in a table is useful to see the data more concisely, 
 
 ```{r ex1.2}
 #create MMtable
-MMtable <- table(MMlist$color)
+
 #look at it
-MMtable
+
 ```
 
 This shows you how many M&Ms were blue, brown etc

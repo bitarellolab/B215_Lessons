@@ -83,8 +83,7 @@ submitr::shiny_logic(input, output, session, vfun,
 ## Vectors
 
 ### Exercise 1
-1. Below, assign the number 9 to the variable `a`, and a vector with numbers, 2, 9, and 8, in that order, to the variable  `b`. Then, ask if `a` is equal to `b` and then multiply `a` and `b`.
-
+1. Below, assign the number 9 to the variable `a`
 
 ```{r sim1, exercise=TRUE, allow_skip = FALSE}
                # assign 9 to a
@@ -104,8 +103,10 @@ grade_this_code()
 ```
 
 ### exercise 2
+Now create another vector, b, containing the numbers 2,9, and 8 in that order
+
 ```{r sim2, exercise = TRUE, allow_skip = FALSE}
-b <- c()            # assign a vector with 2, 9 and 8, in that order, to b
+        # assign a vector with 2, 9 and 8, in that order, to b
 ```
 
 
@@ -120,6 +121,7 @@ grade_this_code()
 
 ## Vector functions
 
+Now, test if vector a is equal to vector b
 
 ### ex3 
 ```{r ex2setup}
@@ -141,6 +143,9 @@ grade_this_code()
 
 
 ### exercise 4
+
+Finally, multiply vectors a and b
+
 ```{r sim4, exercise = TRUE, exercise.setup = "ex2setup"}
                     # multiply a and b
 ```
@@ -270,22 +275,4 @@ Create a variable called `my_name` with your last name spelled backwards followe
 
 ```{r sandbox1, exercise=TRUE, eval = FALSE}
 ```
-
-## Record your work
-
-READ FIRST:
-
-* as before, go to your browser and select "print" to keep a pdf copy of your work.
-* use your username from your institutional email as your username
-* use b215f23 as password
-* this will close the quiz and take you back to Posit cloud. Click on the little red "stop" icon in the console to stop the quiz for good.
-* in the files pane, you will see a file called "quiz1_record.txt". Select it and then go to the little wheel and click "export". 
-* upload that file and your PDF copy into the lab1-quiz on Moodle!
-* you're done!
-
-```{r, echo=F}
-submitr::login_controls()
-```
-
-
 

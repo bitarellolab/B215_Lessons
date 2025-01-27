@@ -50,78 +50,78 @@ Use Case:
 
 
 There are many other functions in the apply family but we are just focusing on these two.
-I recommend typing ? apply and ?lapply into the console before starting. The second argument, margin, can be tricky. 
+ 
+The apply function works with three main arguments: x, margin, and function. X simply determines which array, data frame, or matrix you will be manipulating, as it does in most functions. Function, also quite obviously, signifies which function you'd like to apply to the data. Margin, the second argument, is the most tricky. Margin tells apply which rows and columns to perform the function on. This can be in the normal indexing form, with 1 being rows in a matrix while 2 is columns and c(1,2) is rows and columns, or if the columns and rows are names, you can use a character vector indicating the names of the columns of interest.
 
-
-#### 1. Let's start super basic. Say you have a `matrix mat <- matrix(1:12, nrow=3)`. You want to find the sum of each column. paste the matrix first then use apply to find the sum. Name it something then print the result
+#### 1. Let's start super basic. Say you have a matrix, `mat <- matrix(1:12, nrow=3)`. You want to find the sum of each column. paste the matrix first then use apply to find the sum. Name it something then print the result
 
 
 ```{r ex1}
-#type your code here
+#paste mat
 
+#use apply to take the sum of the columns 
+
+#print your results
 
 ```
 
-##### 2. Use lapply to find how many characters are in each name. 
+##### 2. Use lapply to find how many characters are in each sequencing fragment. 
 
-Save as an object and then print. To count characters, you can use the `nchar` function.
-Here are your names, get counting
-`names_list <- list("Alessandra", "Penelope", "Meigui", "Tatiana", "Keisuke", "Nadia", "Amy")`
-
+`lapply` works much the same as `apply` except the `margin` argument is not included, as lists and vectors are one dimensional. Here let's say you have a list of fragments from sequencing a genome you're interested in studying. You want to know how many base pairs long each fragment is. We can use `lapply` and the `nchar` function to determine this.
+Here are your fragments, get counting
+`fragments_list <- list("AGGCTATGACC", "TCCGAT", "TTTTAGATTCATGACCCAG", "GATCA", "AAGCTAGATCAA", "GCCCCAT", "CCCTAG")`
+Save your results as an object and then print.
 
 ```{r ex2}
-#type your code here
+#paste fragments_list
+
+#use lapply and save the results
+
+#print your results
 
 ```
 What is different about this output? 
 Correct, it's a list!
 
 
-
 #### 3. Comparing `apply` and `for` loops 
 
-
-You're a teacher and you've just given your students a test. The test scores are stored in a matrix where each row represents a student and each column represents a test question. Calculate the average score for each student using both apply and a for loop. 
-Your matrix is called scores and has all the information you need. 
-
-
+Let's compare using `apply` and `for` loops with an example adapted from real biological research. Recall the phagocyte data from Dr. Williamson's lab which we looked at in Lab Assignment 1. If you need a refresher, here is a link to a description of the project and original data. Below, is a model of that data on a much smaller and simplified scale. Imagine that you are a researcher working in Dr. Williamson's lab and you are tasked with observing a subset of the phagocyte replicates. The matrix below contains your sample with the three replicates and the amount of cells they ate at each level of surface stiffness (pmds).    
 
 ```{r setupex3}
-scores <- matrix(c(85, 90, 78, 88, 
-                   92, 80, 95, 90, 
-                   60, 55, 78, 84), 
+phagocyte <- matrix(c(3, 9, 7, 8, 
+                      7, 2, 1, 1, 
+                      6, 5, 8, 4), 
                  nrow=3, byrow=TRUE)
-colnames(scores) <- c("Math", "English", "Biology", "History")
-rownames(scores) <- c("Alice", "Bob", "Charlie")
-print(scores)
-
-
+colnames(phagocyte) <- c("pmds_15", "pmds_69", "pmds_300", "pmds_2280")
+rownames(phagocyte) <- c("rep_1", "rep_2", "rep_3")
+print(phagocyte)
 ```
 
 
-First use the new functions you learned to find the average test score for each student. 
+First use the new functions you learned to find the average amount of cells eaten for each student. 
 
 
 
 ```{r. ex3.1}
 #use apply
-apply(X=scores, MARGIN=1,)
+
 
 ```
 
-Now use a for loop. Remember to create blank variables first to store your information. You can call this one `averages`.
+Now use a for loop. Remember to create blank variables first to store your information. You can call this one `averages`. Hint
 
 
 
 ```{r ex3.2}
-#first count the number of scores in scores and save it as num_students
+#first count the number of cell counts in phagocytes and save it as num_cells
 
-num_students<-nrow(scores)
-#create blank variable called averages. Make it numeric with as many elements as num_students
+num_cells<-nrow(phagocytes)
+#create blank variable called averages. Make it numeric with as many elements as num_cells
 
 averages<-c()
 
-#create your for loop to iteratively calculate the mean score for each student and store it in different positions of the object averages
+#create your for loop to iteratively calculate the mean cells eaten for each replicate and store it in different positions of the object averages
 
 #name the object averages using the rownames of object scores
 
@@ -131,13 +131,13 @@ averages<-c()
 
 
 
-* Which of these was easier for you? Which student is doing the best?
+* Which of these was easier for you? Which replicate had the most cells eaten?
 
 
-* Which class do you think is hardest? Lets do the process again to find the average (mean) for each class
+* Does one level of surface stiffness allow more phagocytosis than others? Lets do the process again to find the average (mean) for each stiffness level
 
 
-First use `apply` and save the results in an object called `class_averages_apply`:
+First use `apply` and save the results in an object called `cell_averages_apply`:
 
 ```{r ex3.3}
 #create object
@@ -146,20 +146,20 @@ First use `apply` and save the results in an object called `class_averages_apply
 
 ```
 
-Then use a `for` loop and save the results in an onject called `class_averages_loop`:
+Then use a `for` loop and save the results in an object called `cell_averages_loop`:
 
 ```{r ex3.4}
 
-#first count the number of subjects in the scores matrix and save it as num_subjects:
+#first count the number of stiffness levels in the scores matrix and save it as num_stiffness:
 
-#create blank variable called class_averages_loop. Make it numeric with as many elements as num_subjects
+#create blank variable called cell_averages_loop. Make it numeric with as many elements as num_stiffness
 
-#create your for loop to iteratively calculate the mean score per subject
-
-
+#create your for loop to iteratively calculate the mean cells eaten per stiffness level
 
 
-#name the object class_averages_loop using the colnames of object scores
+
+
+#name the object cell_averages_loop using the colnames of object phagocyte
 
 #print your object
 ```
@@ -172,7 +172,6 @@ Conditional Statements are a key part of any programming language.
 
 ### 1. if Statement:
 The `if` statement evaluates a condition, and if that condition is `TRUE`, it executes the code inside the statement.
-Change `x` to a few different numbers to see how the output changes!
 
 ```{r }
 x <- 10
@@ -186,7 +185,7 @@ if (x > 5) {
 
 In the above code, since `x` is indeed greater than 5, the message "x is greater than 5" will be printed.
 
-Change `x` to a few different numbers to see how the output changes!
+The value of x doesn't chnage how the conditional statement works, just its output. Change `x` to a few different numbers to see how the output changes!
 
 ### 2. if-else Statement:
 There might be cases where you want to execute one set of instructions if the condition is `TRUE` and another set if it's `FALSE`. This is where the `if-else` statement comes in.
@@ -260,7 +259,8 @@ numbers <- c(-5, 3, 8, -2, 0, 7, -9)
 
 # a counter variable that will change each time the loop cycles
 positive_count <- 0
-for (num in numbers) {
+#the for loop
+for (num in numbers) { #take note of the nested brackets!
   if (num > 0) {
     positive_count <- positive_count + 1 #add 1 to positve_count if number if positive. Otherwise do nothing
   }
@@ -272,6 +272,7 @@ This loop adds one to the count for each positive number.
 
 #### 5. Write a loop telling me the sum of all the even numbers.
 
+Insert Hint
 ```{r ex5}
 # I gave you a bunch of random numbers. 
 numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -284,16 +285,17 @@ numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 
 ## More work in sampling
-Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. 
+Now we are going to return to our example from last class, the human genes data set. We are going to graph more sampling distributions and add error bars to some plots. The sampling distributions we created last week allow us to find the confidence interval for our means. This section demonstrates using loops in R to find statictical meausres such as these, a more in depth explanation of these terms may be found here (insert link)
 
 
-#### 6. Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. 
+#### 6. Revisiting human_genes
+
+Last class we compared the means of differently sized samples. Generally, the larger your sample, the closer it will be to the true population mean. 
 
 The human gene data set is a bit weird though. Because it has a few genes that are huge, a large sample size might be more likely to include one of those giant genes and mess up your mean. 
 
-For a real experiment you would just deal with that. For our purposes, you should filter the data set to only include genes smaller than 15000 base pairs. Load in your data and do this. You can keep it's name the same
-
-Note: This issue with the long genes is explained in the key for lab 6.
+For a real experiment you would just deal with that, we touched on some of these options in the previous lab. For our purposes, you should filter the data set to only include genes smaller than 15000 base pairs. Load in your data and do this. You can keep it's name the same.
+.
 
 ```{r ex6.1}
 #load the readr library
@@ -308,7 +310,7 @@ Note: This issue with the long genes is explained in the key for lab 6.
 ```
 
 
-Run the loop you wrote last week and investigate the means now that we have filtered the data. This was the loop where you took 100 samples of three different sizes: 10, 100, 1000, with replacement, and calculated their means. Do this again here with this filtered dataset and look at sample sizes of 10, 50, and 500. What do you see?
+Run the loop you wrote last week and investigate the means now that we have filtered the data. This was the loop where you took 100 samples of three different sizes: 10, 100, 1000, with replacement, and calculated their means. Run that loop again here with this filtered dataset but take 1000 samples instead of 100. Look at sample sizes of 10, 50, and 500. What do you see?
 
 
 ```{r ex6.2}
@@ -346,8 +348,7 @@ Congratulations! You just found the standard error by taking the standard deviat
 Now, think about which one of them should have the lowest SEM? Now check if that's true.  Does it match your expectations?
 
 
-2. Now lets find the 95% confidence intervals. Type ?quantile into your console to learn how to use this neat function. 
-Hint: We want 95% of the data to be within the intervals, so what should the quantiles be?
+2. Now lets find the 95% confidence intervals. To accomplish this, we will use the `quantile` function. The quantile function, as the name suggests, provides the numbers in a distribution which represent the bounds of a certain percentage of the data. For example, if you find the number which corresponds to a quantile of 0.3, all the numbers above that value in the distribution represent 70% of the data. Here, we will use it to find the middle 95% of the data, aka the 95% CI. `quantile` takes the arguments `x` and `probs = seq()`. `x`, as per usual, dictates the data the function will be performed on, in this case a sampling distribution. `probs = seq ()` takes the quantiles you want to find numbers for, if you put two in you can find upper and lower bounds for some middle percentage. (hint) 
 
 ```{r ex7.2}
 #call them CI_10, CI_500, CI_500
@@ -356,19 +357,17 @@ Hint: We want 95% of the data to be within the intervals, so what should the qua
 ```
 
 
-Now we have these confidence intervals, and you didn't need a crazy formula or assumptions about the mean being normally distributed! You simply took samples with replacement and calculated your confidence intervals empircally - aka, you used bootstrapping! 
-
-
+Now we have these confidence intervals, and you didn't need a crazy formula or assumptions about the mean being normally distributed! You simply took samples with replacement and calculated your confidence intervals empirically - aka, you used bootstrapping! 
 
 
 #### 8. Lets add the CIs to a graph!
 
-Lets first make a data frame of all the information we will need for the chart. You need the following columns: SampleSize, MeanValues,  UpperCI and LowerCI. You can use the ones you've calculated above.
+Lets first make a data frame of all the information we will need for the chart. You need the following columns: SampleSize, MeanValues,  UpperCI and LowerCI. You can use the ones you've calculated above. (hint)
 
 
 ```{r ex8.1}
 
-#create a data.frame called df containing the columns listed above.
+#create a data frame called df containing the columns listed above.
 
 
 
@@ -376,8 +375,7 @@ Lets first make a data frame of all the information we will need for the chart. 
 ```
 
 
-Amazing! Now make a strip chart using this data frame. Don't worry about CI yet. Just make a simple plot using geom_point() for each of the means, grouped by sample size. Add labels though. See the expected output document for inspiration.
-
+Amazing! Now make a strip chart using this data frame. Don't worry about CI yet. Just make a simple plot using geom_point() for each of the means, grouped by sample size. Add accurate and descriptive labels. 
 
 ```{r ex8.2}
 #first, make sure SampleSize is treated as a factor
@@ -390,7 +388,7 @@ Amazing! Now make a strip chart using this data frame. Don't worry about CI yet.
 
 ```
 
-Gorgeous. Now add your error bars. Use `geom_errorbar` to see the difference in those sample sizes. Add geom_errorbar after geom_point(). Inside aes(), use ymin and ymax with the lower and upper CIs, respectively.
+Gorgeous. Now add your error bars. Use `geom_errorbar` to see the difference in confidence interval of those sample sizes. Add geom_errorbar after geom_point(). Inside aes(), use ymin and ymax with the lower and upper CIs, respectively.
 
 ```{r ex8.3}
 #create your plot code here and save it as p2
@@ -411,7 +409,7 @@ PS: ggplot also has an option for density plots.
 
 
 ```{r 9.1}
-#type your code here calling the function density on each of your mean_10, etc vectors and call them dense10, etcc\
+#type your code here calling the function density on each of your mean_10, etc vectors and call them dense10, etc
 
 
 ```
