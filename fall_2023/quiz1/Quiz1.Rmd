@@ -14,7 +14,6 @@ tutorial:
 ```{r setup, include=FALSE}
 library(devtools)
 library(learnr)
-library(submitr)
 library(gradethis)
 library(tidyverse)
 library(knitr)
@@ -34,20 +33,6 @@ gradethis::gradethis_setup(
 
 ```
 
-
-```{r context = "server", echo = FALSE}
-#options(tutorial.storage = "none")
-vfun <- make_basic_validator(psfile=".cred/credentials.txt", "mortadela") #basket::check_valid
-#storage_actions <- 
-#  record_gs4(
-#    key = "1GZK3mkBTk0y4dsPu3vuZMd_wcvdShvTNoyJWJwqmG8k",
-#    email = "bbitarello.teaching@gmail.com",
-#    vfun
- #)
-storage_actions <- record_local("quiz1_record.txt")
-submitr::shiny_logic(input, output, session, vfun,
-                     storage_actions)
-```
 
 ```{css echo=FALSE}
  @media print {
